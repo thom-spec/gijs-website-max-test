@@ -113,7 +113,12 @@ export function LandelijkeSubsidies() {
 // als er voor deze gemeente geen data is (zie lib/content/regio-woningvoorraad.ts).
 export function WoningenInGemeente({ gemeente, slug }: { gemeente: string; slug: string }) {
   const data = WONINGVOORRAAD_GEMEENTEN[slug];
-  if (!data) return null;
+  if (!data) return (
+    <p className="text-zinc-600 max-w-2xl">
+      Het bouwjaar zegt veel over hoe een woning gebouwd is — en hoeveel winst er nog te halen valt met isolatie.
+      Tijdens de gratis energiescan aan huis kijkt een adviseur van Gijs precies wat er bij jouw woning speelt.
+    </p>
+  );
   const voor1975 = Math.round((data.percentageVoor1975 / 100) * data.totaalWoningen).toLocaleString("nl-NL");
   return (
     <section id="woningen-in-gemeente" className="scroll-mt-40 mb-14">
@@ -205,7 +210,25 @@ export function EnergiescanBlok() {
   );
 }
 
-export function RegioCta({ titel, tekst }: { titel: string; tekst?: string }) {
+// Importeer lazily om de server-component grens niet te overschrijden.
+// RegioWoningscanKnop is een client-component, maar mag gewoon in een server-component gebruikt worden.
+import { RegioWoningscanKnop, RegioProvincieWoningscanKnop } from "@/components/regio/RegioWoningscanKnop";
+
+export function RegioCta({
+  titel,
+  tekst,
+  provincie,
+  gemeente,
+  plaats,
+}: {
+  titel: string;
+  tekst?: string;
+  /** Wanneer provincie + gemeente bekend zijn, wordt de woningscan-knop getrackt als regio-instroom. */
+  provincie?: string;
+  gemeente?: string;
+  /** Alleen relevant op woonplaatspagina's: zorgt dat de herkomst naar de plaats-URL verwijst, niet naar de gemeente-URL. */
+  plaats?: string;
+}) {
   return (
     <section className="rounded-[var(--radius-xl)] bg-[var(--surface-tint)] px-6 py-8 md:px-12 flex flex-col md:flex-row md:items-center md:justify-between gap-6">
       <div className="max-w-xl min-w-0 [&_h2]:[hyphens:auto]">
@@ -213,7 +236,13 @@ export function RegioCta({ titel, tekst }: { titel: string; tekst?: string }) {
         <p className="text-zinc-700">{tekst ?? "Start de woningscan en ontdek welke mogelijkheden bij jouw woning passen."}</p>
       </div>
       <div className="flex flex-col sm:flex-row gap-3 shrink-0">
-        <Button href="/woning" variant="accent" size="lg" iconRight="arrow-right" className="w-full md:w-auto">Start de woningscan</Button>
+        {provincie && gemeente ? (
+          <RegioWoningscanKnop provincie={provincie} gemeente={gemeente} plaats={plaats} className="w-full md:w-auto" />
+        ) : provincie ? (
+          <RegioProvincieWoningscanKnop provincie={provincie} className="w-full md:w-auto" />
+        ) : (
+          <Button href="/woning" variant="accent" size="lg" iconRight="arrow-right" className="w-full md:w-auto">Start de woningscan</Button>
+        )}
         <Button href="/contact" variant="secondary" size="lg" className="w-full md:w-auto">Neem contact op</Button>
       </div>
     </section>

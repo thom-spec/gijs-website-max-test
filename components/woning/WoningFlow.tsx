@@ -22,6 +22,7 @@ import {
 } from "@/lib/scan-session";
 import { schatVerbruik, woonsituaties, energiekosten, leesGetal } from "@/lib/energie-schatting";
 import { track, logError } from "@/lib/analytics";
+import { leesRegioHerkomst, wisRegioHerkomst } from "@/lib/regio-source";
 import { maakWoningdossier } from "@/lib/woningdossier";
 import { slaWoningdossierOp } from "@/lib/woningdossier-opslag";
 import { verstuurEnergiescanAanvraag } from "@/lib/energiescan-opslag";
@@ -130,6 +131,11 @@ export function WoningFlow({ initialHouseType, initialPostcode, initialHuisnumme
     }
     setScan(restored);
     setReady(true);
+    // Vuur region_arrived als er een regioherkomst in de sessie staat — ongeacht of er al een scan
+    // bezig is. Dit meet de daadwerkelijke aankomst op /woning vanuit een regiopagina, los van
+    // region_to_scan (CTA-klik) en woningscan_started (adres bevestigd).
+    const herkomst = leesRegioHerkomst();
+    if (herkomst) track({ name: "region_arrived", ...herkomst });
   }, [draft, initialHouseType, initialPostcode, initialHuisnummer, initialMeasure]);
 
   useEffect(() => {
@@ -260,10 +266,15 @@ export function WoningFlow({ initialHouseType, initialPostcode, initialHuisnumme
     const eerste = (["verwarming", "bewoners", "stroom", "gas", "warmte"] as const).find(k => f[k]);
     if (eerste) { document.getElementById(`${fieldId}-${eerste}`)?.scrollIntoView({ block: "center", behavior: "smooth" }); return; }
     if (!scan.terugNaarPlan) {
+      const h = leesRegioHerkomst();
       track({ name: "scan_completed" });
       track({ name: "woningscan_step_completed", step: STAP.gegevens + 1, step_name: SCAN_STAPPEN[STAP.gegevens] });
-      track({ name: "woningscan_completed" });
+      track({ name: "woningscan_completed", ...(h ?? {}) });
+      // woningplan_viewed: historische naam behouden voor bestaande GTM-triggers.
+      // woningplan_preview_viewed: nieuwe, canonieke naam voor GA4-rapportage (gebruik díe als conversie).
+      // Beide events vuren op hetzelfde moment — zet maar één als GA4-conversie in.
       track({ name: "woningplan_viewed" });
+      track({ name: "woningplan_preview_viewed", ...(h ?? {}) });
     }
     if (scan.terugNaarPlan) terugNaarPlan(); else go(STAP.plan);
   };
@@ -289,8 +300,12 @@ export function WoningFlow({ initialHouseType, initialPostcode, initialHuisnumme
     // succesmelding hieronder toont ze niet meer, dus hoeven ze niet langer
     // in sessionStorage te blijven staan.
     if (verstuurd) {
+      const h = leesRegioHerkomst();
       track({ name: "energy_scan_requested" });
-      track({ name: "lead_created", source: "woningscan" });
+      track({ name: "lead_created", source: "woningscan", ...(h ?? {}) });
+      // Herkomst wissen: de scan is volledig afgerond. Een eventuele volgende directe scan
+      // in dezelfde tab krijgt geen verouderde regio-attributie.
+      wisRegioHerkomst();
       setScan({ ...sessieMetAfgerond, name: "", achternaam: "", email: "", telefoon: "", opmerking: "" });
       return;
     }
@@ -320,7 +335,11 @@ export function WoningFlow({ initialHouseType, initialPostcode, initialHuisnumme
           onHouseTypeChange={setHouseType} onAutoHouseType={setAutoHouseType}
           onAdresSubmit={(postcode, huisnummer) => patch({ postcode, huisnummer, addressLabel: "", woningBevestigd: false })}
           onBevestig={(addressLabel, manual = false, bag, epOnline, adresDelen) => {
-            if (!scan.dossierId) { track({ name: "scan_started" }); track({ name: "woningscan_started" }); }
+            if (!scan.dossierId) {
+              track({ name: "scan_started" });
+              const h = leesRegioHerkomst();
+              track({ name: "woningscan_started", ...(h ?? {}) });
+            }
             if (!scan.terugNaarPlan) track({ name: "woningscan_step_completed", step: STAP.woning + 1, step_name: SCAN_STAPPEN[STAP.woning] });
             patch({
               addressLabel, manualAddress: manual, woningBevestigd: true,
@@ -587,12 +606,28 @@ export function WoningFlow({ initialHouseType, initialPostcode, initialHuisnumme
               {scan.postcode && nieuweMaatregelen.length > 0 && (
                 scan.uitgebreidOntgrendeld ? (
                   <FinancieelWoningplan
-                    maatregelIds={scan.measures.length ? scan.measures.filter(id => nieuweMaatregelen.some(m => m.id === id)) : nieuweMaatregelen.map(m => m.id)}
-                    houseType={scan.houseType}
+                    invoer={{
+                      // Bewust geen terugval op "alle aanbevolen maatregelen" als er niets is aangevinkt: dat zou een
+                      // berekening tonen voor een keuze die de bezoeker niet heeft gemaakt. Zie FinancieelWoningplan.tsx
+                      // voor de tekst die dan verschijnt.
+                      maatregelIds: scan.measures.filter(id => nieuweMaatregelen.some(m => m.id === id)),
+                      houseType: scan.houseType,
+                      bouwjaar: leesGetal(scan.bouwjaar),
+                      kruipruimte: scan.kruipruimte,
+                      verwarming: scan.verwarming,
+                      gasverbruik: leesGetal(scan.gasverbruik),
+                      gasprijs: leesGetal(scan.gasprijs),
+                      aanwezigOnbekend: scan.aanwezigOnbekend,
+                    }}
                     naamVan={id => titelVan(id).naam}
                     postcode={scan.postcode}
                     huisnummer={scan.huisnummer}
                     gekozenMaatregelen={scan.measures}
+                    onEnergiescan={() => {
+                      track({ name: "cta_clicked", cta: "woningplan_energiescan" });
+                      document.getElementById(`${fieldId}-aanvraag`)?.scrollIntoView({ block: "start", behavior: "smooth" });
+                      document.getElementById(`${fieldId}-voornaam`)?.focus({ preventScroll: true });
+                    }}
                   />
                 ) : (
                   <WoningplanGate sessieJson={() => JSON.stringify(scan)} onOntgrendeld={(email, telefoon) => patch({ email, telefoon: telefoon || scan.telefoon, uitgebreidOntgrendeld: true })} />
@@ -608,7 +643,7 @@ export function WoningFlow({ initialHouseType, initialPostcode, initialHuisnumme
               </button>
             </section>
 
-            <section className={styles.aanvraag}>
+            <section id={`${fieldId}-aanvraag`} className={styles.aanvraag}>
               <h3 className={styles.planTitel}>Vraag een gratis energiescan aan</h3>
               <div className={styles.woningSamenvatting}>
                 <p className={styles.woningSamenvattingLabel}>Voor deze woning</p>

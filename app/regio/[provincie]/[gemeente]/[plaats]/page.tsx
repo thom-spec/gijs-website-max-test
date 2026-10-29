@@ -7,10 +7,13 @@ import Footer from "@/components/Footer";
 import { createMetadata } from "@/lib/seo";
 import { REGIO_PLAATSEN, getProvincie, getGemeente, getPlaats, plaatsenVan, regioPad } from "@/lib/content/regio";
 import { getLokaleInhoud } from "@/lib/content/regio-lokaal";
-import { getPlaatsVerhaal } from "@/lib/content/gemeente-verhalen";
+import { getPlaatsVerhaal, getGemeenteVerhaal } from "@/lib/content/gemeente-verhalen";
+import { FAQAccordion } from "@/components/measures/FAQAccordion";
 import { LokalePagina } from "@/components/regio/LokalePagina";
 import { GemeenteVerhaalPagina, type VerhaalKern } from "@/components/regio/GemeenteVerhaalPagina";
 import { RegioBreadcrumb, RegioMain, IsolatieMaatregelen, EnergiescanBlok, RegioCta } from "@/components/regio/RegioBlokken";
+import { RegioWoningscanKnop } from "@/components/regio/RegioWoningscanKnop";
+import { Alineas } from "@/components/regio/LokalePagina";
 import { RegelingenInGemeente } from "@/components/subsidie/RegelingenInGemeente";
 import { Button } from "@/components/ds/core/Button";
 import { Icon } from "@/components/ds/core/Icon";
@@ -79,8 +82,11 @@ export default async function PlaatsPage({ params }: Props) {
         <Header />
         <GemeenteVerhaalPagina
           verhaal={plaatsVerhaal}
+          provincie={p.slug}
           gemeente={g.naam}
+          gemeenteSlug={g.slug}
           plaatsnaam={k.naam}
+          plaatsSlug={k.slug}
           crumbs={crumbs}
           kernen={verhaalKernen}
           officieleSubsidieUrl={g.officieleSubsidieUrl}
@@ -89,6 +95,7 @@ export default async function PlaatsPage({ params }: Props) {
       </>
     );
   }
+  const gemeenteVerhaal = getGemeenteVerhaal(g.slug);
   const lokaal = getLokaleInhoud(regioPad(p.slug, g.slug, k.slug));
   if (lokaal) {
     return (
@@ -100,6 +107,9 @@ export default async function PlaatsPage({ params }: Props) {
           afbeelding={k.afbeelding ? { src: k.afbeelding, alt: `Plaatsnaambord ${k.naam}` } : undefined}
           officieleSubsidieUrl={g.officieleSubsidieUrl}
           gemeenteNaam={g.naam}
+          provincie={p.slug}
+          gemeenteSlug={g.slug}
+          plaatsSlug={k.slug}
         />
         <Footer />
       </>
@@ -124,7 +134,7 @@ export default async function PlaatsPage({ params }: Props) {
               subsidies en regelingen controleer je bij je eigen gemeente.
             </p>
             <div className="flex flex-col sm:flex-row gap-3 mt-2">
-              <Button href="/woning" variant="accent" size="lg" iconRight="arrow-right">Start de woningscan</Button>
+              <RegioWoningscanKnop provincie={p.slug} gemeente={g.slug} plaats={k.slug} />
               <Button href="/contact#energiescan" variant="secondary" size="lg">Vraag een gratis energiescan aan</Button>
             </div>
           </div>
@@ -141,6 +151,15 @@ export default async function PlaatsPage({ params }: Props) {
           )}
         </header>
 
+        {gemeenteVerhaal?.intro && gemeenteVerhaal.intro.length > 0 && (
+          <section className="mb-10 prose prose-zinc max-w-none text-zinc-600 text-[17px] leading-relaxed">
+            <h2 className="not-prose text-xl font-semibold text-[var(--gijs-donkergroen)] mb-4">
+              Verduurzamen in de gemeente {g.naam}
+            </h2>
+            <Alineas alineas={gemeenteVerhaal.intro} />
+          </section>
+        )}
+
         <RegelingenInGemeente
           gemeente={g.naam}
           officieleUrl={g.officieleSubsidieUrl}
@@ -152,6 +171,15 @@ export default async function PlaatsPage({ params }: Props) {
           intro="Kies een maatregel om te lezen hoe het werkt. Welke maatregel bij jouw woning past, bekijkt Gijs tijdens de energiescan."
         />
 
+        {gemeenteVerhaal?.faq && gemeenteVerhaal.faq.length > 0 && (
+          <section className="mb-14">
+            <h2 className="text-2xl font-bold text-[var(--gijs-donkergroen)] mb-6">
+              Veelgestelde vragen over isoleren in {g.naam}
+            </h2>
+            <FAQAccordion items={gemeenteVerhaal.faq} className="[&_.gijs-accordion__trigger]:py-6 [&_.gijs-accordion__trigger]:text-base md:[&_.gijs-accordion__trigger]:text-lg" />
+          </section>
+        )}
+
         <section className="mb-14">
           <Link href={gemeenteUrl} className="text-sm font-semibold text-[var(--accent-700)] hover:text-[var(--gijs-donkergroen)] inline-flex items-center gap-1 no-underline">
             Meer over isoleren in de gemeente {g.naam}, zoals landelijke subsidies <Icon name="arrow-right" size="sm" />
@@ -159,7 +187,7 @@ export default async function PlaatsPage({ params }: Props) {
         </section>
 
         <EnergiescanBlok />
-        <RegioCta titel={`Je woning isoleren in ${k.naam}?`} />
+        <RegioCta titel={`Je woning isoleren in ${k.naam}?`} provincie={p.slug} gemeente={g.slug} plaats={k.slug} />
       </RegioMain>
       <Footer />
     </>

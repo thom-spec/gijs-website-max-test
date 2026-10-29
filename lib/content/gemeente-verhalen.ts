@@ -13,7 +13,7 @@ export type GemeenteVerhaal = {
   intro: Alinea[];
   /** Slugs van de kernen (lib/content/regio.ts), in deze volgorde getoond. */
   kernen: string[];
-  woningen: {
+  woningen?: {
     lead: string;
     kerncijfers: { waarde: string; label: string }[];
     /** Opeenvolgende bouwperiodes; de percentages tellen op tot (ongeveer) 100. */
@@ -30,7 +30,7 @@ export type GemeenteVerhaal = {
     wijken?: { titel: string; intro: string; lijst: { naam: string; woningen: number; periode: string; tijdvak: number | null; type: string }[]; bron: { naam: string; url: string } };
     ontwikkeling: { titel: string; tekst: string };
   };
-  natuur: {
+  natuur?: {
     titel: string;
     lead: string;
     stappen: { icon: string; titel: string; tekst: string }[];
@@ -85,7 +85,7 @@ const BORNE: GemeenteVerhaal = {
     alineas: [
       ["De gemeente Borne bestaat uit de kern Borne, de dorpen Zenderen en Hertme en het buitengebied. Of je nu in een rijwoning in de kern woont of in een vrijstaand huis aan de rand van een dorp: de vraag is steeds waar de meeste warmte weglekt."],
       ["Dat verschil telt. Een vrijstaande woning heeft meer buitenmuur, dak en vloer dan een tussenwoning van dezelfde grootte, dus daar weegt goede isolatie extra zwaar. Woningtype, bouwjaar en ligging zeggen meer over je huis dan alleen de plaatsnaam."],
-      ["Wil je je woning isoleren in Borne? Gijs helpt bij het vinden van de juiste maatregel — van ", { tekst: "spouwmuurisolatie", href: "/maatregelen/spouwmuurisolatie" }, " en ", { tekst: "dakisolatie", href: "/maatregelen/dakisolatie" }, " tot zonnepanelen — maar voert de werkzaamheden niet zelf uit. Eerst krijg je onafhankelijk advies, daarna begeleidt Gijs het traject van A tot Z."],
+      ["Wil je je woning isoleren in Borne? Gijs helpt bij het vinden van de juiste maatregel, van ", { tekst: "spouwmuurisolatie", href: "/maatregelen/spouwmuurisolatie" }, " en ", { tekst: "dakisolatie", href: "/maatregelen/dakisolatie" }, " tot zonnepanelen, maar voert de werkzaamheden niet zelf uit. Eerst krijg je onafhankelijk advies, daarna begeleidt Gijs het traject van A tot Z."],
     ],
     bekendVan: {
       titel: "Waar is Borne bekend van?",
@@ -239,7 +239,7 @@ const HERTME: GemeenteVerhaal = {
   h1: "Je woning verduurzamen in Hertme",
   intro: [
     ["Woon je in Hertme of het omliggende buitengebied? Ontdek welke isolatie en installaties bij jouw woning passen, welke regelingen er nu in de gemeente ", { tekst: "Borne", href: "/regio/overijssel/borne" }, " zijn en waar je rekening mee moet houden."],
-    ["Bijna twee derde van de woningen in Hertme staat vrijstaand — het hoogste aandeel van de drie dorpen in Borne. Vrijstaande woningen hebben meer buitenoppervlak, wat betekent dat goede isolatie van dak, spouw en vloer extra bijdraagt."],
+    ["Bijna twee derde van de woningen in Hertme staat vrijstaand, het hoogste aandeel van de drie dorpen in Borne. Vrijstaande woningen hebben meer buitenoppervlak, wat betekent dat goede isolatie van dak, spouw en vloer extra bijdraagt."],
   ],
   kernen: ["hertme", "borne", "zenderen"],
   woningen: {
@@ -251,7 +251,7 @@ const HERTME: GemeenteVerhaal = {
       { waarde: "€494.000", label: "gem. WOZ-waarde" },
     ],
     bouwperiodes: [
-      { label: "Vóór 1945", percentage: 11, tekst: "Oude boerderijen en landelijke bebouwing. Kenmerkend voor de bosrijke omgeving van Hertme — bijna altijd zonder of met minimale isolatie." },
+      { label: "Vóór 1945", percentage: 11, tekst: "Oude boerderijen en landelijke bebouwing. Kenmerkend voor de bosrijke omgeving van Hertme, bijna altijd zonder of met minimale isolatie." },
       { label: "1945 – 1975", percentage: 18, tekst: "Naoorlogse groei van het dorp, overwegend vrijstaand of twee-onder-een-kap. Spouwmuurisolatie is hier vrijwel altijd de eerste stap." },
       { label: "1975 – 1995", percentage: 36, tekst: "De grootste bouwperiode van Hertme. Ruime vrijstaande woningen waarbij isolatie en zonnepanelen goed gecombineerd kunnen worden." },
       { label: "1995 – heden", percentage: 35, tekst: "Redelijk modern gebouwd. De focus ligt vaker op installaties: warmtepomp, zonnepanelen of thuisbatterij." },
@@ -344,7 +344,7 @@ const HENGELO: GemeenteVerhaal = {
     alineas: [
       ["Hengelo groeide in de twintigste eeuw uit tot een van de grootste steden van Twente, gedreven door de maakindustrie. De wederopbouw na de Tweede Wereldoorlog liet een grote naoorlogse woningvoorraad achter. Vandaag is Hengelo een compacte stad met zowel oudbouw in het centrum als rustige wijken en het dorp Beckum aan de rand."],
       ["De variatie in woningtype is groot. Huurders in meergezinswoningen en kopers van vrijstaande woningen hebben elk een ander startpunt. Gijs kijkt per woning wat de meest zinvolle stap is."],
-      ["Op zoek naar een isolatiebedrijf in Hengelo? Gijs helpt bij het isoleren van je woning — of het nu gaat om ", { tekst: "spouwmuurisolatie", href: "/maatregelen/spouwmuurisolatie" }, ", ", { tekst: "dakisolatie", href: "/maatregelen/dakisolatie" }, " of een andere maatregel — maar voert de werkzaamheden niet zelf uit. Eerst krijg je onafhankelijk advies. Daarna begeleidt Gijs het traject van A tot Z, inclusief de uitvoering door vakexperts."],
+      ["Op zoek naar een isolatiebedrijf in Hengelo? Gijs helpt bij het isoleren van je woning, of het nu gaat om ", { tekst: "spouwmuurisolatie", href: "/maatregelen/spouwmuurisolatie" }, ", ", { tekst: "dakisolatie", href: "/maatregelen/dakisolatie" }, " of een andere maatregel, maar voert de werkzaamheden niet zelf uit. Eerst krijg je onafhankelijk advies. Daarna begeleidt Gijs het traject van A tot Z, inclusief de uitvoering door vakexperts."],
     ],
     bekendVan: {
       titel: "Waar is Hengelo bekend van?",
@@ -554,12 +554,12 @@ const ALMELO: GemeenteVerhaal = {
 const HOF_VAN_TWENTE: GemeenteVerhaal = {
   seo: {
     title: "Woning isoleren in Hof van Twente | Advies & ontzorging – Gijs",
-    description: "Op zoek naar een isolatiebedrijf in Hof van Twente — Goor, Delden, Markelo of het buitengebied? Gijs geeft onafhankelijk verduurzamingsadvies en begeleidt je van A tot Z. Gratis energiescan aan huis.",
+    description: "Op zoek naar een isolatiebedrijf in Hof van Twente, Goor, Delden, Markelo of het buitengebied? Gijs geeft onafhankelijk verduurzamingsadvies en begeleidt je van A tot Z. Gratis energiescan aan huis.",
   },
   kicker: "Gemeente Hof van Twente",
   h1: "Je woning isoleren en verduurzamen in Hof van Twente",
   intro: [
-    ["Woon je in de gemeente Hof van Twente — in ", { tekst: "Goor", href: "/regio/overijssel/hof-van-twente/goor" }, ", ", { tekst: "Delden", href: "/regio/overijssel/hof-van-twente/delden" }, ", ", { tekst: "Markelo", href: "/regio/overijssel/hof-van-twente/markelo" }, " of het buitengebied? Ontdek welke isolatie en installaties bij jouw woning passen."],
+    ["Woon je in de gemeente Hof van Twente, in ", { tekst: "Goor", href: "/regio/overijssel/hof-van-twente/goor" }, ", ", { tekst: "Delden", href: "/regio/overijssel/hof-van-twente/delden" }, ", ", { tekst: "Markelo", href: "/regio/overijssel/hof-van-twente/markelo" }, " of het buitengebied? Ontdek welke isolatie en installaties bij jouw woning passen."],
     ["Met 69% koopwoningen en een groot aandeel vrijstaande huizen is Hof van Twente een gemeente waar verduurzaming vaak een individuele keuze is. Gijs kijkt wat bij jouw huis past."],
   ],
   kernen: ["goor", "delden", "markelo", "diepenheim", "bentelo", "hengevelde"],
@@ -715,12 +715,12 @@ const OLDENZAAL: GemeenteVerhaal = {
 const HELLENDOORN: GemeenteVerhaal = {
   seo: {
     title: "Woning isoleren en verduurzamen in Hellendoorn | Gijs",
-    description: "Je woning verduurzamen in Hellendoorn — Nijverdal, Daarle, Daarlerveen of Haarle? Lees wat het bouwjaar zegt en welke subsidies er nu zijn.",
+    description: "Op zoek naar een isolatiebedrijf in Hellendoorn of Nijverdal? Gijs geeft onafhankelijk verduurzamingsadvies en begeleidt je van A tot Z. Gratis energiescan aan huis.",
   },
   kicker: "Gemeente Hellendoorn",
   h1: "Je woning verduurzamen in Hellendoorn",
   intro: [
-    ["Woon je in de gemeente Hellendoorn — in ", { tekst: "Nijverdal", href: "/regio/overijssel/hellendoorn/nijverdal" }, ", ", { tekst: "Haarle", href: "/regio/overijssel/hellendoorn/haarle" }, " of het buitengebied? Ontdek welke isolatie en installaties bij jouw woning passen."],
+    ["Woon je in de gemeente Hellendoorn, in ", { tekst: "Nijverdal", href: "/regio/overijssel/hellendoorn/nijverdal" }, ", ", { tekst: "Haarle", href: "/regio/overijssel/hellendoorn/haarle" }, " of het buitengebied? Ontdek welke isolatie en installaties bij jouw woning passen."],
     ["Bijna twee derde van de woningen in de gemeente Hellendoorn is gebouwd vóór 1995. In die woningen is er vrijwel altijd verduurzamingspotentieel. Gijs kijkt wat logisch is als eerste stap."],
   ],
   kernen: ["hellendoorn", "nijverdal", "haarle", "daarle"],
@@ -783,6 +783,7 @@ const HELLENDOORN: GemeenteVerhaal = {
     { question: "Moet ik bij isolatie rekening houden met beschermde dieren?", answer: "Ja. In de gemeente Hellendoorn wonen beschermde vleermuizen, huismussen en gierzwaluwen. Kies een isolatiebedrijf dat natuurvriendelijk werkt." },
     { question: "Kijkt Gijs ook naar een warmtepomp of zonnepanelen?", answer: "Ja. Gijs kijkt naar isolatie én installaties, in de volgorde die bij jouw woning past." },
     { question: "Helpt Gijs ook in Nijverdal, Haarle en Daarlerveen?", answer: "Ja. Gijs helpt bewoners in de hele gemeente Hellendoorn, ook in alle dorpen." },
+    { question: "Is Gijs een isolatiebedrijf in Hellendoorn?", answer: "Gijs is geen uitvoerend isolatiebedrijf, maar begeleidt je onafhankelijk door het hele verduurzamingstraject. Het begint met persoonlijk advies over welke maatregelen passen bij jouw woning. Vervolgens begeleiden en ontzorgen we je bij de uitvoering door vakspecialisten, zodat je er zelf niet van wakker hoeft te liggen." },
   ],
   verwant: [
     { naam: "Woning verduurzamen in Rijssen-Holten", href: "/regio/overijssel/rijssen-holten" },
@@ -875,12 +876,12 @@ const RIJSSEN_HOLTEN: GemeenteVerhaal = {
 const TWENTERAND: GemeenteVerhaal = {
   seo: {
     title: "Woning isoleren en verduurzamen in Twenterand | Gijs",
-    description: "Je woning verduurzamen in Twenterand — Vriezenveen, Vroomshoop of Den Ham? Lees wat het bouwjaar zegt en welke subsidies er nu zijn.",
+    description: "Je woning verduurzamen in Twenterand, Vriezenveen, Vroomshoop of Den Ham? Lees wat het bouwjaar zegt en welke subsidies er nu zijn.",
   },
   kicker: "Gemeente Twenterand",
   h1: "Je woning verduurzamen in Twenterand",
   intro: [
-    ["Woon je in de gemeente Twenterand — in ", { tekst: "Vriezenveen", href: "/regio/overijssel/twenterand/vriezenveen" }, ", ", { tekst: "Vroomshoop", href: "/regio/overijssel/twenterand/vroomshoop" }, " of ", { tekst: "Den Ham", href: "/regio/overijssel/twenterand/den-ham" }, "? Ontdek welke isolatie en installaties bij jouw woning passen."],
+    ["Woon je in de gemeente Twenterand, in ", { tekst: "Vriezenveen", href: "/regio/overijssel/twenterand/vriezenveen" }, ", ", { tekst: "Vroomshoop", href: "/regio/overijssel/twenterand/vroomshoop" }, " of ", { tekst: "Den Ham", href: "/regio/overijssel/twenterand/den-ham" }, "? Ontdek welke isolatie en installaties bij jouw woning passen."],
     ["Met ruim een derde vrijstaande woningen en een WOZ-waarde van gemiddeld €354.000 is Twenterand een landelijke gemeente waar verduurzaming per woning een andere aanpak vraagt. Gijs kijkt wat bij jouw huis past."],
   ],
   kernen: ["vriezenveen", "vroomshoop", "den-ham"],
@@ -1033,7 +1034,7 @@ const BOEKELO: GemeenteVerhaal = {
   h1: "Je woning verduurzamen in Boekelo",
   intro: [
     ["Woon je in Boekelo of het omliggende buitengebied? Ontdek welke isolatie en installaties bij jouw woning passen en welke regelingen er nu in de gemeente ", { tekst: "Enschede", href: "/regio/overijssel/enschede" }, " zijn."],
-    ["Boekelo heeft een gevarieerde woningvoorraad — van oudere vrijstaande woningen langs de historische linten tot modernere woningen in de woonstraten. Gijs kijkt per woning wat de logische stap is."],
+    ["Boekelo heeft een gevarieerde woningvoorraad, van oudere vrijstaande woningen langs de historische linten tot modernere woningen in de woonstraten. Gijs kijkt per woning wat de logische stap is."],
   ],
   kernen: ["boekelo", "enschede", "glanerbrug", "lonneker", "usselo", "twekkelo"],
   woningen: {
@@ -2904,12 +2905,12 @@ const WESTERHAAR_VRIEZENVEENSEWIJK: GemeenteVerhaal = {
 const ZWOLLE: GemeenteVerhaal = {
   seo: {
     title: "Je huis isoleren in Zwolle | Advies & ontzorging – Gijs",
-    description: "Je huis isoleren in Zwolle, van Stadshagen tot Berkum? Gijs geeft onafhankelijk verduurzamingsadvies en begeleidt je van A tot Z — in Berkum in samenwerking met BEN. Gratis energiescan aan huis.",
+    description: "Je huis isoleren in Zwolle, van Stadshagen tot Berkum? Gijs geeft onafhankelijk verduurzamingsadvies en begeleidt je van A tot Z, in Berkum in samenwerking met BEN. Gratis energiescan aan huis.",
   },
   kicker: "Gemeente Zwolle",
   h1: "Je huis isoleren en verduurzamen in Zwolle",
   intro: [
-    ["Woon je in Zwolle? Gijs helpt je uitzoeken welke isolatie en installaties bij jouw woning passen, en welke subsidies er nu gelden. Gijs is actief in de hele gemeente — van ", { tekst: "Stadshagen", href: "/regio/overijssel/zwolle/stadshagen" }, " en ", { tekst: "Westenholte", href: "/regio/overijssel/zwolle/westenholte" }, " tot het historische ", { tekst: "Windesheim", href: "/regio/overijssel/zwolle/windesheim" }, " en ", { tekst: "Berkum", href: "/regio/overijssel/zwolle/berkum" }, ", waar we samenwerken met bewonerscoöperatie BEN."],
+    ["Woon je in Zwolle? Gijs helpt je uitzoeken welke isolatie en installaties bij jouw woning passen, en welke subsidies er nu gelden. Gijs is actief in de hele gemeente, van ", { tekst: "Stadshagen", href: "/regio/overijssel/zwolle/stadshagen" }, " en ", { tekst: "Westenholte", href: "/regio/overijssel/zwolle/westenholte" }, " tot het historische ", { tekst: "Windesheim", href: "/regio/overijssel/zwolle/windesheim" }, " en ", { tekst: "Berkum", href: "/regio/overijssel/zwolle/berkum" }, ", waar we samenwerken met bewonerscoöperatie BEN."],
     ["Van de ruim 61.000 woningen in Zwolle is bijna vier op de tien gebouwd vóór 1975, vaak met een buitenmuur die nog niet of nauwelijks is geïsoleerd. Spouwmuurisolatie is dan vaak de eerste en meest effectieve stap, naast dak- en vloerisolatie. Gijs kijkt altijd eerst wat er al is gedaan, en helpt dan met de stap die logisch is voor jouw huis."],
   ],
   kernen: [
@@ -2980,8 +2981,8 @@ const ZWOLLE: GemeenteVerhaal = {
     { question: "Hoe isoleer ik de muren van mijn huis in Zwolle?", answer: "Bij de meeste naoorlogse woningen in Zwolle is spouwmuurisolatie de snelste manier om de buitenmuur te isoleren: het isolatiemateriaal wordt via een klein boorgat in de bestaande spouw aangebracht. Heeft jouw huis geen spouw, dan kijkt Gijs naar binnen- of buitengevelisolatie als alternatief." },
     { question: "Helpt Gijs in heel Zwolle, niet alleen in Berkum?", answer: "Ja. Gijs helpt in de hele gemeente Zwolle. De samenwerking met Berkum Energieneutraal geldt specifiek voor de wijk Berkum, maar een gratis energiescan kun je overal in Zwolle aanvragen." },
     { question: "Welke subsidies zijn er nu in Zwolle?", answer: "Dat verandert regelmatig. Op deze pagina zie je de regelingen die nu voor Zwolle in de Energiesubsidiewijzer van Milieu Centraal staan. Met de subsidiecheck zie je wat er voor jouw adres geldt, ook landelijk." },
-    { question: "Mijn huis is gebouwd vóór 1975. Waar begin ik?", answer: "Vaak bij de spouw, het dak of de vloer — maar het hangt af van wat er al is gedaan. Veel oudere Zwolse woningen zijn al deels verbeterd door een vorige eigenaar. Gijs kijkt tijdens de energiescan wat er nog te winnen valt." },
-    { question: "Moet ik bij isolatie rekening houden met vleermuizen of huismussen?", answer: "Ja. In Zwolle — en in heel Nederland — zijn vleermuizen, huismussen en gierzwaluwen wettelijk beschermd. Kies een isolatiebedrijf dat hier mee weet om te gaan. Dat bedrijf regelt ook de melding bij de provincie Overijssel." },
+    { question: "Mijn huis is gebouwd vóór 1975. Waar begin ik?", answer: "Vaak bij de spouw, het dak of de vloer, maar het hangt af van wat er al is gedaan. Veel oudere Zwolse woningen zijn al deels verbeterd door een vorige eigenaar. Gijs kijkt tijdens de energiescan wat er nog te winnen valt." },
+    { question: "Moet ik bij isolatie rekening houden met vleermuizen of huismussen?", answer: "Ja. In Zwolle, en in heel Nederland, zijn vleermuizen, huismussen en gierzwaluwen wettelijk beschermd. Kies een isolatiebedrijf dat hier mee weet om te gaan. Dat bedrijf regelt ook de melding bij de provincie Overijssel." },
     { question: "Kijkt Gijs ook naar zonnepanelen of een warmtepomp?", answer: "Ja. Gijs kijkt naar het geheel: isolatie én installaties, en naar de volgorde die past bij jouw woning. De gratis energiescan geeft je dat inzicht." },
     { question: "Ik huur mijn woning. Kan ik ook bij Gijs terecht?", answer: "Gijs richt zich op woningeigenaren. Huur je van een corporatie, dan kun je het beste contact opnemen met je verhuurder over verduurzaming." },
   ],
@@ -2991,7 +2992,7 @@ const ZWOLLE: GemeenteVerhaal = {
   ],
   partner: {
     naam: "Berkum Energieneutraal (BEN)",
-    logo: "/images/partners/ben-logo.png",
+    logo: "/Logo-BEN-275x300.png",
     url: "https://www.berkumenergieneutraal.nl",
     urlLabel: "berkumenergieneutraal.nl",
     tagline: "Gijs werkt samen met BEN, de bewonerscoöperatie die verduurzaming in Berkum organiseert.",
@@ -3008,7 +3009,7 @@ const BERKUM_ZWOLLE: GemeenteVerhaal = {
   h1: "Je woning verduurzamen in Berkum",
   intro: [
     ["In Berkum wordt al jaren samengewerkt aan een wijk die minder energie gebruikt en straks zonder aardgas kan. Dat begint bij je eigen huis: hoe goed is het geïsoleerd, en wat is een logische volgende stap?"],
-    ["Gijs helpt bewoners van Berkum om dat rustig en zonder verplichtingen te ontdekken. Met een gratis energiescan krijg je inzicht in je woning en een helder beeld van wat er kan — in samenwerking met bewonerscoöperatie ", { tekst: "Berkum Energieneutraal (BEN)", href: "https://www.berkumenergieneutraal.nl/", extern: true }, "."],
+    ["Gijs helpt bewoners van Berkum om dat rustig en zonder verplichtingen te ontdekken. Met een gratis energiescan krijg je inzicht in je woning en een helder beeld van wat er kan, in samenwerking met bewonerscoöperatie ", { tekst: "Berkum Energieneutraal (BEN)", href: "https://www.berkumenergieneutraal.nl/", extern: true }, "."],
   ],
   kernen: ["berkum", "zwolle", "westenholte", "stadshagen", "windesheim"],
   woningen: {
@@ -3033,7 +3034,7 @@ const BERKUM_ZWOLLE: GemeenteVerhaal = {
     alineas: [
       ["Berkum Energieneutraal (BEN) is een initiatief van en voor bewoners van Berkum. Het wordt gedragen door vrijwilligers uit de wijk, verenigd in een stichting en een energiecoöperatie, in samenwerking met de gemeente Zwolle en de woningcorporaties."],
       ["BEN wil dat Berkum minder energie gebruikt, zelf duurzame energie opwekt en uiteindelijk van het aardgas af gaat. De eerste stap is het verduurzamen van de woningen zelf. Gijs is samenwerkingspartner van BEN: we helpen bewoners met inzicht in hun woning en de mogelijke vervolgstappen."],
-      ["Berkum is aangewezen als proeftuin in het landelijke programma voor aardgasvrije wijken. Dat betekent niet dat bewoners verplicht zijn iets te doen. De energiescan bij Gijs is gratis en vrijblijvend — je beslist zelf wat je wanneer doet."],
+      ["Berkum is aangewezen als proeftuin in het landelijke programma voor aardgasvrije wijken. Dat betekent niet dat bewoners verplicht zijn iets te doen. De energiescan bij Gijs is gratis en vrijblijvend, je beslist zelf wat je wanneer doet."],
     ],
     bekendVan: {
       titel: "Berkum in cijfers",
@@ -3052,7 +3053,7 @@ const BERKUM_ZWOLLE: GemeenteVerhaal = {
     },
     ontwikkeling: {
       titel: "Doel: aardgasvrij-ready in 2028",
-      tekst: "BEN heeft de ambitie dat in 2028 alle woningen in Berkum aardgasvrij-ready zijn. Dat is een doel van BEN, geen belofte van Gijs. Aardgasvrij-ready betekent dat je huis zo goed geïsoleerd is dat het straks met een lagere temperatuur verwarmd kan worden — zonder dat je nu al van het gas af hoeft.",
+      tekst: "BEN heeft de ambitie dat in 2028 alle woningen in Berkum aardgasvrij-ready zijn. Dat is een doel van BEN, geen belofte van Gijs. Aardgasvrij-ready betekent dat je huis zo goed geïsoleerd is dat het straks met een lagere temperatuur verwarmd kan worden, zonder dat je nu al van het gas af hoeft.",
     },
   },
   natuur: {
@@ -3079,13 +3080,21 @@ const BERKUM_ZWOLLE: GemeenteVerhaal = {
     { naam: "Woning verduurzamen in Zwolle", href: "/regio/overijssel/zwolle" },
     { naam: "Verduurzamen in Overijssel", href: "/regio/overijssel" },
   ],
+  partner: {
+    naam: "Berkum Energieneutraal (BEN)",
+    logo: "/Logo-BEN-275x300.png",
+    url: "https://www.berkumenergieneutraal.nl",
+    urlLabel: "berkumenergieneutraal.nl",
+    tagline: "Gijs werkt samen met BEN, de bewonerscoöperatie die verduurzaming in Berkum organiseert.",
+    display: 'hero',
+  },
 };
 
 // CBS/BAG-cijfers via AlleCijfers.nl, peiljaar 2026, gecontroleerd op 23 oktober 2026.
 // Gemeente Zwolle heeft officieel één woonplaats. De sub-kernen zijn wijken en buurtschappen.
 // Bouwperiodes voor buurtschappen zijn inschattingen; AlleCijfers toont ze als grafieken.
 // Bronnen: wijk Westenholte, wijk Stadshagen, buurt Windesheim, buurt Wijthmen, buurt Herfte,
-// buurt Haerst — allemaal AlleCijfers.nl 2026.
+// buurt Haerst, allemaal AlleCijfers.nl 2026.
 
 const WESTENHOLTE: GemeenteVerhaal = {
   seo: {
@@ -3096,7 +3105,7 @@ const WESTENHOLTE: GemeenteVerhaal = {
   h1: "Je woning verduurzamen in Westenholte",
   intro: [
     ["Woon je in Westenholte? Gijs helpt je uitzoeken welke isolatie en installaties bij jouw woning passen en welke subsidies er nu in de gemeente ", { tekst: "Zwolle", href: "/regio/overijssel/zwolle" }, " gelden."],
-    ["Westenholte was tot 1967 een zelfstandige gemeente. De meeste woningen zijn naoorlogs gebouwd — met name in de jaren zestig en zeventig. Juist in dat bouwjaar is de verduurzamingswinst vaak het grootst."],
+    ["Westenholte was tot 1967 een zelfstandige gemeente. De meeste woningen zijn naoorlogs gebouwd, met name in de jaren zestig en zeventig. Juist in dat bouwjaar is de verduurzamingswinst vaak het grootst."],
   ],
   kernen: ["westenholte", "zwolle", "berkum", "stadshagen"],
   woningen: {
@@ -3108,7 +3117,7 @@ const WESTENHOLTE: GemeenteVerhaal = {
       { waarde: "€408.000", label: "gem. WOZ-waarde" },
     ],
     bouwperiodes: [
-      { label: "Vóór 1945", percentage: 5, tekst: "Historische bebouwing uit de tijd dat Westenholte een zelfstandige gemeente was. Bijna altijd gebouwd zonder isolatienormen — spouw, dak en vloer zijn hier de grootste winst." },
+      { label: "Vóór 1945", percentage: 5, tekst: "Historische bebouwing uit de tijd dat Westenholte een zelfstandige gemeente was. Bijna altijd gebouwd zonder isolatienormen, spouw, dak en vloer zijn hier de grootste winst." },
       { label: "1945 – 1975", percentage: 35, tekst: "De grootste groei van Westenholte als uitbreidingswijk van Zwolle. Spouwmuren aanwezig, maar de spouw is vaak nog leeg." },
       { label: "1975 – 1995", percentage: 40, tekst: "Deels geïsoleerd bij oplevering, maar bijna altijd te verbeteren. Eerst kijken wat er al zit, dan bijisoleren." },
       { label: "Na 1995", percentage: 20, tekst: "Beter geïsoleerd. De winst zit vaker in beter glas, een warmtepomp of zonnepanelen." },
@@ -3119,7 +3128,7 @@ const WESTENHOLTE: GemeenteVerhaal = {
   lokaal: {
     titel: "Westenholte: voormalige gemeente met eigen karakter",
     alineas: [
-      ["Westenholte was tot 1967 een zelfstandige gemeente, Zwollerkerspel genaamd. Het heeft een eigen historisch dorpscentrum met de Westenholterkerk — een 13e-eeuws rijksmonument dat nog steeds het hart van de wijk vormt."],
+      ["Westenholte was tot 1967 een zelfstandige gemeente, Zwollerkerspel genaamd. Het heeft een eigen historisch dorpscentrum met de Westenholterkerk, een 13e-eeuws rijksmonument dat nog steeds het hart van de wijk vormt."],
       ["Na de fusie groeide Westenholte verder met naoorlogse woonwijken. Die combinatie van historische bebouwing en naoorlogse uitbreiding bepaalt ook wat er te verduurzamen valt: bij de oudste woningen is de spouw vaak nog leeg, de nieuwere hebben al deels isolatie maar zijn bijna altijd te verbeteren."],
     ],
     bekendVan: {
@@ -3157,7 +3166,7 @@ const WESTENHOLTE: GemeenteVerhaal = {
     { question: "Welke subsidies zijn er in Westenholte?", answer: "Westenholte valt onder gemeente Zwolle. De regelingen die nu voor Zwolle gelden, zijn ook op jouw woning van toepassing. Met de subsidiecheck zie je wat er voor jouw adres geldt." },
     { question: "Mijn huis is uit de jaren zestig of zeventig. Waar begin ik?", answer: "Veel woningen in Westenholte zijn uit die periode. De spouwmuur is bijna altijd aanwezig, maar de spouw is vaak nog leeg of dunner geïsoleerd dan gebruikelijk. Gijs kijkt tijdens de energiescan wat er al is en welke stap de meeste winst geeft." },
     { question: "Mijn woning is een rijksmonument of nabij een monument. Mag ik zomaar isoleren?", answer: "Voor rijksmonumenten gelden beperkingen. Voor gewone woningen naast een monument zijn er geen bijzondere regels. Bij twijfel kijkt Gijs mee en verwijst naar de juiste instantie." },
-    { question: "Moet ik bij isolatie rekening houden met beschermde dieren?", answer: "Ja. In heel Zwolle zijn vleermuizen, huismussen en gierzwaluwen wettelijk beschermd. Kies een isolatiebedrijf dat hier mee weet om te gaan — dat bedrijf regelt ook de melding bij de provincie." },
+    { question: "Moet ik bij isolatie rekening houden met beschermde dieren?", answer: "Ja. In heel Zwolle zijn vleermuizen, huismussen en gierzwaluwen wettelijk beschermd. Kies een isolatiebedrijf dat hier mee weet om te gaan, dat bedrijf regelt ook de melding bij de provincie." },
   ],
   verwant: [
     { naam: "Woning verduurzamen in Zwolle", href: "/regio/overijssel/zwolle" },
@@ -3175,11 +3184,11 @@ const STADSHAGEN: GemeenteVerhaal = {
   h1: "Je woning verduurzamen in Stadshagen",
   intro: [
     ["Woon je in Stadshagen? Gijs helpt je uitzoeken welke isolatie en installaties bij jouw woning passen en welke subsidies er nu in de gemeente ", { tekst: "Zwolle", href: "/regio/overijssel/zwolle" }, " gelden."],
-    ["Stadshagen is de grootste nieuwbouwwijk van Zwolle, gebouwd vanaf de jaren negentig. De meeste woningen zijn al goed geïsoleerd, maar ook in Stadshagen is verduurzamen zinvol — denk aan een warmtepomp, zonnepanelen of een thuisbatterij."],
+    ["Stadshagen is de grootste nieuwbouwwijk van Zwolle, gebouwd vanaf de jaren negentig. De meeste woningen zijn al goed geïsoleerd, maar ook in Stadshagen is verduurzamen zinvol, denk aan een warmtepomp, zonnepanelen of een thuisbatterij."],
   ],
   kernen: ["stadshagen", "zwolle", "westenholte", "berkum"],
   woningen: {
-    lead: "Stadshagen is bijna volledig naoorlogs. Dat is anders dan de rest van Zwolle — en dat zie je terug in wat verduurzamen betekent.",
+    lead: "Stadshagen is bijna volledig naoorlogs. Dat is anders dan de rest van Zwolle, en dat zie je terug in wat verduurzamen betekent.",
     kerncijfers: [
       { waarde: "10.790", label: "woningen" },
       { waarde: "~5%", label: "gebouwd vóór 1995" },
@@ -3192,7 +3201,7 @@ const STADSHAGEN: GemeenteVerhaal = {
       { label: "2010 – 2020", percentage: 30, tekst: "Gebouwd onder strengere energienormen. De schil is goed; de winst zit in slimme installaties en energieopwekking." },
       { label: "Na 2020", percentage: 10, tekst: "Bijna energieneutraal of bijna-energieneutraal (BENG). De focus ligt op zonnepanelen, thuisbatterijen en optimalisatie." },
     ],
-    voetnoot: "Het bouwjaar is een eerste indicatie. Gijs kijkt altijd naar jouw eigen huis — ook in Stadshagen zijn er grote verschillen per type en straat.",
+    voetnoot: "Het bouwjaar is een eerste indicatie. Gijs kijkt altijd naar jouw eigen huis, ook in Stadshagen zijn er grote verschillen per type en straat.",
     bron: { naam: "CBS en BAG via AlleCijfers.nl, wijk Stadshagen, 2026", url: "https://www.allecijfers.nl/wijk/stadshagen-zwolle/" },
   },
   lokaal: {
@@ -3205,7 +3214,7 @@ const STADSHAGEN: GemeenteVerhaal = {
       titel: "Stadshagen in beeld",
       kaarten: [
         { icon: "building-2", titel: "Grootste nieuwbouwwijk", tekst: "Stadshagen heeft bijna 11.000 woningen en is de grootste en snelst gegroeide wijk van Zwolle." },
-        { icon: "droplets", titel: "Water en groen", tekst: "De wijk is ontworpen met veel water, parken en groenstroken — kenmerkend voor de planologie van de jaren negentig." },
+        { icon: "droplets", titel: "Water en groen", tekst: "De wijk is ontworpen met veel water, parken en groenstroken, kenmerkend voor de planologie van de jaren negentig." },
         { icon: "shopping-cart", titel: "Winkelcentrum In de Boomgaard", tekst: "Het winkelcentrum is het kloppende hart van de wijk en heeft alles wat nodig is voor dagelijks gebruik." },
       ],
     },
@@ -3217,7 +3226,7 @@ const STADSHAGEN: GemeenteVerhaal = {
     },
     ontwikkeling: {
       titel: "Wat speelt er in Stadshagen?",
-      tekst: "Stadshagen groeit nog steeds, met nieuwe buurten die bijna-energieneutraal (BENG) worden gebouwd. Tegelijk vragen de eerste woningen uit de jaren negentig nu om onderhoud en verbetering — glas, installaties en eventueel extra isolatie.",
+      tekst: "Stadshagen groeit nog steeds, met nieuwe buurten die bijna-energieneutraal (BENG) worden gebouwd. Tegelijk vragen de eerste woningen uit de jaren negentig nu om onderhoud en verbetering, glas, installaties en eventueel extra isolatie.",
     },
   },
   natuur: {
@@ -3234,9 +3243,9 @@ const STADSHAGEN: GemeenteVerhaal = {
   },
   faq: [
     { question: "Is verduurzamen in Stadshagen zinvol als mijn huis al goed geïsoleerd is?", answer: "Ja. De schil is bij nieuwbouwwoningen al beter. Maar ook in Stadshagen is er winst te halen met een hybride warmtepomp (gas besparen), zonnepanelen of een thuisbatterij. Gijs kijkt wat bij jouw woning past." },
-    { question: "Welke subsidies zijn er in Stadshagen?", answer: "Stadshagen valt onder gemeente Zwolle. De regelingen die nu voor Zwolle gelden, zijn ook op jouw woning van toepassing. Met de subsidiecheck zie je wat er voor jouw adres geldt — ook voor installaties in goed geïsoleerde woningen." },
+    { question: "Welke subsidies zijn er in Stadshagen?", answer: "Stadshagen valt onder gemeente Zwolle. De regelingen die nu voor Zwolle gelden, zijn ook op jouw woning van toepassing. Met de subsidiecheck zie je wat er voor jouw adres geldt, ook voor installaties in goed geïsoleerde woningen." },
     { question: "Mijn woning is uit 2005 of 2010. Wat is de logische stap?", answer: "Kijk eerst naar glas en installaties. Een hybride warmtepomp of zonnepanelen zijn in woningen uit die periode vaak de meest rendabele stap. Gijs beoordeelt tijdens de energiescan wat er al is en wat de logische volgorde is." },
-    { question: "Moet ik ook bij een nieuwbouwwoning rekening houden met beschermde dieren?", answer: "Ja. Ook in nieuwbouw nestelen vleermuizen en huismussen. Kies een isolatiebedrijf dat hier mee weet om te gaan — dat regelt ook de melding bij de provincie." },
+    { question: "Moet ik ook bij een nieuwbouwwoning rekening houden met beschermde dieren?", answer: "Ja. Ook in nieuwbouw nestelen vleermuizen en huismussen. Kies een isolatiebedrijf dat hier mee weet om te gaan, dat regelt ook de melding bij de provincie." },
   ],
   verwant: [
     { naam: "Woning verduurzamen in Zwolle", href: "/regio/overijssel/zwolle" },
@@ -3266,7 +3275,7 @@ const WINDESHEIM: GemeenteVerhaal = {
       { waarde: "€434.000", label: "gem. WOZ-waarde" },
     ],
     bouwperiodes: [
-      { label: "Vóór 1945", percentage: 15, tekst: "Historische lintbebouwing langs de dorpskern. Gebouwd zonder isolatienormen — spouw, dak en vloer zijn hier de grootste kansen." },
+      { label: "Vóór 1945", percentage: 15, tekst: "Historische lintbebouwing langs de dorpskern. Gebouwd zonder isolatienormen, spouw, dak en vloer zijn hier de grootste kansen." },
       { label: "1945 – 1975", percentage: 30, tekst: "Naoorlogse uitbreiding van het dorp. Spouwmuren aanwezig, maar de spouw is vaak nog leeg of dunner geïsoleerd dan gebruikelijk." },
       { label: "1975 – 1995", percentage: 30, tekst: "Deels geïsoleerd, maar bijna altijd te verbeteren. Eerst kijken wat er al zit, dan bijisoleren." },
       { label: "Na 1995", percentage: 25, tekst: "Beter geïsoleerd. De winst zit vaker in beter glas, een warmtepomp of zonnepanelen." },
@@ -3277,7 +3286,7 @@ const WINDESHEIM: GemeenteVerhaal = {
   lokaal: {
     titel: "Windesheim: dorp met een middeleeuwse naam",
     alineas: [
-      ["Windesheim heeft een bijzondere plek in de Europese kerkgeschiedenis. Hier stichtten Geert Grote en Florens Radewijns in de 14e eeuw het klooster van Windesheim, de bakermat van de Congregatie van Windesheim — een invloedrijke monastieke beweging die zich door heel Europa verspreidde. Van het klooster resteert nu nog een kapel."],
+      ["Windesheim heeft een bijzondere plek in de Europese kerkgeschiedenis. Hier stichtten Geert Grote en Florens Radewijns in de 14e eeuw het klooster van Windesheim, de bakermat van de Congregatie van Windesheim, een invloedrijke monastieke beweging die zich door heel Europa verspreidde. Van het klooster resteert nu nog een kapel."],
       ["De Hogeschool Windesheim in Zwolle dankt haar naam aan dit historische dorp. In het dorp zelf wonen ruim 150 huishoudens in een mix van historische panden, naoorlogse woningen en enkele nieuwbouwhuizen."],
     ],
     bekendVan: {
@@ -3315,7 +3324,7 @@ const WINDESHEIM: GemeenteVerhaal = {
     { question: "Helpt Gijs ook in Windesheim?", answer: "Ja. Gijs helpt in de hele gemeente Zwolle, ook in kleine kernen zoals Windesheim. Een gratis energiescan is overal in Zwolle aan te vragen." },
     { question: "Welke subsidies zijn er in Windesheim?", answer: "Windesheim valt onder gemeente Zwolle. De regelingen die nu voor Zwolle gelden, zijn ook op jouw woning van toepassing. Met de subsidiecheck zie je wat er voor jouw adres geldt." },
     { question: "Mijn woning staat in de historische kern van Windesheim. Mag ik isoleren?", answer: "Voor gewone woningen (geen rijksmonument) gelden geen bijzondere beperkingen. Gijs kijkt mee en verwijst bij twijfel naar de juiste instantie." },
-    { question: "Moet ik bij isolatie rekening houden met beschermde dieren?", answer: "Ja. In heel Zwolle zijn vleermuizen, huismussen en gierzwaluwen wettelijk beschermd. Kies een isolatiebedrijf dat hier mee weet om te gaan — dat bedrijf regelt ook de melding bij de provincie." },
+    { question: "Moet ik bij isolatie rekening houden met beschermde dieren?", answer: "Ja. In heel Zwolle zijn vleermuizen, huismussen en gierzwaluwen wettelijk beschermd. Kies een isolatiebedrijf dat hier mee weet om te gaan, dat bedrijf regelt ook de melding bij de provincie." },
   ],
   verwant: [
     { naam: "Woning verduurzamen in Zwolle", href: "/regio/overijssel/zwolle" },
@@ -3345,7 +3354,7 @@ const WIJTHMEN: GemeenteVerhaal = {
       { waarde: "€548.000", label: "gem. WOZ-waarde" },
     ],
     bouwperiodes: [
-      { label: "Vóór 1945", percentage: 15, tekst: "Historische agrarische bebouwing. Bijna altijd gebouwd zonder isolatienormen — spouw, dak en vloer zijn hier de grootste kansen." },
+      { label: "Vóór 1945", percentage: 15, tekst: "Historische agrarische bebouwing. Bijna altijd gebouwd zonder isolatienormen, spouw, dak en vloer zijn hier de grootste kansen." },
       { label: "1945 – 1975", percentage: 20, tekst: "Naoorlogse woningbouw. Spouwmuren aanwezig maar de spouw is vaak nog leeg of dunner geïsoleerd." },
       { label: "1975 – 1995", percentage: 35, tekst: "De grootste bouwperiode van Wijthmen. Deels geïsoleerd, maar bijna altijd te verbeteren." },
       { label: "Na 1995", percentage: 30, tekst: "Beter geïsoleerd. De winst zit vaker in installaties: warmtepomp, zonnepanelen of thuisbatterij." },
@@ -3356,7 +3365,7 @@ const WIJTHMEN: GemeenteVerhaal = {
   lokaal: {
     titel: "Wijthmen: agrarisch buurtschap met estates",
     alineas: [
-      ["Wijthmen is een buurtschap in het buitengebied van Zwolle, ten zuiden van de stad. Het landschap wordt gedomineerd door landgoederen, agrarische percelen en de Nieuwe Vecht. De bebouwing is overwegend vrijstaand — vandaar de hoge gemiddelde WOZ-waarde."],
+      ["Wijthmen is een buurtschap in het buitengebied van Zwolle, ten zuiden van de stad. Het landschap wordt gedomineerd door landgoederen, agrarische percelen en de Nieuwe Vecht. De bebouwing is overwegend vrijstaand, vandaar de hoge gemiddelde WOZ-waarde."],
       ["Met 252 woningen is Wijthmen klein. Een groot deel van de bewoners is woningeigenaar. Vrijstaande woningen hebben meer buitenmuur, dak en vloer dan tussenwoningen, waardoor goede isolatie extra bijdraagt."],
     ],
     bekendVan: {
@@ -3394,7 +3403,7 @@ const WIJTHMEN: GemeenteVerhaal = {
     { question: "Helpt Gijs ook in Wijthmen?", answer: "Ja. Gijs helpt in de hele gemeente Zwolle, ook in het buitengebied. Een gratis energiescan is overal in Zwolle aan te vragen." },
     { question: "Welke subsidies zijn er in Wijthmen?", answer: "Wijthmen valt onder gemeente Zwolle. De regelingen die nu voor Zwolle gelden, zijn ook op jouw woning van toepassing. Met de subsidiecheck zie je wat er voor jouw adres geldt." },
     { question: "Mijn huis staat vrijstaand. Heeft dat invloed op de aanpak?", answer: "Ja. Een vrijstaande woning heeft meer buitenmuur, dak en vloer dan een tussenwoning. Goede isolatie van de schil telt daardoor zwaarder mee. Gijs bekijkt de combinatie van schil en installaties in de juiste volgorde." },
-    { question: "Moet ik bij isolatie rekening houden met beschermde dieren?", answer: "Ja. In heel Zwolle — ook in het buitengebied — zijn vleermuizen, huismussen en gierzwaluwen wettelijk beschermd. Kies een isolatiebedrijf dat hier mee weet om te gaan." },
+    { question: "Moet ik bij isolatie rekening houden met beschermde dieren?", answer: "Ja. In heel Zwolle, ook in het buitengebied, zijn vleermuizen, huismussen en gierzwaluwen wettelijk beschermd. Kies een isolatiebedrijf dat hier mee weet om te gaan." },
   ],
   verwant: [
     { naam: "Woning verduurzamen in Zwolle", href: "/regio/overijssel/zwolle" },
@@ -3424,7 +3433,7 @@ const HERFTE: GemeenteVerhaal = {
       { waarde: "€704.000", label: "gem. WOZ-waarde" },
     ],
     bouwperiodes: [
-      { label: "Vóór 1945", percentage: 20, tekst: "Historische bebouwing langs de Vecht. Bijna altijd gebouwd zonder isolatienormen — spouw, dak en vloer zijn hier de grootste winst." },
+      { label: "Vóór 1945", percentage: 20, tekst: "Historische bebouwing langs de Vecht. Bijna altijd gebouwd zonder isolatienormen, spouw, dak en vloer zijn hier de grootste winst." },
       { label: "1945 – 1975", percentage: 30, tekst: "Naoorlogse vrijstaande woningen. Spouwmuren aanwezig maar de spouw is vaak nog leeg of dunner geïsoleerd." },
       { label: "1975 – 1995", percentage: 25, tekst: "Deels geïsoleerd, maar bijna altijd te verbeteren." },
       { label: "Na 1995", percentage: 25, tekst: "Beter geïsoleerd. De winst zit vaker in installaties: warmtepomp, zonnepanelen of thuisbatterij." },
@@ -3503,7 +3512,7 @@ const HAERST: GemeenteVerhaal = {
       { waarde: "€661.000", label: "gem. WOZ-waarde" },
     ],
     bouwperiodes: [
-      { label: "Vóór 1945", percentage: 30, tekst: "Historische agrarische bebouwing langs de Vecht. Bijna altijd gebouwd zonder isolatienormen — spouw, dak en vloer zijn hier de grootste kansen." },
+      { label: "Vóór 1945", percentage: 30, tekst: "Historische agrarische bebouwing langs de Vecht. Bijna altijd gebouwd zonder isolatienormen, spouw, dak en vloer zijn hier de grootste kansen." },
       { label: "1945 – 1975", percentage: 30, tekst: "Naoorlogse bebouwing. Spouwmuren aanwezig, maar de spouw is vaak nog leeg of dunner geïsoleerd dan gebruikelijk." },
       { label: "1975 – 1995", percentage: 25, tekst: "Deels geïsoleerd, maar bijna altijd te verbeteren." },
       { label: "Na 1995", percentage: 15, tekst: "Beter geïsoleerd. De winst zit vaker in installaties: warmtepomp, zonnepanelen of thuisbatterij." },
@@ -3628,7 +3637,7 @@ const WIERDEN: GemeenteVerhaal = {
     { question: "Is Gijs een isolatiebedrijf in Wierden?", answer: "Gijs is geen uitvoerend isolatiebedrijf, maar begeleidt je onafhankelijk door het hele verduurzamingstraject. Het begint met persoonlijk advies over welke maatregelen passen bij jouw woning. Daarna begeleiden en ontzorgen we je bij de uitvoering door vakspecialisten, ook in Enter en de andere dorpen." },
     { question: "Welke subsidies zijn er voor mijn woning in Wierden?", answer: "Op deze pagina zie je de regelingen die nu voor Wierden gelden uit de Energiesubsidiewijzer van Milieu Centraal. Met de subsidiecheck zie je wat er voor jouw adres geldt, ook landelijk." },
     { question: "Mijn woning is van vóór 1975. Waar begin ik?", answer: "Dat hangt af van wat er al is gedaan. Veel woningen zijn later al verbeterd. Gijs kijkt tijdens de energiescan wat er al zit en welke stap de meeste winst geeft." },
-    { question: "Mijn woning staat in Enter of een ander dorp van Wierden. Maakt dat wat uit?", answer: "Nee. Gijs werkt in de hele gemeente Wierden — van Enter en Hoge Hexel tot Notter, Rectum, Zuna en IJpelo. De meeste woningen in Enter zijn uit de naoorlogse periode en vergelijkbaar gebouwd als die in de kern Wierden. Gijs kijkt altijd naar jouw eigen huis." },
+    { question: "Mijn woning staat in Enter of een ander dorp van Wierden. Maakt dat wat uit?", answer: "Nee. Gijs werkt in de hele gemeente Wierden, van Enter en Hoge Hexel tot Notter, Rectum, Zuna en IJpelo. De meeste woningen in Enter zijn uit de naoorlogse periode en vergelijkbaar gebouwd als die in de kern Wierden. Gijs kijkt altijd naar jouw eigen huis." },
     { question: "Helpt Gijs ook in Enter, Hoge Hexel en de andere dorpen?", answer: "Ja. Gijs helpt bewoners in de hele gemeente Wierden, dus ook in Enter, Hoge Hexel, Notter, Rectum, Zuna en IJpelo." },
   ],
   verwant: [
@@ -3648,7 +3657,7 @@ const TUBBERGEN: GemeenteVerhaal = {
   h1: "Je woning isoleren en verduurzamen in Tubbergen",
   intro: [
     ["Woon je in ", { tekst: "Tubbergen", href: "/regio/overijssel/tubbergen/tubbergen" }, ", Albergen, Geesteren of een van de andere dorpen van de gemeente? Gijs geeft onafhankelijk verduurzamingsadvies en begeleidt je van A tot Z, van de eerste keuzes tot en met de uitvoering door vakspecialisten."],
-    ["In de gemeente Tubbergen is 40% van de woningvoorraad vrijstaand — het hoogste aandeel van de regio. Vrijstaande woningen hebben meer buitenoppervlak en daarmee meer verduurzamingspotentie. Gijs kijkt wat er al is gedaan en adviseert over de stap die het meest zinvol is."],
+    ["In de gemeente Tubbergen is 40% van de woningvoorraad vrijstaand, het hoogste aandeel van de regio. Vrijstaande woningen hebben meer buitenoppervlak en daarmee meer verduurzamingspotentie. Gijs kijkt wat er al is gedaan en adviseert over de stap die het meest zinvol is."],
   ],
   kernen: ["tubbergen", "albergen", "geesteren", "vasse", "reutum", "langeveen", "fleringen", "hezingen", "manderveen", "mariaparochie", "harbrinkhoek"],
   woningen: {
@@ -3690,7 +3699,7 @@ const TUBBERGEN: GemeenteVerhaal = {
     },
     ontwikkeling: {
       titel: "Wat speelt er in Tubbergen?",
-      tekst: "Met elf kleine kernen en het hoogste aandeel vrijstaande woningen van de regio verschilt de woningvoorraad per dorp sterk. In Albergen staan andere huizen dan in Vasse of Langeveen. Gijs kijkt per woning wat de logische volgorde is — los van welk dorp je woont.",
+      tekst: "Met elf kleine kernen en het hoogste aandeel vrijstaande woningen van de regio verschilt de woningvoorraad per dorp sterk. In Albergen staan andere huizen dan in Vasse of Langeveen. Gijs kijkt per woning wat de logische volgorde is, los van welk dorp je woont.",
     },
   },
   natuur: {
@@ -3865,7 +3874,7 @@ const HAAKSBERGEN: GemeenteVerhaal = {
     },
     ontwikkeling: {
       titel: "Wat speelt er in Haaksbergen?",
-      tekst: "Haaksbergen heeft een compacte woningvoorraad van ruim 10.000 woningen, waarvan 44% gebouwd in de naoorlogse periode 1945-1975. Die woningen hebben vrijwel altijd een spouwmuur die leeg is of onvolledig gevuld. Dat is vaak de eerste maatregel die bewoners aanpakken — en ook de meest kosteneffectieve. Gijs kijkt altijd wat er al gedaan is.",
+      tekst: "Haaksbergen heeft een compacte woningvoorraad van ruim 10.000 woningen, waarvan 44% gebouwd in de naoorlogse periode 1945-1975. Die woningen hebben vrijwel altijd een spouwmuur die leeg is of onvolledig gevuld. Dat is vaak de eerste maatregel die bewoners aanpakken, en ook de meest kosteneffectieve. Gijs kijkt altijd wat er al gedaan is.",
     },
   },
   natuur: {
@@ -3884,7 +3893,7 @@ const HAAKSBERGEN: GemeenteVerhaal = {
     { question: "Is Gijs een isolatiebedrijf in Haaksbergen?", answer: "Gijs is geen uitvoerend isolatiebedrijf, maar begeleidt je onafhankelijk door het hele verduurzamingstraject. Het begint met persoonlijk advies over welke maatregelen passen bij jouw woning in Haaksbergen. Daarna begeleiden en ontzorgen we je bij de uitvoering door vakspecialisten, ook in Buurse en Sint Isidorushoeve." },
     { question: "Welke subsidies zijn er voor mijn woning in Haaksbergen?", answer: "Op deze pagina zie je de regelingen die nu voor Haaksbergen gelden uit de Energiesubsidiewijzer van Milieu Centraal. Met de subsidiecheck zie je wat er voor jouw adres geldt, ook landelijk." },
     { question: "Mijn woning is van vóór 1975. Waar begin ik?", answer: "Dat hangt af van wat er al is gedaan. Gijs kijkt tijdens de energiescan wat er al zit en welke stap de meeste winst geeft." },
-    { question: "Loont spouwmuurisolatie ook als de spouw al gedeeltelijk gevuld is?", answer: "Dat hangt af van wat er al in de spouw zit en hoe dik. Een dunne laag uit de jaren tachtig voldoet meestal niet meer aan de huidige norm. Gijs kijkt of bijvulling of vervangende isolatie zinvol is — een bewering die je van buiten niet kunt doen zonder de spouw te inspecteren." },
+    { question: "Loont spouwmuurisolatie ook als de spouw al gedeeltelijk gevuld is?", answer: "Dat hangt af van wat er al in de spouw zit en hoe dik. Een dunne laag uit de jaren tachtig voldoet meestal niet meer aan de huidige norm. Gijs kijkt of bijvulling of vervangende isolatie zinvol is, een bewering die je van buiten niet kunt doen zonder de spouw te inspecteren." },
     { question: "Helpt Gijs ook in Buurse en Sint Isidorushoeve?", answer: "Ja. Gijs helpt bewoners in de hele gemeente Haaksbergen, dus ook in Buurse en Sint Isidorushoeve." },
   ],
   verwant: [
@@ -3975,6 +3984,813 @@ const LOSSER: GemeenteVerhaal = {
   ],
 };
 
+// CBS/BAG-cijfers via AlleCijfers.nl, peiljaar 2026, gecontroleerd op 27 oktober 2026.
+const DALFSEN: GemeenteVerhaal = {
+  seo: {
+    title: "Woning isoleren in Dalfsen | Advies & ontzorging – Gijs",
+    description: "Zoek je hulp bij het isoleren van je woning in Dalfsen, Nieuwleusen of Lemelerveld? Gijs geeft onafhankelijk verduurzamingsadvies en begeleidt je van A tot Z.",
+  },
+  kicker: "Gemeente Dalfsen",
+  h1: "Je woning isoleren en verduurzamen in Dalfsen",
+  intro: [
+    ["Woon je in Dalfsen, Nieuwleusen, Lemelerveld of een van de andere dorpen in de gemeente? Gijs geeft onafhankelijk verduurzamingsadvies en begeleidt je van A tot Z, van de eerste keuzes tot en met de uitvoering door vakspecialisten."],
+    ["Ruim 40% van de woningen in Dalfsen is van vóór 1975. Met een groot aandeel vrijstaande woningen (35%) is er in veel gevallen nog winst te halen met dakisolatie, spouwmuurisolatie of een warmtepomp."],
+  ],
+  kernen: ["dalfsen", "nieuwleusen", "lemelerveld", "hoonhorst"],
+  woningen: {
+    lead: "Het bouwjaar zegt veel over hoe een huis gebouwd is. Zo is de woningvoorraad van Dalfsen verdeeld, en dit betekent het meestal voor isolatie.",
+    kerncijfers: [
+      { waarde: "12.599", label: "woningen" },
+      { waarde: "35%", label: "vrijstaand" },
+      { waarde: "41%", label: "gebouwd vóór 1975" },
+      { waarde: "74%", label: "koopwoning" },
+    ],
+    bouwperiodes: [
+      { label: "Vóór 1975", percentage: 41, tekst: "Vrijstaande woningen en lintbebouwing langs de Vecht. Spouwmuren zijn er vaak, maar de spouw is regelmatig nog leeg of slecht gevuld. Dak en vloer zijn hier de gebruikelijke eerste stap." },
+      { label: "1975 – 1995", percentage: 25, tekst: "Deels geïsoleerd bij oplevering, maar de isolatiewaarde is vaak lager dan tegenwoordig gebruikelijk. Bijisoleren geeft hier de meeste winst." },
+      { label: "1995 – 2015", percentage: 21, tekst: "Beter geïsoleerd. De winst zit vaker in beter glas of de overstap naar een warmtepomp." },
+      { label: "Na 2015", percentage: 13, tekst: "Al goed geïsoleerd bij oplevering. Zonnepanelen en een thuisbatterij zijn hier vaker de volgende stap." },
+    ],
+    voetnoot: "Het bouwjaar is een eerste indicatie, geen conclusie: veel woningen zijn later al verbeterd. Gijs kijkt altijd naar jouw eigen huis.",
+    bron: { naam: "CBS en BAG via AlleCijfers.nl, 2026", url: "https://www.allecijfers.nl/gemeente/dalfsen/" },
+  },
+  lokaal: {
+    titel: "Dalfsen: landelijk wonen langs de Vecht",
+    alineas: [
+      ["De gemeente Dalfsen bestaat uit de kern Dalfsen en de dorpen Nieuwleusen, Lemelerveld, Hoonhorst en een reeks kleine kernen in het Vechtdal. De gemeente heeft een uitgesproken landelijk karakter met veel vrijstaande woningen en twee-onder-één-kappers."],
+      ["Nieuwleusen is de grootste kern, met een eigen winkelcentrum. Lemelerveld en Hoonhorst zijn kleinere dorpen met een hecht gemeenschapskarakter. In het buitengebied staan ook voormalige boerderijen die verbouwd zijn tot woonboerderijen, een woningtype met eigen isolatie-uitdagingen."],
+    ],
+    bekendVan: {
+      titel: "Waar is Dalfsen bekend om?",
+      kaarten: [
+        { icon: "landmark", titel: "Landgoed Rechteren", tekst: "Het 18e-eeuwse kasteel Rechteren aan de Vecht is een rijksmonument en een van de markantste buitenplaatsen van Overijssel." },
+        { icon: "waves", titel: "Vechtdal", tekst: "De Vecht slingert door het landschap en is bepalend voor de gemeente. Het gebied trekt wandelaars, fietsers en kanoërs." },
+      ],
+    },
+    kernTekst: {
+      dalfsen: "De gemeentekern met het gemeentehuis en de meeste voorzieningen.",
+      nieuwleusen: "De grootste kern van de gemeente, met een winkelcentrum.",
+      lemelerveld: "Dorp ten zuiden van Dalfsen, met basisvoorzieningen.",
+      hoonhorst: "Klein dorp in het westen van de gemeente.",
+    },
+    ontwikkeling: {
+      titel: "Wat speelt er in Dalfsen?",
+      tekst: "In Nieuwleusen en Lemelerveld staan veel woningen uit de jaren vijftig tot zeventig. Spouwmuurisolatie en dakisolatie zijn hier de meestgevraagde maatregelen. In het buitengebied tref je vaker vrijstaande woningen met een hoger verduurzamingspotentieel.",
+    },
+  },
+  natuur: {
+    titel: "Beschermde dieren bij isolatie in gemeente Dalfsen",
+    lead: "In spouwmuren, muren en daken wonen vleermuizen, huismussen en gierzwaluwen. Bij isolatie in de gemeente Dalfsen moet je hier rekening mee houden:",
+    stappen: [
+      { icon: "badge-check", titel: "Kies een natuurvriendelijk isolatiebedrijf", tekst: "Een erkend bedrijf weet welke soorten voorkomen en hoe je ze beschermt bij de werkzaamheden." },
+      { icon: "bird", titel: "Dieren kunnen eerst weg", tekst: "Vleermuizen, huismussen en gierzwaluwen krijgen de kans om weg te vliegen voordat er wordt geïsoleerd." },
+      { icon: "house-plus", titel: "Nieuwe verblijfplaatsen", tekst: "Na het isoleren worden nieuwe verblijfplaatsen aangebracht, zoveel mogelijk onzichtbaar in de spouw." },
+      { icon: "file-check", titel: "Ontheffing via de provincie", tekst: "Bij een beschermde soort regelt het isolatiebedrijf de ontheffing bij de provincie Overijssel." },
+    ],
+    zelf: "Isoleer je zelf? Dan moet je zelf onderzoek laten doen naar beschermde soorten en een ontheffing aanvragen bij de provincie Overijssel.",
+    bron: { naam: "Provincie Overijssel", url: "https://www.overijssel.nl/loket/natuur-flora-fauna/" },
+  },
+  faq: [
+    { question: "Is Gijs een isolatiebedrijf in Dalfsen?", answer: "Gijs is geen uitvoerend isolatiebedrijf, maar begeleidt je onafhankelijk door het hele verduurzamingstraject. Het begint met persoonlijk advies over welke maatregelen passen bij jouw woning. Daarna begeleiden en ontzorgen we je bij de uitvoering door vakspecialisten, ook in Nieuwleusen, Lemelerveld en de andere dorpen." },
+    { question: "Welke subsidies zijn er voor mijn woning in Dalfsen?", answer: "Op deze pagina zie je de regelingen die nu voor Dalfsen gelden uit de Energiesubsidiewijzer van Milieu Centraal. Met de subsidiecheck zie je wat er voor jouw adres geldt, ook landelijk." },
+    { question: "Mijn woning is van vóór 1975. Waar begin ik?", answer: "Dat hangt af van wat er al is gedaan. Veel woningen in Dalfsen zijn later al verbeterd. Gijs kijkt tijdens de energiescan wat er al zit en welke stap de meeste winst geeft." },
+    { question: "Helpt Gijs ook in Nieuwleusen en Lemelerveld?", answer: "Ja. Gijs helpt bewoners in de hele gemeente Dalfsen, dus ook in Nieuwleusen, Lemelerveld, Hoonhorst en het buitengebied." },
+  ],
+  verwant: [
+    { naam: "Woning verduurzamen in Zwolle", href: "/regio/overijssel/zwolle" },
+    { naam: "Woning verduurzamen in Ommen", href: "/regio/overijssel/ommen" },
+    { naam: "Woning verduurzamen in Zwartewaterland", href: "/regio/overijssel/zwartewaterland" },
+  ],
+};
+
+// CBS/BAG-cijfers via AlleCijfers.nl, peiljaar 2026, gecontroleerd op 27 oktober 2026.
+const DEVENTER: GemeenteVerhaal = {
+  seo: {
+    title: "Woning isoleren in Deventer | Advies & ontzorging – Gijs",
+    description: "Wil je je woning isoleren in Deventer of Bathmen? Gijs geeft onafhankelijk verduurzamingsadvies en begeleidt je van A tot Z. Gratis energiescan aan huis.",
+  },
+  kicker: "Gemeente Deventer",
+  h1: "Je woning isoleren en verduurzamen in Deventer",
+  intro: [
+    ["Woon je in Deventer, Bathmen, Diepenveen of een van de andere kernen van de gemeente? Gijs geeft onafhankelijk verduurzamingsadvies en begeleidt je van A tot Z, van de eerste keuzes tot en met de uitvoering door vakspecialisten."],
+    ["Circa de helft van de woningen in Deventer is van vóór 1975. In het historisch centrum staan veel oude panden, met eigen aandachtspunten bij isolatie, maar ook in de naoorlogse wijken is er volop verduurzamingspotentieel."],
+  ],
+  kernen: ["deventer", "bathmen", "diepenveen", "colmschate", "schalkhaar"],
+  woningen: {
+    lead: "Het bouwjaar zegt veel over hoe een huis gebouwd is. Zo is de woningvoorraad van Deventer verdeeld, en dit betekent het meestal voor isolatie.",
+    kerncijfers: [
+      { waarde: "48.140", label: "woningen" },
+      { waarde: "36%", label: "tussenwoning" },
+      { waarde: "~50%", label: "gebouwd vóór 1975" },
+      { waarde: "56%", label: "koopwoning" },
+    ],
+    bouwperiodes: [
+      { label: "Vóór 1975", percentage: 50, tekst: "Een groot deel van Deventer bestaat uit vooroorlogse panden en naoorlogse stadswijken. In het historisch centrum gelden soms beperkingen voor de uitstraling. Gijs kijkt wat er mogelijk is." },
+      { label: "1975 – 1995", percentage: 18, tekst: "Deels geïsoleerd bij oplevering. Bijisoleren van spouw en dak geeft hier nog de meeste winst." },
+      { label: "1995 – 2015", percentage: 23, tekst: "Beter geïsoleerd. De winst zit vaker in beter glas of de overstap naar een warmtepomp of zonnepanelen." },
+      { label: "Na 2015", percentage: 9, tekst: "Al goed geïsoleerd. Zonnepanelen en een thuisbatterij zijn hier vaker de logische volgende stap." },
+    ],
+    voetnoot: "Het bouwjaar is een eerste indicatie, geen conclusie: veel woningen zijn later al verbeterd. Gijs kijkt altijd naar jouw eigen huis.",
+    bron: { naam: "CBS en BAG via AlleCijfers.nl, 2026", url: "https://www.allecijfers.nl/gemeente/deventer/" },
+  },
+  lokaal: {
+    titel: "Deventer: Hanzestad met een rijke woninggeschiedenis",
+    alineas: [
+      ["Deventer is een van de oudste steden van Nederland en een voormalige Hanzestad aan de IJssel. Het historisch centrum heeft meer dan vijfhonderd beschermde monumenten, waaronder Museum de Waag uit 1528. De gemeente omvat naast het stadscentrum ook kernen als Bathmen, Diepenveen, Colmschate en Schalkhaar."],
+      ["In de naoorlogse wijken rondom het centrum staan veel tussenwoningen met spouwmuren. In de kleinere kernen als Bathmen en Diepenveen tref je vaker vrijstaande woningen en twee-onder-één-kappers. Gijs helpt in de hele gemeente, van centrum tot buitengebied."],
+    ],
+    bekendVan: {
+      titel: "Waar is Deventer bekend om?",
+      kaarten: [
+        { icon: "landmark", titel: "Museum de Waag", tekst: "Het oudste waaggebouw van Nederland (1528) staat in het hart van de historische binnenstad." },
+        { icon: "ship", titel: "Hanzestad", tekst: "Deventer was lid van de Hanzebond en heeft een rijke handelsgeschiedenis langs de IJssel." },
+        { icon: "trophy", titel: "Go Ahead Eagles", tekst: "De profvoetbalclub van Deventer speelt in de Eredivisie en is al meer dan honderd jaar verbonden aan de stad." },
+      ],
+    },
+    kernTekst: {
+      deventer: "De historische binnenstad en grootste kern van de gemeente.",
+      bathmen: "Dorp ten zuiden van Deventer, met een landelijk karakter.",
+      diepenveen: "Dorp ten noorden van Deventer, met een eigen historische kern.",
+      colmschate: "Wijk en kern ten oosten van het stadscentrum.",
+      schalkhaar: "Kern ten noorden van Deventer, tussen de IJssel en het buitengebied.",
+    },
+    ontwikkeling: {
+      titel: "Wat speelt er in Deventer?",
+      tekst: "In de naoorlogse wijken van Deventer, Colmschate, Schalkhaar en de uitbreidingen aan de oostkant, staan veel tussenwoningen met spouwmuren die nog niet of onvolledig zijn gevuld. In het historisch centrum gelden soms beperkingen voor de uitstraling van gevels; Gijs weet welke maatregelen dan nog mogelijk zijn.",
+    },
+  },
+  natuur: {
+    titel: "Beschermde dieren bij isolatie in gemeente Deventer",
+    lead: "In spouwmuren, muren en daken wonen vleermuizen, huismussen en gierzwaluwen. Bij isolatie in de gemeente Deventer moet je hier rekening mee houden:",
+    stappen: [
+      { icon: "badge-check", titel: "Kies een natuurvriendelijk isolatiebedrijf", tekst: "Een erkend bedrijf weet welke soorten voorkomen en hoe je ze beschermt bij de werkzaamheden." },
+      { icon: "bird", titel: "Dieren kunnen eerst weg", tekst: "Vleermuizen, huismussen en gierzwaluwen krijgen de kans om weg te vliegen voordat er wordt geïsoleerd." },
+      { icon: "house-plus", titel: "Nieuwe verblijfplaatsen", tekst: "Na het isoleren worden nieuwe verblijfplaatsen aangebracht, zoveel mogelijk onzichtbaar in de spouw." },
+      { icon: "file-check", titel: "Ontheffing via de provincie", tekst: "Bij een beschermde soort regelt het isolatiebedrijf de ontheffing bij de provincie Overijssel." },
+    ],
+    zelf: "Isoleer je zelf? Dan moet je zelf onderzoek laten doen naar beschermde soorten en een ontheffing aanvragen bij de provincie Overijssel.",
+    bron: { naam: "Provincie Overijssel", url: "https://www.overijssel.nl/loket/natuur-flora-fauna/" },
+  },
+  faq: [
+    { question: "Is Gijs een isolatiebedrijf in Deventer?", answer: "Gijs is geen uitvoerend isolatiebedrijf, maar begeleidt je onafhankelijk door het hele verduurzamingstraject. Het begint met persoonlijk advies. Daarna begeleiden en ontzorgen we je bij de uitvoering door vakspecialisten, ook in Bathmen, Diepenveen en de andere kernen." },
+    { question: "Welke subsidies zijn er voor mijn woning in Deventer?", answer: "Op deze pagina zie je de regelingen die nu voor Deventer gelden uit de Energiesubsidiewijzer van Milieu Centraal. Met de subsidiecheck zie je wat er voor jouw adres geldt, ook landelijk." },
+    { question: "Mijn woning staat in de binnenstad van Deventer. Kan ik toch isoleren?", answer: "Ja, maar bij monumenten en panden in beschermd stadsgezicht gelden soms beperkingen voor gevelisolatie of dakisolatie die de uitstraling verandert. Gijs kijkt welke maatregelen wel mogelijk zijn, binnenisolatie, vloerisolatie of glas zijn vaak een optie." },
+    { question: "Helpt Gijs ook in Bathmen en Diepenveen?", answer: "Ja. Gijs helpt bewoners in de hele gemeente Deventer, dus ook in Bathmen, Diepenveen, Colmschate en Schalkhaar." },
+  ],
+  verwant: [
+    { naam: "Woning verduurzamen in Olst-Wijhe", href: "/regio/overijssel/olst-wijhe" },
+    { naam: "Woning verduurzamen in Raalte", href: "/regio/overijssel/raalte" },
+    { naam: "Woning verduurzamen in Hof van Twente", href: "/regio/overijssel/hof-van-twente" },
+  ],
+};
+
+// CBS/BAG-cijfers via AlleCijfers.nl, peiljaar 2026, gecontroleerd op 27 oktober 2026.
+const HARDENBERG: GemeenteVerhaal = {
+  seo: {
+    title: "Woning isoleren in Hardenberg | Advies & ontzorging – Gijs",
+    description: "Zoek je hulp bij het isoleren van je woning in Hardenberg of Dedemsvaart? Gijs geeft onafhankelijk verduurzamingsadvies en begeleidt je van A tot Z.",
+  },
+  kicker: "Gemeente Hardenberg",
+  h1: "Je woning isoleren en verduurzamen in Hardenberg",
+  intro: [
+    ["Woon je in Hardenberg, Dedemsvaart, Gramsbergen of een van de andere dorpen in de gemeente? Gijs geeft onafhankelijk verduurzamingsadvies en begeleidt je van A tot Z, van de eerste keuzes tot en met de uitvoering door vakspecialisten."],
+    ["Ruim 40% van de woningen in Hardenberg is van vóór 1975. Met een groot aandeel vrijstaande woningen is er in veel gevallen nog winst te halen met dakisolatie, spouwmuurisolatie of een warmtepomp."],
+  ],
+  kernen: ["hardenberg", "dedemsvaart", "gramsbergen", "slagharen", "marienberg", "balkbrug", "bergentheim", "heemse"],
+  woningen: {
+    lead: "Het bouwjaar zegt veel over hoe een huis gebouwd is. Zo is de woningvoorraad van Hardenberg verdeeld, en dit betekent het meestal voor isolatie.",
+    kerncijfers: [
+      { waarde: "26.307", label: "woningen" },
+      { waarde: "33%", label: "vrijstaand" },
+      { waarde: "41%", label: "gebouwd vóór 1975" },
+      { waarde: "70%", label: "koopwoning" },
+    ],
+    bouwperiodes: [
+      { label: "Vóór 1975", percentage: 41, tekst: "Lintbebouwing langs het Vechtdal en historische bebouwing in Dedemsvaart en Gramsbergen. Spouwmuren zijn er vaak, maar de spouw is regelmatig nog leeg." },
+      { label: "1975 – 1995", percentage: 25, tekst: "Deels geïsoleerd bij oplevering. Bijisoleren van spouw en dak geeft hier nog de meeste winst." },
+      { label: "1995 – 2015", percentage: 20, tekst: "Beter geïsoleerd. De winst zit vaker in beter glas of de overstap naar een warmtepomp." },
+      { label: "Na 2015", percentage: 14, tekst: "Al goed geïsoleerd bij oplevering. Zonnepanelen zijn hier vaker de logische volgende stap." },
+    ],
+    voetnoot: "Het bouwjaar is een eerste indicatie, geen conclusie: veel woningen zijn later al verbeterd. Gijs kijkt altijd naar jouw eigen huis.",
+    bron: { naam: "CBS en BAG via AlleCijfers.nl, 2026", url: "https://www.allecijfers.nl/gemeente/hardenberg/" },
+  },
+  lokaal: {
+    titel: "Hardenberg: wonen in het Vechtdal",
+    alineas: [
+      ["De gemeente Hardenberg omvat een groot gebied in het noordoosten van Overijssel, met als grootste kernen Hardenberg zelf en Dedemsvaart. Het Vechtdal is bepalend voor het landschap: de rivier de Vecht stroomt door de gemeente en trekt wandelaars en fietsers."],
+      ["Dedemsvaart is ontstaan langs een historisch kanaalenstelsel uit de 19e eeuw. De gemeente heeft een sterk landelijk karakter, met veel vrijstaande woningen en twee-onder-één-kappers in en rond de dorpen."],
+    ],
+    bekendVan: {
+      titel: "Waar is Hardenberg bekend om?",
+      kaarten: [
+        { icon: "waves", titel: "Vechtdal", tekst: "De rivier de Vecht slingert door de gemeente en maakt van Hardenberg een populair recreatiegebied voor fietsers, wandelaars en kanoërs." },
+        { icon: "ship", titel: "Kanaalenstelsel Dedemsvaart", tekst: "Dedemsvaart ontstond langs het 19e-eeuwse kanaalenstelsel voor turfvervoer, zichtbaar in de rechte linten van de kern." },
+      ],
+    },
+    kernTekst: {
+      hardenberg: "De gemeentekern met het gemeentehuis en de meeste voorzieningen.",
+      dedemsvaart: "Tweede kern van de gemeente, ontstaan langs het historisch kanaalenstelsel.",
+      gramsbergen: "Dorp aan de Vecht in het westen van de gemeente.",
+      slagharen: "Dorp in het noorden van de gemeente, bekend om attractiepark Slagharen.",
+      marienberg: "Dorp in het midden van de gemeente.",
+      balkbrug: "Dorp in het westen, gelegen langs het Overijssels Kanaal.",
+      bergentheim: "Dorp in het midden-oosten van de gemeente.",
+      heemse: "Dorp grenzend aan Hardenberg.",
+    },
+    ontwikkeling: {
+      titel: "Wat speelt er in Hardenberg?",
+      tekst: "In Dedemsvaart staan veel woningen langs de kanaallinten, vaak tussenwoningen en twee-onder-één-kappers uit de jaren vijftig tot zeventig. In Hardenberg zelf en in de omliggende dorpen tref je vaker vrijstaande woningen. Gijs kijkt per woning wat de logische volgorde is.",
+    },
+  },
+  natuur: {
+    titel: "Beschermde dieren bij isolatie in gemeente Hardenberg",
+    lead: "In spouwmuren, muren en daken wonen vleermuizen, huismussen en gierzwaluwen. Bij isolatie in de gemeente Hardenberg moet je hier rekening mee houden:",
+    stappen: [
+      { icon: "badge-check", titel: "Kies een natuurvriendelijk isolatiebedrijf", tekst: "Een erkend bedrijf weet welke soorten voorkomen en hoe je ze beschermt bij de werkzaamheden." },
+      { icon: "bird", titel: "Dieren kunnen eerst weg", tekst: "Vleermuizen, huismussen en gierzwaluwen krijgen de kans om weg te vliegen voordat er wordt geïsoleerd." },
+      { icon: "house-plus", titel: "Nieuwe verblijfplaatsen", tekst: "Na het isoleren worden nieuwe verblijfplaatsen aangebracht, zoveel mogelijk onzichtbaar in de spouw." },
+      { icon: "file-check", titel: "Ontheffing via de provincie", tekst: "Bij een beschermde soort regelt het isolatiebedrijf de ontheffing bij de provincie Overijssel." },
+    ],
+    zelf: "Isoleer je zelf? Dan moet je zelf onderzoek laten doen naar beschermde soorten en een ontheffing aanvragen bij de provincie Overijssel.",
+    bron: { naam: "Provincie Overijssel", url: "https://www.overijssel.nl/loket/natuur-flora-fauna/" },
+  },
+  faq: [
+    { question: "Is Gijs een isolatiebedrijf in Hardenberg?", answer: "Gijs is geen uitvoerend isolatiebedrijf, maar begeleidt je onafhankelijk door het hele verduurzamingstraject. Het begint met persoonlijk advies. Daarna begeleiden en ontzorgen we je bij de uitvoering door vakspecialisten, ook in Dedemsvaart, Gramsbergen en de andere dorpen." },
+    { question: "Welke subsidies zijn er voor mijn woning in Hardenberg?", answer: "Op deze pagina zie je de regelingen die nu voor Hardenberg gelden uit de Energiesubsidiewijzer van Milieu Centraal. Met de subsidiecheck zie je wat er voor jouw adres geldt, ook landelijk." },
+    { question: "Mijn woning is van vóór 1975. Waar begin ik?", answer: "Dat hangt af van wat er al is gedaan. Veel woningen zijn later al verbeterd. Gijs kijkt tijdens de energiescan wat er al zit en welke stap de meeste winst geeft." },
+    { question: "Helpt Gijs ook in Dedemsvaart, Gramsbergen en de andere dorpen?", answer: "Ja. Gijs helpt bewoners in de hele gemeente Hardenberg, van Dedemsvaart en Gramsbergen tot Slagharen, Mariënberg en Balkbrug." },
+  ],
+  verwant: [
+    { naam: "Woning verduurzamen in Ommen", href: "/regio/overijssel/ommen" },
+    { naam: "Woning verduurzamen in Twenterand", href: "/regio/overijssel/twenterand" },
+    { naam: "Woning verduurzamen in Staphorst", href: "/regio/overijssel/staphorst" },
+  ],
+};
+
+// CBS/BAG-cijfers via AlleCijfers.nl, peiljaar 2026, gecontroleerd op 27 oktober 2026.
+const KAMPEN: GemeenteVerhaal = {
+  seo: {
+    title: "Woning isoleren in Kampen | Advies & ontzorging – Gijs",
+    description: "Zoek je hulp bij het isoleren van je woning in Kampen of IJsselmuiden? Gijs geeft onafhankelijk verduurzamingsadvies en begeleidt je van A tot Z.",
+  },
+  kicker: "Gemeente Kampen",
+  h1: "Je woning isoleren en verduurzamen in Kampen",
+  intro: [
+    ["Woon je in Kampen, IJsselmuiden of een van de andere kernen van de gemeente? Gijs geeft onafhankelijk verduurzamingsadvies en begeleidt je van A tot Z, van de eerste keuzes tot en met de uitvoering door vakspecialisten."],
+    ["Bijna 44% van de woningen in Kampen is van vóór 1975. In de historische binnenstad gelden soms beperkingen voor gevelaanpassingen, maar ook in de naoorlogse wijken en de dorpen is er volop verduurzamingspotentieel."],
+  ],
+  kernen: ["kampen", "ijsselmuiden", "grafhorst", "zalk", "wilsum", "kamperveen"],
+  woningen: {
+    lead: "Het bouwjaar zegt veel over hoe een huis gebouwd is. Zo is de woningvoorraad van Kampen verdeeld, en dit betekent het meestal voor isolatie.",
+    kerncijfers: [
+      { waarde: "23.734", label: "woningen" },
+      { waarde: "37%", label: "tussenwoning" },
+      { waarde: "44%", label: "gebouwd vóór 1975" },
+      { waarde: "64%", label: "koopwoning" },
+    ],
+    bouwperiodes: [
+      { label: "Vóór 1975", percentage: 44, tekst: "Een aanzienlijk deel bestaat uit historische panden in de binnenstad en naoorlogse uitbreidingen in IJsselmuiden en Kampen-Noord. Spouwmuren zijn er vaak, maar de spouw is soms nog leeg." },
+      { label: "1975 – 1995", percentage: 23, tekst: "Deels geïsoleerd bij oplevering. Bijisoleren van spouw en dak geeft hier nog de meeste winst." },
+      { label: "1995 – 2015", percentage: 21, tekst: "Beter geïsoleerd. De winst zit vaker in beter glas of de overstap naar een warmtepomp." },
+      { label: "Na 2015", percentage: 12, tekst: "Al goed geïsoleerd. Zonnepanelen zijn hier vaker de logische volgende stap." },
+    ],
+    voetnoot: "Het bouwjaar is een eerste indicatie, geen conclusie: veel woningen zijn later al verbeterd. Gijs kijkt altijd naar jouw eigen huis.",
+    bron: { naam: "CBS en BAG via AlleCijfers.nl, 2026", url: "https://www.allecijfers.nl/gemeente/kampen/" },
+  },
+  lokaal: {
+    titel: "Kampen: Hanzestad aan de IJssel",
+    alineas: [
+      ["Kampen is een voormalige Hanzestad (eerste vermelding 1227) aan de IJssel, met een beschermd stadsgezicht en honderden rijksmonumenten in de historische binnenstad. Naast de stad omvat de gemeente de kernen IJsselmuiden, Grafhorst, Zalk, Wilsum en Kamperveen in het poldergebied."],
+      ["In IJsselmuiden staan veel naoorlogse woningen, een van de snelst gegroeid kernen van de regio. In de kleine polderkernen als Grafhorst en Wilsum zijn het vrijstaande woningen en boerderijen die het beeld bepalen."],
+    ],
+    bekendVan: {
+      titel: "Waar is Kampen bekend om?",
+      kaarten: [
+        { icon: "landmark", titel: "Hanzestad", tekst: "Kampen was een van de machtigste Hanzesteden van de Nederlanden. De middeleeuwse stadswal en de Bovenkerk zijn de bekendste monumenten." },
+        { icon: "waves", titel: "IJssel", tekst: "De rivier de IJssel is bepalend voor de gemeente. Het polderland rondom de IJssel is een beschermd cultuurlandschap." },
+      ],
+    },
+    kernTekst: {
+      kampen: "De historische binnenstad met honderden rijksmonumenten.",
+      ijsselmuiden: "Naoorlogse groeikern aan de westoever van de IJssel.",
+      grafhorst: "Klein polderkerntje ten westen van Kampen.",
+      zalk: "Dorp langs de IJssel, bekend om het beschermde dorpsgezicht.",
+      wilsum: "Klein dorp in het poldergebied ten noorden van Kampen.",
+      kamperveen: "Dorp in het polderlandschap ten westen van Kampen.",
+    },
+    ontwikkeling: {
+      titel: "Wat speelt er in Kampen?",
+      tekst: "In IJsselmuiden staan veel tussenwoningen uit de jaren zestig tot tachtig met spouwmuren. In de historische binnenstad van Kampen gelden bij sommige panden beperkingen voor gevelaanpassingen; binnenisolatie of vloerisolatie zijn dan vaker een optie. Gijs kijkt wat er per woning mogelijk is.",
+    },
+  },
+  natuur: {
+    titel: "Beschermde dieren bij isolatie in gemeente Kampen",
+    lead: "In spouwmuren, muren en daken wonen vleermuizen, huismussen en gierzwaluwen. Bij isolatie in de gemeente Kampen moet je hier rekening mee houden:",
+    stappen: [
+      { icon: "badge-check", titel: "Kies een natuurvriendelijk isolatiebedrijf", tekst: "Een erkend bedrijf weet welke soorten voorkomen en hoe je ze beschermt bij de werkzaamheden." },
+      { icon: "bird", titel: "Dieren kunnen eerst weg", tekst: "Vleermuizen, huismussen en gierzwaluwen krijgen de kans om weg te vliegen voordat er wordt geïsoleerd." },
+      { icon: "house-plus", titel: "Nieuwe verblijfplaatsen", tekst: "Na het isoleren worden nieuwe verblijfplaatsen aangebracht, zoveel mogelijk onzichtbaar in de spouw." },
+      { icon: "file-check", titel: "Ontheffing via de provincie", tekst: "Bij een beschermde soort regelt het isolatiebedrijf de ontheffing bij de provincie Overijssel." },
+    ],
+    zelf: "Isoleer je zelf? Dan moet je zelf onderzoek laten doen naar beschermde soorten en een ontheffing aanvragen bij de provincie Overijssel.",
+    bron: { naam: "Provincie Overijssel", url: "https://www.overijssel.nl/loket/natuur-flora-fauna/" },
+  },
+  faq: [
+    { question: "Is Gijs een isolatiebedrijf in Kampen?", answer: "Gijs is geen uitvoerend isolatiebedrijf, maar begeleidt je onafhankelijk door het hele verduurzamingstraject. Het begint met persoonlijk advies. Daarna begeleiden en ontzorgen we je bij de uitvoering door vakspecialisten, ook in IJsselmuiden en de andere kernen." },
+    { question: "Welke subsidies zijn er voor mijn woning in Kampen?", answer: "Op deze pagina zie je de regelingen die nu voor Kampen gelden uit de Energiesubsidiewijzer van Milieu Centraal. Met de subsidiecheck zie je wat er voor jouw adres geldt, ook landelijk." },
+    { question: "Mijn woning staat in de binnenstad van Kampen. Kan ik toch isoleren?", answer: "Ja, maar bij monumenten en panden in beschermd stadsgezicht gelden soms beperkingen voor uitstraling. Gijs kijkt welke maatregelen wél mogelijk zijn, vloerisolatie, binnenisolatie en glas zijn vaak een optie." },
+    { question: "Helpt Gijs ook in IJsselmuiden, Grafhorst en de andere dorpen?", answer: "Ja. Gijs helpt bewoners in de hele gemeente Kampen, dus ook in IJsselmuiden, Grafhorst, Zalk, Wilsum en Kamperveen." },
+  ],
+  verwant: [
+    { naam: "Woning verduurzamen in Zwolle", href: "/regio/overijssel/zwolle" },
+    { naam: "Woning verduurzamen in Zwartewaterland", href: "/regio/overijssel/zwartewaterland" },
+    { naam: "Woning verduurzamen in Staphorst", href: "/regio/overijssel/staphorst" },
+  ],
+};
+
+// CBS/BAG-cijfers via AlleCijfers.nl, peiljaar 2026, gecontroleerd op 27 oktober 2026.
+const OLST_WIJHE: GemeenteVerhaal = {
+  seo: {
+    title: "Woning isoleren in Olst-Wijhe | Advies & ontzorging – Gijs",
+    description: "Zoek je hulp bij het isoleren van je woning in Olst, Wijhe of Wesepe? Gijs geeft onafhankelijk verduurzamingsadvies en begeleidt je van A tot Z.",
+  },
+  kicker: "Gemeente Olst-Wijhe",
+  h1: "Je woning isoleren en verduurzamen in Olst-Wijhe",
+  intro: [
+    ["Woon je in Olst, Wijhe, Wesepe of een van de andere kernen van de gemeente? Gijs geeft onafhankelijk verduurzamingsadvies en begeleidt je van A tot Z, van de eerste keuzes tot en met de uitvoering door vakspecialisten."],
+    ["Bijna de helft van de woningen in Olst-Wijhe is van vóór 1975. Met een groot aandeel vrijstaande woningen is er in veel gevallen nog winst te halen met dakisolatie, spouwmuurisolatie of een warmtepomp."],
+  ],
+  kernen: ["olst", "wijhe", "wesepe"],
+  woningen: {
+    lead: "Het bouwjaar zegt veel over hoe een huis gebouwd is. Zo is de woningvoorraad van Olst-Wijhe verdeeld, en dit betekent het meestal voor isolatie.",
+    kerncijfers: [
+      { waarde: "8.267", label: "woningen" },
+      { waarde: "32%", label: "vrijstaand" },
+      { waarde: "~49%", label: "gebouwd vóór 1975" },
+      { waarde: "70%", label: "koopwoning" },
+    ],
+    bouwperiodes: [
+      { label: "Vóór 1975", percentage: 49, tekst: "Vrijstaande woningen en lintbebouwing langs de IJssel. Spouwmuren zijn er vaak, maar de spouw is regelmatig nog leeg of slecht gevuld." },
+      { label: "1975 – 1995", percentage: 19, tekst: "Deels geïsoleerd bij oplevering. Bijisoleren van spouw en dak geeft hier nog de meeste winst." },
+      { label: "1995 – 2015", percentage: 19, tekst: "Beter geïsoleerd. De winst zit vaker in beter glas of de overstap naar een warmtepomp." },
+      { label: "Na 2015", percentage: 13, tekst: "Al goed geïsoleerd bij oplevering. Zonnepanelen zijn hier vaker de logische volgende stap." },
+    ],
+    voetnoot: "Het bouwjaar is een eerste indicatie, geen conclusie: veel woningen zijn later al verbeterd. Gijs kijkt altijd naar jouw eigen huis.",
+    bron: { naam: "CBS en BAG via AlleCijfers.nl, 2026", url: "https://www.allecijfers.nl/gemeente/olst-wijhe/" },
+  },
+  lokaal: {
+    titel: "Olst-Wijhe: wonen langs de IJssel",
+    alineas: [
+      ["De gemeente Olst-Wijhe ligt aan de IJssel, tussen Deventer en Zwolle. De twee kernen Olst en Wijhe hebben elk een eigen dorpscentrum. Het landelijke karakter, met veel vrijstaande woningen en kleine kernen, maakt het een van de rustigere gemeenten van Overijssel."],
+      ["In Wijhe staat een achthoekige houten paltrokmolen uit 1703 als rijksmonument. In Olst is landgoed De Haare met een historische tolpoort een bekende buitenplaats. De gemeente telt relatief veel eigenaar-bewoners (70%) met vrijstaande woningen uit de jaren vijftig en zestig."],
+    ],
+    bekendVan: {
+      titel: "Waar is Olst-Wijhe bekend om?",
+      kaarten: [
+        { icon: "landmark", titel: "Paltrokmolen Wijhe", tekst: "De achthoekige houten paltrokmolen van Wijhe (1703) is een rijksmonument en een van de markantste gebouwen van de gemeente." },
+        { icon: "waves", titel: "IJssel", tekst: "De IJssel vormt de oostelijke grens van de gemeente. Het rivierenlandschap bepaalt het karakter van Olst en Wijhe." },
+      ],
+    },
+    kernTekst: {
+      olst: "Kern aan de IJssel, met een historisch dorpscentrum en landgoed De Haare.",
+      wijhe: "Grootste kern van de gemeente, met een rijksmonumentale paltrokmolen.",
+      wesepe: "Klein dorp tussen Olst en Wijhe, met een landelijk karakter.",
+    },
+    ontwikkeling: {
+      titel: "Wat speelt er in Olst-Wijhe?",
+      tekst: "Met bijna de helft van de woningvoorraad van vóór 1975 en een groot aandeel vrijstaande woningen is er in Olst-Wijhe veel verduurzamingspotentieel. Spouwmuurisolatie en dakisolatie zijn de meestgevraagde maatregelen. Gijs kijkt per woning wat de logische volgorde is.",
+    },
+  },
+  natuur: {
+    titel: "Beschermde dieren bij isolatie in gemeente Olst-Wijhe",
+    lead: "In spouwmuren, muren en daken wonen vleermuizen, huismussen en gierzwaluwen. Bij isolatie in de gemeente Olst-Wijhe moet je hier rekening mee houden:",
+    stappen: [
+      { icon: "badge-check", titel: "Kies een natuurvriendelijk isolatiebedrijf", tekst: "Een erkend bedrijf weet welke soorten voorkomen en hoe je ze beschermt bij de werkzaamheden." },
+      { icon: "bird", titel: "Dieren kunnen eerst weg", tekst: "Vleermuizen, huismussen en gierzwaluwen krijgen de kans om weg te vliegen voordat er wordt geïsoleerd." },
+      { icon: "house-plus", titel: "Nieuwe verblijfplaatsen", tekst: "Na het isoleren worden nieuwe verblijfplaatsen aangebracht, zoveel mogelijk onzichtbaar in de spouw." },
+      { icon: "file-check", titel: "Ontheffing via de provincie", tekst: "Bij een beschermde soort regelt het isolatiebedrijf de ontheffing bij de provincie Overijssel." },
+    ],
+    zelf: "Isoleer je zelf? Dan moet je zelf onderzoek laten doen naar beschermde soorten en een ontheffing aanvragen bij de provincie Overijssel.",
+    bron: { naam: "Provincie Overijssel", url: "https://www.overijssel.nl/loket/natuur-flora-fauna/" },
+  },
+  faq: [
+    { question: "Is Gijs een isolatiebedrijf in Olst-Wijhe?", answer: "Gijs is geen uitvoerend isolatiebedrijf, maar begeleidt je onafhankelijk door het hele verduurzamingstraject. Het begint met persoonlijk advies over welke maatregelen passen bij jouw woning. Daarna begeleiden en ontzorgen we je bij de uitvoering door vakspecialisten, ook in Wijhe en Wesepe." },
+    { question: "Welke subsidies zijn er voor mijn woning in Olst-Wijhe?", answer: "Op deze pagina zie je de regelingen die nu voor Olst-Wijhe gelden uit de Energiesubsidiewijzer van Milieu Centraal. Met de subsidiecheck zie je wat er voor jouw adres geldt, ook landelijk." },
+    { question: "Mijn woning is van vóór 1975. Waar begin ik?", answer: "Dat hangt af van wat er al is gedaan. Veel woningen zijn later al verbeterd. Gijs kijkt tijdens de energiescan wat er al zit en welke stap de meeste winst geeft." },
+    { question: "Helpt Gijs ook in Olst en Wesepe?", answer: "Ja. Gijs helpt bewoners in de hele gemeente Olst-Wijhe, dus ook in Olst, Wesepe en de buurtschappen in het buitengebied." },
+  ],
+  verwant: [
+    { naam: "Woning verduurzamen in Deventer", href: "/regio/overijssel/deventer" },
+    { naam: "Woning verduurzamen in Raalte", href: "/regio/overijssel/raalte" },
+    { naam: "Woning verduurzamen in Zwolle", href: "/regio/overijssel/zwolle" },
+  ],
+};
+
+// CBS/BAG-cijfers via AlleCijfers.nl, peiljaar 2026, gecontroleerd op 27 oktober 2026.
+const OMMEN: GemeenteVerhaal = {
+  seo: {
+    title: "Woning isoleren in Ommen | Advies & ontzorging – Gijs",
+    description: "Zoek je hulp bij het isoleren van je woning in Ommen of Vilsteren? Gijs geeft onafhankelijk verduurzamingsadvies en begeleidt je van A tot Z.",
+  },
+  kicker: "Gemeente Ommen",
+  h1: "Je woning isoleren en verduurzamen in Ommen",
+  intro: [
+    ["Woon je in Ommen, Vilsteren, Beerze of een van de andere dorpen van de gemeente? Gijs geeft onafhankelijk verduurzamingsadvies en begeleidt je van A tot Z, van de eerste keuzes tot en met de uitvoering door vakspecialisten."],
+    ["Bijna 44% van de woningen in Ommen is van vóór 1975. Met een groot aandeel vrijstaande woningen (38%) is er in veel gevallen nog winst te halen met dakisolatie, spouwmuurisolatie of een warmtepomp."],
+  ],
+  kernen: ["ommen", "vilsteren", "beerze", "stegeren", "varsen", "giethmen"],
+  woningen: {
+    lead: "Het bouwjaar zegt veel over hoe een huis gebouwd is. Zo is de woningvoorraad van Ommen verdeeld, en dit betekent het meestal voor isolatie.",
+    kerncijfers: [
+      { waarde: "7.934", label: "woningen" },
+      { waarde: "38%", label: "vrijstaand" },
+      { waarde: "44%", label: "gebouwd vóór 1975" },
+      { waarde: "71%", label: "koopwoning" },
+    ],
+    bouwperiodes: [
+      { label: "Vóór 1975", percentage: 44, tekst: "Vrijstaande woningen langs de Vecht en historische bebouwing in Ommen. Spouwmuren zijn er vaak, maar de spouw is regelmatig nog leeg of slecht gevuld." },
+      { label: "1975 – 1995", percentage: 26, tekst: "Deels geïsoleerd bij oplevering. Bijisoleren van spouw en dak geeft hier nog de meeste winst." },
+      { label: "1995 – 2015", percentage: 20, tekst: "Beter geïsoleerd. De winst zit vaker in beter glas of de overstap naar een warmtepomp." },
+      { label: "Na 2015", percentage: 10, tekst: "Al goed geïsoleerd bij oplevering. Zonnepanelen zijn hier vaker de logische volgende stap." },
+    ],
+    voetnoot: "Het bouwjaar is een eerste indicatie, geen conclusie: veel woningen zijn later al verbeterd. Gijs kijkt altijd naar jouw eigen huis.",
+    bron: { naam: "CBS en BAG via AlleCijfers.nl, 2026", url: "https://www.allecijfers.nl/gemeente/ommen/" },
+  },
+  lokaal: {
+    titel: "Ommen: wonen langs de Vecht",
+    alineas: [
+      ["Ommen is een van de oudste steden van Overijssel, het ontving al in 1248 stadsrechten. De gemeente grenst aan Nationaal Park Sallandse Heuvelrug en heeft een uitgesproken landelijk karakter, met veel vrijstaande woningen en kleine kernen langs de Vecht."],
+      ["De rivier de Vecht is bepalend voor het landschap van Ommen. Vilsteren, Beerze en de andere dorpen zijn kleine kernen met een hecht gemeenschapskarakter. In het buitengebied staan ook voormalige boerderijen die verbouwd zijn tot woonboerderijen."],
+    ],
+    bekendVan: {
+      titel: "Waar is Ommen bekend om?",
+      kaarten: [
+        { icon: "waves", titel: "Vechtdal", tekst: "De Vecht is het hart van de gemeente. Het Vechtdal trekt wandelaars, fietsers en kanoërs en grenst aan Nationaal Park Sallandse Heuvelrug." },
+        { icon: "landmark", titel: "Oudste stad van Overijssel", tekst: "Ommen ontving stadsrechten in 1248 en is een van de oudste steden van Overijssel." },
+      ],
+    },
+    kernTekst: {
+      ommen: "De stadskern van de gemeente, met de meeste voorzieningen.",
+      vilsteren: "Dorp ten zuiden van Ommen, in het Vechtdal.",
+      beerze: "Dorp in het zuiden van de gemeente, in een bosrijke omgeving.",
+      stegeren: "Klein dorp in het noorden van de gemeente.",
+      varsen: "Dorp langs de Vecht, ten westen van Ommen.",
+      giethmen: "Buurtschap in het noorden van de gemeente Ommen.",
+    },
+    ontwikkeling: {
+      titel: "Wat speelt er in Ommen?",
+      tekst: "In Ommen zelf staan veel woningen uit de jaren vijftig tot zeventig met spouwmuren. In de omliggende dorpen en het buitengebied tref je vaker vrijstaande woningen en voormalige boerderijen. Gijs kijkt per woning wat de logische volgorde is.",
+    },
+  },
+  natuur: {
+    titel: "Beschermde dieren bij isolatie in gemeente Ommen",
+    lead: "In spouwmuren, muren en daken wonen vleermuizen, huismussen en gierzwaluwen. Bij isolatie in de gemeente Ommen, die grenst aan Nationaal Park Sallandse Heuvelrug, moet je hier rekening mee houden:",
+    stappen: [
+      { icon: "badge-check", titel: "Kies een natuurvriendelijk isolatiebedrijf", tekst: "Een erkend bedrijf weet welke soorten voorkomen en hoe je ze beschermt bij de werkzaamheden." },
+      { icon: "bird", titel: "Dieren kunnen eerst weg", tekst: "Vleermuizen, huismussen en gierzwaluwen krijgen de kans om weg te vliegen voordat er wordt geïsoleerd." },
+      { icon: "house-plus", titel: "Nieuwe verblijfplaatsen", tekst: "Na het isoleren worden nieuwe verblijfplaatsen aangebracht, zoveel mogelijk onzichtbaar in de spouw." },
+      { icon: "file-check", titel: "Ontheffing via de provincie", tekst: "Bij een beschermde soort regelt het isolatiebedrijf de ontheffing bij de provincie Overijssel." },
+    ],
+    zelf: "Isoleer je zelf? Dan moet je zelf onderzoek laten doen naar beschermde soorten en een ontheffing aanvragen bij de provincie Overijssel.",
+    bron: { naam: "Provincie Overijssel", url: "https://www.overijssel.nl/loket/natuur-flora-fauna/" },
+  },
+  faq: [
+    { question: "Is Gijs een isolatiebedrijf in Ommen?", answer: "Gijs is geen uitvoerend isolatiebedrijf, maar begeleidt je onafhankelijk door het hele verduurzamingstraject. Het begint met persoonlijk advies over welke maatregelen passen bij jouw woning. Daarna begeleiden en ontzorgen we je bij de uitvoering door vakspecialisten, ook in Vilsteren, Beerze en de andere dorpen." },
+    { question: "Welke subsidies zijn er voor mijn woning in Ommen?", answer: "Op deze pagina zie je de regelingen die nu voor Ommen gelden uit de Energiesubsidiewijzer van Milieu Centraal. Met de subsidiecheck zie je wat er voor jouw adres geldt, ook landelijk." },
+    { question: "Mijn woning is van vóór 1975. Waar begin ik?", answer: "Dat hangt af van wat er al is gedaan. Veel woningen zijn later al verbeterd. Gijs kijkt tijdens de energiescan wat er al zit en welke stap de meeste winst geeft." },
+    { question: "Helpt Gijs ook in Vilsteren, Beerze en de andere dorpen?", answer: "Ja. Gijs helpt bewoners in de hele gemeente Ommen, van Vilsteren en Beerze tot Stegeren, Varsen en Giethmen." },
+  ],
+  verwant: [
+    { naam: "Woning verduurzamen in Dalfsen", href: "/regio/overijssel/dalfsen" },
+    { naam: "Woning verduurzamen in Hardenberg", href: "/regio/overijssel/hardenberg" },
+    { naam: "Woning verduurzamen in Zwolle", href: "/regio/overijssel/zwolle" },
+  ],
+};
+
+// CBS/BAG-cijfers via AlleCijfers.nl, peiljaar 2026, gecontroleerd op 27 oktober 2026.
+const RAALTE: GemeenteVerhaal = {
+  seo: {
+    title: "Woning isoleren in Raalte | Advies & ontzorging – Gijs",
+    description: "Zoek je hulp bij het isoleren van je woning in Raalte of Heino? Gijs geeft onafhankelijk verduurzamingsadvies en begeleidt je van A tot Z.",
+  },
+  kicker: "Gemeente Raalte",
+  h1: "Je woning isoleren en verduurzamen in Raalte",
+  intro: [
+    ["Woon je in Raalte, Heino, Heeten of een van de andere dorpen van de gemeente? Gijs geeft onafhankelijk verduurzamingsadvies en begeleidt je van A tot Z, van de eerste keuzes tot en met de uitvoering door vakspecialisten."],
+    ["Ruim een derde van de woningen in Raalte is van vóór 1975. Met een mix van vrijstaande woningen en tussenwoningen is er in veel gevallen nog winst te halen met dakisolatie, spouwmuurisolatie of een warmtepomp."],
+  ],
+  kernen: ["raalte", "heino", "heeten", "luttenberg", "marienheem", "broekland"],
+  woningen: {
+    lead: "Het bouwjaar zegt veel over hoe een huis gebouwd is. Zo is de woningvoorraad van Raalte verdeeld, en dit betekent het meestal voor isolatie.",
+    kerncijfers: [
+      { waarde: "16.573", label: "woningen" },
+      { waarde: "27%", label: "vrijstaand" },
+      { waarde: "37%", label: "gebouwd vóór 1975" },
+      { waarde: "70%", label: "koopwoning" },
+    ],
+    bouwperiodes: [
+      { label: "Vóór 1975", percentage: 37, tekst: "Historische bebouwing in de dorpskernen en naoorlogse uitbreidingen. Spouwmuren zijn er vaak, maar de spouw is regelmatig nog leeg of slecht gevuld." },
+      { label: "1975 – 1995", percentage: 33, tekst: "Een relatief groot deel van de woningvoorraad stamt uit deze periode. Deels geïsoleerd, maar bijisoleren geeft hier nog de meeste winst." },
+      { label: "1995 – 2015", percentage: 20, tekst: "Beter geïsoleerd. De winst zit vaker in beter glas of de overstap naar een warmtepomp." },
+      { label: "Na 2015", percentage: 10, tekst: "Al goed geïsoleerd bij oplevering. Zonnepanelen zijn hier vaker de logische volgende stap." },
+    ],
+    voetnoot: "Het bouwjaar is een eerste indicatie, geen conclusie: veel woningen zijn later al verbeterd. Gijs kijkt altijd naar jouw eigen huis.",
+    bron: { naam: "CBS en BAG via AlleCijfers.nl, 2026", url: "https://www.allecijfers.nl/gemeente/raalte/" },
+  },
+  lokaal: {
+    titel: "Raalte: Salland op zijn best",
+    alineas: [
+      ["De gemeente Raalte ligt in het hart van Salland, met als grootste kern de stad Raalte en de dorpen Heino, Heeten, Luttenberg, Mariënheem en Broekland. De gemeente heeft een landelijk karakter met een mix van vrijstaande woningen, twee-onder-één-kappers en tussenwoningen."],
+      ["Heino is een levendig dorp met eigen winkelstraat en voorzieningen. In Raalte zelf staat de neogotische Heilige Kruisverheffingskerk (1891) als rijksmonument, een herkenningspunt in het dorpslandschap."],
+    ],
+    bekendVan: {
+      titel: "Waar is Raalte bekend om?",
+      kaarten: [
+        { icon: "landmark", titel: "Heilige Kruisverheffingskerk", tekst: "De neogotische kerk in Raalte (1891, architect A. Tepe) is een rijksmonument en het markantste gebouw van de gemeente." },
+        { icon: "trees", titel: "Sallandse landschap", tekst: "De gemeente ligt in het Sallandse coulissenlandschap, met afwisseling van landbouwgrond, bossen en heidevelden." },
+      ],
+    },
+    kernTekst: {
+      raalte: "De hoofdkern van de gemeente met de meeste voorzieningen.",
+      heino: "Levendig dorp met eigen winkelstraat, ten noorden van Raalte.",
+      heeten: "Dorp ten zuiden van Raalte, met een rustig landelijk karakter.",
+      luttenberg: "Dorp in het oosten van de gemeente, op de Sallandse Heuvelrug.",
+      marienheem: "Klein dorp in het noorden van de gemeente.",
+      broekland: "Buurtschap in het westen van de gemeente Raalte.",
+    },
+    ontwikkeling: {
+      titel: "Wat speelt er in Raalte?",
+      tekst: "In Raalte en Heino staan veel woningen uit de jaren zeventig en tachtig. Spouwmuurisolatie en dakisolatie zijn hier de meestgevraagde maatregelen. In Luttenberg, op de heuvelrug, zijn het vaker vrijstaande woningen waarbij de combinatie dak, spouw en vloer de meeste winst geeft.",
+    },
+  },
+  natuur: {
+    titel: "Beschermde dieren bij isolatie in gemeente Raalte",
+    lead: "In spouwmuren, muren en daken wonen vleermuizen, huismussen en gierzwaluwen. Bij isolatie in de gemeente Raalte moet je hier rekening mee houden:",
+    stappen: [
+      { icon: "badge-check", titel: "Kies een natuurvriendelijk isolatiebedrijf", tekst: "Een erkend bedrijf weet welke soorten voorkomen en hoe je ze beschermt bij de werkzaamheden." },
+      { icon: "bird", titel: "Dieren kunnen eerst weg", tekst: "Vleermuizen, huismussen en gierzwaluwen krijgen de kans om weg te vliegen voordat er wordt geïsoleerd." },
+      { icon: "house-plus", titel: "Nieuwe verblijfplaatsen", tekst: "Na het isoleren worden nieuwe verblijfplaatsen aangebracht, zoveel mogelijk onzichtbaar in de spouw." },
+      { icon: "file-check", titel: "Ontheffing via de provincie", tekst: "Bij een beschermde soort regelt het isolatiebedrijf de ontheffing bij de provincie Overijssel." },
+    ],
+    zelf: "Isoleer je zelf? Dan moet je zelf onderzoek laten doen naar beschermde soorten en een ontheffing aanvragen bij de provincie Overijssel.",
+    bron: { naam: "Provincie Overijssel", url: "https://www.overijssel.nl/loket/natuur-flora-fauna/" },
+  },
+  faq: [
+    { question: "Is Gijs een isolatiebedrijf in Raalte?", answer: "Gijs is geen uitvoerend isolatiebedrijf, maar begeleidt je onafhankelijk door het hele verduurzamingstraject. Het begint met persoonlijk advies. Daarna begeleiden en ontzorgen we je bij de uitvoering door vakspecialisten, ook in Heino, Heeten en de andere dorpen." },
+    { question: "Welke subsidies zijn er voor mijn woning in Raalte?", answer: "Op deze pagina zie je de regelingen die nu voor Raalte gelden uit de Energiesubsidiewijzer van Milieu Centraal. Met de subsidiecheck zie je wat er voor jouw adres geldt, ook landelijk." },
+    { question: "Mijn woning is van vóór 1975. Waar begin ik?", answer: "Dat hangt af van wat er al is gedaan. Veel woningen zijn later al verbeterd. Gijs kijkt tijdens de energiescan wat er al zit en welke stap de meeste winst geeft." },
+    { question: "Helpt Gijs ook in Heino, Heeten en de andere dorpen?", answer: "Ja. Gijs helpt bewoners in de hele gemeente Raalte, dus ook in Heino, Heeten, Luttenberg, Mariënheem en Broekland." },
+  ],
+  verwant: [
+    { naam: "Woning verduurzamen in Deventer", href: "/regio/overijssel/deventer" },
+    { naam: "Woning verduurzamen in Olst-Wijhe", href: "/regio/overijssel/olst-wijhe" },
+    { naam: "Woning verduurzamen in Hellendoorn", href: "/regio/overijssel/hellendoorn" },
+  ],
+};
+
+// CBS/BAG-cijfers via AlleCijfers.nl, peiljaar 2026, gecontroleerd op 27 oktober 2026.
+const STAPHORST: GemeenteVerhaal = {
+  seo: {
+    title: "Woning isoleren in Staphorst | Advies & ontzorging – Gijs",
+    description: "Zoek je hulp bij het isoleren van je woning in Staphorst of Rouveen? Gijs geeft onafhankelijk verduurzamingsadvies en begeleidt je van A tot Z.",
+  },
+  kicker: "Gemeente Staphorst",
+  h1: "Je woning isoleren en verduurzamen in Staphorst",
+  intro: [
+    ["Woon je in Staphorst, Rouveen, IJhorst of een van de andere kernen van de gemeente? Gijs geeft onafhankelijk verduurzamingsadvies en begeleidt je van A tot Z, van de eerste keuzes tot en met de uitvoering door vakspecialisten."],
+    ["Ruim een derde van de woningen in Staphorst is van vóór 1975. Met een hoog aandeel koopwoningen (78%) en vrijstaande woningen is er in veel gevallen nog winst te halen met dakisolatie, spouwmuurisolatie of een warmtepomp."],
+  ],
+  kernen: ["staphorst", "rouveen", "ijhorst", "de-lichtmis"],
+  woningen: {
+    lead: "Het bouwjaar zegt veel over hoe een huis gebouwd is. Zo is de woningvoorraad van Staphorst verdeeld, en dit betekent het meestal voor isolatie.",
+    kerncijfers: [
+      { waarde: "6.279", label: "woningen" },
+      { waarde: "33%", label: "vrijstaand" },
+      { waarde: "36%", label: "gebouwd vóór 1975" },
+      { waarde: "78%", label: "koopwoning" },
+    ],
+    bouwperiodes: [
+      { label: "Vóór 1975", percentage: 36, tekst: "Lintbebouwing langs de dorpsstraten en vrijstaande woningen op de veenkoloniale kavels. Spouwmuren zijn er vaak, maar de spouw is regelmatig nog leeg." },
+      { label: "1975 – 1995", percentage: 20, tekst: "Deels geïsoleerd bij oplevering. Bijisoleren van spouw en dak geeft hier nog de meeste winst." },
+      { label: "1995 – 2015", percentage: 32, tekst: "Beter geïsoleerd. De winst zit vaker in beter glas of de overstap naar een warmtepomp." },
+      { label: "Na 2015", percentage: 12, tekst: "Al goed geïsoleerd bij oplevering. Zonnepanelen zijn hier vaker de logische volgende stap." },
+    ],
+    voetnoot: "Het bouwjaar is een eerste indicatie, geen conclusie: veel woningen zijn later al verbeterd. Gijs kijkt altijd naar jouw eigen huis.",
+    bron: { naam: "CBS en BAG via AlleCijfers.nl, 2026", url: "https://www.allecijfers.nl/gemeente/staphorst/" },
+  },
+  lokaal: {
+    titel: "Staphorst: eigen karakter, sterke gemeenschap",
+    alineas: [
+      ["Staphorst is een gemeente met een sterk eigen karakter. De langgerekte dorpslinten, Staphorst en Rouveen, zijn kenmerkend voor de veenkoloniale ontginningsgeschiedenis. De gemeente staat nationaal bekend om de traditionele klederdracht, die vrouwen in de gemeente nog dagelijks dragen."],
+      ["IJhorst en De Lichtmis zijn kleinere kernen in het westen van de gemeente. Het hoge aandeel koopwoningen (78%) en de dominantie van vrijstaande woningen maken Staphorst een gemeente met relatief veel verduurzamingspotentieel per woning."],
+    ],
+    bekendVan: {
+      titel: "Waar is Staphorst bekend om?",
+      kaarten: [
+        { icon: "landmark", titel: "Klederdracht", tekst: "Staphorst staat nationaal bekend om de traditionele klederdracht. Museum Staphorst bewaart deze traditie; het Staphorster dotwork is erkend als immaterieel erfgoed." },
+        { icon: "trees", titel: "Veenkoloniaal lint", tekst: "De langgerekte dorpslinten van Staphorst en Rouveen zijn een karakteristiek resultaat van de veenontginning." },
+      ],
+    },
+    kernTekst: {
+      staphorst: "Het hoofdlint van de gemeente, met het gemeentehuis en Museum Staphorst.",
+      rouveen: "Het tweede grote lint, direct aansluitend op Staphorst.",
+      ijhorst: "Klein dorp in het westen van de gemeente, bij de A28.",
+      "de-lichtmis": "Kern in het westen van de gemeente, nabij IJhorst.",
+    },
+    ontwikkeling: {
+      titel: "Wat speelt er in Staphorst?",
+      tekst: "In de lintbebouwing van Staphorst en Rouveen staan veel vrijstaande woningen op ruime kavels. Dakisolatie en spouwmuurisolatie zijn hier de meestgevraagde maatregelen. Gijs kijkt per woning wat de logische volgorde is.",
+    },
+  },
+  natuur: {
+    titel: "Beschermde dieren bij isolatie in gemeente Staphorst",
+    lead: "In spouwmuren, muren en daken wonen vleermuizen, huismussen en gierzwaluwen. Bij isolatie in de gemeente Staphorst moet je hier rekening mee houden:",
+    stappen: [
+      { icon: "badge-check", titel: "Kies een natuurvriendelijk isolatiebedrijf", tekst: "Een erkend bedrijf weet welke soorten voorkomen en hoe je ze beschermt bij de werkzaamheden." },
+      { icon: "bird", titel: "Dieren kunnen eerst weg", tekst: "Vleermuizen, huismussen en gierzwaluwen krijgen de kans om weg te vliegen voordat er wordt geïsoleerd." },
+      { icon: "house-plus", titel: "Nieuwe verblijfplaatsen", tekst: "Na het isoleren worden nieuwe verblijfplaatsen aangebracht, zoveel mogelijk onzichtbaar in de spouw." },
+      { icon: "file-check", titel: "Ontheffing via de provincie", tekst: "Bij een beschermde soort regelt het isolatiebedrijf de ontheffing bij de provincie Overijssel." },
+    ],
+    zelf: "Isoleer je zelf? Dan moet je zelf onderzoek laten doen naar beschermde soorten en een ontheffing aanvragen bij de provincie Overijssel.",
+    bron: { naam: "Provincie Overijssel", url: "https://www.overijssel.nl/loket/natuur-flora-fauna/" },
+  },
+  faq: [
+    { question: "Is Gijs een isolatiebedrijf in Staphorst?", answer: "Gijs is geen uitvoerend isolatiebedrijf, maar begeleidt je onafhankelijk door het hele verduurzamingstraject. Het begint met persoonlijk advies. Daarna begeleiden en ontzorgen we je bij de uitvoering door vakspecialisten, ook in Rouveen, IJhorst en De Lichtmis." },
+    { question: "Welke subsidies zijn er voor mijn woning in Staphorst?", answer: "Op deze pagina zie je de regelingen die nu voor Staphorst gelden uit de Energiesubsidiewijzer van Milieu Centraal. Met de subsidiecheck zie je wat er voor jouw adres geldt, ook landelijk." },
+    { question: "Mijn woning is van vóór 1975. Waar begin ik?", answer: "Dat hangt af van wat er al is gedaan. Veel woningen in Staphorst zijn later al verbeterd. Gijs kijkt tijdens de energiescan wat er al zit en welke stap de meeste winst geeft." },
+    { question: "Helpt Gijs ook in Rouveen en IJhorst?", answer: "Ja. Gijs helpt bewoners in de hele gemeente Staphorst, dus ook in Rouveen, IJhorst en De Lichtmis." },
+  ],
+  verwant: [
+    { naam: "Woning verduurzamen in Zwartewaterland", href: "/regio/overijssel/zwartewaterland" },
+    { naam: "Woning verduurzamen in Steenwijkerland", href: "/regio/overijssel/steenwijkerland" },
+    { naam: "Woning verduurzamen in Dalfsen", href: "/regio/overijssel/dalfsen" },
+  ],
+};
+
+// CBS/BAG-cijfers via AlleCijfers.nl, peiljaar 2026, gecontroleerd op 27 oktober 2026.
+const STEENWIJKERLAND: GemeenteVerhaal = {
+  seo: {
+    title: "Woning isoleren in Steenwijkerland | Advies & ontzorging – Gijs",
+    description: "Zoek je hulp bij het isoleren van je woning in Steenwijk, Giethoorn of Vollenhove? Gijs geeft onafhankelijk verduurzamingsadvies en begeleidt je van A tot Z.",
+  },
+  kicker: "Gemeente Steenwijkerland",
+  h1: "Je woning isoleren en verduurzamen in Steenwijkerland",
+  intro: [
+    ["Woon je in Steenwijk, Giethoorn, Vollenhove of een van de andere kernen van de gemeente? Gijs geeft onafhankelijk verduurzamingsadvies en begeleidt je van A tot Z, van de eerste keuzes tot en met de uitvoering door vakspecialisten."],
+    ["Bijna de helft van de woningen in Steenwijkerland is van vóór 1975. Met een groot aandeel vrijstaande woningen (32%) is er in veel gevallen nog winst te halen met dakisolatie, spouwmuurisolatie of een warmtepomp."],
+  ],
+  kernen: ["steenwijk", "vollenhove", "oldemarkt", "giethoorn", "sint-jansklooster", "tuk", "steenwijkerwold", "wanneperveen", "blokzijl", "kuinre"],
+  woningen: {
+    lead: "Het bouwjaar zegt veel over hoe een huis gebouwd is. Zo is de woningvoorraad van Steenwijkerland verdeeld, en dit betekent het meestal voor isolatie.",
+    kerncijfers: [
+      { waarde: "20.632", label: "woningen" },
+      { waarde: "32%", label: "vrijstaand" },
+      { waarde: "~47%", label: "gebouwd vóór 1975" },
+      { waarde: "66%", label: "koopwoning" },
+    ],
+    bouwperiodes: [
+      { label: "Vóór 1975", percentage: 47, tekst: "Vrijstaande woningen in de dorpen en historische bebouwing in Steenwijk en Vollenhove. Spouwmuren zijn er vaak, maar de spouw is regelmatig nog leeg of slecht gevuld." },
+      { label: "1975 – 1995", percentage: 23, tekst: "Deels geïsoleerd bij oplevering. Bijisoleren van spouw en dak geeft hier nog de meeste winst." },
+      { label: "1995 – 2015", percentage: 20, tekst: "Beter geïsoleerd. De winst zit vaker in beter glas of de overstap naar een warmtepomp." },
+      { label: "Na 2015", percentage: 10, tekst: "Al goed geïsoleerd bij oplevering. Zonnepanelen zijn hier vaker de logische volgende stap." },
+    ],
+    voetnoot: "Het bouwjaar is een eerste indicatie, geen conclusie: veel woningen zijn later al verbeterd. Gijs kijkt altijd naar jouw eigen huis.",
+    bron: { naam: "CBS en BAG via AlleCijfers.nl, 2026", url: "https://www.allecijfers.nl/gemeente/steenwijkerland/" },
+  },
+  lokaal: {
+    titel: "Steenwijkerland: van Giethoorn tot Vollenhove",
+    alineas: [
+      ["Steenwijkerland is een uitgestrekte gemeente in het noorden van Overijssel, met als grootste kern de stad Steenwijk. De gemeente omvat ook de historische vestingstad Vollenhove, het wereldberoemde Giethoorn en een reeks kleinere dorpen en kernen in het veenlandschap."],
+      ["Giethoorn staat bekend als 'het Venetië van het Noorden': het dorp heeft nauwelijks verharde wegen en is vrijwel uitsluitend bereikbaar per boot of fiets. Nationaal Park De Weerribben-Wieden, het grootste aaneengesloten laagveenmoeras van Noordwest-Europa, valt grotendeels binnen de gemeente."],
+    ],
+    bekendVan: {
+      titel: "Waar is Steenwijkerland bekend om?",
+      kaarten: [
+        { icon: "waves", titel: "Giethoorn", tekst: "Giethoorn staat wereldwijd bekend als 'het Venetië van het Noorden'. Het dorp is vrijwel uitsluitend bereikbaar per boot of fiets." },
+        { icon: "landmark", titel: "Vollenhove", tekst: "Vollenhove is een historische vestingstad met middeleeuwse grachten en het 16e-eeuwse kasteel Toutenburg." },
+      ],
+    },
+    kernTekst: {
+      steenwijk: "De hoofdstad van de gemeente, met de meeste voorzieningen.",
+      vollenhove: "Historische vestingstad met middeleeuwse grachten.",
+      oldemarkt: "Dorp in het noorden van de gemeente.",
+      giethoorn: "Wereldberoemd vaardorp, 'het Venetië van het Noorden'.",
+      "sint-jansklooster": "Dorp in het noorden van de gemeente.",
+      tuk: "Dorp ten zuiden van Steenwijk.",
+      steenwijkerwold: "Dorp ten zuiden van Steenwijk.",
+      wanneperveen: "Dorp in het veenlandschap van Steenwijkerland.",
+      blokzijl: "Historisch stadje aan het Vollenhoverkanaal.",
+      kuinre: "Dorp aan het Vollenhoverkanaal, in het noorden van de gemeente.",
+    },
+    ontwikkeling: {
+      titel: "Wat speelt er in Steenwijkerland?",
+      tekst: "In Steenwijk staan veel woningen uit de jaren vijftig tot tachtig. In de kleinere dorpen als Giethoorn, Blokzijl en Vollenhove staan oudere panden, soms met monumentale status, waarbij gevelaanpassingen beperkingen kennen. Gijs kijkt welke maatregelen per woning mogelijk zijn.",
+    },
+  },
+  natuur: {
+    titel: "Beschermde dieren bij isolatie in gemeente Steenwijkerland",
+    lead: "Steenwijkerland grenst aan Nationaal Park De Weerribben-Wieden. In spouwmuren, muren en daken wonen vleermuizen, huismussen en gierzwaluwen, bij isolatie moet je hier rekening mee houden:",
+    stappen: [
+      { icon: "badge-check", titel: "Kies een natuurvriendelijk isolatiebedrijf", tekst: "Een erkend bedrijf weet welke soorten voorkomen en hoe je ze beschermt bij de werkzaamheden." },
+      { icon: "bird", titel: "Dieren kunnen eerst weg", tekst: "Vleermuizen, huismussen en gierzwaluwen krijgen de kans om weg te vliegen voordat er wordt geïsoleerd." },
+      { icon: "house-plus", titel: "Nieuwe verblijfplaatsen", tekst: "Na het isoleren worden nieuwe verblijfplaatsen aangebracht, zoveel mogelijk onzichtbaar in de spouw." },
+      { icon: "file-check", titel: "Ontheffing via de provincie", tekst: "Bij een beschermde soort regelt het isolatiebedrijf de ontheffing bij de provincie Overijssel." },
+    ],
+    zelf: "Isoleer je zelf? Dan moet je zelf onderzoek laten doen naar beschermde soorten en een ontheffing aanvragen bij de provincie Overijssel.",
+    bron: { naam: "Provincie Overijssel", url: "https://www.overijssel.nl/loket/natuur-flora-fauna/" },
+  },
+  faq: [
+    { question: "Is Gijs een isolatiebedrijf in Steenwijkerland?", answer: "Gijs is geen uitvoerend isolatiebedrijf, maar begeleidt je onafhankelijk door het hele verduurzamingstraject. Het begint met persoonlijk advies. Daarna begeleiden en ontzorgen we je bij de uitvoering door vakspecialisten, ook in Giethoorn, Vollenhove en de andere kernen." },
+    { question: "Welke subsidies zijn er voor mijn woning in Steenwijkerland?", answer: "Op deze pagina zie je de regelingen die nu voor Steenwijkerland gelden uit de Energiesubsidiewijzer van Milieu Centraal. Met de subsidiecheck zie je wat er voor jouw adres geldt, ook landelijk." },
+    { question: "Mijn woning staat in Giethoorn. Kan ik toch isoleren?", answer: "Ja, maar bij panden in beschermd dorpsgezicht of met monumentale status gelden soms beperkingen voor de uitstraling. Gijs kijkt welke maatregelen wél mogelijk zijn, vloerisolatie, binnenisolatie en glas zijn dan vaak een optie." },
+    { question: "Helpt Gijs ook in Giethoorn, Vollenhove en de andere dorpen?", answer: "Ja. Gijs helpt bewoners in de hele gemeente Steenwijkerland, van Steenwijk en Giethoorn tot Vollenhove, Blokzijl, Oldemarkt en Kuinre." },
+  ],
+  verwant: [
+    { naam: "Woning verduurzamen in Staphorst", href: "/regio/overijssel/staphorst" },
+    { naam: "Woning verduurzamen in Zwartewaterland", href: "/regio/overijssel/zwartewaterland" },
+    { naam: "Woning verduurzamen in Kampen", href: "/regio/overijssel/kampen" },
+  ],
+};
+
+// CBS/BAG-cijfers via AlleCijfers.nl, peiljaar 2026, gecontroleerd op 27 oktober 2026.
+const ZWARTEWATERLAND: GemeenteVerhaal = {
+  seo: {
+    title: "Woning isoleren in Zwartewaterland | Advies & ontzorging – Gijs",
+    description: "Zoek je hulp bij het isoleren van je woning in Hasselt, Genemuiden of Zwartsluis? Gijs geeft onafhankelijk verduurzamingsadvies en begeleidt je van A tot Z.",
+  },
+  kicker: "Gemeente Zwartewaterland",
+  h1: "Je woning isoleren en verduurzamen in Zwartewaterland",
+  intro: [
+    ["Woon je in Hasselt, Genemuiden, Zwartsluis of Mastenbroek? Gijs geeft onafhankelijk verduurzamingsadvies en begeleidt je van A tot Z, van de eerste keuzes tot en met de uitvoering door vakspecialisten."],
+    ["Bijna 44% van de woningen in Zwartewaterland is van vóór 1975. Met een groot aandeel tussenwoningen (34%) is er in veel gevallen nog winst te halen met spouwmuurisolatie, dakisolatie of een warmtepomp."],
+  ],
+  kernen: ["hasselt", "genemuiden", "zwartsluis", "mastenbroek"],
+  woningen: {
+    lead: "Het bouwjaar zegt veel over hoe een huis gebouwd is. Zo is de woningvoorraad van Zwartewaterland verdeeld, en dit betekent het meestal voor isolatie.",
+    kerncijfers: [
+      { waarde: "9.305", label: "woningen" },
+      { waarde: "34%", label: "tussenwoning" },
+      { waarde: "44%", label: "gebouwd vóór 1975" },
+      { waarde: "72%", label: "koopwoning" },
+    ],
+    bouwperiodes: [
+      { label: "Vóór 1975", percentage: 44, tekst: "Historische bebouwing in Hasselt en de lintbebouwing langs het Zwarte Water. Spouwmuren zijn er vaak, maar de spouw is regelmatig nog leeg of slecht gevuld." },
+      { label: "1975 – 1995", percentage: 28, tekst: "Deels geïsoleerd bij oplevering. Bijisoleren van spouw en dak geeft hier nog de meeste winst." },
+      { label: "1995 – 2015", percentage: 19, tekst: "Beter geïsoleerd. De winst zit vaker in beter glas of de overstap naar een warmtepomp." },
+      { label: "Na 2015", percentage: 9, tekst: "Al goed geïsoleerd bij oplevering. Zonnepanelen zijn hier vaker de logische volgende stap." },
+    ],
+    voetnoot: "Het bouwjaar is een eerste indicatie, geen conclusie: veel woningen zijn later al verbeterd. Gijs kijkt altijd naar jouw eigen huis.",
+    bron: { naam: "CBS en BAG via AlleCijfers.nl, 2026", url: "https://www.allecijfers.nl/gemeente/zwartewaterland/" },
+  },
+  lokaal: {
+    titel: "Zwartewaterland: drie karaktervolle kernen",
+    alineas: [
+      ["Zwartewaterland ontstond in 2001 door de fusie van Genemuiden, Zwartsluis en Hasselt. De drie kernen hebben elk een eigen karakter. Hasselt is de bestuurlijke hoofdkern en een historische vestingsstad. Genemuiden staat nationaal bekend als tapijthoofdstad van Nederland, meer dan 60% van de landelijke tapijtproductie komt uit dit cluster. Zwartsluis is een watersportdorp bij het sluizencomplex."],
+      ["Het polderland langs het Zwarte Water bepaalt het karakter van de gemeente. Mastenbroek is een van de oudste droogmakerijen van Nederland. Veel woningen in de gemeente zijn van vóór 1975 en hebben nog verduurzamingspotentieel."],
+    ],
+    bekendVan: {
+      titel: "Waar is Zwartewaterland bekend om?",
+      kaarten: [
+        { icon: "landmark", titel: "Hasselt: Hanzestad", tekst: "Hasselt is een historische vestings- en voormalige Hanzestad met de 14e-eeuwse Grote of Petruskerk als rijksmonument." },
+        { icon: "building", titel: "Genemuiden: tapijthoofdstad", tekst: "Genemuiden is de tapijthoofdstad van Nederland: ruim 60% van de nationale tapijtproductie komt uit dit cluster." },
+      ],
+    },
+    kernTekst: {
+      hasselt: "De bestuurlijke hoofdkern, een historische Hanzestad aan het Zwarte Water.",
+      genemuiden: "De tapijthoofdstad van Nederland, met een sterk industrieel karakter.",
+      zwartsluis: "Watersportdorp bij het sluizencomplex aan de Zwolsche Diep.",
+      mastenbroek: "Polderdorp in een van de oudste droogmakerijen van Nederland.",
+    },
+    ontwikkeling: {
+      titel: "Wat speelt er in Zwartewaterland?",
+      tekst: "In Genemuiden en Hasselt staan veel tussenwoningen uit de jaren vijftig tot tachtig. Spouwmuurisolatie is hier de meestgevraagde maatregel. In Zwartsluis tref je vaker vrijstaande woningen langs het water. Gijs kijkt per woning wat de logische volgorde is.",
+    },
+  },
+  natuur: {
+    titel: "Beschermde dieren bij isolatie in gemeente Zwartewaterland",
+    lead: "In spouwmuren, muren en daken wonen vleermuizen, huismussen en gierzwaluwen. Bij isolatie in de gemeente Zwartewaterland moet je hier rekening mee houden:",
+    stappen: [
+      { icon: "badge-check", titel: "Kies een natuurvriendelijk isolatiebedrijf", tekst: "Een erkend bedrijf weet welke soorten voorkomen en hoe je ze beschermt bij de werkzaamheden." },
+      { icon: "bird", titel: "Dieren kunnen eerst weg", tekst: "Vleermuizen, huismussen en gierzwaluwen krijgen de kans om weg te vliegen voordat er wordt geïsoleerd." },
+      { icon: "house-plus", titel: "Nieuwe verblijfplaatsen", tekst: "Na het isoleren worden nieuwe verblijfplaatsen aangebracht, zoveel mogelijk onzichtbaar in de spouw." },
+      { icon: "file-check", titel: "Ontheffing via de provincie", tekst: "Bij een beschermde soort regelt het isolatiebedrijf de ontheffing bij de provincie Overijssel." },
+    ],
+    zelf: "Isoleer je zelf? Dan moet je zelf onderzoek laten doen naar beschermde soorten en een ontheffing aanvragen bij de provincie Overijssel.",
+    bron: { naam: "Provincie Overijssel", url: "https://www.overijssel.nl/loket/natuur-flora-fauna/" },
+  },
+  faq: [
+    { question: "Is Gijs een isolatiebedrijf in Zwartewaterland?", answer: "Gijs is geen uitvoerend isolatiebedrijf, maar begeleidt je onafhankelijk door het hele verduurzamingstraject. Het begint met persoonlijk advies. Daarna begeleiden en ontzorgen we je bij de uitvoering door vakspecialisten, ook in Genemuiden, Zwartsluis en Mastenbroek." },
+    { question: "Welke subsidies zijn er voor mijn woning in Zwartewaterland?", answer: "Op deze pagina zie je de regelingen die nu voor Zwartewaterland gelden uit de Energiesubsidiewijzer van Milieu Centraal. Met de subsidiecheck zie je wat er voor jouw adres geldt, ook landelijk." },
+    { question: "Mijn woning is van vóór 1975. Waar begin ik?", answer: "Dat hangt af van wat er al is gedaan. Veel woningen zijn later al verbeterd. Gijs kijkt tijdens de energiescan wat er al zit en welke stap de meeste winst geeft." },
+    { question: "Helpt Gijs ook in Genemuiden, Zwartsluis en Mastenbroek?", answer: "Ja. Gijs helpt bewoners in de hele gemeente Zwartewaterland, dus ook in Genemuiden, Zwartsluis en Mastenbroek." },
+  ],
+  verwant: [
+    { naam: "Woning verduurzamen in Kampen", href: "/regio/overijssel/kampen" },
+    { naam: "Woning verduurzamen in Zwolle", href: "/regio/overijssel/zwolle" },
+    { naam: "Woning verduurzamen in Staphorst", href: "/regio/overijssel/staphorst" },
+  ],
+};
+
 const VERHALEN: Record<string, GemeenteVerhaal> = {
   borne: BORNE,
   hengelo: HENGELO,
@@ -3991,6 +4807,3058 @@ const VERHALEN: Record<string, GemeenteVerhaal> = {
   dinkelland: DINKELLAND,
   haaksbergen: HAAKSBERGEN,
   losser: LOSSER,
+  dalfsen: DALFSEN,
+  deventer: DEVENTER,
+  hardenberg: HARDENBERG,
+  kampen: KAMPEN,
+  "olst-wijhe": OLST_WIJHE,
+  ommen: OMMEN,
+  raalte: RAALTE,
+  staphorst: STAPHORST,
+  steenwijkerland: STEENWIJKERLAND,
+  zwartewaterland: ZWARTEWATERLAND,
+  // Gelderland — unieke inhoud per gemeente; CBS Kerncijfers wijken en buurten 2022
+  aalten: {
+    seo: {
+      title: "Woning isoleren in Aalten | Gijs",
+      description: "Wil je je woning isoleren in Aalten? Gijs geeft onafhankelijk advies over spouwmuurisolatie, dakisolatie en zonnepanelen. Bekijk de 11.976 woningen en welke subsidies gelden.",
+    },
+    kicker: "Gemeente Aalten",
+    h1: "Woning isoleren in Aalten",
+    intro: [
+      ["Woon je in Aalten, Bredevoort, Dinxperlo of een van de andere kernen van de Achterhoekse gemeente? De woningvoorraad bestaat voor een groot deel uit vrijstaande woningen en boerderijen van vóór 1975, waar spouwmuurisolatie, dakisolatie of een warmtepomp snel rendabel zijn."],
+      ["Gijs geeft onafhankelijk advies. Tijdens een gratis energiescan aan huis kijkt een adviseur wat er technisch bij jouw woning past, en welke stap het meeste oplevert."],
+    ],
+    kernen: [],
+    woningen: {
+      lead: "Het bouwjaar zegt veel over hoe een huis gebouwd is. Zo is de woningvoorraad van Aalten verdeeld.",
+      kerncijfers: [
+        { waarde: "11.976", label: "woningen" },
+        { waarde: "82%", label: "eengezinswoningen" },
+        { waarde: "87%", label: "gebouwd vóór 2000" },
+        { waarde: "71%", label: "koopwoningen" },
+      ],
+      bouwperiodes: [
+        { label: "Vóór 1975", percentage: 48, tekst: "Vaak gebouwd met weinig of geen isolatie. De spouw is regelmatig nog leeg; dak en vloer zijn vaak de eerste winst." },
+        { label: "1975 – 2000", percentage: 39, tekst: "Meestal al deels geïsoleerd, maar vaak dunner dan nu gebruikelijk. Eerst kijken wat er zit, dan bijisoleren." },
+        { label: "Na 2000", percentage: 13, tekst: "Vaak al redelijk tot goed geïsoleerd. De winst zit vaker in beter glas, zonnepanelen of de overstap naar een warmtepomp." },
+      ],
+      voetnoot: "Het bouwjaar is een eerste indicatie, geen conclusie: veel woningen zijn later al verbeterd. Gijs kijkt altijd naar jouw eigen huis.",
+      bron: { naam: "CBS Kerncijfers wijken en buurten 2022", url: "https://opendata.cbs.nl/statline/#/CBS/nl/dataset/84799NED" },
+    },
+    lokaal: {
+      titel: "Wijken in gemeente Aalten",
+      alineas: [
+        ["De gemeente Aalten telt drie hoofdkernen: Aalten, Bredevoort en Dinxperlo. Bredevoort staat bekend als boekenstad; Dinxperlo grenst direct aan Duitsland en heeft een gemengd woningbestand van ouder en nieuwer."],
+      ],
+      kernTekst: {},
+      wijken: {
+        titel: "Wijken in Aalten",
+        intro: "De kleur geeft aan in welke bouwperiode de meeste woningen in die wijk vallen.",
+        lijst: [
+          { naam: "Aalten Kern", woningen: 5886, periode: "Overwegend vóór 2000", tijdvak: 0, type: "vrijstaand" },
+          { naam: "Dinxperlo", woningen: 3774, periode: "Overwegend vóór 2000", tijdvak: 0, type: "tussenwoning" },
+          { naam: "Buitengebied Aalten", woningen: 1465, periode: "Grotendeels vóór 2000", tijdvak: 0, type: "vrijstaand" },
+          { naam: "Bredevoort", woningen: 851, periode: "Grotendeels vóór 2000", tijdvak: 0, type: "vrijstaand" },
+        ],
+        bron: { naam: "CBS Kerncijfers wijken en buurten 2022", url: "https://opendata.cbs.nl/statline/#/CBS/nl/dataset/84799NED" },
+      },
+      ontwikkeling: {
+        titel: "Woningverbetering in Gelderland",
+        tekst: "Gelderland heeft veel woningen uit de jaren zestig en zeventig, die met relatief eenvoudige stappen goed te verbeteren zijn. De provincie en gemeenten ondersteunen eigenaren met advies en subsidies.",
+      },
+    },
+    faq: [
+      { question: "Welke gemeentelijke subsidies gelden in Aalten?", answer: "Gemeenten kunnen eigen subsidies of regelingen hebben voor het verduurzamen van een woning. Controleer de actuele mogelijkheden bij de gemeente Aalten zelf of via de Energiesubsidiewijzer van Milieu Centraal." },
+      { question: "Welke isolatie past bij mijn woning?", answer: "Dat hangt af van je woning. Tijdens de gratis energiescan aan huis bekijkt een adviseur van Gijs wat technisch bij je woning past." },
+      { question: "Is de energiescan aan huis gratis en vrijblijvend?", answer: "Ja. De energiescan is gratis en vrijblijvend, ter waarde van €349. Je bespreekt je woning en wensen met een adviseur." },
+      { question: "Moet ik eerst de digitale woningscan doen?", answer: "Nee. Je kunt direct contact opnemen. De digitale woningscan is een optionele voorbereiding, geen technische beoordeling." },
+    ],
+    verwant: [],
+  },
+  apeldoorn: {
+    seo: {
+      title: "Isoleren en verduurzamen in Apeldoorn | Gijs",
+      description: "Wil je je woning isoleren in Apeldoorn? Gijs geeft onafhankelijk advies over spouwmuurisolatie, dakisolatie en zonnepanelen. Bekijk de 73.244 woningen en welke subsidies gelden.",
+    },
+    kicker: "Gemeente Apeldoorn",
+    h1: "Isoleren en verduurzamen in Apeldoorn",
+    intro: [
+      ["Woon je in Apeldoorn, Ugchelen, Beekbergen, Loenen of een van de andere kernen? Apeldoorn is de grootste gemeente van Gelderland in oppervlak met een zeer diverse woningvoorraad: van naoorlogse rijtjeswoningen in de stadswijken tot ruime vrijstaande huizen in de bosrijke Veluwse buitengebieden."],
+      ["Gijs geeft onafhankelijk advies. Tijdens een gratis energiescan aan huis kijkt een adviseur wat er technisch bij jouw woning past, en welke stap het meeste oplevert."],
+    ],
+    kernen: [],
+    woningen: {
+      lead: "Het bouwjaar zegt veel over hoe een huis gebouwd is. Zo is de woningvoorraad van Apeldoorn verdeeld.",
+      kerncijfers: [
+        { waarde: "73.244", label: "woningen" },
+        { waarde: "71%", label: "eengezinswoningen" },
+        { waarde: "84%", label: "gebouwd vóór 2000" },
+        { waarde: "60%", label: "koopwoningen" },
+      ],
+      bouwperiodes: [
+        { label: "Vóór 1975", percentage: 46, tekst: "Vaak gebouwd met weinig of geen isolatie. De spouw is regelmatig nog leeg; dak en vloer zijn vaak de eerste winst." },
+        { label: "1975 – 2000", percentage: 38, tekst: "Meestal al deels geïsoleerd, maar vaak dunner dan nu gebruikelijk. Eerst kijken wat er zit, dan bijisoleren." },
+        { label: "Na 2000", percentage: 16, tekst: "Vaak al redelijk tot goed geïsoleerd. De winst zit vaker in beter glas, zonnepanelen of de overstap naar een warmtepomp." },
+      ],
+      voetnoot: "Het bouwjaar is een eerste indicatie, geen conclusie: veel woningen zijn later al verbeterd. Gijs kijkt altijd naar jouw eigen huis.",
+      bron: { naam: "CBS Kerncijfers wijken en buurten 2022", url: "https://opendata.cbs.nl/statline/#/CBS/nl/dataset/84799NED" },
+    },
+    lokaal: {
+      titel: "Wijken in gemeente Apeldoorn",
+      alineas: [
+        ["Naast de stad Apeldoorn vallen ook Ugchelen, Beekbergen, Loenen, Hoenderloo en tientallen buurtschappen onder de gemeente. In de bosrijke buitenwijken staan relatief veel vrijstaande woningen waarbij dakisolatie en kierdichting het grootste effect hebben op de energierekening."],
+      ],
+      kernTekst: {},
+      wijken: {
+        titel: "Wijken in Apeldoorn",
+        intro: "De kleur geeft aan in welke bouwperiode de meeste woningen in die wijk vallen.",
+        lijst: [
+          { naam: "Zuidoost", woningen: 11363, periode: "Grotendeels vóór 2000", tijdvak: 0, type: "tussenwoning" },
+          { naam: "West", woningen: 10413, periode: "Overwegend vóór 2000", tijdvak: 0, type: "twee-onder-een-kap" },
+          { naam: "Noordoost", woningen: 10068, periode: "Overwegend vóór 2000", tijdvak: null, type: "tussenwoning" },
+          { naam: "Zuid", woningen: 9201, periode: "Overwegend vóór 2000", tijdvak: 0, type: "twee-onder-een-kap" },
+          { naam: "Oost", woningen: 7582, periode: "Gemengd, oud en nieuw", tijdvak: null, type: "vrijstaand" },
+          { naam: "Zuidwest", woningen: 6455, periode: "Overwegend vóór 2000", tijdvak: 0, type: "vrijstaand" },
+          { naam: "Noord", woningen: 6157, periode: "Grotendeels vóór 2000", tijdvak: 0, type: "twee-onder-een-kap" },
+          { naam: "Centrum", woningen: 4666, periode: "Overwegend vóór 2000", tijdvak: 0, type: "appartement" },
+          { naam: "Beekbergen en omgeving", woningen: 1745, periode: "Overwegend vóór 2000", tijdvak: 0, type: "vrijstaand" },
+          { naam: "Loenen en omgeving", woningen: 1408, periode: "Overwegend vóór 2000", tijdvak: 0, type: "vrijstaand" },
+          { naam: "Wenum Wiesel Beemte", woningen: 1104, periode: "Overwegend vóór 2000", tijdvak: 0, type: "vrijstaand" },
+          { naam: "Uddel en omgeving", woningen: 1026, periode: "Gemengd, oud en nieuw", tijdvak: null, type: "vrijstaand" },
+        ],
+        bron: { naam: "CBS Kerncijfers wijken en buurten 2022", url: "https://opendata.cbs.nl/statline/#/CBS/nl/dataset/84799NED" },
+      },
+      ontwikkeling: {
+        titel: "Woningverbetering in Gelderland",
+        tekst: "Gelderland heeft veel woningen uit de jaren zestig en zeventig, die met relatief eenvoudige stappen goed te verbeteren zijn. De provincie en gemeenten ondersteunen eigenaren met advies en subsidies.",
+      },
+    },
+    faq: [
+      { question: "Welke gemeentelijke subsidies gelden in Apeldoorn?", answer: "Gemeenten kunnen eigen subsidies of regelingen hebben voor het verduurzamen van een woning. Controleer de actuele mogelijkheden bij de gemeente Apeldoorn zelf of via de Energiesubsidiewijzer van Milieu Centraal." },
+      { question: "Welke isolatie past bij mijn woning?", answer: "Dat hangt af van je woning. Tijdens de gratis energiescan aan huis bekijkt een adviseur van Gijs wat technisch bij je woning past." },
+      { question: "Is de energiescan aan huis gratis en vrijblijvend?", answer: "Ja. De energiescan is gratis en vrijblijvend, ter waarde van €349. Je bespreekt je woning en wensen met een adviseur." },
+      { question: "Moet ik eerst de digitale woningscan doen?", answer: "Nee. Je kunt direct contact opnemen. De digitale woningscan is een optionele voorbereiding, geen technische beoordeling." },
+    ],
+    verwant: [],
+  },
+  arnhem: {
+    seo: {
+      title: "Je woning verduurzamen in Arnhem | Gijs",
+      description: "Wil je je woning isoleren in Arnhem? Gijs geeft onafhankelijk advies over spouwmuurisolatie, dakisolatie en zonnepanelen. Bekijk de 76.737 woningen en welke subsidies gelden.",
+    },
+    kicker: "Gemeente Arnhem",
+    h1: "Je woning verduurzamen in Arnhem",
+    intro: [
+      ["Woon je in Arnhem, in Presikhaaf, Malburgen, Klarendal of de Geitenkamp? Arnhem heeft een gevarieerde woningvoorraad: van historische panden in de binnenstad tot wederopbouwwoningen uit de jaren vijftig en zestig, en recente nieuwbouw in de buitenwijken."],
+      ["Gijs geeft onafhankelijk advies. Tijdens een gratis energiescan aan huis kijkt een adviseur wat er technisch bij jouw woning past, en welke stap het meeste oplevert."],
+    ],
+    kernen: [],
+    woningen: {
+      lead: "Het bouwjaar zegt veel over hoe een huis gebouwd is. Zo is de woningvoorraad van Arnhem verdeeld.",
+      kerncijfers: [
+        { waarde: "76.737", label: "woningen" },
+        { waarde: "52%", label: "eengezinswoningen" },
+        { waarde: "83%", label: "gebouwd vóór 2000" },
+        { waarde: "43%", label: "koopwoningen" },
+      ],
+      bouwperiodes: [
+        { label: "Vóór 1975", percentage: 46, tekst: "Vaak gebouwd met weinig of geen isolatie. De spouw is regelmatig nog leeg; dak en vloer zijn vaak de eerste winst." },
+        { label: "1975 – 2000", percentage: 37, tekst: "Meestal al deels geïsoleerd, maar vaak dunner dan nu gebruikelijk. Eerst kijken wat er zit, dan bijisoleren." },
+        { label: "Na 2000", percentage: 17, tekst: "Vaak al redelijk tot goed geïsoleerd. De winst zit vaker in beter glas, zonnepanelen of de overstap naar een warmtepomp." },
+      ],
+      voetnoot: "Het bouwjaar is een eerste indicatie, geen conclusie: veel woningen zijn later al verbeterd. Gijs kijkt altijd naar jouw eigen huis.",
+      bron: { naam: "CBS Kerncijfers wijken en buurten 2022", url: "https://opendata.cbs.nl/statline/#/CBS/nl/dataset/84799NED" },
+    },
+    lokaal: {
+      titel: "Wijken in gemeente Arnhem",
+      alineas: [
+        ["Arnhem telt tientallen wijken, van de historische binnenstad tot Velp, Presikhaaf en de poldergebieden langs de Rijn. Naoorlogse rijtjeswoningen in Presikhaaf en Malburgen zijn bij uitstek geschikt voor spouwmuurisolatie — een maatregel die zich hier vaak in acht tot tien jaar terugverdient."],
+      ],
+      kernTekst: {},
+      wijken: {
+        titel: "Wijken in Arnhem",
+        intro: "De kleur geeft aan in welke bouwperiode de meeste woningen in die wijk vallen.",
+        lijst: [
+          { naam: "Vredenburg/Kronenburg", woningen: 4446, periode: "Overwegend vóór 2000", tijdvak: 0, type: "appartement" },
+          { naam: "Velperweg e.o.", woningen: 4285, periode: "Overwegend vóór 2000", tijdvak: 0, type: "gemengd" },
+          { naam: "Malburgen-Oost (Zuid)", woningen: 4164, periode: "Overwegend vóór 2000", tijdvak: 0, type: "gemengd" },
+          { naam: "Presikhaaf-West", woningen: 4101, periode: "Gemengd, oud en nieuw", tijdvak: null, type: "appartement" },
+          { naam: "Klarendal", woningen: 4083, periode: "Overwegend vóór 2000", tijdvak: 0, type: "appartement" },
+          { naam: "Centrum", woningen: 3800, periode: "Grotendeels vóór 2000", tijdvak: 0, type: "appartement" },
+          { naam: "Presikhaaf-Oost", woningen: 3797, periode: "Grotendeels vóór 2000", tijdvak: 0, type: "appartement" },
+          { naam: "Spijkerkwartier", woningen: 3504, periode: "Grotendeels vóór 2000", tijdvak: 0, type: "appartement" },
+          { naam: "Burgemeesterswijk/Hoogkamp", woningen: 3379, periode: "Grotendeels vóór 2000", tijdvak: 0, type: "twee-onder-een-kap" },
+          { naam: "Malburgen-Oost (Noord)", woningen: 2921, periode: "Gemengd, oud en nieuw", tijdvak: null, type: "twee-onder-een-kap" },
+          { naam: "St. Marten/Sonsbeek", woningen: 2841, periode: "Grotendeels vóór 2000", tijdvak: 0, type: "appartement" },
+          { naam: "Arnhemse Broek", woningen: 2760, periode: "Overwegend vóór 2000", tijdvak: 0, type: "appartement" },
+        ],
+        bron: { naam: "CBS Kerncijfers wijken en buurten 2022", url: "https://opendata.cbs.nl/statline/#/CBS/nl/dataset/84799NED" },
+      },
+      ontwikkeling: {
+        titel: "Woningverbetering in Gelderland",
+        tekst: "Gelderland heeft veel woningen uit de jaren zestig en zeventig, die met relatief eenvoudige stappen goed te verbeteren zijn. De provincie en gemeenten ondersteunen eigenaren met advies en subsidies.",
+      },
+    },
+    faq: [
+      { question: "Welke gemeentelijke subsidies gelden in Arnhem?", answer: "Gemeenten kunnen eigen subsidies of regelingen hebben voor het verduurzamen van een woning. Controleer de actuele mogelijkheden bij de gemeente Arnhem zelf of via de Energiesubsidiewijzer van Milieu Centraal." },
+      { question: "Welke isolatie past bij mijn woning?", answer: "Dat hangt af van je woning. Tijdens de gratis energiescan aan huis bekijkt een adviseur van Gijs wat technisch bij je woning past." },
+      { question: "Is de energiescan aan huis gratis en vrijblijvend?", answer: "Ja. De energiescan is gratis en vrijblijvend, ter waarde van €349. Je bespreekt je woning en wensen met een adviseur." },
+      { question: "Moet ik eerst de digitale woningscan doen?", answer: "Nee. Je kunt direct contact opnemen. De digitale woningscan is een optionele voorbereiding, geen technische beoordeling." },
+    ],
+    verwant: [],
+  },
+  barneveld: {
+    seo: {
+      title: "Woning isoleren in Barneveld | Gijs",
+      description: "Wil je je woning isoleren in Barneveld? Gijs geeft onafhankelijk advies over spouwmuurisolatie, dakisolatie en zonnepanelen. Bekijk de 22.799 woningen en welke subsidies gelden.",
+    },
+    kicker: "Gemeente Barneveld",
+    h1: "Woning isoleren in Barneveld",
+    intro: [
+      ["Woon je in Barneveld, Voorthuizen, Kootwijkerbroek, Garderen of een van de andere Veluwse kernen? Barneveld is een grote gemeente met veel vrijstaande woningen en twee-onder-één-kapwoningen, waarvan een groot deel gebouwd is tussen 1955 en 1985 — een bouwperiode waarbij spouwmuurisolatie vrijwel altijd mogelijk is."],
+      ["Gijs geeft onafhankelijk advies. Tijdens een gratis energiescan aan huis kijkt een adviseur wat er technisch bij jouw woning past, en welke stap het meeste oplevert."],
+    ],
+    kernen: [],
+    woningen: {
+      lead: "Het bouwjaar zegt veel over hoe een huis gebouwd is. Zo is de woningvoorraad van Barneveld verdeeld.",
+      kerncijfers: [
+        { waarde: "22.799", label: "woningen" },
+        { waarde: "79%", label: "eengezinswoningen" },
+        { waarde: "69%", label: "gebouwd vóór 2000" },
+        { waarde: "68%", label: "koopwoningen" },
+      ],
+      bouwperiodes: [
+        { label: "Vóór 1975", percentage: 38, tekst: "Vaak gebouwd met weinig of geen isolatie. De spouw is regelmatig nog leeg; dak en vloer zijn vaak de eerste winst." },
+        { label: "1975 – 2000", percentage: 31, tekst: "Meestal al deels geïsoleerd, maar vaak dunner dan nu gebruikelijk. Eerst kijken wat er zit, dan bijisoleren." },
+        { label: "Na 2000", percentage: 31, tekst: "Vaak al redelijk tot goed geïsoleerd. De winst zit vaker in beter glas, zonnepanelen of de overstap naar een warmtepomp." },
+      ],
+      voetnoot: "Het bouwjaar is een eerste indicatie, geen conclusie: veel woningen zijn later al verbeterd. Gijs kijkt altijd naar jouw eigen huis.",
+      bron: { naam: "CBS Kerncijfers wijken en buurten 2022", url: "https://opendata.cbs.nl/statline/#/CBS/nl/dataset/84799NED" },
+    },
+    lokaal: {
+      titel: "Wijken in gemeente Barneveld",
+      alineas: [
+        ["De gemeente Barneveld bestaat uit Barneveld en kernen als Voorthuizen, Kootwijkerbroek, Garderen, Stroe en Terschuur. De relatief grote vrijstaande woningen bieden goede mogelijkheden voor dakisolatie; een moderne warmtepomp werkt hier goed door de ruime beschikbare buitenruimte."],
+      ],
+      kernTekst: {},
+      wijken: {
+        titel: "Wijken in Barneveld",
+        intro: "De kleur geeft aan in welke bouwperiode de meeste woningen in die wijk vallen.",
+        lijst: [
+          { naam: "Barneveld", woningen: 13568, periode: "Gemengd, oud en nieuw", tijdvak: null, type: "tussenwoning" },
+          { naam: "Voorthuizen", woningen: 4488, periode: "Overwegend vóór 2000", tijdvak: null, type: "vrijstaand" },
+          { naam: "Kootwijkerbroek", woningen: 1797, periode: "Overwegend vóór 2000", tijdvak: null, type: "vrijstaand" },
+          { naam: "Garderen", woningen: 878, periode: "Overwegend vóór 2000", tijdvak: 0, type: "vrijstaand" },
+          { naam: "Stroe", woningen: 588, periode: "Overwegend vóór 2000", tijdvak: null, type: "vrijstaand" },
+          { naam: "Terschuur", woningen: 549, periode: "Overwegend vóór 2000", tijdvak: 0, type: "vrijstaand" },
+          { naam: "Zwartebroek", woningen: 546, periode: "Overwegend vóór 2000", tijdvak: null, type: "vrijstaand" },
+          { naam: "De Glind", woningen: 203, periode: "Gemengd, oud en nieuw", tijdvak: null, type: "tussenwoning" },
+          { naam: "Kootwijk", woningen: 128, periode: "Overwegend vóór 2000", tijdvak: null, type: "vrijstaand" },
+        ],
+        bron: { naam: "CBS Kerncijfers wijken en buurten 2022", url: "https://opendata.cbs.nl/statline/#/CBS/nl/dataset/84799NED" },
+      },
+      ontwikkeling: {
+        titel: "Woningverbetering in Gelderland",
+        tekst: "Gelderland heeft veel woningen uit de jaren zestig en zeventig, die met relatief eenvoudige stappen goed te verbeteren zijn. De provincie en gemeenten ondersteunen eigenaren met advies en subsidies.",
+      },
+    },
+    faq: [
+      { question: "Welke gemeentelijke subsidies gelden in Barneveld?", answer: "Gemeenten kunnen eigen subsidies of regelingen hebben voor het verduurzamen van een woning. Controleer de actuele mogelijkheden bij de gemeente Barneveld zelf of via de Energiesubsidiewijzer van Milieu Centraal." },
+      { question: "Welke isolatie past bij mijn woning?", answer: "Dat hangt af van je woning. Tijdens de gratis energiescan aan huis bekijkt een adviseur van Gijs wat technisch bij je woning past." },
+      { question: "Is de energiescan aan huis gratis en vrijblijvend?", answer: "Ja. De energiescan is gratis en vrijblijvend, ter waarde van €349. Je bespreekt je woning en wensen met een adviseur." },
+      { question: "Moet ik eerst de digitale woningscan doen?", answer: "Nee. Je kunt direct contact opnemen. De digitale woningscan is een optionele voorbereiding, geen technische beoordeling." },
+    ],
+    verwant: [],
+  },
+  "berg-en-dal": {
+    seo: {
+      title: "Isoleren in Berg en Dal | Gijs",
+      description: "Wil je je woning isoleren in Berg en Dal? Gijs geeft onafhankelijk advies over spouwmuurisolatie, dakisolatie en zonnepanelen. Bekijk de 15.802 woningen en welke subsidies gelden.",
+    },
+    kicker: "Gemeente Berg en Dal",
+    h1: "Isoleren in Berg en Dal",
+    intro: [
+      ["Woon je in Groesbeek, Beek, Millingen aan de Rijn of een andere kern van de gemeente Berg en Dal? Deze heuvelachtige gemeente ten zuidoosten van Nijmegen heeft een gevarieerde woningvoorraad, van vrijstaande huizen op de stuwwal bij Groesbeek tot oudere arbeiderswoningen in de rivierkernen."],
+      ["Gijs geeft onafhankelijk advies. Tijdens een gratis energiescan aan huis kijkt een adviseur wat er technisch bij jouw woning past, en welke stap het meeste oplevert."],
+    ],
+    kernen: [],
+    woningen: {
+      lead: "Het bouwjaar zegt veel over hoe een huis gebouwd is. Zo is de woningvoorraad van Berg en Dal verdeeld.",
+      kerncijfers: [
+        { waarde: "15.802", label: "woningen" },
+        { waarde: "80%", label: "eengezinswoningen" },
+        { waarde: "82%", label: "gebouwd vóór 2000" },
+        { waarde: "61%", label: "koopwoningen" },
+      ],
+      bouwperiodes: [
+        { label: "Vóór 1975", percentage: 45, tekst: "Vaak gebouwd met weinig of geen isolatie. De spouw is regelmatig nog leeg; dak en vloer zijn vaak de eerste winst." },
+        { label: "1975 – 2000", percentage: 37, tekst: "Meestal al deels geïsoleerd, maar vaak dunner dan nu gebruikelijk. Eerst kijken wat er zit, dan bijisoleren." },
+        { label: "Na 2000", percentage: 18, tekst: "Vaak al redelijk tot goed geïsoleerd. De winst zit vaker in beter glas, zonnepanelen of de overstap naar een warmtepomp." },
+      ],
+      voetnoot: "Het bouwjaar is een eerste indicatie, geen conclusie: veel woningen zijn later al verbeterd. Gijs kijkt altijd naar jouw eigen huis.",
+      bron: { naam: "CBS Kerncijfers wijken en buurten 2022", url: "https://opendata.cbs.nl/statline/#/CBS/nl/dataset/84799NED" },
+    },
+    lokaal: {
+      titel: "Wijken in gemeente Berg en Dal",
+      alineas: [
+        ["Berg en Dal omvat kernen als Groesbeek, Beek, Berg en Dal, Millingen aan de Rijn en Ooij. Het heuvelachtige landschap — de Nijmeegse stuwwal — is uniek voor Nederland en zorgt voor specifieke warmteverliezen bij woningen die vrij op de helling staan."],
+      ],
+      kernTekst: {},
+      wijken: {
+        titel: "Wijken in Berg en Dal",
+        intro: "De kleur geeft aan in welke bouwperiode de meeste woningen in die wijk vallen.",
+        lijst: [
+          { naam: "Groesbeek", woningen: 5866, periode: "Overwegend vóór 2000", tijdvak: null, type: "tussenwoning" },
+          { naam: "Millingen aan de Rijn", woningen: 2631, periode: "Overwegend vóór 2000", tijdvak: 0, type: "tussenwoning" },
+          { naam: "Beek", woningen: 1646, periode: "Overwegend vóór 2000", tijdvak: 0, type: "tussenwoning" },
+          { naam: "Berg en Dal", woningen: 1255, periode: "Overwegend vóór 2000", tijdvak: 0, type: "twee-onder-een-kap" },
+          { naam: "Ooij", woningen: 1148, periode: "Overwegend vóór 2000", tijdvak: 0, type: "tussenwoning" },
+          { naam: "Breedeweg", woningen: 1109, periode: "Overwegend vóór 2000", tijdvak: 0, type: "vrijstaand" },
+          { naam: "Leuth", woningen: 762, periode: "Overwegend vóór 2000", tijdvak: 0, type: "tussenwoning" },
+          { naam: "De Horst", woningen: 455, periode: "Grotendeels vóór 2000", tijdvak: 0, type: "vrijstaand" },
+          { naam: "Heilig Landstichting", woningen: 333, periode: "Grotendeels vóór 2000", tijdvak: 0, type: "vrijstaand" },
+          { naam: "Ubbergen", woningen: 252, periode: "Grotendeels vóór 2000", tijdvak: 0, type: "twee-onder-een-kap" },
+          { naam: "Kekerdom", woningen: 244, periode: "Grotendeels vóór 2000", tijdvak: 0, type: "vrijstaand" },
+        ],
+        bron: { naam: "CBS Kerncijfers wijken en buurten 2022", url: "https://opendata.cbs.nl/statline/#/CBS/nl/dataset/84799NED" },
+      },
+      ontwikkeling: {
+        titel: "Woningverbetering in Gelderland",
+        tekst: "Gelderland heeft veel woningen uit de jaren zestig en zeventig, die met relatief eenvoudige stappen goed te verbeteren zijn. De provincie en gemeenten ondersteunen eigenaren met advies en subsidies.",
+      },
+    },
+    faq: [
+      { question: "Welke gemeentelijke subsidies gelden in Berg en Dal?", answer: "Gemeenten kunnen eigen subsidies of regelingen hebben voor het verduurzamen van een woning. Controleer de actuele mogelijkheden bij de gemeente Berg en Dal zelf of via de Energiesubsidiewijzer van Milieu Centraal." },
+      { question: "Welke isolatie past bij mijn woning?", answer: "Dat hangt af van je woning. Tijdens de gratis energiescan aan huis bekijkt een adviseur van Gijs wat technisch bij je woning past." },
+      { question: "Is de energiescan aan huis gratis en vrijblijvend?", answer: "Ja. De energiescan is gratis en vrijblijvend, ter waarde van €349. Je bespreekt je woning en wensen met een adviseur." },
+      { question: "Moet ik eerst de digitale woningscan doen?", answer: "Nee. Je kunt direct contact opnemen. De digitale woningscan is een optionele voorbereiding, geen technische beoordeling." },
+    ],
+    verwant: [],
+  },
+  berkelland: {
+    seo: {
+      title: "Woning isoleren in Berkelland | Gijs",
+      description: "Wil je je woning isoleren in Berkelland? Gijs geeft onafhankelijk advies over spouwmuurisolatie, dakisolatie en zonnepanelen. Bekijk de 19.525 woningen en welke subsidies gelden.",
+    },
+    kicker: "Gemeente Berkelland",
+    h1: "Woning isoleren in Berkelland",
+    intro: [
+      ["Woon je in Borculo, Eibergen, Ruurlo, Neede of een van de andere Achterhoekse kernen? Berkelland heeft een uitgesproken landelijk karakter, met een woningvoorraad die voor een groot deel bestaat uit vrijstaande woningen en boerderijen van vóór 1970."],
+      ["Gijs geeft onafhankelijk advies. Tijdens een gratis energiescan aan huis kijkt een adviseur wat er technisch bij jouw woning past, en welke stap het meeste oplevert."],
+    ],
+    kernen: [],
+    woningen: {
+      lead: "Het bouwjaar zegt veel over hoe een huis gebouwd is. Zo is de woningvoorraad van Berkelland verdeeld.",
+      kerncijfers: [
+        { waarde: "19.525", label: "woningen" },
+        { waarde: "81%", label: "eengezinswoningen" },
+        { waarde: "85%", label: "gebouwd vóór 2000" },
+        { waarde: "68%", label: "koopwoningen" },
+      ],
+      bouwperiodes: [
+        { label: "Vóór 1975", percentage: 47, tekst: "Vaak gebouwd met weinig of geen isolatie. De spouw is regelmatig nog leeg; dak en vloer zijn vaak de eerste winst." },
+        { label: "1975 – 2000", percentage: 38, tekst: "Meestal al deels geïsoleerd, maar vaak dunner dan nu gebruikelijk. Eerst kijken wat er zit, dan bijisoleren." },
+        { label: "Na 2000", percentage: 15, tekst: "Vaak al redelijk tot goed geïsoleerd. De winst zit vaker in beter glas, zonnepanelen of de overstap naar een warmtepomp." },
+      ],
+      voetnoot: "Het bouwjaar is een eerste indicatie, geen conclusie: veel woningen zijn later al verbeterd. Gijs kijkt altijd naar jouw eigen huis.",
+      bron: { naam: "CBS Kerncijfers wijken en buurten 2022", url: "https://opendata.cbs.nl/statline/#/CBS/nl/dataset/84799NED" },
+    },
+    lokaal: {
+      titel: "Wijken in gemeente Berkelland",
+      alineas: [
+        ["Berkelland telt kernen als Borculo, Eibergen, Ruurlo, Neede, Geesteren en Beltrum. De verspreide bebouwing in het Achterhoekse landschap maakt goede isolatie extra waardevol: vrijstaande woningen verliezen meer warmte dan rijtjeswoningen."],
+      ],
+      kernTekst: {},
+      wijken: {
+        titel: "Wijken in Berkelland",
+        intro: "De kleur geeft aan in welke bouwperiode de meeste woningen in die wijk vallen.",
+        lijst: [
+          { naam: "Eibergen", woningen: 5594, periode: "Overwegend vóór 2000", tijdvak: 0, type: "vrijstaand" },
+          { naam: "Neede", woningen: 4691, periode: "Overwegend vóór 2000", tijdvak: 0, type: "tussenwoning" },
+          { naam: "Borculo", woningen: 4632, periode: "Overwegend vóór 2000", tijdvak: 0, type: "vrijstaand" },
+          { naam: "Ruurlo", woningen: 3437, periode: "Overwegend vóór 2000", tijdvak: 0, type: "vrijstaand" },
+          { naam: "Beltrum", woningen: 1171, periode: "Grotendeels vóór 2000", tijdvak: 0, type: "vrijstaand" },
+        ],
+        bron: { naam: "CBS Kerncijfers wijken en buurten 2022", url: "https://opendata.cbs.nl/statline/#/CBS/nl/dataset/84799NED" },
+      },
+      ontwikkeling: {
+        titel: "Woningverbetering in Gelderland",
+        tekst: "Gelderland heeft veel woningen uit de jaren zestig en zeventig, die met relatief eenvoudige stappen goed te verbeteren zijn. De provincie en gemeenten ondersteunen eigenaren met advies en subsidies.",
+      },
+    },
+    faq: [
+      { question: "Welke gemeentelijke subsidies gelden in Berkelland?", answer: "Gemeenten kunnen eigen subsidies of regelingen hebben voor het verduurzamen van een woning. Controleer de actuele mogelijkheden bij de gemeente Berkelland zelf of via de Energiesubsidiewijzer van Milieu Centraal." },
+      { question: "Welke isolatie past bij mijn woning?", answer: "Dat hangt af van je woning. Tijdens de gratis energiescan aan huis bekijkt een adviseur van Gijs wat technisch bij je woning past." },
+      { question: "Is de energiescan aan huis gratis en vrijblijvend?", answer: "Ja. De energiescan is gratis en vrijblijvend, ter waarde van €349. Je bespreekt je woning en wensen met een adviseur." },
+      { question: "Moet ik eerst de digitale woningscan doen?", answer: "Nee. Je kunt direct contact opnemen. De digitale woningscan is een optionele voorbereiding, geen technische beoordeling." },
+    ],
+    verwant: [],
+  },
+  beuningen: {
+    seo: {
+      title: "Verduurzamen in Beuningen | Gijs",
+      description: "Wil je je woning isoleren in Beuningen? Gijs geeft onafhankelijk advies over spouwmuurisolatie, dakisolatie en zonnepanelen. Bekijk de 11.137 woningen en welke subsidies gelden.",
+    },
+    kicker: "Gemeente Beuningen",
+    h1: "Verduurzamen in Beuningen",
+    intro: [
+      ["Woon je in Beuningen, Ewijk, Winssen of Weurt? Beuningen is een woongemeente ten westen van Nijmegen, met een woningvoorraad die voor een groot deel bestaat uit rijtjeswoningen en twee-onder-één-kapwoningen uit de jaren zeventig en tachtig."],
+      ["Gijs geeft onafhankelijk advies. Tijdens een gratis energiescan aan huis kijkt een adviseur wat er technisch bij jouw woning past, en welke stap het meeste oplevert."],
+    ],
+    kernen: [],
+    woningen: {
+      lead: "Het bouwjaar zegt veel over hoe een huis gebouwd is. Zo is de woningvoorraad van Beuningen verdeeld.",
+      kerncijfers: [
+        { waarde: "11.137", label: "woningen" },
+        { waarde: "85%", label: "eengezinswoningen" },
+        { waarde: "84%", label: "gebouwd vóór 2000" },
+        { waarde: "70%", label: "koopwoningen" },
+      ],
+      bouwperiodes: [
+        { label: "Vóór 1975", percentage: 46, tekst: "Vaak gebouwd met weinig of geen isolatie. De spouw is regelmatig nog leeg; dak en vloer zijn vaak de eerste winst." },
+        { label: "1975 – 2000", percentage: 38, tekst: "Meestal al deels geïsoleerd, maar vaak dunner dan nu gebruikelijk. Eerst kijken wat er zit, dan bijisoleren." },
+        { label: "Na 2000", percentage: 16, tekst: "Vaak al redelijk tot goed geïsoleerd. De winst zit vaker in beter glas, zonnepanelen of de overstap naar een warmtepomp." },
+      ],
+      voetnoot: "Het bouwjaar is een eerste indicatie, geen conclusie: veel woningen zijn later al verbeterd. Gijs kijkt altijd naar jouw eigen huis.",
+      bron: { naam: "CBS Kerncijfers wijken en buurten 2022", url: "https://opendata.cbs.nl/statline/#/CBS/nl/dataset/84799NED" },
+    },
+    lokaal: {
+      titel: "Wijken in gemeente Beuningen",
+      alineas: [
+        ["De gemeente Beuningen omvat de kernen Beuningen, Ewijk, Winssen en Weurt langs de Waal. Veel woningen zijn gebouwd in de periode 1970–1990 en hebben spouwmuren zonder vulling — een maatregel die hier relatief snel en goedkoop is."],
+      ],
+      kernTekst: {},
+      wijken: {
+        titel: "Wijken in Beuningen",
+        intro: "De kleur geeft aan in welke bouwperiode de meeste woningen in die wijk vallen.",
+        lijst: [
+          { naam: "Beuningen", woningen: 7549, periode: "Overwegend vóór 2000", tijdvak: 0, type: "vrijstaand" },
+          { naam: "Ewijk", woningen: 1640, periode: "Overwegend vóór 2000", tijdvak: 0, type: "vrijstaand" },
+          { naam: "Weurt", woningen: 1056, periode: "Overwegend vóór 2000", tijdvak: 0, type: "vrijstaand" },
+          { naam: "Winssen", woningen: 892, periode: "Grotendeels vóór 2000", tijdvak: 0, type: "vrijstaand" },
+        ],
+        bron: { naam: "CBS Kerncijfers wijken en buurten 2022", url: "https://opendata.cbs.nl/statline/#/CBS/nl/dataset/84799NED" },
+      },
+      ontwikkeling: {
+        titel: "Woningverbetering in Gelderland",
+        tekst: "Gelderland heeft veel woningen uit de jaren zestig en zeventig, die met relatief eenvoudige stappen goed te verbeteren zijn. De provincie en gemeenten ondersteunen eigenaren met advies en subsidies.",
+      },
+    },
+    faq: [
+      { question: "Welke gemeentelijke subsidies gelden in Beuningen?", answer: "Gemeenten kunnen eigen subsidies of regelingen hebben voor het verduurzamen van een woning. Controleer de actuele mogelijkheden bij de gemeente Beuningen zelf of via de Energiesubsidiewijzer van Milieu Centraal." },
+      { question: "Welke isolatie past bij mijn woning?", answer: "Dat hangt af van je woning. Tijdens de gratis energiescan aan huis bekijkt een adviseur van Gijs wat technisch bij je woning past." },
+      { question: "Is de energiescan aan huis gratis en vrijblijvend?", answer: "Ja. De energiescan is gratis en vrijblijvend, ter waarde van €349. Je bespreekt je woning en wensen met een adviseur." },
+      { question: "Moet ik eerst de digitale woningscan doen?", answer: "Nee. Je kunt direct contact opnemen. De digitale woningscan is een optionele voorbereiding, geen technische beoordeling." },
+    ],
+    verwant: [],
+  },
+  bronckhorst: {
+    seo: {
+      title: "Woning isoleren in Bronckhorst | Gijs",
+      description: "Wil je je woning isoleren in Bronckhorst? Gijs geeft onafhankelijk advies over spouwmuurisolatie, dakisolatie en zonnepanelen. Bekijk de 16.198 woningen en welke subsidies gelden.",
+    },
+    kicker: "Gemeente Bronckhorst",
+    h1: "Woning isoleren in Bronckhorst",
+    intro: [
+      ["Woon je in Vorden, Hengelo (Gld), Zelhem, Hummelo of een van de tientallen buurtschappen? Bronckhorst is de grootste gemeente van Gelderland naar oppervlak, met een uitgesproken landelijk karakter. De woningvoorraad bestaat voor een groot deel uit oudere vrijstaande huizen en boerderijen."],
+      ["Gijs geeft onafhankelijk advies. Tijdens een gratis energiescan aan huis kijkt een adviseur wat er technisch bij jouw woning past, en welke stap het meeste oplevert."],
+    ],
+    kernen: [],
+    woningen: {
+      lead: "Het bouwjaar zegt veel over hoe een huis gebouwd is. Zo is de woningvoorraad van Bronckhorst verdeeld.",
+      kerncijfers: [
+        { waarde: "16.198", label: "woningen" },
+        { waarde: "84%", label: "eengezinswoningen" },
+        { waarde: "89%", label: "gebouwd vóór 2000" },
+        { waarde: "70%", label: "koopwoningen" },
+      ],
+      bouwperiodes: [
+        { label: "Vóór 1975", percentage: 49, tekst: "Vaak gebouwd met weinig of geen isolatie. De spouw is regelmatig nog leeg; dak en vloer zijn vaak de eerste winst." },
+        { label: "1975 – 2000", percentage: 40, tekst: "Meestal al deels geïsoleerd, maar vaak dunner dan nu gebruikelijk. Eerst kijken wat er zit, dan bijisoleren." },
+        { label: "Na 2000", percentage: 11, tekst: "Vaak al redelijk tot goed geïsoleerd. De winst zit vaker in beter glas, zonnepanelen of de overstap naar een warmtepomp." },
+      ],
+      voetnoot: "Het bouwjaar is een eerste indicatie, geen conclusie: veel woningen zijn later al verbeterd. Gijs kijkt altijd naar jouw eigen huis.",
+      bron: { naam: "CBS Kerncijfers wijken en buurten 2022", url: "https://opendata.cbs.nl/statline/#/CBS/nl/dataset/84799NED" },
+    },
+    lokaal: {
+      titel: "Wijken in gemeente Bronckhorst",
+      alineas: [
+        ["Bronckhorst omvat meer dan dertig kernen en buurtschappen, van Vorden en Zelhem tot Hengelo (Gld), Hummelo en Keppel. De historische boerderijwoningen zijn goed te isoleren via dakisolatie en gevelisolatie — een adviseur van Gijs kijkt welke aanpak bij jouw woning past."],
+      ],
+      kernTekst: {},
+      wijken: {
+        titel: "Wijken in Bronckhorst",
+        intro: "De kleur geeft aan in welke bouwperiode de meeste woningen in die wijk vallen.",
+        lijst: [
+          { naam: "Zelhem", woningen: 4803, periode: "Overwegend vóór 2000", tijdvak: 0, type: "vrijstaand" },
+          { naam: "Vorden", woningen: 3730, periode: "Overwegend vóór 2000", tijdvak: 0, type: "vrijstaand" },
+          { naam: "Hengelo", woningen: 3673, periode: "Overwegend vóór 2000", tijdvak: 0, type: "vrijstaand" },
+          { naam: "Steenderen", woningen: 2048, periode: "Grotendeels vóór 2000", tijdvak: 0, type: "vrijstaand" },
+          { naam: "Hummelo en Keppel", woningen: 1944, periode: "Grotendeels vóór 2000", tijdvak: 0, type: "vrijstaand" },
+        ],
+        bron: { naam: "CBS Kerncijfers wijken en buurten 2022", url: "https://opendata.cbs.nl/statline/#/CBS/nl/dataset/84799NED" },
+      },
+      ontwikkeling: {
+        titel: "Woningverbetering in Gelderland",
+        tekst: "Gelderland heeft veel woningen uit de jaren zestig en zeventig, die met relatief eenvoudige stappen goed te verbeteren zijn. De provincie en gemeenten ondersteunen eigenaren met advies en subsidies.",
+      },
+    },
+    faq: [
+      { question: "Welke gemeentelijke subsidies gelden in Bronckhorst?", answer: "Gemeenten kunnen eigen subsidies of regelingen hebben voor het verduurzamen van een woning. Controleer de actuele mogelijkheden bij de gemeente Bronckhorst zelf of via de Energiesubsidiewijzer van Milieu Centraal." },
+      { question: "Welke isolatie past bij mijn woning?", answer: "Dat hangt af van je woning. Tijdens de gratis energiescan aan huis bekijkt een adviseur van Gijs wat technisch bij je woning past." },
+      { question: "Is de energiescan aan huis gratis en vrijblijvend?", answer: "Ja. De energiescan is gratis en vrijblijvend, ter waarde van €349. Je bespreekt je woning en wensen met een adviseur." },
+      { question: "Moet ik eerst de digitale woningscan doen?", answer: "Nee. Je kunt direct contact opnemen. De digitale woningscan is een optionele voorbereiding, geen technische beoordeling." },
+    ],
+    verwant: [],
+  },
+  brummen: {
+    seo: {
+      title: "Woning verduurzamen in Brummen | Gijs",
+      description: "Wil je je woning isoleren in Brummen? Gijs geeft onafhankelijk advies over spouwmuurisolatie, dakisolatie en zonnepanelen. Bekijk de 9.348 woningen en welke subsidies gelden.",
+    },
+    kicker: "Gemeente Brummen",
+    h1: "Woning verduurzamen in Brummen",
+    intro: [
+      ["Woon je in Brummen, Eerbeek, Hall of Leuvenheim? Brummen is een landelijke gemeente in de IJsselvallei, met een woningvoorraad die varieert van historische arbeiderswoningen in de dorpskern tot vrijstaande huizen in de buitengebieden langs de rivier."],
+      ["Gijs geeft onafhankelijk advies. Tijdens een gratis energiescan aan huis kijkt een adviseur wat er technisch bij jouw woning past, en welke stap het meeste oplevert."],
+    ],
+    kernen: [],
+    woningen: {
+      lead: "Het bouwjaar zegt veel over hoe een huis gebouwd is. Zo is de woningvoorraad van Brummen verdeeld.",
+      kerncijfers: [
+        { waarde: "9.348", label: "woningen" },
+        { waarde: "88%", label: "eengezinswoningen" },
+        { waarde: "88%", label: "gebouwd vóór 2000" },
+        { waarde: "62%", label: "koopwoningen" },
+      ],
+      bouwperiodes: [
+        { label: "Vóór 1975", percentage: 48, tekst: "Vaak gebouwd met weinig of geen isolatie. De spouw is regelmatig nog leeg; dak en vloer zijn vaak de eerste winst." },
+        { label: "1975 – 2000", percentage: 40, tekst: "Meestal al deels geïsoleerd, maar vaak dunner dan nu gebruikelijk. Eerst kijken wat er zit, dan bijisoleren." },
+        { label: "Na 2000", percentage: 12, tekst: "Vaak al redelijk tot goed geïsoleerd. De winst zit vaker in beter glas, zonnepanelen of de overstap naar een warmtepomp." },
+      ],
+      voetnoot: "Het bouwjaar is een eerste indicatie, geen conclusie: veel woningen zijn later al verbeterd. Gijs kijkt altijd naar jouw eigen huis.",
+      bron: { naam: "CBS Kerncijfers wijken en buurten 2022", url: "https://opendata.cbs.nl/statline/#/CBS/nl/dataset/84799NED" },
+    },
+    lokaal: {
+      titel: "Wijken in gemeente Brummen",
+      alineas: [
+        ["De gemeente Brummen omvat de kernen Brummen, Eerbeek, Hall, Leuvenheim en Tonden. Eerbeek is het grootste dorp en heeft relatief veel naoorlogse woningen waarbij spouwmuurisolatie de meest voor de hand liggende eerste stap is."],
+      ],
+      kernTekst: {},
+      wijken: {
+        titel: "Wijken in Brummen",
+        intro: "De kleur geeft aan in welke bouwperiode de meeste woningen in die wijk vallen.",
+        lijst: [
+          { naam: "Eerbeek", woningen: 4362, periode: "Overwegend vóór 2000", tijdvak: 0, type: "tussenwoning" },
+          { naam: "Brummen", woningen: 3981, periode: "Overwegend vóór 2000", tijdvak: 0, type: "tussenwoning" },
+          { naam: "Hall", woningen: 329, periode: "Grotendeels vóór 2000", tijdvak: 0, type: "vrijstaand" },
+          { naam: "Leuvenheim", woningen: 293, periode: "Grotendeels vóór 2000", tijdvak: 0, type: "vrijstaand" },
+          { naam: "Empe", woningen: 254, periode: "Overwegend vóór 2000", tijdvak: 0, type: "vrijstaand" },
+          { naam: "Tonden", woningen: 129, periode: "Grotendeels vóór 2000", tijdvak: 0, type: "vrijstaand" },
+        ],
+        bron: { naam: "CBS Kerncijfers wijken en buurten 2022", url: "https://opendata.cbs.nl/statline/#/CBS/nl/dataset/84799NED" },
+      },
+      ontwikkeling: {
+        titel: "Woningverbetering in Gelderland",
+        tekst: "Gelderland heeft veel woningen uit de jaren zestig en zeventig, die met relatief eenvoudige stappen goed te verbeteren zijn. De provincie en gemeenten ondersteunen eigenaren met advies en subsidies.",
+      },
+    },
+    faq: [
+      { question: "Welke gemeentelijke subsidies gelden in Brummen?", answer: "Gemeenten kunnen eigen subsidies of regelingen hebben voor het verduurzamen van een woning. Controleer de actuele mogelijkheden bij de gemeente Brummen zelf of via de Energiesubsidiewijzer van Milieu Centraal." },
+      { question: "Welke isolatie past bij mijn woning?", answer: "Dat hangt af van je woning. Tijdens de gratis energiescan aan huis bekijkt een adviseur van Gijs wat technisch bij je woning past." },
+      { question: "Is de energiescan aan huis gratis en vrijblijvend?", answer: "Ja. De energiescan is gratis en vrijblijvend, ter waarde van €349. Je bespreekt je woning en wensen met een adviseur." },
+      { question: "Moet ik eerst de digitale woningscan doen?", answer: "Nee. Je kunt direct contact opnemen. De digitale woningscan is een optionele voorbereiding, geen technische beoordeling." },
+    ],
+    verwant: [],
+  },
+  buren: {
+    seo: {
+      title: "Isoleren in de gemeente Buren | Gijs",
+      description: "Wil je je woning isoleren in Buren? Gijs geeft onafhankelijk advies over spouwmuurisolatie, dakisolatie en zonnepanelen. Bekijk de 10.829 woningen en welke subsidies gelden.",
+    },
+    kicker: "Gemeente Buren",
+    h1: "Isoleren in de gemeente Buren",
+    intro: [
+      ["Woon je in Maurik, Lienden, Zoelen, Beusichem of een andere kern van de Betuwse gemeente Buren? Buren ligt in de fruitstreek en heeft een uitgesproken landelijk karakter, met veel vrijstaande woningen en boerderijen die baat hebben bij dakisolatie en gevelisolatie."],
+      ["Gijs geeft onafhankelijk advies. Tijdens een gratis energiescan aan huis kijkt een adviseur wat er technisch bij jouw woning past, en welke stap het meeste oplevert."],
+    ],
+    kernen: [],
+    woningen: {
+      lead: "Het bouwjaar zegt veel over hoe een huis gebouwd is. Zo is de woningvoorraad van Buren verdeeld.",
+      kerncijfers: [
+        { waarde: "10.829", label: "woningen" },
+        { waarde: "92%", label: "eengezinswoningen" },
+        { waarde: "81%", label: "gebouwd vóór 2000" },
+        { waarde: "75%", label: "koopwoningen" },
+      ],
+      bouwperiodes: [
+        { label: "Vóór 1975", percentage: 45, tekst: "Vaak gebouwd met weinig of geen isolatie. De spouw is regelmatig nog leeg; dak en vloer zijn vaak de eerste winst." },
+        { label: "1975 – 2000", percentage: 36, tekst: "Meestal al deels geïsoleerd, maar vaak dunner dan nu gebruikelijk. Eerst kijken wat er zit, dan bijisoleren." },
+        { label: "Na 2000", percentage: 19, tekst: "Vaak al redelijk tot goed geïsoleerd. De winst zit vaker in beter glas, zonnepanelen of de overstap naar een warmtepomp." },
+      ],
+      voetnoot: "Het bouwjaar is een eerste indicatie, geen conclusie: veel woningen zijn later al verbeterd. Gijs kijkt altijd naar jouw eigen huis.",
+      bron: { naam: "CBS Kerncijfers wijken en buurten 2022", url: "https://opendata.cbs.nl/statline/#/CBS/nl/dataset/84799NED" },
+    },
+    lokaal: {
+      titel: "Wijken in gemeente Buren",
+      alineas: [
+        ["De gemeente Buren strekt zich uit over kernen als Maurik, Lienden, Zoelen, Beusichem en Eck en Wiel langs de Rijn en Linge. De agrarische omgeving en de verspreide bebouwing maken goede isolatie extra waardevol voor het terugdringen van de energierekening."],
+      ],
+      kernTekst: {},
+      wijken: {
+        titel: "Wijken in Buren",
+        intro: "De kleur geeft aan in welke bouwperiode de meeste woningen in die wijk vallen.",
+        lijst: [
+          { naam: "Maurik", woningen: 2786, periode: "Overwegend vóór 2000", tijdvak: 0, type: "vrijstaand" },
+          { naam: "Lienden", woningen: 2581, periode: "Overwegend vóór 2000", tijdvak: 0, type: "vrijstaand" },
+          { naam: "Beusichem", woningen: 1624, periode: "Overwegend vóór 2000", tijdvak: 0, type: "vrijstaand" },
+          { naam: "Buren", woningen: 1508, periode: "Overwegend vóór 2000", tijdvak: 0, type: "vrijstaand" },
+          { naam: "Zoelen", woningen: 1300, periode: "Overwegend vóór 2000", tijdvak: 0, type: "vrijstaand" },
+          { naam: "Ingen", woningen: 803, periode: "Overwegend vóór 2000", tijdvak: 0, type: "vrijstaand" },
+          { naam: "Ravenswaaij", woningen: 227, periode: "Overwegend vóór 2000", tijdvak: 0, type: "vrijstaand" },
+        ],
+        bron: { naam: "CBS Kerncijfers wijken en buurten 2022", url: "https://opendata.cbs.nl/statline/#/CBS/nl/dataset/84799NED" },
+      },
+      ontwikkeling: {
+        titel: "Woningverbetering in Gelderland",
+        tekst: "Gelderland heeft veel woningen uit de jaren zestig en zeventig, die met relatief eenvoudige stappen goed te verbeteren zijn. De provincie en gemeenten ondersteunen eigenaren met advies en subsidies.",
+      },
+    },
+    faq: [
+      { question: "Welke gemeentelijke subsidies gelden in Buren?", answer: "Gemeenten kunnen eigen subsidies of regelingen hebben voor het verduurzamen van een woning. Controleer de actuele mogelijkheden bij de gemeente Buren zelf of via de Energiesubsidiewijzer van Milieu Centraal." },
+      { question: "Welke isolatie past bij mijn woning?", answer: "Dat hangt af van je woning. Tijdens de gratis energiescan aan huis bekijkt een adviseur van Gijs wat technisch bij je woning past." },
+      { question: "Is de energiescan aan huis gratis en vrijblijvend?", answer: "Ja. De energiescan is gratis en vrijblijvend, ter waarde van €349. Je bespreekt je woning en wensen met een adviseur." },
+      { question: "Moet ik eerst de digitale woningscan doen?", answer: "Nee. Je kunt direct contact opnemen. De digitale woningscan is een optionele voorbereiding, geen technische beoordeling." },
+    ],
+    verwant: [],
+  },
+  culemborg: {
+    seo: {
+      title: "Verduurzamen in Culemborg | Gijs",
+      description: "Wil je je woning isoleren in Culemborg? Gijs geeft onafhankelijk advies over spouwmuurisolatie, dakisolatie en zonnepanelen. Bekijk de 12.530 woningen en welke subsidies gelden.",
+    },
+    kicker: "Gemeente Culemborg",
+    h1: "Verduurzamen in Culemborg",
+    intro: [
+      ["Woon je in Culemborg? De historische vestingstad aan de Lek heeft een diverse woningvoorraad: van eeuwenoude panden in de beschermde binnenstad tot naoorlogse rijtjeswijken als Terweijde en recente nieuwbouw aan de stadsrand."],
+      ["Gijs geeft onafhankelijk advies. Tijdens een gratis energiescan aan huis kijkt een adviseur wat er technisch bij jouw woning past, en welke stap het meeste oplevert."],
+    ],
+    kernen: [],
+    woningen: {
+      lead: "Het bouwjaar zegt veel over hoe een huis gebouwd is. Zo is de woningvoorraad van Culemborg verdeeld.",
+      kerncijfers: [
+        { waarde: "12.530", label: "woningen" },
+        { waarde: "75%", label: "eengezinswoningen" },
+        { waarde: "74%", label: "gebouwd vóór 2000" },
+        { waarde: "63%", label: "koopwoningen" },
+      ],
+      bouwperiodes: [
+        { label: "Vóór 1975", percentage: 41, tekst: "Vaak gebouwd met weinig of geen isolatie. De spouw is regelmatig nog leeg; dak en vloer zijn vaak de eerste winst." },
+        { label: "1975 – 2000", percentage: 33, tekst: "Meestal al deels geïsoleerd, maar vaak dunner dan nu gebruikelijk. Eerst kijken wat er zit, dan bijisoleren." },
+        { label: "Na 2000", percentage: 26, tekst: "Vaak al redelijk tot goed geïsoleerd. De winst zit vaker in beter glas, zonnepanelen of de overstap naar een warmtepomp." },
+      ],
+      voetnoot: "Het bouwjaar is een eerste indicatie, geen conclusie: veel woningen zijn later al verbeterd. Gijs kijkt altijd naar jouw eigen huis.",
+      bron: { naam: "CBS Kerncijfers wijken en buurten 2022", url: "https://opendata.cbs.nl/statline/#/CBS/nl/dataset/84799NED" },
+    },
+    lokaal: {
+      titel: "Wijken in gemeente Culemborg",
+      alineas: [
+        ["Culemborg is een compacte gemeente die vrijwel samenvalt met de gelijknamige stad. De historische binnenstad stelt bijzondere eisen aan isolatie — soms zijn er monumentale beperkingen — terwijl de naoorlogse wijken bij uitstek geschikt zijn voor spouwmuurisolatie."],
+      ],
+      kernTekst: {},
+      wijken: {
+        titel: "Wijken in Culemborg",
+        intro: "De kleur geeft aan in welke bouwperiode de meeste woningen in die wijk vallen.",
+        lijst: [
+          { naam: "Wijk 00", woningen: 12530, periode: "Overwegend vóór 2000", tijdvak: null, type: "tussenwoning" },
+        ],
+        bron: { naam: "CBS Kerncijfers wijken en buurten 2022", url: "https://opendata.cbs.nl/statline/#/CBS/nl/dataset/84799NED" },
+      },
+      ontwikkeling: {
+        titel: "Woningverbetering in Gelderland",
+        tekst: "Gelderland heeft veel woningen uit de jaren zestig en zeventig, die met relatief eenvoudige stappen goed te verbeteren zijn. De provincie en gemeenten ondersteunen eigenaren met advies en subsidies.",
+      },
+    },
+    faq: [
+      { question: "Welke gemeentelijke subsidies gelden in Culemborg?", answer: "Gemeenten kunnen eigen subsidies of regelingen hebben voor het verduurzamen van een woning. Controleer de actuele mogelijkheden bij de gemeente Culemborg zelf of via de Energiesubsidiewijzer van Milieu Centraal." },
+      { question: "Welke isolatie past bij mijn woning?", answer: "Dat hangt af van je woning. Tijdens de gratis energiescan aan huis bekijkt een adviseur van Gijs wat technisch bij je woning past." },
+      { question: "Is de energiescan aan huis gratis en vrijblijvend?", answer: "Ja. De energiescan is gratis en vrijblijvend, ter waarde van €349. Je bespreekt je woning en wensen met een adviseur." },
+      { question: "Moet ik eerst de digitale woningscan doen?", answer: "Nee. Je kunt direct contact opnemen. De digitale woningscan is een optionele voorbereiding, geen technische beoordeling." },
+    ],
+    verwant: [],
+  },
+  doesburg: {
+    seo: {
+      title: "Woning isoleren in Doesburg | Gijs",
+      description: "Wil je je woning isoleren in Doesburg? Gijs geeft onafhankelijk advies over spouwmuurisolatie, dakisolatie en zonnepanelen. Bekijk de 5.293 woningen en welke subsidies gelden.",
+    },
+    kicker: "Gemeente Doesburg",
+    h1: "Woning isoleren in Doesburg",
+    intro: [
+      ["Woon je in Doesburg? De kleine historische Hanzestad aan de samenvloeiing van IJssel en Oude IJssel heeft een woningvoorraad die voor een groot deel bestaat uit panden van vóór 1940 in de beschermde binnenstad, aangevuld met naoorlogse uitbreidingen aan de buitenrand."],
+      ["Gijs geeft onafhankelijk advies. Tijdens een gratis energiescan aan huis kijkt een adviseur wat er technisch bij jouw woning past, en welke stap het meeste oplevert."],
+    ],
+    kernen: [],
+    woningen: {
+      lead: "Het bouwjaar zegt veel over hoe een huis gebouwd is. Zo is de woningvoorraad van Doesburg verdeeld.",
+      kerncijfers: [
+        { waarde: "5.293", label: "woningen" },
+        { waarde: "78%", label: "eengezinswoningen" },
+        { waarde: "86%", label: "gebouwd vóór 2000" },
+        { waarde: "53%", label: "koopwoningen" },
+      ],
+      bouwperiodes: [
+        { label: "Vóór 1975", percentage: 47, tekst: "Vaak gebouwd met weinig of geen isolatie. De spouw is regelmatig nog leeg; dak en vloer zijn vaak de eerste winst." },
+        { label: "1975 – 2000", percentage: 39, tekst: "Meestal al deels geïsoleerd, maar vaak dunner dan nu gebruikelijk. Eerst kijken wat er zit, dan bijisoleren." },
+        { label: "Na 2000", percentage: 14, tekst: "Vaak al redelijk tot goed geïsoleerd. De winst zit vaker in beter glas, zonnepanelen of de overstap naar een warmtepomp." },
+      ],
+      voetnoot: "Het bouwjaar is een eerste indicatie, geen conclusie: veel woningen zijn later al verbeterd. Gijs kijkt altijd naar jouw eigen huis.",
+      bron: { naam: "CBS Kerncijfers wijken en buurten 2022", url: "https://opendata.cbs.nl/statline/#/CBS/nl/dataset/84799NED" },
+    },
+    lokaal: {
+      titel: "Wijken in gemeente Doesburg",
+      alineas: [
+        ["Doesburg is een van de kleinste steden van Gelderland, met een goed bewaard middeleeuws centrum en stadspoorten. Bij monumentale en historische woningen gelden soms beperkingen voor buitenisolatie; een adviseur van Gijs kijkt wat er bij jouw woning mogelijk is."],
+      ],
+      kernTekst: {},
+      wijken: {
+        titel: "Wijken in Doesburg",
+        intro: "De kleur geeft aan in welke bouwperiode de meeste woningen in die wijk vallen.",
+        lijst: [
+          { naam: "Wijk 01", woningen: 5293, periode: "Overwegend vóór 2000", tijdvak: 0, type: "tussenwoning" },
+        ],
+        bron: { naam: "CBS Kerncijfers wijken en buurten 2022", url: "https://opendata.cbs.nl/statline/#/CBS/nl/dataset/84799NED" },
+      },
+      ontwikkeling: {
+        titel: "Woningverbetering in Gelderland",
+        tekst: "Gelderland heeft veel woningen uit de jaren zestig en zeventig, die met relatief eenvoudige stappen goed te verbeteren zijn. De provincie en gemeenten ondersteunen eigenaren met advies en subsidies.",
+      },
+    },
+    faq: [
+      { question: "Welke gemeentelijke subsidies gelden in Doesburg?", answer: "Gemeenten kunnen eigen subsidies of regelingen hebben voor het verduurzamen van een woning. Controleer de actuele mogelijkheden bij de gemeente Doesburg zelf of via de Energiesubsidiewijzer van Milieu Centraal." },
+      { question: "Welke isolatie past bij mijn woning?", answer: "Dat hangt af van je woning. Tijdens de gratis energiescan aan huis bekijkt een adviseur van Gijs wat technisch bij je woning past." },
+      { question: "Is de energiescan aan huis gratis en vrijblijvend?", answer: "Ja. De energiescan is gratis en vrijblijvend, ter waarde van €349. Je bespreekt je woning en wensen met een adviseur." },
+      { question: "Moet ik eerst de digitale woningscan doen?", answer: "Nee. Je kunt direct contact opnemen. De digitale woningscan is een optionele voorbereiding, geen technische beoordeling." },
+    ],
+    verwant: [],
+  },
+  doetinchem: {
+    seo: {
+      title: "Isoleren en verduurzamen in Doetinchem | Gijs",
+      description: "Wil je je woning isoleren in Doetinchem? Gijs geeft onafhankelijk advies over spouwmuurisolatie, dakisolatie en zonnepanelen. Bekijk de 26.129 woningen en welke subsidies gelden.",
+    },
+    kicker: "Gemeente Doetinchem",
+    h1: "Isoleren en verduurzamen in Doetinchem",
+    intro: [
+      ["Woon je in Doetinchem, Gaanderen, Wehl of IJzevoorde? Doetinchem is de grootste stad van de Achterhoek, met een diverse woningvoorraad van arbeiderswoningen in de binnenstad tot uitgebreide naoorlogse woonwijken aan de rand van de stad."],
+      ["Gijs geeft onafhankelijk advies. Tijdens een gratis energiescan aan huis kijkt een adviseur wat er technisch bij jouw woning past, en welke stap het meeste oplevert."],
+    ],
+    kernen: [],
+    woningen: {
+      lead: "Het bouwjaar zegt veel over hoe een huis gebouwd is. Zo is de woningvoorraad van Doetinchem verdeeld.",
+      kerncijfers: [
+        { waarde: "26.129", label: "woningen" },
+        { waarde: "75%", label: "eengezinswoningen" },
+        { waarde: "83%", label: "gebouwd vóór 2000" },
+        { waarde: "60%", label: "koopwoningen" },
+      ],
+      bouwperiodes: [
+        { label: "Vóór 1975", percentage: 46, tekst: "Vaak gebouwd met weinig of geen isolatie. De spouw is regelmatig nog leeg; dak en vloer zijn vaak de eerste winst." },
+        { label: "1975 – 2000", percentage: 37, tekst: "Meestal al deels geïsoleerd, maar vaak dunner dan nu gebruikelijk. Eerst kijken wat er zit, dan bijisoleren." },
+        { label: "Na 2000", percentage: 17, tekst: "Vaak al redelijk tot goed geïsoleerd. De winst zit vaker in beter glas, zonnepanelen of de overstap naar een warmtepomp." },
+      ],
+      voetnoot: "Het bouwjaar is een eerste indicatie, geen conclusie: veel woningen zijn later al verbeterd. Gijs kijkt altijd naar jouw eigen huis.",
+      bron: { naam: "CBS Kerncijfers wijken en buurten 2022", url: "https://opendata.cbs.nl/statline/#/CBS/nl/dataset/84799NED" },
+    },
+    lokaal: {
+      titel: "Wijken in gemeente Doetinchem",
+      alineas: [
+        ["De gemeente Doetinchem omvat de kernen Doetinchem, Gaanderen, Wehl en IJzevoorde. Veel woningen uit de jaren vijftig tot tachtig hebben nog geen of onvoldoende isolatie — spouwmuurisolatie en dakisolatie zijn hier doorgaans snel terugverdiend."],
+      ],
+      kernTekst: {},
+      wijken: {
+        titel: "Wijken in Doetinchem",
+        intro: "De kleur geeft aan in welke bouwperiode de meeste woningen in die wijk vallen.",
+        lijst: [
+          { naam: "Wijk 06", woningen: 4481, periode: "Grotendeels vóór 2000", tijdvak: 0, type: "vrijstaand" },
+          { naam: "Wijk 02", woningen: 3517, periode: "Grotendeels vóór 2000", tijdvak: 0, type: "twee-onder-een-kap" },
+          { naam: "Wijk 07", woningen: 3374, periode: "Gemengd, oud en nieuw", tijdvak: null, type: "vrijstaand" },
+          { naam: "Wijk 09", woningen: 3033, periode: "Grotendeels vóór 2000", tijdvak: 0, type: "tussenwoning" },
+          { naam: "Wehl", woningen: 2921, periode: "Overwegend vóór 2000", tijdvak: 0, type: "vrijstaand" },
+          { naam: "Doetinchem Centrum", woningen: 2487, periode: "Overwegend vóór 2000", tijdvak: null, type: "appartement" },
+          { naam: "Buitengebied Doetinchem", woningen: 2475, periode: "Overwegend vóór 2000", tijdvak: 0, type: "tussenwoning" },
+          { naam: "Wijk 04", woningen: 1777, periode: "Gemengd, oud en nieuw", tijdvak: null, type: "vrijstaand" },
+          { naam: "Wijk 03", woningen: 1310, periode: "Grotendeels vóór 2000", tijdvak: 0, type: "tussenwoning" },
+          { naam: "Wijk 08", woningen: 391, periode: "Overwegend na 2000", tijdvak: 2, type: "twee-onder-een-kap" },
+          { naam: "Wijk 05", woningen: 363, periode: "Overwegend na 2000", tijdvak: 2, type: "appartement" },
+        ],
+        bron: { naam: "CBS Kerncijfers wijken en buurten 2022", url: "https://opendata.cbs.nl/statline/#/CBS/nl/dataset/84799NED" },
+      },
+      ontwikkeling: {
+        titel: "Woningverbetering in Gelderland",
+        tekst: "Gelderland heeft veel woningen uit de jaren zestig en zeventig, die met relatief eenvoudige stappen goed te verbeteren zijn. De provincie en gemeenten ondersteunen eigenaren met advies en subsidies.",
+      },
+    },
+    faq: [
+      { question: "Welke gemeentelijke subsidies gelden in Doetinchem?", answer: "Gemeenten kunnen eigen subsidies of regelingen hebben voor het verduurzamen van een woning. Controleer de actuele mogelijkheden bij de gemeente Doetinchem zelf of via de Energiesubsidiewijzer van Milieu Centraal." },
+      { question: "Welke isolatie past bij mijn woning?", answer: "Dat hangt af van je woning. Tijdens de gratis energiescan aan huis bekijkt een adviseur van Gijs wat technisch bij je woning past." },
+      { question: "Is de energiescan aan huis gratis en vrijblijvend?", answer: "Ja. De energiescan is gratis en vrijblijvend, ter waarde van €349. Je bespreekt je woning en wensen met een adviseur." },
+      { question: "Moet ik eerst de digitale woningscan doen?", answer: "Nee. Je kunt direct contact opnemen. De digitale woningscan is een optionele voorbereiding, geen technische beoordeling." },
+    ],
+    verwant: [],
+  },
+  druten: {
+    seo: {
+      title: "Woning verduurzamen in Druten | Gijs",
+      description: "Wil je je woning isoleren in Druten? Gijs geeft onafhankelijk advies over spouwmuurisolatie, dakisolatie en zonnepanelen. Bekijk de 8.126 woningen en welke subsidies gelden.",
+    },
+    kicker: "Gemeente Druten",
+    h1: "Woning verduurzamen in Druten",
+    intro: [
+      ["Woon je in Druten, Puiflijk, Afferden of Deest? De gemeente Druten ligt in de Maas-Waalregio ten westen van Nijmegen, met een woningvoorraad die voor een groot deel bestaat uit vrijstaande en twee-onder-één-kapwoningen uit de jaren zestig en zeventig."],
+      ["Gijs geeft onafhankelijk advies. Tijdens een gratis energiescan aan huis kijkt een adviseur wat er technisch bij jouw woning past, en welke stap het meeste oplevert."],
+    ],
+    kernen: [],
+    woningen: {
+      lead: "Het bouwjaar zegt veel over hoe een huis gebouwd is. Zo is de woningvoorraad van Druten verdeeld.",
+      kerncijfers: [
+        { waarde: "8.126", label: "woningen" },
+        { waarde: "82%", label: "eengezinswoningen" },
+        { waarde: "76%", label: "gebouwd vóór 2000" },
+        { waarde: "64%", label: "koopwoningen" },
+      ],
+      bouwperiodes: [
+        { label: "Vóór 1975", percentage: 42, tekst: "Vaak gebouwd met weinig of geen isolatie. De spouw is regelmatig nog leeg; dak en vloer zijn vaak de eerste winst." },
+        { label: "1975 – 2000", percentage: 34, tekst: "Meestal al deels geïsoleerd, maar vaak dunner dan nu gebruikelijk. Eerst kijken wat er zit, dan bijisoleren." },
+        { label: "Na 2000", percentage: 24, tekst: "Vaak al redelijk tot goed geïsoleerd. De winst zit vaker in beter glas, zonnepanelen of de overstap naar een warmtepomp." },
+      ],
+      voetnoot: "Het bouwjaar is een eerste indicatie, geen conclusie: veel woningen zijn later al verbeterd. Gijs kijkt altijd naar jouw eigen huis.",
+      bron: { naam: "CBS Kerncijfers wijken en buurten 2022", url: "https://opendata.cbs.nl/statline/#/CBS/nl/dataset/84799NED" },
+    },
+    lokaal: {
+      titel: "Wijken in gemeente Druten",
+      alineas: [
+        ["Druten telt kernen als Druten, Puiflijk, Afferden en Deest in de polder tussen Maas en Waal. De polderligging en de relatief grote vrijstaande woningen maken dakisolatie en kierdichting extra waardevol."],
+      ],
+      kernTekst: {},
+      wijken: {
+        titel: "Wijken in Druten",
+        intro: "De kleur geeft aan in welke bouwperiode de meeste woningen in die wijk vallen.",
+        lijst: [
+          { naam: "Druten", woningen: 5464, periode: "Overwegend vóór 2000", tijdvak: null, type: "tussenwoning" },
+          { naam: "Deest", woningen: 815, periode: "Overwegend vóór 2000", tijdvak: 0, type: "tussenwoning" },
+          { naam: "Afferden", woningen: 659, periode: "Overwegend vóór 2000", tijdvak: 0, type: "vrijstaand" },
+          { naam: "Horssen", woningen: 652, periode: "Overwegend vóór 2000", tijdvak: 0, type: "vrijstaand" },
+          { naam: "Puiflijk", woningen: 536, periode: "Overwegend vóór 2000", tijdvak: 0, type: "vrijstaand" },
+        ],
+        bron: { naam: "CBS Kerncijfers wijken en buurten 2022", url: "https://opendata.cbs.nl/statline/#/CBS/nl/dataset/84799NED" },
+      },
+      ontwikkeling: {
+        titel: "Woningverbetering in Gelderland",
+        tekst: "Gelderland heeft veel woningen uit de jaren zestig en zeventig, die met relatief eenvoudige stappen goed te verbeteren zijn. De provincie en gemeenten ondersteunen eigenaren met advies en subsidies.",
+      },
+    },
+    faq: [
+      { question: "Welke gemeentelijke subsidies gelden in Druten?", answer: "Gemeenten kunnen eigen subsidies of regelingen hebben voor het verduurzamen van een woning. Controleer de actuele mogelijkheden bij de gemeente Druten zelf of via de Energiesubsidiewijzer van Milieu Centraal." },
+      { question: "Welke isolatie past bij mijn woning?", answer: "Dat hangt af van je woning. Tijdens de gratis energiescan aan huis bekijkt een adviseur van Gijs wat technisch bij je woning past." },
+      { question: "Is de energiescan aan huis gratis en vrijblijvend?", answer: "Ja. De energiescan is gratis en vrijblijvend, ter waarde van €349. Je bespreekt je woning en wensen met een adviseur." },
+      { question: "Moet ik eerst de digitale woningscan doen?", answer: "Nee. Je kunt direct contact opnemen. De digitale woningscan is een optionele voorbereiding, geen technische beoordeling." },
+    ],
+    verwant: [],
+  },
+  duiven: {
+    seo: {
+      title: "Isoleren in Duiven | Gijs",
+      description: "Wil je je woning isoleren in Duiven? Gijs geeft onafhankelijk advies over spouwmuurisolatie, dakisolatie en zonnepanelen. Bekijk de 10.743 woningen en welke subsidies gelden.",
+    },
+    kicker: "Gemeente Duiven",
+    h1: "Isoleren in Duiven",
+    intro: [
+      ["Woon je in Duiven, Groessen of Loo? Duiven is een groeigemeente in de Liemers, direct grenzend aan Arnhem, met een woningbestand dat varieert van oudere dorpswoningen in de kern tot recente nieuwbouwwijken aan de Rijnoevers."],
+      ["Gijs geeft onafhankelijk advies. Tijdens een gratis energiescan aan huis kijkt een adviseur wat er technisch bij jouw woning past, en welke stap het meeste oplevert."],
+    ],
+    kernen: [],
+    woningen: {
+      lead: "Het bouwjaar zegt veel over hoe een huis gebouwd is. Zo is de woningvoorraad van Duiven verdeeld.",
+      kerncijfers: [
+        { waarde: "10.743", label: "woningen" },
+        { waarde: "87%", label: "eengezinswoningen" },
+        { waarde: "88%", label: "gebouwd vóór 2000" },
+        { waarde: "67%", label: "koopwoningen" },
+      ],
+      bouwperiodes: [
+        { label: "Vóór 1975", percentage: 48, tekst: "Vaak gebouwd met weinig of geen isolatie. De spouw is regelmatig nog leeg; dak en vloer zijn vaak de eerste winst." },
+        { label: "1975 – 2000", percentage: 40, tekst: "Meestal al deels geïsoleerd, maar vaak dunner dan nu gebruikelijk. Eerst kijken wat er zit, dan bijisoleren." },
+        { label: "Na 2000", percentage: 12, tekst: "Vaak al redelijk tot goed geïsoleerd. De winst zit vaker in beter glas, zonnepanelen of de overstap naar een warmtepomp." },
+      ],
+      voetnoot: "Het bouwjaar is een eerste indicatie, geen conclusie: veel woningen zijn later al verbeterd. Gijs kijkt altijd naar jouw eigen huis.",
+      bron: { naam: "CBS Kerncijfers wijken en buurten 2022", url: "https://opendata.cbs.nl/statline/#/CBS/nl/dataset/84799NED" },
+    },
+    lokaal: {
+      titel: "Wijken in gemeente Duiven",
+      alineas: [
+        ["De gemeente Duiven omvat de kernen Duiven, Groessen en Loo langs de Rijn. De oudere woningdelen uit de jaren zestig en zeventig zijn goed te verduurzamen via spouwmuurisolatie; in nieuwere wijken speelt de omschakeling naar warmtepompen een grotere rol."],
+      ],
+      kernTekst: {},
+      wijken: {
+        titel: "Wijken in Duiven",
+        intro: "De kleur geeft aan in welke bouwperiode de meeste woningen in die wijk vallen.",
+        lijst: [
+          { naam: "Duiven-Noord", woningen: 6181, periode: "Overwegend vóór 2000", tijdvak: 0, type: "vrijstaand" },
+          { naam: "Duiven-Zuid", woningen: 3293, periode: "Grotendeels vóór 2000", tijdvak: 0, type: "tussenwoning" },
+          { naam: "Groessen", woningen: 779, periode: "Overwegend vóór 2000", tijdvak: 0, type: "vrijstaand" },
+          { naam: "Loo", woningen: 438, periode: "Overwegend vóór 2000", tijdvak: 0, type: "vrijstaand" },
+        ],
+        bron: { naam: "CBS Kerncijfers wijken en buurten 2022", url: "https://opendata.cbs.nl/statline/#/CBS/nl/dataset/84799NED" },
+      },
+      ontwikkeling: {
+        titel: "Woningverbetering in Gelderland",
+        tekst: "Gelderland heeft veel woningen uit de jaren zestig en zeventig, die met relatief eenvoudige stappen goed te verbeteren zijn. De provincie en gemeenten ondersteunen eigenaren met advies en subsidies.",
+      },
+    },
+    faq: [
+      { question: "Welke gemeentelijke subsidies gelden in Duiven?", answer: "Gemeenten kunnen eigen subsidies of regelingen hebben voor het verduurzamen van een woning. Controleer de actuele mogelijkheden bij de gemeente Duiven zelf of via de Energiesubsidiewijzer van Milieu Centraal." },
+      { question: "Welke isolatie past bij mijn woning?", answer: "Dat hangt af van je woning. Tijdens de gratis energiescan aan huis bekijkt een adviseur van Gijs wat technisch bij je woning past." },
+      { question: "Is de energiescan aan huis gratis en vrijblijvend?", answer: "Ja. De energiescan is gratis en vrijblijvend, ter waarde van €349. Je bespreekt je woning en wensen met een adviseur." },
+      { question: "Moet ik eerst de digitale woningscan doen?", answer: "Nee. Je kunt direct contact opnemen. De digitale woningscan is een optionele voorbereiding, geen technische beoordeling." },
+    ],
+    verwant: [],
+  },
+  ede: {
+    seo: {
+      title: "Je woning isoleren in Ede | Gijs",
+      description: "Wil je je woning isoleren in Ede? Gijs geeft onafhankelijk advies over spouwmuurisolatie, dakisolatie en zonnepanelen. Bekijk de 49.152 woningen en welke subsidies gelden.",
+    },
+    kicker: "Gemeente Ede",
+    h1: "Je woning isoleren in Ede",
+    intro: [
+      ["Woon je in Ede, Bennekom, Lunteren, Otterlo of een van de andere kernen van deze grote Veluwse gemeente? Ede heeft een zeer gevarieerde woningvoorraad: van historische boerderijcomplexen tot uitgebreide naoorlogse woonwijken en recente nieuwbouwgebieden in het Food Valley-gebied."],
+      ["Gijs geeft onafhankelijk advies. Tijdens een gratis energiescan aan huis kijkt een adviseur wat er technisch bij jouw woning past, en welke stap het meeste oplevert."],
+    ],
+    kernen: [],
+    woningen: {
+      lead: "Het bouwjaar zegt veel over hoe een huis gebouwd is. Zo is de woningvoorraad van Ede verdeeld.",
+      kerncijfers: [
+        { waarde: "49.152", label: "woningen" },
+        { waarde: "69%", label: "eengezinswoningen" },
+        { waarde: "77%", label: "gebouwd vóór 2000" },
+        { waarde: "66%", label: "koopwoningen" },
+      ],
+      bouwperiodes: [
+        { label: "Vóór 1975", percentage: 42, tekst: "Vaak gebouwd met weinig of geen isolatie. De spouw is regelmatig nog leeg; dak en vloer zijn vaak de eerste winst." },
+        { label: "1975 – 2000", percentage: 35, tekst: "Meestal al deels geïsoleerd, maar vaak dunner dan nu gebruikelijk. Eerst kijken wat er zit, dan bijisoleren." },
+        { label: "Na 2000", percentage: 23, tekst: "Vaak al redelijk tot goed geïsoleerd. De winst zit vaker in beter glas, zonnepanelen of de overstap naar een warmtepomp." },
+      ],
+      voetnoot: "Het bouwjaar is een eerste indicatie, geen conclusie: veel woningen zijn later al verbeterd. Gijs kijkt altijd naar jouw eigen huis.",
+      bron: { naam: "CBS Kerncijfers wijken en buurten 2022", url: "https://opendata.cbs.nl/statline/#/CBS/nl/dataset/84799NED" },
+    },
+    lokaal: {
+      titel: "Wijken in gemeente Ede",
+      alineas: [
+        ["De gemeente Ede omvat kernen als Ede, Bennekom, Lunteren, Ederveen, Otterlo en Harskamp. De combinatie van oudere woningen in de dorpskernen en omvangrijke naoorlogse uitbreidingen — met name in de stad Ede zelf — biedt veel kansen voor spouwmuurisolatie en dakisolatie."],
+      ],
+      kernTekst: {},
+      wijken: {
+        titel: "Wijken in Ede",
+        intro: "De kleur geeft aan in welke bouwperiode de meeste woningen in die wijk vallen.",
+        lijst: [
+          { naam: "Ede-West", woningen: 7035, periode: "Overwegend vóór 2000", tijdvak: 0, type: "twee-onder-een-kap" },
+          { naam: "Bennekom", woningen: 6551, periode: "Overwegend vóór 2000", tijdvak: 0, type: "vrijstaand" },
+          { naam: "Ede-Veldhuizen", woningen: 6079, periode: "Overwegend vóór 2000", tijdvak: 0, type: "twee-onder-een-kap" },
+          { naam: "Ede-Oost", woningen: 5430, periode: "Overwegend vóór 2000", tijdvak: null, type: "appartement" },
+          { naam: "Lunteren", woningen: 4988, periode: "Overwegend vóór 2000", tijdvak: 0, type: "vrijstaand" },
+          { naam: "Ede-Zuid", woningen: 4873, periode: "Gemengd, oud en nieuw", tijdvak: null, type: "twee-onder-een-kap" },
+          { naam: "Rietkampen", woningen: 3168, periode: "Grotendeels vóór 2000", tijdvak: 0, type: "vrijstaand" },
+          { naam: "Maandereng", woningen: 2773, periode: "Grotendeels vóór 2000", tijdvak: 0, type: "vrijstaand" },
+          { naam: "Kernhem", woningen: 1918, periode: "Overwegend na 2000", tijdvak: 2, type: "vrijstaand" },
+          { naam: "Ederveen", woningen: 1202, periode: "Overwegend vóór 2000", tijdvak: null, type: "vrijstaand" },
+          { naam: "Harskamp", woningen: 1178, periode: "Overwegend vóór 2000", tijdvak: 0, type: "vrijstaand" },
+          { naam: "Otterlo", woningen: 1069, periode: "Overwegend vóór 2000", tijdvak: 0, type: "vrijstaand" },
+        ],
+        bron: { naam: "CBS Kerncijfers wijken en buurten 2022", url: "https://opendata.cbs.nl/statline/#/CBS/nl/dataset/84799NED" },
+      },
+      ontwikkeling: {
+        titel: "Woningverbetering in Gelderland",
+        tekst: "Gelderland heeft veel woningen uit de jaren zestig en zeventig, die met relatief eenvoudige stappen goed te verbeteren zijn. De provincie en gemeenten ondersteunen eigenaren met advies en subsidies.",
+      },
+    },
+    faq: [
+      { question: "Welke gemeentelijke subsidies gelden in Ede?", answer: "Gemeenten kunnen eigen subsidies of regelingen hebben voor het verduurzamen van een woning. Controleer de actuele mogelijkheden bij de gemeente Ede zelf of via de Energiesubsidiewijzer van Milieu Centraal." },
+      { question: "Welke isolatie past bij mijn woning?", answer: "Dat hangt af van je woning. Tijdens de gratis energiescan aan huis bekijkt een adviseur van Gijs wat technisch bij je woning past." },
+      { question: "Is de energiescan aan huis gratis en vrijblijvend?", answer: "Ja. De energiescan is gratis en vrijblijvend, ter waarde van €349. Je bespreekt je woning en wensen met een adviseur." },
+      { question: "Moet ik eerst de digitale woningscan doen?", answer: "Nee. Je kunt direct contact opnemen. De digitale woningscan is een optionele voorbereiding, geen technische beoordeling." },
+    ],
+    verwant: [],
+  },
+  elburg: {
+    seo: {
+      title: "Woning verduurzamen in Elburg | Gijs",
+      description: "Wil je je woning isoleren in Elburg? Gijs geeft onafhankelijk advies over spouwmuurisolatie, dakisolatie en zonnepanelen. Bekijk de 9.356 woningen en welke subsidies gelden.",
+    },
+    kicker: "Gemeente Elburg",
+    h1: "Woning verduurzamen in Elburg",
+    intro: [
+      ["Woon je in Elburg, 't Harde of Doornspijk? De gemeente Elburg heeft een bijzondere woningmix: naast het goed bewaarde middeleeuwse stadscentrum van Elburg zijn er uitgebreide naoorlogse wijken in 't Harde en verspreide bebouwing in het Veluwse buitengebied."],
+      ["Gijs geeft onafhankelijk advies. Tijdens een gratis energiescan aan huis kijkt een adviseur wat er technisch bij jouw woning past, en welke stap het meeste oplevert."],
+    ],
+    kernen: [],
+    woningen: {
+      lead: "Het bouwjaar zegt veel over hoe een huis gebouwd is. Zo is de woningvoorraad van Elburg verdeeld.",
+      kerncijfers: [
+        { waarde: "9.356", label: "woningen" },
+        { waarde: "85%", label: "eengezinswoningen" },
+        { waarde: "83%", label: "gebouwd vóór 2000" },
+        { waarde: "65%", label: "koopwoningen" },
+      ],
+      bouwperiodes: [
+        { label: "Vóór 1975", percentage: 46, tekst: "Vaak gebouwd met weinig of geen isolatie. De spouw is regelmatig nog leeg; dak en vloer zijn vaak de eerste winst." },
+        { label: "1975 – 2000", percentage: 37, tekst: "Meestal al deels geïsoleerd, maar vaak dunner dan nu gebruikelijk. Eerst kijken wat er zit, dan bijisoleren." },
+        { label: "Na 2000", percentage: 17, tekst: "Vaak al redelijk tot goed geïsoleerd. De winst zit vaker in beter glas, zonnepanelen of de overstap naar een warmtepomp." },
+      ],
+      voetnoot: "Het bouwjaar is een eerste indicatie, geen conclusie: veel woningen zijn later al verbeterd. Gijs kijkt altijd naar jouw eigen huis.",
+      bron: { naam: "CBS Kerncijfers wijken en buurten 2022", url: "https://opendata.cbs.nl/statline/#/CBS/nl/dataset/84799NED" },
+    },
+    lokaal: {
+      titel: "Wijken in gemeente Elburg",
+      alineas: [
+        ["De gemeente Elburg omvat Elburg, 't Harde en Doornspijk. In het historische centrum van Elburg gelden soms monumentale randvoorwaarden; in de naoorlogse wijken van 't Harde zijn spouwmuurisolatie en dakisolatie vrijwel altijd goed toepasbaar."],
+      ],
+      kernTekst: {},
+      wijken: {
+        titel: "Wijken in Elburg",
+        intro: "De kleur geeft aan in welke bouwperiode de meeste woningen in die wijk vallen.",
+        lijst: [
+          { naam: "Elburg", woningen: 4920, periode: "Overwegend vóór 2000", tijdvak: 0, type: "tussenwoning" },
+          { naam: "Wijk 02", woningen: 2890, periode: "Overwegend vóór 2000", tijdvak: 0, type: "vrijstaand" },
+          { naam: "Doornspijk", woningen: 1546, periode: "Overwegend vóór 2000", tijdvak: 0, type: "vrijstaand" },
+        ],
+        bron: { naam: "CBS Kerncijfers wijken en buurten 2022", url: "https://opendata.cbs.nl/statline/#/CBS/nl/dataset/84799NED" },
+      },
+      ontwikkeling: {
+        titel: "Woningverbetering in Gelderland",
+        tekst: "Gelderland heeft veel woningen uit de jaren zestig en zeventig, die met relatief eenvoudige stappen goed te verbeteren zijn. De provincie en gemeenten ondersteunen eigenaren met advies en subsidies.",
+      },
+    },
+    faq: [
+      { question: "Welke gemeentelijke subsidies gelden in Elburg?", answer: "Gemeenten kunnen eigen subsidies of regelingen hebben voor het verduurzamen van een woning. Controleer de actuele mogelijkheden bij de gemeente Elburg zelf of via de Energiesubsidiewijzer van Milieu Centraal." },
+      { question: "Welke isolatie past bij mijn woning?", answer: "Dat hangt af van je woning. Tijdens de gratis energiescan aan huis bekijkt een adviseur van Gijs wat technisch bij je woning past." },
+      { question: "Is de energiescan aan huis gratis en vrijblijvend?", answer: "Ja. De energiescan is gratis en vrijblijvend, ter waarde van €349. Je bespreekt je woning en wensen met een adviseur." },
+      { question: "Moet ik eerst de digitale woningscan doen?", answer: "Nee. Je kunt direct contact opnemen. De digitale woningscan is een optionele voorbereiding, geen technische beoordeling." },
+    ],
+    verwant: [],
+  },
+  epe: {
+    seo: {
+      title: "Isoleren in Epe | Gijs",
+      description: "Wil je je woning isoleren in Epe? Gijs geeft onafhankelijk advies over spouwmuurisolatie, dakisolatie en zonnepanelen. Bekijk de 14.586 woningen en welke subsidies gelden.",
+    },
+    kicker: "Gemeente Epe",
+    h1: "Isoleren in Epe",
+    intro: [
+      ["Woon je in Epe, Vaassen, Emst of Oene? Epe is een bosrijke Veluwse gemeente met een landelijk karakter en een woningvoorraad die voor een groot deel bestaat uit vrijstaande woningen en boerderijen. De expositie van vrijstaande woningen in de open Veluwse omgeving maakt goede isolatie extra effectief."],
+      ["Gijs geeft onafhankelijk advies. Tijdens een gratis energiescan aan huis kijkt een adviseur wat er technisch bij jouw woning past, en welke stap het meeste oplevert."],
+    ],
+    kernen: [],
+    woningen: {
+      lead: "Het bouwjaar zegt veel over hoe een huis gebouwd is. Zo is de woningvoorraad van Epe verdeeld.",
+      kerncijfers: [
+        { waarde: "14.586", label: "woningen" },
+        { waarde: "79%", label: "eengezinswoningen" },
+        { waarde: "87%", label: "gebouwd vóór 2000" },
+        { waarde: "65%", label: "koopwoningen" },
+      ],
+      bouwperiodes: [
+        { label: "Vóór 1975", percentage: 48, tekst: "Vaak gebouwd met weinig of geen isolatie. De spouw is regelmatig nog leeg; dak en vloer zijn vaak de eerste winst." },
+        { label: "1975 – 2000", percentage: 39, tekst: "Meestal al deels geïsoleerd, maar vaak dunner dan nu gebruikelijk. Eerst kijken wat er zit, dan bijisoleren." },
+        { label: "Na 2000", percentage: 13, tekst: "Vaak al redelijk tot goed geïsoleerd. De winst zit vaker in beter glas, zonnepanelen of de overstap naar een warmtepomp." },
+      ],
+      voetnoot: "Het bouwjaar is een eerste indicatie, geen conclusie: veel woningen zijn later al verbeterd. Gijs kijkt altijd naar jouw eigen huis.",
+      bron: { naam: "CBS Kerncijfers wijken en buurten 2022", url: "https://opendata.cbs.nl/statline/#/CBS/nl/dataset/84799NED" },
+    },
+    lokaal: {
+      titel: "Wijken in gemeente Epe",
+      alineas: [
+        ["Epe omvat de kernen Epe, Vaassen, Emst, Oene en Wissel, verspreid door een afwisselend landschap van bossen, heidevelden en uiterwaardengebied langs de IJssel. Dakisolatie en gevelisolatie zijn hier vanwege de vrijstaande bouw veelal de meest rendabele eerste stap."],
+      ],
+      kernTekst: {},
+      wijken: {
+        titel: "Wijken in Epe",
+        intro: "De kleur geeft aan in welke bouwperiode de meeste woningen in die wijk vallen.",
+        lijst: [
+          { naam: "Epe", woningen: 7231, periode: "Overwegend vóór 2000", tijdvak: 0, type: "tussenwoning" },
+          { naam: "Vaassen", woningen: 5523, periode: "Overwegend vóór 2000", tijdvak: 0, type: "tussenwoning" },
+          { naam: "Emst", woningen: 1228, periode: "Overwegend vóór 2000", tijdvak: 0, type: "vrijstaand" },
+          { naam: "Oene", woningen: 604, periode: "Overwegend vóór 2000", tijdvak: 0, type: "vrijstaand" },
+        ],
+        bron: { naam: "CBS Kerncijfers wijken en buurten 2022", url: "https://opendata.cbs.nl/statline/#/CBS/nl/dataset/84799NED" },
+      },
+      ontwikkeling: {
+        titel: "Woningverbetering in Gelderland",
+        tekst: "Gelderland heeft veel woningen uit de jaren zestig en zeventig, die met relatief eenvoudige stappen goed te verbeteren zijn. De provincie en gemeenten ondersteunen eigenaren met advies en subsidies.",
+      },
+    },
+    faq: [
+      { question: "Welke gemeentelijke subsidies gelden in Epe?", answer: "Gemeenten kunnen eigen subsidies of regelingen hebben voor het verduurzamen van een woning. Controleer de actuele mogelijkheden bij de gemeente Epe zelf of via de Energiesubsidiewijzer van Milieu Centraal." },
+      { question: "Welke isolatie past bij mijn woning?", answer: "Dat hangt af van je woning. Tijdens de gratis energiescan aan huis bekijkt een adviseur van Gijs wat technisch bij je woning past." },
+      { question: "Is de energiescan aan huis gratis en vrijblijvend?", answer: "Ja. De energiescan is gratis en vrijblijvend, ter waarde van €349. Je bespreekt je woning en wensen met een adviseur." },
+      { question: "Moet ik eerst de digitale woningscan doen?", answer: "Nee. Je kunt direct contact opnemen. De digitale woningscan is een optionele voorbereiding, geen technische beoordeling." },
+    ],
+    verwant: [],
+  },
+  ermelo: {
+    seo: {
+      title: "Woning verduurzamen in Ermelo | Gijs",
+      description: "Wil je je woning isoleren in Ermelo? Gijs geeft onafhankelijk advies over spouwmuurisolatie, dakisolatie en zonnepanelen. Bekijk de 11.156 woningen en welke subsidies gelden.",
+    },
+    kicker: "Gemeente Ermelo",
+    h1: "Woning verduurzamen in Ermelo",
+    intro: [
+      ["Woon je in Ermelo of Hierden? Ermelo is een bosrijke Veluwse gemeente met een bijzonder karakter: naast reguliere woonwijken heeft de gemeente veel conferentieoorden en zorginstellingen in de bossen. De woningvoorraad omvat zowel naoorlogse rijtjeswoningen als vrijstaande huizen in het buitengebied."],
+      ["Gijs geeft onafhankelijk advies. Tijdens een gratis energiescan aan huis kijkt een adviseur wat er technisch bij jouw woning past, en welke stap het meeste oplevert."],
+    ],
+    kernen: [],
+    woningen: {
+      lead: "Het bouwjaar zegt veel over hoe een huis gebouwd is. Zo is de woningvoorraad van Ermelo verdeeld.",
+      kerncijfers: [
+        { waarde: "11.156", label: "woningen" },
+        { waarde: "77%", label: "eengezinswoningen" },
+        { waarde: "83%", label: "gebouwd vóór 2000" },
+        { waarde: "63%", label: "koopwoningen" },
+      ],
+      bouwperiodes: [
+        { label: "Vóór 1975", percentage: 46, tekst: "Vaak gebouwd met weinig of geen isolatie. De spouw is regelmatig nog leeg; dak en vloer zijn vaak de eerste winst." },
+        { label: "1975 – 2000", percentage: 37, tekst: "Meestal al deels geïsoleerd, maar vaak dunner dan nu gebruikelijk. Eerst kijken wat er zit, dan bijisoleren." },
+        { label: "Na 2000", percentage: 17, tekst: "Vaak al redelijk tot goed geïsoleerd. De winst zit vaker in beter glas, zonnepanelen of de overstap naar een warmtepomp." },
+      ],
+      voetnoot: "Het bouwjaar is een eerste indicatie, geen conclusie: veel woningen zijn later al verbeterd. Gijs kijkt altijd naar jouw eigen huis.",
+      bron: { naam: "CBS Kerncijfers wijken en buurten 2022", url: "https://opendata.cbs.nl/statline/#/CBS/nl/dataset/84799NED" },
+    },
+    lokaal: {
+      titel: "Wijken in gemeente Ermelo",
+      alineas: [
+        ["De gemeente Ermelo bestaat uit de kernen Ermelo en Hierden. Spouwmuurisolatie is in de naoorlogse rijtjeswoningen de meest effectieve eerste maatregel; voor vrijstaande woningen in het buitengebied biedt dakisolatie de grootste besparing."],
+      ],
+      kernTekst: {},
+      wijken: {
+        titel: "Wijken in Ermelo",
+        intro: "De kleur geeft aan in welke bouwperiode de meeste woningen in die wijk vallen.",
+        lijst: [
+          { naam: "Ermelo", woningen: 10845, periode: "Overwegend vóór 2000", tijdvak: 0, type: "tussenwoning" },
+          { naam: "Speuld", woningen: 311, periode: "Overwegend vóór 2000", tijdvak: 0, type: "tussenwoning" },
+        ],
+        bron: { naam: "CBS Kerncijfers wijken en buurten 2022", url: "https://opendata.cbs.nl/statline/#/CBS/nl/dataset/84799NED" },
+      },
+      ontwikkeling: {
+        titel: "Woningverbetering in Gelderland",
+        tekst: "Gelderland heeft veel woningen uit de jaren zestig en zeventig, die met relatief eenvoudige stappen goed te verbeteren zijn. De provincie en gemeenten ondersteunen eigenaren met advies en subsidies.",
+      },
+    },
+    faq: [
+      { question: "Welke gemeentelijke subsidies gelden in Ermelo?", answer: "Gemeenten kunnen eigen subsidies of regelingen hebben voor het verduurzamen van een woning. Controleer de actuele mogelijkheden bij de gemeente Ermelo zelf of via de Energiesubsidiewijzer van Milieu Centraal." },
+      { question: "Welke isolatie past bij mijn woning?", answer: "Dat hangt af van je woning. Tijdens de gratis energiescan aan huis bekijkt een adviseur van Gijs wat technisch bij je woning past." },
+      { question: "Is de energiescan aan huis gratis en vrijblijvend?", answer: "Ja. De energiescan is gratis en vrijblijvend, ter waarde van €349. Je bespreekt je woning en wensen met een adviseur." },
+      { question: "Moet ik eerst de digitale woningscan doen?", answer: "Nee. Je kunt direct contact opnemen. De digitale woningscan is een optionele voorbereiding, geen technische beoordeling." },
+    ],
+    verwant: [],
+  },
+  harderwijk: {
+    seo: {
+      title: "Isoleren en verduurzamen in Harderwijk | Gijs",
+      description: "Wil je je woning isoleren in Harderwijk? Gijs geeft onafhankelijk advies over spouwmuurisolatie, dakisolatie en zonnepanelen. Bekijk de 19.942 woningen en welke subsidies gelden.",
+    },
+    kicker: "Gemeente Harderwijk",
+    h1: "Isoleren en verduurzamen in Harderwijk",
+    intro: [
+      ["Woon je in Harderwijk of Hierden? Harderwijk is een groeiende Hanzestad aan het Veluwemeer met een diverse woningvoorraad: van historische panden in het centrum tot uitgebreide naoorlogse wijken en de snel groeiende nieuwbouwwijk Drielanden."],
+      ["Gijs geeft onafhankelijk advies. Tijdens een gratis energiescan aan huis kijkt een adviseur wat er technisch bij jouw woning past, en welke stap het meeste oplevert."],
+    ],
+    kernen: [],
+    woningen: {
+      lead: "Het bouwjaar zegt veel over hoe een huis gebouwd is. Zo is de woningvoorraad van Harderwijk verdeeld.",
+      kerncijfers: [
+        { waarde: "19.942", label: "woningen" },
+        { waarde: "69%", label: "eengezinswoningen" },
+        { waarde: "73%", label: "gebouwd vóór 2000" },
+        { waarde: "59%", label: "koopwoningen" },
+      ],
+      bouwperiodes: [
+        { label: "Vóór 1975", percentage: 40, tekst: "Vaak gebouwd met weinig of geen isolatie. De spouw is regelmatig nog leeg; dak en vloer zijn vaak de eerste winst." },
+        { label: "1975 – 2000", percentage: 33, tekst: "Meestal al deels geïsoleerd, maar vaak dunner dan nu gebruikelijk. Eerst kijken wat er zit, dan bijisoleren." },
+        { label: "Na 2000", percentage: 27, tekst: "Vaak al redelijk tot goed geïsoleerd. De winst zit vaker in beter glas, zonnepanelen of de overstap naar een warmtepomp." },
+      ],
+      voetnoot: "Het bouwjaar is een eerste indicatie, geen conclusie: veel woningen zijn later al verbeterd. Gijs kijkt altijd naar jouw eigen huis.",
+      bron: { naam: "CBS Kerncijfers wijken en buurten 2022", url: "https://opendata.cbs.nl/statline/#/CBS/nl/dataset/84799NED" },
+    },
+    lokaal: {
+      titel: "Wijken in gemeente Harderwijk",
+      alineas: [
+        ["Harderwijk en het aangrenzende Hierden vormen samen de gemeente Harderwijk. De naoorlogse wijken in Harderwijk hebben goede mogelijkheden voor spouwmuurisolatie; in de nieuwbouwwijk Drielanden spelen warmtepompen en zonnepanelen een centrale rol."],
+      ],
+      kernTekst: {},
+      wijken: {
+        titel: "Wijken in Harderwijk",
+        intro: "De kleur geeft aan in welke bouwperiode de meeste woningen in die wijk vallen.",
+        lijst: [
+          { naam: "Drielanden", woningen: 3843, periode: "Overwegend na 2000", tijdvak: 2, type: "vrijstaand" },
+          { naam: "Stadsweiden", woningen: 3420, periode: "Overwegend vóór 2000", tijdvak: 0, type: "twee-onder-een-kap" },
+          { naam: "Tweelingstad", woningen: 2879, periode: "Overwegend vóór 2000", tijdvak: 0, type: "twee-onder-een-kap" },
+          { naam: "Stadsdennen", woningen: 2656, periode: "Overwegend vóór 2000", tijdvak: null, type: "twee-onder-een-kap" },
+          { naam: "Frankrijk", woningen: 1615, periode: "Overwegend vóór 2000", tijdvak: 0, type: "vrijstaand" },
+          { naam: "Binnenstad", woningen: 1401, periode: "Grotendeels vóór 2000", tijdvak: 0, type: "gemengd" },
+          { naam: "Hierden", woningen: 1072, periode: "Overwegend vóór 2000", tijdvak: 0, type: "vrijstaand" },
+          { naam: "Zeebuurt", woningen: 1002, periode: "Overwegend vóór 2000", tijdvak: 0, type: "tussenwoning" },
+          { naam: "Friesegracht", woningen: 687, periode: "Grotendeels vóór 2000", tijdvak: 0, type: "twee-onder-een-kap" },
+          { naam: "Slingerbos", woningen: 551, periode: "Overwegend vóór 2000", tijdvak: 0, type: "vrijstaand" },
+          { naam: "Waterfront", woningen: 317, periode: "Overwegend na 2000", tijdvak: 2, type: "tussenwoning" },
+          { naam: "De Sypel", woningen: 259, periode: "Overwegend vóór 2000", tijdvak: 0, type: "vrijstaand" },
+        ],
+        bron: { naam: "CBS Kerncijfers wijken en buurten 2022", url: "https://opendata.cbs.nl/statline/#/CBS/nl/dataset/84799NED" },
+      },
+      ontwikkeling: {
+        titel: "Woningverbetering in Gelderland",
+        tekst: "Gelderland heeft veel woningen uit de jaren zestig en zeventig, die met relatief eenvoudige stappen goed te verbeteren zijn. De provincie en gemeenten ondersteunen eigenaren met advies en subsidies.",
+      },
+    },
+    faq: [
+      { question: "Welke gemeentelijke subsidies gelden in Harderwijk?", answer: "Gemeenten kunnen eigen subsidies of regelingen hebben voor het verduurzamen van een woning. Controleer de actuele mogelijkheden bij de gemeente Harderwijk zelf of via de Energiesubsidiewijzer van Milieu Centraal." },
+      { question: "Welke isolatie past bij mijn woning?", answer: "Dat hangt af van je woning. Tijdens de gratis energiescan aan huis bekijkt een adviseur van Gijs wat technisch bij je woning past." },
+      { question: "Is de energiescan aan huis gratis en vrijblijvend?", answer: "Ja. De energiescan is gratis en vrijblijvend, ter waarde van €349. Je bespreekt je woning en wensen met een adviseur." },
+      { question: "Moet ik eerst de digitale woningscan doen?", answer: "Nee. Je kunt direct contact opnemen. De digitale woningscan is een optionele voorbereiding, geen technische beoordeling." },
+    ],
+    verwant: [],
+  },
+  hattem: {
+    seo: {
+      title: "Woning isoleren in Hattem | Gijs",
+      description: "Wil je je woning isoleren in Hattem? Gijs geeft onafhankelijk advies over spouwmuurisolatie, dakisolatie en zonnepanelen. Bekijk de 5.298 woningen en welke subsidies gelden.",
+    },
+    kicker: "Gemeente Hattem",
+    h1: "Woning isoleren in Hattem",
+    intro: [
+      ["Woon je in Hattem? De compacte historische stad aan de IJssel heeft een woningvoorraad met een mix van oudere panden in de beschermde binnenstad en naoorlogse uitbreidingen aan de noordkant van de stad."],
+      ["Gijs geeft onafhankelijk advies. Tijdens een gratis energiescan aan huis kijkt een adviseur wat er technisch bij jouw woning past, en welke stap het meeste oplevert."],
+    ],
+    kernen: [],
+    woningen: {
+      lead: "Het bouwjaar zegt veel over hoe een huis gebouwd is. Zo is de woningvoorraad van Hattem verdeeld.",
+      kerncijfers: [
+        { waarde: "5.298", label: "woningen" },
+        { waarde: "83%", label: "eengezinswoningen" },
+        { waarde: "87%", label: "gebouwd vóór 2000" },
+        { waarde: "66%", label: "koopwoningen" },
+      ],
+      bouwperiodes: [
+        { label: "Vóór 1975", percentage: 48, tekst: "Vaak gebouwd met weinig of geen isolatie. De spouw is regelmatig nog leeg; dak en vloer zijn vaak de eerste winst." },
+        { label: "1975 – 2000", percentage: 39, tekst: "Meestal al deels geïsoleerd, maar vaak dunner dan nu gebruikelijk. Eerst kijken wat er zit, dan bijisoleren." },
+        { label: "Na 2000", percentage: 13, tekst: "Vaak al redelijk tot goed geïsoleerd. De winst zit vaker in beter glas, zonnepanelen of de overstap naar een warmtepomp." },
+      ],
+      voetnoot: "Het bouwjaar is een eerste indicatie, geen conclusie: veel woningen zijn later al verbeterd. Gijs kijkt altijd naar jouw eigen huis.",
+      bron: { naam: "CBS Kerncijfers wijken en buurten 2022", url: "https://opendata.cbs.nl/statline/#/CBS/nl/dataset/84799NED" },
+    },
+    lokaal: {
+      titel: "Wijken in gemeente Hattem",
+      alineas: [
+        ["Hattem is een compacte gemeente die vrijwel samenvalt met de gelijknamige stad. Bij historische panden in het centrum gelden soms monumentale beperkingen; in de naoorlogse wijken zijn spouwmuurisolatie en dakisolatie vrijwel altijd goed toepasbaar."],
+      ],
+      kernTekst: {},
+      wijken: {
+        titel: "Wijken in Hattem",
+        intro: "De kleur geeft aan in welke bouwperiode de meeste woningen in die wijk vallen.",
+        lijst: [
+          { naam: "Hattem", woningen: 4985, periode: "Overwegend vóór 2000", tijdvak: 0, type: "tussenwoning" },
+          { naam: "Polder Hattem en Molecaten", woningen: 313, periode: "Overwegend vóór 2000", tijdvak: 0, type: "vrijstaand" },
+        ],
+        bron: { naam: "CBS Kerncijfers wijken en buurten 2022", url: "https://opendata.cbs.nl/statline/#/CBS/nl/dataset/84799NED" },
+      },
+      ontwikkeling: {
+        titel: "Woningverbetering in Gelderland",
+        tekst: "Gelderland heeft veel woningen uit de jaren zestig en zeventig, die met relatief eenvoudige stappen goed te verbeteren zijn. De provincie en gemeenten ondersteunen eigenaren met advies en subsidies.",
+      },
+    },
+    faq: [
+      { question: "Welke gemeentelijke subsidies gelden in Hattem?", answer: "Gemeenten kunnen eigen subsidies of regelingen hebben voor het verduurzamen van een woning. Controleer de actuele mogelijkheden bij de gemeente Hattem zelf of via de Energiesubsidiewijzer van Milieu Centraal." },
+      { question: "Welke isolatie past bij mijn woning?", answer: "Dat hangt af van je woning. Tijdens de gratis energiescan aan huis bekijkt een adviseur van Gijs wat technisch bij je woning past." },
+      { question: "Is de energiescan aan huis gratis en vrijblijvend?", answer: "Ja. De energiescan is gratis en vrijblijvend, ter waarde van €349. Je bespreekt je woning en wensen met een adviseur." },
+      { question: "Moet ik eerst de digitale woningscan doen?", answer: "Nee. Je kunt direct contact opnemen. De digitale woningscan is een optionele voorbereiding, geen technische beoordeling." },
+    ],
+    verwant: [],
+  },
+  heerde: {
+    seo: {
+      title: "Woning verduurzamen in Heerde | Gijs",
+      description: "Wil je je woning isoleren in Heerde? Gijs geeft onafhankelijk advies over spouwmuurisolatie, dakisolatie en zonnepanelen. Bekijk de 7.924 woningen en welke subsidies gelden.",
+    },
+    kicker: "Gemeente Heerde",
+    h1: "Woning verduurzamen in Heerde",
+    intro: [
+      ["Woon je in Heerde, Wapenveld of Veessen? Heerde is een landelijke gemeente in de IJsselvallei tussen Apeldoorn en Hattem, met een woningvoorraad die voor een groot deel bestaat uit vrijstaande woningen en twee-onder-één-kapwoningen uit de jaren vijftig tot tachtig."],
+      ["Gijs geeft onafhankelijk advies. Tijdens een gratis energiescan aan huis kijkt een adviseur wat er technisch bij jouw woning past, en welke stap het meeste oplevert."],
+    ],
+    kernen: [],
+    woningen: {
+      lead: "Het bouwjaar zegt veel over hoe een huis gebouwd is. Zo is de woningvoorraad van Heerde verdeeld.",
+      kerncijfers: [
+        { waarde: "7.924", label: "woningen" },
+        { waarde: "83%", label: "eengezinswoningen" },
+        { waarde: "84%", label: "gebouwd vóór 2000" },
+        { waarde: "69%", label: "koopwoningen" },
+      ],
+      bouwperiodes: [
+        { label: "Vóór 1975", percentage: 46, tekst: "Vaak gebouwd met weinig of geen isolatie. De spouw is regelmatig nog leeg; dak en vloer zijn vaak de eerste winst." },
+        { label: "1975 – 2000", percentage: 38, tekst: "Meestal al deels geïsoleerd, maar vaak dunner dan nu gebruikelijk. Eerst kijken wat er zit, dan bijisoleren." },
+        { label: "Na 2000", percentage: 16, tekst: "Vaak al redelijk tot goed geïsoleerd. De winst zit vaker in beter glas, zonnepanelen of de overstap naar een warmtepomp." },
+      ],
+      voetnoot: "Het bouwjaar is een eerste indicatie, geen conclusie: veel woningen zijn later al verbeterd. Gijs kijkt altijd naar jouw eigen huis.",
+      bron: { naam: "CBS Kerncijfers wijken en buurten 2022", url: "https://opendata.cbs.nl/statline/#/CBS/nl/dataset/84799NED" },
+    },
+    lokaal: {
+      titel: "Wijken in gemeente Heerde",
+      alineas: [
+        ["De gemeente Heerde omvat de kernen Heerde, Wapenveld en Veessen, gelegen in het vruchtbare IJsseldal. De relatief veel vrijstaande woningen in het buitengebied bieden goede mogelijkheden voor dakisolatie; spouwmuurisolatie is in de woonkernen de meest voor de hand liggende stap."],
+      ],
+      kernTekst: {},
+      wijken: {
+        titel: "Wijken in Heerde",
+        intro: "De kleur geeft aan in welke bouwperiode de meeste woningen in die wijk vallen.",
+        lijst: [
+          { naam: "Heerde", woningen: 5400, periode: "Overwegend vóór 2000", tijdvak: 0, type: "vrijstaand" },
+          { naam: "Wapenveld", woningen: 2524, periode: "Overwegend vóór 2000", tijdvak: 0, type: "vrijstaand" },
+        ],
+        bron: { naam: "CBS Kerncijfers wijken en buurten 2022", url: "https://opendata.cbs.nl/statline/#/CBS/nl/dataset/84799NED" },
+      },
+      ontwikkeling: {
+        titel: "Woningverbetering in Gelderland",
+        tekst: "Gelderland heeft veel woningen uit de jaren zestig en zeventig, die met relatief eenvoudige stappen goed te verbeteren zijn. De provincie en gemeenten ondersteunen eigenaren met advies en subsidies.",
+      },
+    },
+    faq: [
+      { question: "Welke gemeentelijke subsidies gelden in Heerde?", answer: "Gemeenten kunnen eigen subsidies of regelingen hebben voor het verduurzamen van een woning. Controleer de actuele mogelijkheden bij de gemeente Heerde zelf of via de Energiesubsidiewijzer van Milieu Centraal." },
+      { question: "Welke isolatie past bij mijn woning?", answer: "Dat hangt af van je woning. Tijdens de gratis energiescan aan huis bekijkt een adviseur van Gijs wat technisch bij je woning past." },
+      { question: "Is de energiescan aan huis gratis en vrijblijvend?", answer: "Ja. De energiescan is gratis en vrijblijvend, ter waarde van €349. Je bespreekt je woning en wensen met een adviseur." },
+      { question: "Moet ik eerst de digitale woningscan doen?", answer: "Nee. Je kunt direct contact opnemen. De digitale woningscan is een optionele voorbereiding, geen technische beoordeling." },
+    ],
+    verwant: [],
+  },
+  heumen: {
+    seo: {
+      title: "Isoleren in Heumen | Gijs",
+      description: "Wil je je woning isoleren in Heumen? Gijs geeft onafhankelijk advies over spouwmuurisolatie, dakisolatie en zonnepanelen. Bekijk de 7.206 woningen en welke subsidies gelden.",
+    },
+    kicker: "Gemeente Heumen",
+    h1: "Isoleren in Heumen",
+    intro: [
+      ["Woon je in Malden, Heumen, Overasselt of Nederasselt? De gemeente Heumen ligt direct ten zuiden van Nijmegen en heeft een woningvoorraad die varieert van oudere dorpswoningen in de kleinere kernen tot de uitgebreide naoorlogse woonwijken in Malden."],
+      ["Gijs geeft onafhankelijk advies. Tijdens een gratis energiescan aan huis kijkt een adviseur wat er technisch bij jouw woning past, en welke stap het meeste oplevert."],
+    ],
+    kernen: [],
+    woningen: {
+      lead: "Het bouwjaar zegt veel over hoe een huis gebouwd is. Zo is de woningvoorraad van Heumen verdeeld.",
+      kerncijfers: [
+        { waarde: "7.206", label: "woningen" },
+        { waarde: "83%", label: "eengezinswoningen" },
+        { waarde: "85%", label: "gebouwd vóór 2000" },
+        { waarde: "71%", label: "koopwoningen" },
+      ],
+      bouwperiodes: [
+        { label: "Vóór 1975", percentage: 47, tekst: "Vaak gebouwd met weinig of geen isolatie. De spouw is regelmatig nog leeg; dak en vloer zijn vaak de eerste winst." },
+        { label: "1975 – 2000", percentage: 38, tekst: "Meestal al deels geïsoleerd, maar vaak dunner dan nu gebruikelijk. Eerst kijken wat er zit, dan bijisoleren." },
+        { label: "Na 2000", percentage: 15, tekst: "Vaak al redelijk tot goed geïsoleerd. De winst zit vaker in beter glas, zonnepanelen of de overstap naar een warmtepomp." },
+      ],
+      voetnoot: "Het bouwjaar is een eerste indicatie, geen conclusie: veel woningen zijn later al verbeterd. Gijs kijkt altijd naar jouw eigen huis.",
+      bron: { naam: "CBS Kerncijfers wijken en buurten 2022", url: "https://opendata.cbs.nl/statline/#/CBS/nl/dataset/84799NED" },
+    },
+    lokaal: {
+      titel: "Wijken in gemeente Heumen",
+      alineas: [
+        ["Heumen bestaat uit de kernen Malden, Heumen, Overasselt en Nederasselt. Malden is de grootste kern, met een groot aandeel naoorlogse rijtjeswoningen die goed te verduurzamen zijn via spouwmuurisolatie en dakisolatie."],
+      ],
+      kernTekst: {},
+      wijken: {
+        titel: "Wijken in Heumen",
+        intro: "De kleur geeft aan in welke bouwperiode de meeste woningen in die wijk vallen.",
+        lijst: [
+          { naam: "Heumen", woningen: 5779, periode: "Overwegend vóór 2000", tijdvak: 0, type: "vrijstaand" },
+          { naam: "Overasselt", woningen: 1427, periode: "Overwegend vóór 2000", tijdvak: 0, type: "vrijstaand" },
+        ],
+        bron: { naam: "CBS Kerncijfers wijken en buurten 2022", url: "https://opendata.cbs.nl/statline/#/CBS/nl/dataset/84799NED" },
+      },
+      ontwikkeling: {
+        titel: "Woningverbetering in Gelderland",
+        tekst: "Gelderland heeft veel woningen uit de jaren zestig en zeventig, die met relatief eenvoudige stappen goed te verbeteren zijn. De provincie en gemeenten ondersteunen eigenaren met advies en subsidies.",
+      },
+    },
+    faq: [
+      { question: "Welke gemeentelijke subsidies gelden in Heumen?", answer: "Gemeenten kunnen eigen subsidies of regelingen hebben voor het verduurzamen van een woning. Controleer de actuele mogelijkheden bij de gemeente Heumen zelf of via de Energiesubsidiewijzer van Milieu Centraal." },
+      { question: "Welke isolatie past bij mijn woning?", answer: "Dat hangt af van je woning. Tijdens de gratis energiescan aan huis bekijkt een adviseur van Gijs wat technisch bij je woning past." },
+      { question: "Is de energiescan aan huis gratis en vrijblijvend?", answer: "Ja. De energiescan is gratis en vrijblijvend, ter waarde van €349. Je bespreekt je woning en wensen met een adviseur." },
+      { question: "Moet ik eerst de digitale woningscan doen?", answer: "Nee. Je kunt direct contact opnemen. De digitale woningscan is een optionele voorbereiding, geen technische beoordeling." },
+    ],
+    verwant: [],
+  },
+  lingewaard: {
+    seo: {
+      title: "Woning isoleren in Lingewaard | Gijs",
+      description: "Wil je je woning isoleren in Lingewaard? Gijs geeft onafhankelijk advies over spouwmuurisolatie, dakisolatie en zonnepanelen. Bekijk de 19.872 woningen en welke subsidies gelden.",
+    },
+    kicker: "Gemeente Lingewaard",
+    h1: "Woning isoleren in Lingewaard",
+    intro: [
+      ["Woon je in Huissen, Bemmel, Gendt, Angeren of Doornenburg? Lingewaard is een Betuwse gemeente ten noorden van Arnhem met een diverse woningvoorraad: van historische panden in Huissen tot naoorlogse rijtjeswijken in Bemmel en nieuwe woongebieden langs de Waal."],
+      ["Gijs geeft onafhankelijk advies. Tijdens een gratis energiescan aan huis kijkt een adviseur wat er technisch bij jouw woning past, en welke stap het meeste oplevert."],
+    ],
+    kernen: [],
+    woningen: {
+      lead: "Het bouwjaar zegt veel over hoe een huis gebouwd is. Zo is de woningvoorraad van Lingewaard verdeeld.",
+      kerncijfers: [
+        { waarde: "19.872", label: "woningen" },
+        { waarde: "83%", label: "eengezinswoningen" },
+        { waarde: "78%", label: "gebouwd vóór 2000" },
+        { waarde: "72%", label: "koopwoningen" },
+      ],
+      bouwperiodes: [
+        { label: "Vóór 1975", percentage: 43, tekst: "Vaak gebouwd met weinig of geen isolatie. De spouw is regelmatig nog leeg; dak en vloer zijn vaak de eerste winst." },
+        { label: "1975 – 2000", percentage: 35, tekst: "Meestal al deels geïsoleerd, maar vaak dunner dan nu gebruikelijk. Eerst kijken wat er zit, dan bijisoleren." },
+        { label: "Na 2000", percentage: 22, tekst: "Vaak al redelijk tot goed geïsoleerd. De winst zit vaker in beter glas, zonnepanelen of de overstap naar een warmtepomp." },
+      ],
+      voetnoot: "Het bouwjaar is een eerste indicatie, geen conclusie: veel woningen zijn later al verbeterd. Gijs kijkt altijd naar jouw eigen huis.",
+      bron: { naam: "CBS Kerncijfers wijken en buurten 2022", url: "https://opendata.cbs.nl/statline/#/CBS/nl/dataset/84799NED" },
+    },
+    lokaal: {
+      titel: "Wijken in gemeente Lingewaard",
+      alineas: [
+        ["De gemeente Lingewaard omvat kernen als Huissen, Bemmel, Gendt, Angeren en Doornenburg. De naoorlogse rijtjeswoningen in Bemmel en Huissen zijn bij uitstek geschikt voor spouwmuurisolatie; de oudere panden in Huissen stellen soms hogere eisen aan de aanpak."],
+      ],
+      kernTekst: {},
+      wijken: {
+        titel: "Wijken in Lingewaard",
+        intro: "De kleur geeft aan in welke bouwperiode de meeste woningen in die wijk vallen.",
+        lijst: [
+          { naam: "Huissen", woningen: 8499, periode: "Overwegend vóór 2000", tijdvak: null, type: "vrijstaand" },
+          { naam: "Bemmel", woningen: 8306, periode: "Overwegend vóór 2000", tijdvak: 0, type: "vrijstaand" },
+          { naam: "Gendt", woningen: 3067, periode: "Overwegend vóór 2000", tijdvak: 0, type: "tussenwoning" },
+        ],
+        bron: { naam: "CBS Kerncijfers wijken en buurten 2022", url: "https://opendata.cbs.nl/statline/#/CBS/nl/dataset/84799NED" },
+      },
+      ontwikkeling: {
+        titel: "Woningverbetering in Gelderland",
+        tekst: "Gelderland heeft veel woningen uit de jaren zestig en zeventig, die met relatief eenvoudige stappen goed te verbeteren zijn. De provincie en gemeenten ondersteunen eigenaren met advies en subsidies.",
+      },
+    },
+    faq: [
+      { question: "Welke gemeentelijke subsidies gelden in Lingewaard?", answer: "Gemeenten kunnen eigen subsidies of regelingen hebben voor het verduurzamen van een woning. Controleer de actuele mogelijkheden bij de gemeente Lingewaard zelf of via de Energiesubsidiewijzer van Milieu Centraal." },
+      { question: "Welke isolatie past bij mijn woning?", answer: "Dat hangt af van je woning. Tijdens de gratis energiescan aan huis bekijkt een adviseur van Gijs wat technisch bij je woning past." },
+      { question: "Is de energiescan aan huis gratis en vrijblijvend?", answer: "Ja. De energiescan is gratis en vrijblijvend, ter waarde van €349. Je bespreekt je woning en wensen met een adviseur." },
+      { question: "Moet ik eerst de digitale woningscan doen?", answer: "Nee. Je kunt direct contact opnemen. De digitale woningscan is een optionele voorbereiding, geen technische beoordeling." },
+    ],
+    verwant: [],
+  },
+  lochem: {
+    seo: {
+      title: "Verduurzamen in Lochem | Gijs",
+      description: "Wil je je woning isoleren in Lochem? Gijs geeft onafhankelijk advies over spouwmuurisolatie, dakisolatie en zonnepanelen. Bekijk de 15.096 woningen en welke subsidies gelden.",
+    },
+    kicker: "Gemeente Lochem",
+    h1: "Verduurzamen in Lochem",
+    intro: [
+      ["Woon je in Lochem, Gorssel, Eefde, Laren of Almen? Lochem is een Achterhoekse gemeente met een historisch centrum en een afwisselend landschap van bossen, beken en kampenlandschappen. De woningvoorraad varieert sterk per kern."],
+      ["Gijs geeft onafhankelijk advies. Tijdens een gratis energiescan aan huis kijkt een adviseur wat er technisch bij jouw woning past, en welke stap het meeste oplevert."],
+    ],
+    kernen: [],
+    woningen: {
+      lead: "Het bouwjaar zegt veel over hoe een huis gebouwd is. Zo is de woningvoorraad van Lochem verdeeld.",
+      kerncijfers: [
+        { waarde: "15.096", label: "woningen" },
+        { waarde: "84%", label: "eengezinswoningen" },
+        { waarde: "83%", label: "gebouwd vóór 2000" },
+        { waarde: "71%", label: "koopwoningen" },
+      ],
+      bouwperiodes: [
+        { label: "Vóór 1975", percentage: 46, tekst: "Vaak gebouwd met weinig of geen isolatie. De spouw is regelmatig nog leeg; dak en vloer zijn vaak de eerste winst." },
+        { label: "1975 – 2000", percentage: 37, tekst: "Meestal al deels geïsoleerd, maar vaak dunner dan nu gebruikelijk. Eerst kijken wat er zit, dan bijisoleren." },
+        { label: "Na 2000", percentage: 17, tekst: "Vaak al redelijk tot goed geïsoleerd. De winst zit vaker in beter glas, zonnepanelen of de overstap naar een warmtepomp." },
+      ],
+      voetnoot: "Het bouwjaar is een eerste indicatie, geen conclusie: veel woningen zijn later al verbeterd. Gijs kijkt altijd naar jouw eigen huis.",
+      bron: { naam: "CBS Kerncijfers wijken en buurten 2022", url: "https://opendata.cbs.nl/statline/#/CBS/nl/dataset/84799NED" },
+    },
+    lokaal: {
+      titel: "Wijken in gemeente Lochem",
+      alineas: [
+        ["De gemeente Lochem omvat kernen als Lochem, Gorssel, Eefde, Laren, Almen en Barchem. In de historische kern van Lochem zijn soms monumentale beperkingen voor buitenisolatie; in de omliggende dorpen zijn spouwmuurisolatie en dakisolatie veelal goed toepasbaar."],
+      ],
+      kernTekst: {},
+      wijken: {
+        titel: "Wijken in Lochem",
+        intro: "De kleur geeft aan in welke bouwperiode de meeste woningen in die wijk vallen.",
+        lijst: [
+          { naam: "Lochem kern", woningen: 5752, periode: "Overwegend vóór 2000", tijdvak: 0, type: "tussenwoning" },
+          { naam: "Gorssel", woningen: 4868, periode: "Overwegend vóór 2000", tijdvak: 0, type: "vrijstaand" },
+          { naam: "Laren", woningen: 1822, periode: "Overwegend vóór 2000", tijdvak: 0, type: "vrijstaand" },
+          { naam: "Almen-Harfsen", woningen: 1422, periode: "Overwegend vóór 2000", tijdvak: 0, type: "vrijstaand" },
+          { naam: "Barchem", woningen: 744, periode: "Overwegend vóór 2000", tijdvak: 0, type: "vrijstaand" },
+          { naam: "Lochem buitengebied", woningen: 488, periode: "Overwegend vóór 2000", tijdvak: 0, type: "vrijstaand" },
+        ],
+        bron: { naam: "CBS Kerncijfers wijken en buurten 2022", url: "https://opendata.cbs.nl/statline/#/CBS/nl/dataset/84799NED" },
+      },
+      ontwikkeling: {
+        titel: "Woningverbetering in Gelderland",
+        tekst: "Gelderland heeft veel woningen uit de jaren zestig en zeventig, die met relatief eenvoudige stappen goed te verbeteren zijn. De provincie en gemeenten ondersteunen eigenaren met advies en subsidies.",
+      },
+    },
+    faq: [
+      { question: "Welke gemeentelijke subsidies gelden in Lochem?", answer: "Gemeenten kunnen eigen subsidies of regelingen hebben voor het verduurzamen van een woning. Controleer de actuele mogelijkheden bij de gemeente Lochem zelf of via de Energiesubsidiewijzer van Milieu Centraal." },
+      { question: "Welke isolatie past bij mijn woning?", answer: "Dat hangt af van je woning. Tijdens de gratis energiescan aan huis bekijkt een adviseur van Gijs wat technisch bij je woning past." },
+      { question: "Is de energiescan aan huis gratis en vrijblijvend?", answer: "Ja. De energiescan is gratis en vrijblijvend, ter waarde van €349. Je bespreekt je woning en wensen met een adviseur." },
+      { question: "Moet ik eerst de digitale woningscan doen?", answer: "Nee. Je kunt direct contact opnemen. De digitale woningscan is een optionele voorbereiding, geen technische beoordeling." },
+    ],
+    verwant: [],
+  },
+  maasdriel: {
+    seo: {
+      title: "Woning isoleren in Maasdriel | Gijs",
+      description: "Wil je je woning isoleren in Maasdriel? Gijs geeft onafhankelijk advies over spouwmuurisolatie, dakisolatie en zonnepanelen. Bekijk de 10.115 woningen en welke subsidies gelden.",
+    },
+    kicker: "Gemeente Maasdriel",
+    h1: "Woning isoleren in Maasdriel",
+    intro: [
+      ["Woon je in Kerkdriel, Hedel, Brakel of een andere kern van de Betuwse gemeente Maasdriel? Maasdriel ligt in de fruitstreek langs de Maas, met een woningvoorraad die voor een groot deel bestaat uit vrijstaande woningen en boerderijen, aangevuld met naoorlogse uitbreidingen in de dorpskernen."],
+      ["Gijs geeft onafhankelijk advies. Tijdens een gratis energiescan aan huis kijkt een adviseur wat er technisch bij jouw woning past, en welke stap het meeste oplevert."],
+    ],
+    kernen: [],
+    woningen: {
+      lead: "Het bouwjaar zegt veel over hoe een huis gebouwd is. Zo is de woningvoorraad van Maasdriel verdeeld.",
+      kerncijfers: [
+        { waarde: "10.115", label: "woningen" },
+        { waarde: "91%", label: "eengezinswoningen" },
+        { waarde: "83%", label: "gebouwd vóór 2000" },
+        { waarde: "71%", label: "koopwoningen" },
+      ],
+      bouwperiodes: [
+        { label: "Vóór 1975", percentage: 46, tekst: "Vaak gebouwd met weinig of geen isolatie. De spouw is regelmatig nog leeg; dak en vloer zijn vaak de eerste winst." },
+        { label: "1975 – 2000", percentage: 37, tekst: "Meestal al deels geïsoleerd, maar vaak dunner dan nu gebruikelijk. Eerst kijken wat er zit, dan bijisoleren." },
+        { label: "Na 2000", percentage: 17, tekst: "Vaak al redelijk tot goed geïsoleerd. De winst zit vaker in beter glas, zonnepanelen of de overstap naar een warmtepomp." },
+      ],
+      voetnoot: "Het bouwjaar is een eerste indicatie, geen conclusie: veel woningen zijn later al verbeterd. Gijs kijkt altijd naar jouw eigen huis.",
+      bron: { naam: "CBS Kerncijfers wijken en buurten 2022", url: "https://opendata.cbs.nl/statline/#/CBS/nl/dataset/84799NED" },
+    },
+    lokaal: {
+      titel: "Wijken in gemeente Maasdriel",
+      alineas: [
+        ["Maasdriel telt kernen als Kerkdriel, Hedel, Brakel, Alem, Well en Velddriel. De verspreide bebouwing in de fruitstreek maakt isolatie extra waardevol; vrijstaande woningen en boerderijen verliezen via dak en gevels relatief veel warmte."],
+      ],
+      kernTekst: {},
+      wijken: {
+        titel: "Wijken in Maasdriel",
+        intro: "De kleur geeft aan in welke bouwperiode de meeste woningen in die wijk vallen.",
+        lijst: [
+          { naam: "Kerkdriel", woningen: 4168, periode: "Overwegend vóór 2000", tijdvak: 0, type: "vrijstaand" },
+          { naam: "Hedel", woningen: 2060, periode: "Overwegend vóór 2000", tijdvak: 0, type: "vrijstaand" },
+          { naam: "Ammerzoden", woningen: 1895, periode: "Overwegend vóór 2000", tijdvak: 0, type: "vrijstaand" },
+          { naam: "Rossum", woningen: 1444, periode: "Overwegend vóór 2000", tijdvak: 0, type: "vrijstaand" },
+          { naam: "Heerewaarden", woningen: 548, periode: "Overwegend vóór 2000", tijdvak: 0, type: "vrijstaand" },
+        ],
+        bron: { naam: "CBS Kerncijfers wijken en buurten 2022", url: "https://opendata.cbs.nl/statline/#/CBS/nl/dataset/84799NED" },
+      },
+      ontwikkeling: {
+        titel: "Woningverbetering in Gelderland",
+        tekst: "Gelderland heeft veel woningen uit de jaren zestig en zeventig, die met relatief eenvoudige stappen goed te verbeteren zijn. De provincie en gemeenten ondersteunen eigenaren met advies en subsidies.",
+      },
+    },
+    faq: [
+      { question: "Welke gemeentelijke subsidies gelden in Maasdriel?", answer: "Gemeenten kunnen eigen subsidies of regelingen hebben voor het verduurzamen van een woning. Controleer de actuele mogelijkheden bij de gemeente Maasdriel zelf of via de Energiesubsidiewijzer van Milieu Centraal." },
+      { question: "Welke isolatie past bij mijn woning?", answer: "Dat hangt af van je woning. Tijdens de gratis energiescan aan huis bekijkt een adviseur van Gijs wat technisch bij je woning past." },
+      { question: "Is de energiescan aan huis gratis en vrijblijvend?", answer: "Ja. De energiescan is gratis en vrijblijvend, ter waarde van €349. Je bespreekt je woning en wensen met een adviseur." },
+      { question: "Moet ik eerst de digitale woningscan doen?", answer: "Nee. Je kunt direct contact opnemen. De digitale woningscan is een optionele voorbereiding, geen technische beoordeling." },
+    ],
+    verwant: [],
+  },
+  montferland: {
+    seo: {
+      title: "Woning verduurzamen in Montferland | Gijs",
+      description: "Wil je je woning isoleren in Montferland? Gijs geeft onafhankelijk advies over spouwmuurisolatie, dakisolatie en zonnepanelen. Bekijk de 15.917 woningen en welke subsidies gelden.",
+    },
+    kicker: "Gemeente Montferland",
+    h1: "Woning verduurzamen in Montferland",
+    intro: [
+      ["Woon je in Didam, 's-Heerenberg, Zeddam, Kilder of een andere kern? Montferland is een Achterhoekse gemeente met een gevarieerd landschap — van de stuwwallen bij 's-Heerenberg tot de polderdorpen richting Zevenaar — en een bijpassende diverse woningvoorraad."],
+      ["Gijs geeft onafhankelijk advies. Tijdens een gratis energiescan aan huis kijkt een adviseur wat er technisch bij jouw woning past, en welke stap het meeste oplevert."],
+    ],
+    kernen: [],
+    woningen: {
+      lead: "Het bouwjaar zegt veel over hoe een huis gebouwd is. Zo is de woningvoorraad van Montferland verdeeld.",
+      kerncijfers: [
+        { waarde: "15.917", label: "woningen" },
+        { waarde: "82%", label: "eengezinswoningen" },
+        { waarde: "83%", label: "gebouwd vóór 2000" },
+        { waarde: "66%", label: "koopwoningen" },
+      ],
+      bouwperiodes: [
+        { label: "Vóór 1975", percentage: 46, tekst: "Vaak gebouwd met weinig of geen isolatie. De spouw is regelmatig nog leeg; dak en vloer zijn vaak de eerste winst." },
+        { label: "1975 – 2000", percentage: 37, tekst: "Meestal al deels geïsoleerd, maar vaak dunner dan nu gebruikelijk. Eerst kijken wat er zit, dan bijisoleren." },
+        { label: "Na 2000", percentage: 17, tekst: "Vaak al redelijk tot goed geïsoleerd. De winst zit vaker in beter glas, zonnepanelen of de overstap naar een warmtepomp." },
+      ],
+      voetnoot: "Het bouwjaar is een eerste indicatie, geen conclusie: veel woningen zijn later al verbeterd. Gijs kijkt altijd naar jouw eigen huis.",
+      bron: { naam: "CBS Kerncijfers wijken en buurten 2022", url: "https://opendata.cbs.nl/statline/#/CBS/nl/dataset/84799NED" },
+    },
+    lokaal: {
+      titel: "Wijken in gemeente Montferland",
+      alineas: [
+        ["Montferland omvat kernen als Didam, 's-Heerenberg, Zeddam, Kilder, Stokkum en Beek. Didam is de grootste kern met veel naoorlogse woningen; rondom kasteel Bergh in 's-Heerenberg staan historische panden waarvoor soms specifieke isolatieoplossingen nodig zijn."],
+      ],
+      kernTekst: {},
+      wijken: {
+        titel: "Wijken in Montferland",
+        intro: "De kleur geeft aan in welke bouwperiode de meeste woningen in die wijk vallen.",
+        lijst: [
+          { naam: "Didam", woningen: 7442, periode: "Overwegend vóór 2000", tijdvak: 0, type: "tussenwoning" },
+          { naam: "'s-Heerenberg", woningen: 6734, periode: "Overwegend vóór 2000", tijdvak: 0, type: "tussenwoning" },
+          { naam: "Brakel", woningen: 1741, periode: "Overwegend vóór 2000", tijdvak: 0, type: "vrijstaand" },
+        ],
+        bron: { naam: "CBS Kerncijfers wijken en buurten 2022", url: "https://opendata.cbs.nl/statline/#/CBS/nl/dataset/84799NED" },
+      },
+      ontwikkeling: {
+        titel: "Woningverbetering in Gelderland",
+        tekst: "Gelderland heeft veel woningen uit de jaren zestig en zeventig, die met relatief eenvoudige stappen goed te verbeteren zijn. De provincie en gemeenten ondersteunen eigenaren met advies en subsidies.",
+      },
+    },
+    faq: [
+      { question: "Welke gemeentelijke subsidies gelden in Montferland?", answer: "Gemeenten kunnen eigen subsidies of regelingen hebben voor het verduurzamen van een woning. Controleer de actuele mogelijkheden bij de gemeente Montferland zelf of via de Energiesubsidiewijzer van Milieu Centraal." },
+      { question: "Welke isolatie past bij mijn woning?", answer: "Dat hangt af van je woning. Tijdens de gratis energiescan aan huis bekijkt een adviseur van Gijs wat technisch bij je woning past." },
+      { question: "Is de energiescan aan huis gratis en vrijblijvend?", answer: "Ja. De energiescan is gratis en vrijblijvend, ter waarde van €349. Je bespreekt je woning en wensen met een adviseur." },
+      { question: "Moet ik eerst de digitale woningscan doen?", answer: "Nee. Je kunt direct contact opnemen. De digitale woningscan is een optionele voorbereiding, geen technische beoordeling." },
+    ],
+    verwant: [],
+  },
+  "neder-betuwe": {
+    seo: {
+      title: "Isoleren in Neder-Betuwe | Gijs",
+      description: "Wil je je woning isoleren in Neder-Betuwe? Gijs geeft onafhankelijk advies over spouwmuurisolatie, dakisolatie en zonnepanelen. Bekijk de 8.867 woningen en welke subsidies gelden.",
+    },
+    kicker: "Gemeente Neder-Betuwe",
+    h1: "Isoleren in Neder-Betuwe",
+    intro: [
+      ["Woon je in Ochten, Kesteren, Opheusden of Dodewaard? De Betuwse gemeente Neder-Betuwe heeft een uitgesproken landelijk karakter in de fruitstreek langs de Rijn, met een woningvoorraad die voor een groot deel bestaat uit vrijstaande woningen en boerderijen."],
+      ["Gijs geeft onafhankelijk advies. Tijdens een gratis energiescan aan huis kijkt een adviseur wat er technisch bij jouw woning past, en welke stap het meeste oplevert."],
+    ],
+    kernen: [],
+    woningen: {
+      lead: "Het bouwjaar zegt veel over hoe een huis gebouwd is. Zo is de woningvoorraad van Neder-Betuwe verdeeld.",
+      kerncijfers: [
+        { waarde: "8.867", label: "woningen" },
+        { waarde: "91%", label: "eengezinswoningen" },
+        { waarde: "81%", label: "gebouwd vóór 2000" },
+        { waarde: "65%", label: "koopwoningen" },
+      ],
+      bouwperiodes: [
+        { label: "Vóór 1975", percentage: 45, tekst: "Vaak gebouwd met weinig of geen isolatie. De spouw is regelmatig nog leeg; dak en vloer zijn vaak de eerste winst." },
+        { label: "1975 – 2000", percentage: 36, tekst: "Meestal al deels geïsoleerd, maar vaak dunner dan nu gebruikelijk. Eerst kijken wat er zit, dan bijisoleren." },
+        { label: "Na 2000", percentage: 19, tekst: "Vaak al redelijk tot goed geïsoleerd. De winst zit vaker in beter glas, zonnepanelen of de overstap naar een warmtepomp." },
+      ],
+      voetnoot: "Het bouwjaar is een eerste indicatie, geen conclusie: veel woningen zijn later al verbeterd. Gijs kijkt altijd naar jouw eigen huis.",
+      bron: { naam: "CBS Kerncijfers wijken en buurten 2022", url: "https://opendata.cbs.nl/statline/#/CBS/nl/dataset/84799NED" },
+    },
+    lokaal: {
+      titel: "Wijken in gemeente Neder-Betuwe",
+      alineas: [
+        ["Neder-Betuwe omvat kernen als Ochten, Kesteren, Opheusden, Dodewaard en Echteld. De agrarische woningvoorraad — veel vrijstaande huizen en boerderijen — biedt grote mogelijkheden voor dakisolatie en gevelisolatie."],
+      ],
+      kernTekst: {},
+      wijken: {
+        titel: "Wijken in Neder-Betuwe",
+        intro: "De kleur geeft aan in welke bouwperiode de meeste woningen in die wijk vallen.",
+        lijst: [
+          { naam: "Kesteren", woningen: 4405, periode: "Overwegend vóór 2000", tijdvak: null, type: "tussenwoning" },
+          { naam: "Echteld", woningen: 2753, periode: "Overwegend vóór 2000", tijdvak: 0, type: "vrijstaand" },
+          { naam: "Dodewaard", woningen: 1709, periode: "Grotendeels vóór 2000", tijdvak: 0, type: "tussenwoning" },
+        ],
+        bron: { naam: "CBS Kerncijfers wijken en buurten 2022", url: "https://opendata.cbs.nl/statline/#/CBS/nl/dataset/84799NED" },
+      },
+      ontwikkeling: {
+        titel: "Woningverbetering in Gelderland",
+        tekst: "Gelderland heeft veel woningen uit de jaren zestig en zeventig, die met relatief eenvoudige stappen goed te verbeteren zijn. De provincie en gemeenten ondersteunen eigenaren met advies en subsidies.",
+      },
+    },
+    faq: [
+      { question: "Welke gemeentelijke subsidies gelden in Neder-Betuwe?", answer: "Gemeenten kunnen eigen subsidies of regelingen hebben voor het verduurzamen van een woning. Controleer de actuele mogelijkheden bij de gemeente Neder-Betuwe zelf of via de Energiesubsidiewijzer van Milieu Centraal." },
+      { question: "Welke isolatie past bij mijn woning?", answer: "Dat hangt af van je woning. Tijdens de gratis energiescan aan huis bekijkt een adviseur van Gijs wat technisch bij je woning past." },
+      { question: "Is de energiescan aan huis gratis en vrijblijvend?", answer: "Ja. De energiescan is gratis en vrijblijvend, ter waarde van €349. Je bespreekt je woning en wensen met een adviseur." },
+      { question: "Moet ik eerst de digitale woningscan doen?", answer: "Nee. Je kunt direct contact opnemen. De digitale woningscan is een optionele voorbereiding, geen technische beoordeling." },
+    ],
+    verwant: [],
+  },
+  nijkerk: {
+    seo: {
+      title: "Woning isoleren in Nijkerk | Gijs",
+      description: "Wil je je woning isoleren in Nijkerk? Gijs geeft onafhankelijk advies over spouwmuurisolatie, dakisolatie en zonnepanelen. Bekijk de 17.321 woningen en welke subsidies gelden.",
+    },
+    kicker: "Gemeente Nijkerk",
+    h1: "Woning isoleren in Nijkerk",
+    intro: [
+      ["Woon je in Nijkerk, Hoevelaken of Nijkerkerveen? Nijkerk is een groeigemeente aan de rand van de Veluwe en het Eemmeer, met een woningbestand dat de afgelopen decennia sterk is uitgebreid door nieuwbouw, naast de historische kern van de stad."],
+      ["Gijs geeft onafhankelijk advies. Tijdens een gratis energiescan aan huis kijkt een adviseur wat er technisch bij jouw woning past, en welke stap het meeste oplevert."],
+    ],
+    kernen: [],
+    woningen: {
+      lead: "Het bouwjaar zegt veel over hoe een huis gebouwd is. Zo is de woningvoorraad van Nijkerk verdeeld.",
+      kerncijfers: [
+        { waarde: "17.321", label: "woningen" },
+        { waarde: "83%", label: "eengezinswoningen" },
+        { waarde: "76%", label: "gebouwd vóór 2000" },
+        { waarde: "70%", label: "koopwoningen" },
+      ],
+      bouwperiodes: [
+        { label: "Vóór 1975", percentage: 42, tekst: "Vaak gebouwd met weinig of geen isolatie. De spouw is regelmatig nog leeg; dak en vloer zijn vaak de eerste winst." },
+        { label: "1975 – 2000", percentage: 34, tekst: "Meestal al deels geïsoleerd, maar vaak dunner dan nu gebruikelijk. Eerst kijken wat er zit, dan bijisoleren." },
+        { label: "Na 2000", percentage: 24, tekst: "Vaak al redelijk tot goed geïsoleerd. De winst zit vaker in beter glas, zonnepanelen of de overstap naar een warmtepomp." },
+      ],
+      voetnoot: "Het bouwjaar is een eerste indicatie, geen conclusie: veel woningen zijn later al verbeterd. Gijs kijkt altijd naar jouw eigen huis.",
+      bron: { naam: "CBS Kerncijfers wijken en buurten 2022", url: "https://opendata.cbs.nl/statline/#/CBS/nl/dataset/84799NED" },
+    },
+    lokaal: {
+      titel: "Wijken in gemeente Nijkerk",
+      alineas: [
+        ["De gemeente Nijkerk omvat Nijkerk, Hoevelaken en Nijkerkerveen. Hoevelaken heeft veel naoorlogse rijtjeswoningen die goed te verduurzamen zijn via spouwmuurisolatie; in de nieuwere wijken van Nijkerk en Corlaer speelt de omschakeling naar warmtepompen en zonnepanelen een grotere rol."],
+      ],
+      kernTekst: {},
+      wijken: {
+        titel: "Wijken in Nijkerk",
+        intro: "De kleur geeft aan in welke bouwperiode de meeste woningen in die wijk vallen.",
+        lijst: [
+          { naam: "Nijkerk-stad", woningen: 11262, periode: "Overwegend vóór 2000", tijdvak: null, type: "vrijstaand" },
+          { naam: "Hoevelaken", woningen: 3899, periode: "Overwegend vóór 2000", tijdvak: 0, type: "vrijstaand" },
+          { naam: "Nijkerkerveen en Holkerveen", woningen: 1459, periode: "Overwegend vóór 2000", tijdvak: 0, type: "vrijstaand" },
+          { naam: "Appel, Driedorp, Kruishaar, Prinsenkamp", woningen: 569, periode: "Overwegend vóór 2000", tijdvak: 0, type: "vrijstaand" },
+          { naam: "Arkemheen, Achterhoek, De Veenhuis", woningen: 132, periode: "Overwegend vóór 2000", tijdvak: 0, type: "vrijstaand" },
+        ],
+        bron: { naam: "CBS Kerncijfers wijken en buurten 2022", url: "https://opendata.cbs.nl/statline/#/CBS/nl/dataset/84799NED" },
+      },
+      ontwikkeling: {
+        titel: "Woningverbetering in Gelderland",
+        tekst: "Gelderland heeft veel woningen uit de jaren zestig en zeventig, die met relatief eenvoudige stappen goed te verbeteren zijn. De provincie en gemeenten ondersteunen eigenaren met advies en subsidies.",
+      },
+    },
+    faq: [
+      { question: "Welke gemeentelijke subsidies gelden in Nijkerk?", answer: "Gemeenten kunnen eigen subsidies of regelingen hebben voor het verduurzamen van een woning. Controleer de actuele mogelijkheden bij de gemeente Nijkerk zelf of via de Energiesubsidiewijzer van Milieu Centraal." },
+      { question: "Welke isolatie past bij mijn woning?", answer: "Dat hangt af van je woning. Tijdens de gratis energiescan aan huis bekijkt een adviseur van Gijs wat technisch bij je woning past." },
+      { question: "Is de energiescan aan huis gratis en vrijblijvend?", answer: "Ja. De energiescan is gratis en vrijblijvend, ter waarde van €349. Je bespreekt je woning en wensen met een adviseur." },
+      { question: "Moet ik eerst de digitale woningscan doen?", answer: "Nee. Je kunt direct contact opnemen. De digitale woningscan is een optionele voorbereiding, geen technische beoordeling." },
+    ],
+    verwant: [],
+  },
+  nijmegen: {
+    seo: {
+      title: "Je woning verduurzamen in Nijmegen | Gijs",
+      description: "Wil je je woning isoleren in Nijmegen? Gijs geeft onafhankelijk advies over spouwmuurisolatie, dakisolatie en zonnepanelen. Bekijk de 81.717 woningen en welke subsidies gelden.",
+    },
+    kicker: "Gemeente Nijmegen",
+    h1: "Je woning verduurzamen in Nijmegen",
+    intro: [
+      ["Woon je in Nijmegen, in Dukenburg, Heseveld, Bottendaal, het Waalfront of een van de andere wijken? Nijmegen is de oudste stad van Nederland, met een zeer diverse woningvoorraad: van historische panden in de binnenstad tot wederopbouwwijken uit de jaren vijftig en de snelgroeiende nieuwbouwwijk Waalsprong."],
+      ["Gijs geeft onafhankelijk advies. Tijdens een gratis energiescan aan huis kijkt een adviseur wat er technisch bij jouw woning past, en welke stap het meeste oplevert."],
+    ],
+    kernen: [],
+    woningen: {
+      lead: "Het bouwjaar zegt veel over hoe een huis gebouwd is. Zo is de woningvoorraad van Nijmegen verdeeld.",
+      kerncijfers: [
+        { waarde: "81.717", label: "woningen" },
+        { waarde: "54%", label: "eengezinswoningen" },
+        { waarde: "81%", label: "gebouwd vóór 2000" },
+        { waarde: "43%", label: "koopwoningen" },
+      ],
+      bouwperiodes: [
+        { label: "Vóór 1975", percentage: 45, tekst: "Vaak gebouwd met weinig of geen isolatie. De spouw is regelmatig nog leeg; dak en vloer zijn vaak de eerste winst." },
+        { label: "1975 – 2000", percentage: 36, tekst: "Meestal al deels geïsoleerd, maar vaak dunner dan nu gebruikelijk. Eerst kijken wat er zit, dan bijisoleren." },
+        { label: "Na 2000", percentage: 19, tekst: "Vaak al redelijk tot goed geïsoleerd. De winst zit vaker in beter glas, zonnepanelen of de overstap naar een warmtepomp." },
+      ],
+      voetnoot: "Het bouwjaar is een eerste indicatie, geen conclusie: veel woningen zijn later al verbeterd. Gijs kijkt altijd naar jouw eigen huis.",
+      bron: { naam: "CBS Kerncijfers wijken en buurten 2022", url: "https://opendata.cbs.nl/statline/#/CBS/nl/dataset/84799NED" },
+    },
+    lokaal: {
+      titel: "Wijken in gemeente Nijmegen",
+      alineas: [
+        ["Nijmegen telt tientallen wijken, van de historische Benedenstad en Bottendaal tot naoorlogse woonwijken als Heseveld en Dukenburg, en de recente nieuwbouwwijk Waalsprong op de noordoever van de Waal. Oudere rijtjeswoningen in naoorlogse wijken zijn bij uitstek geschikt voor spouwmuurisolatie."],
+      ],
+      kernTekst: {},
+      wijken: {
+        titel: "Wijken in Nijmegen",
+        intro: "De kleur geeft aan in welke bouwperiode de meeste woningen in die wijk vallen.",
+        lijst: [
+          { naam: "Nijmegen-Oost", woningen: 15072, periode: "Overwegend vóór 2000", tijdvak: 0, type: "appartement" },
+          { naam: "Nijmegen-Zuid", woningen: 11662, periode: "Overwegend vóór 2000", tijdvak: 0, type: "twee-onder-een-kap" },
+          { naam: "Dukenburg", woningen: 10780, periode: "Grotendeels vóór 2000", tijdvak: 0, type: "twee-onder-een-kap" },
+          { naam: "Nijmegen-Midden", woningen: 9016, periode: "Overwegend vóór 2000", tijdvak: 0, type: "twee-onder-een-kap" },
+          { naam: "Nijmegen-Nieuw-West", woningen: 8260, periode: "Grotendeels vóór 2000", tijdvak: 0, type: "gemengd" },
+          { naam: "Nijmegen-Oud-West", woningen: 7552, periode: "Gemengd, oud en nieuw", tijdvak: null, type: "twee-onder-een-kap" },
+          { naam: "Nijmegen-Noord", woningen: 7356, periode: "Overwegend na 2000", tijdvak: 2, type: "vrijstaand" },
+          { naam: "Lindenholt", woningen: 6392, periode: "Grotendeels vóór 2000", tijdvak: 0, type: "tussenwoning" },
+          { naam: "Nijmegen-Centrum", woningen: 5627, periode: "Overwegend vóór 2000", tijdvak: 0, type: "appartement" },
+        ],
+        bron: { naam: "CBS Kerncijfers wijken en buurten 2022", url: "https://opendata.cbs.nl/statline/#/CBS/nl/dataset/84799NED" },
+      },
+      ontwikkeling: {
+        titel: "Woningverbetering in Gelderland",
+        tekst: "Gelderland heeft veel woningen uit de jaren zestig en zeventig, die met relatief eenvoudige stappen goed te verbeteren zijn. De provincie en gemeenten ondersteunen eigenaren met advies en subsidies.",
+      },
+    },
+    faq: [
+      { question: "Welke gemeentelijke subsidies gelden in Nijmegen?", answer: "Gemeenten kunnen eigen subsidies of regelingen hebben voor het verduurzamen van een woning. Controleer de actuele mogelijkheden bij de gemeente Nijmegen zelf of via de Energiesubsidiewijzer van Milieu Centraal." },
+      { question: "Welke isolatie past bij mijn woning?", answer: "Dat hangt af van je woning. Tijdens de gratis energiescan aan huis bekijkt een adviseur van Gijs wat technisch bij je woning past." },
+      { question: "Is de energiescan aan huis gratis en vrijblijvend?", answer: "Ja. De energiescan is gratis en vrijblijvend, ter waarde van €349. Je bespreekt je woning en wensen met een adviseur." },
+      { question: "Moet ik eerst de digitale woningscan doen?", answer: "Nee. Je kunt direct contact opnemen. De digitale woningscan is een optionele voorbereiding, geen technische beoordeling." },
+    ],
+    verwant: [],
+  },
+  nunspeet: {
+    seo: {
+      title: "Woning isoleren in Nunspeet | Gijs",
+      description: "Wil je je woning isoleren in Nunspeet? Gijs geeft onafhankelijk advies over spouwmuurisolatie, dakisolatie en zonnepanelen. Bekijk de 10.957 woningen en welke subsidies gelden.",
+    },
+    kicker: "Gemeente Nunspeet",
+    h1: "Woning isoleren in Nunspeet",
+    intro: [
+      ["Woon je in Nunspeet, Hulshorst, Vierhouten of Elspeet? Nunspeet is een bosrijke Veluwse gemeente met een woningvoorraad die varieert van vrijstaande huizen in de bossen tot naoorlogse rijtjeswoningen in de kern van Nunspeet."],
+      ["Gijs geeft onafhankelijk advies. Tijdens een gratis energiescan aan huis kijkt een adviseur wat er technisch bij jouw woning past, en welke stap het meeste oplevert."],
+    ],
+    kernen: [],
+    woningen: {
+      lead: "Het bouwjaar zegt veel over hoe een huis gebouwd is. Zo is de woningvoorraad van Nunspeet verdeeld.",
+      kerncijfers: [
+        { waarde: "10.957", label: "woningen" },
+        { waarde: "83%", label: "eengezinswoningen" },
+        { waarde: "81%", label: "gebouwd vóór 2000" },
+        { waarde: "65%", label: "koopwoningen" },
+      ],
+      bouwperiodes: [
+        { label: "Vóór 1975", percentage: 45, tekst: "Vaak gebouwd met weinig of geen isolatie. De spouw is regelmatig nog leeg; dak en vloer zijn vaak de eerste winst." },
+        { label: "1975 – 2000", percentage: 36, tekst: "Meestal al deels geïsoleerd, maar vaak dunner dan nu gebruikelijk. Eerst kijken wat er zit, dan bijisoleren." },
+        { label: "Na 2000", percentage: 19, tekst: "Vaak al redelijk tot goed geïsoleerd. De winst zit vaker in beter glas, zonnepanelen of de overstap naar een warmtepomp." },
+      ],
+      voetnoot: "Het bouwjaar is een eerste indicatie, geen conclusie: veel woningen zijn later al verbeterd. Gijs kijkt altijd naar jouw eigen huis.",
+      bron: { naam: "CBS Kerncijfers wijken en buurten 2022", url: "https://opendata.cbs.nl/statline/#/CBS/nl/dataset/84799NED" },
+    },
+    lokaal: {
+      titel: "Wijken in gemeente Nunspeet",
+      alineas: [
+        ["De gemeente Nunspeet omvat de kernen Nunspeet, Hulshorst, Vierhouten en Elspeet, verspreid over uitgestrekte bos- en heidegebieden. De combinatie van bosrijke omgeving en relatief veel vrijstaande woningen maakt dakisolatie en kierdichting bijzonder effectief."],
+      ],
+      kernTekst: {},
+      wijken: {
+        titel: "Wijken in Nunspeet",
+        intro: "De kleur geeft aan in welke bouwperiode de meeste woningen in die wijk vallen.",
+        lijst: [
+          { naam: "Nunspeet", woningen: 9069, periode: "Overwegend vóór 2000", tijdvak: 0, type: "tussenwoning" },
+          { naam: "Elspeet-Vierhouten", woningen: 1888, periode: "Overwegend vóór 2000", tijdvak: null, type: "vrijstaand" },
+        ],
+        bron: { naam: "CBS Kerncijfers wijken en buurten 2022", url: "https://opendata.cbs.nl/statline/#/CBS/nl/dataset/84799NED" },
+      },
+      ontwikkeling: {
+        titel: "Woningverbetering in Gelderland",
+        tekst: "Gelderland heeft veel woningen uit de jaren zestig en zeventig, die met relatief eenvoudige stappen goed te verbeteren zijn. De provincie en gemeenten ondersteunen eigenaren met advies en subsidies.",
+      },
+    },
+    faq: [
+      { question: "Welke gemeentelijke subsidies gelden in Nunspeet?", answer: "Gemeenten kunnen eigen subsidies of regelingen hebben voor het verduurzamen van een woning. Controleer de actuele mogelijkheden bij de gemeente Nunspeet zelf of via de Energiesubsidiewijzer van Milieu Centraal." },
+      { question: "Welke isolatie past bij mijn woning?", answer: "Dat hangt af van je woning. Tijdens de gratis energiescan aan huis bekijkt een adviseur van Gijs wat technisch bij je woning past." },
+      { question: "Is de energiescan aan huis gratis en vrijblijvend?", answer: "Ja. De energiescan is gratis en vrijblijvend, ter waarde van €349. Je bespreekt je woning en wensen met een adviseur." },
+      { question: "Moet ik eerst de digitale woningscan doen?", answer: "Nee. Je kunt direct contact opnemen. De digitale woningscan is een optionele voorbereiding, geen technische beoordeling." },
+    ],
+    verwant: [],
+  },
+  oldebroek: {
+    seo: {
+      title: "Woning verduurzamen in Oldebroek | Gijs",
+      description: "Wil je je woning isoleren in Oldebroek? Gijs geeft onafhankelijk advies over spouwmuurisolatie, dakisolatie en zonnepanelen. Bekijk de 9.318 woningen en welke subsidies gelden.",
+    },
+    kicker: "Gemeente Oldebroek",
+    h1: "Woning verduurzamen in Oldebroek",
+    intro: [
+      ["Woon je in Wezep, Oldebroek, Hattemerbroek of 't Loo Oldebroek? De gemeente Oldebroek heeft een landelijk karakter aan de rand van de Veluwe, met een woningvoorraad die voor een groot deel bestaat uit vrijstaande woningen en twee-onder-één-kapwoningen in dorpse bebouwing."],
+      ["Gijs geeft onafhankelijk advies. Tijdens een gratis energiescan aan huis kijkt een adviseur wat er technisch bij jouw woning past, en welke stap het meeste oplevert."],
+    ],
+    kernen: [],
+    woningen: {
+      lead: "Het bouwjaar zegt veel over hoe een huis gebouwd is. Zo is de woningvoorraad van Oldebroek verdeeld.",
+      kerncijfers: [
+        { waarde: "9.318", label: "woningen" },
+        { waarde: "85%", label: "eengezinswoningen" },
+        { waarde: "80%", label: "gebouwd vóór 2000" },
+        { waarde: "68%", label: "koopwoningen" },
+      ],
+      bouwperiodes: [
+        { label: "Vóór 1975", percentage: 44, tekst: "Vaak gebouwd met weinig of geen isolatie. De spouw is regelmatig nog leeg; dak en vloer zijn vaak de eerste winst." },
+        { label: "1975 – 2000", percentage: 36, tekst: "Meestal al deels geïsoleerd, maar vaak dunner dan nu gebruikelijk. Eerst kijken wat er zit, dan bijisoleren." },
+        { label: "Na 2000", percentage: 20, tekst: "Vaak al redelijk tot goed geïsoleerd. De winst zit vaker in beter glas, zonnepanelen of de overstap naar een warmtepomp." },
+      ],
+      voetnoot: "Het bouwjaar is een eerste indicatie, geen conclusie: veel woningen zijn later al verbeterd. Gijs kijkt altijd naar jouw eigen huis.",
+      bron: { naam: "CBS Kerncijfers wijken en buurten 2022", url: "https://opendata.cbs.nl/statline/#/CBS/nl/dataset/84799NED" },
+    },
+    lokaal: {
+      titel: "Wijken in gemeente Oldebroek",
+      alineas: [
+        ["Oldebroek omvat kernen als Wezep, Oldebroek, Hattemerbroek en 't Loo Oldebroek. Wezep is de grootste kern met een mix van oudere en nieuwere woningen; in het buitengebied staan veel vrijstaande huizen die goed te isoleren zijn via dak en gevels."],
+      ],
+      kernTekst: {},
+      wijken: {
+        titel: "Wijken in Oldebroek",
+        intro: "De kleur geeft aan in welke bouwperiode de meeste woningen in die wijk vallen.",
+        lijst: [
+          { naam: "Wezep", woningen: 5557, periode: "Overwegend vóór 2000", tijdvak: 0, type: "vrijstaand" },
+          { naam: "Oldebroek", woningen: 2953, periode: "Overwegend vóór 2000", tijdvak: null, type: "vrijstaand" },
+          { naam: "Oosterwolde", woningen: 808, periode: "Overwegend vóór 2000", tijdvak: 0, type: "vrijstaand" },
+        ],
+        bron: { naam: "CBS Kerncijfers wijken en buurten 2022", url: "https://opendata.cbs.nl/statline/#/CBS/nl/dataset/84799NED" },
+      },
+      ontwikkeling: {
+        titel: "Woningverbetering in Gelderland",
+        tekst: "Gelderland heeft veel woningen uit de jaren zestig en zeventig, die met relatief eenvoudige stappen goed te verbeteren zijn. De provincie en gemeenten ondersteunen eigenaren met advies en subsidies.",
+      },
+    },
+    faq: [
+      { question: "Welke gemeentelijke subsidies gelden in Oldebroek?", answer: "Gemeenten kunnen eigen subsidies of regelingen hebben voor het verduurzamen van een woning. Controleer de actuele mogelijkheden bij de gemeente Oldebroek zelf of via de Energiesubsidiewijzer van Milieu Centraal." },
+      { question: "Welke isolatie past bij mijn woning?", answer: "Dat hangt af van je woning. Tijdens de gratis energiescan aan huis bekijkt een adviseur van Gijs wat technisch bij je woning past." },
+      { question: "Is de energiescan aan huis gratis en vrijblijvend?", answer: "Ja. De energiescan is gratis en vrijblijvend, ter waarde van €349. Je bespreekt je woning en wensen met een adviseur." },
+      { question: "Moet ik eerst de digitale woningscan doen?", answer: "Nee. Je kunt direct contact opnemen. De digitale woningscan is een optionele voorbereiding, geen technische beoordeling." },
+    ],
+    verwant: [],
+  },
+  "oost-gelre": {
+    seo: {
+      title: "Isoleren in Oost Gelre | Gijs",
+      description: "Wil je je woning isoleren in Oost Gelre? Gijs geeft onafhankelijk advies over spouwmuurisolatie, dakisolatie en zonnepanelen. Bekijk de 12.910 woningen en welke subsidies gelden.",
+    },
+    kicker: "Gemeente Oost Gelre",
+    h1: "Isoleren in Oost Gelre",
+    intro: [
+      ["Woon je in Groenlo, Lichtenvoorde, Zieuwent of Vragender? Oost Gelre is een Achterhoekse gemeente met een afwisselende woningvoorraad: van historische panden in de beschermde stad Groenlo tot vrijstaande boerderijen en woningen in het agrarische buitengebied."],
+      ["Gijs geeft onafhankelijk advies. Tijdens een gratis energiescan aan huis kijkt een adviseur wat er technisch bij jouw woning past, en welke stap het meeste oplevert."],
+    ],
+    kernen: [],
+    woningen: {
+      lead: "Het bouwjaar zegt veel over hoe een huis gebouwd is. Zo is de woningvoorraad van Oost Gelre verdeeld.",
+      kerncijfers: [
+        { waarde: "12.910", label: "woningen" },
+        { waarde: "84%", label: "eengezinswoningen" },
+        { waarde: "87%", label: "gebouwd vóór 2000" },
+        { waarde: "74%", label: "koopwoningen" },
+      ],
+      bouwperiodes: [
+        { label: "Vóór 1975", percentage: 48, tekst: "Vaak gebouwd met weinig of geen isolatie. De spouw is regelmatig nog leeg; dak en vloer zijn vaak de eerste winst." },
+        { label: "1975 – 2000", percentage: 39, tekst: "Meestal al deels geïsoleerd, maar vaak dunner dan nu gebruikelijk. Eerst kijken wat er zit, dan bijisoleren." },
+        { label: "Na 2000", percentage: 13, tekst: "Vaak al redelijk tot goed geïsoleerd. De winst zit vaker in beter glas, zonnepanelen of de overstap naar een warmtepomp." },
+      ],
+      voetnoot: "Het bouwjaar is een eerste indicatie, geen conclusie: veel woningen zijn later al verbeterd. Gijs kijkt altijd naar jouw eigen huis.",
+      bron: { naam: "CBS Kerncijfers wijken en buurten 2022", url: "https://opendata.cbs.nl/statline/#/CBS/nl/dataset/84799NED" },
+    },
+    lokaal: {
+      titel: "Wijken in gemeente Oost Gelre",
+      alineas: [
+        ["Oost Gelre omvat kernen als Groenlo, Lichtenvoorde, Zieuwent, Vragender en Harreveld. Groenlo heeft een historisch stadsgezicht met een grachtenring; in de omliggende dorpen en het agrarische buitengebied zijn spouwmuurisolatie en dakisolatie veelal goed toepasbaar."],
+      ],
+      kernTekst: {},
+      wijken: {
+        titel: "Wijken in Oost Gelre",
+        intro: "De kleur geeft aan in welke bouwperiode de meeste woningen in die wijk vallen.",
+        lijst: [
+          { naam: "Lichtenvoorde", woningen: 5716, periode: "Overwegend vóór 2000", tijdvak: 0, type: "vrijstaand" },
+          { naam: "Groenlo", woningen: 4561, periode: "Overwegend vóór 2000", tijdvak: 0, type: "vrijstaand" },
+          { naam: "Zieuwewnt", woningen: 816, periode: "Grotendeels vóór 2000", tijdvak: 0, type: "vrijstaand" },
+          { naam: "Lievelde", woningen: 542, periode: "Grotendeels vóór 2000", tijdvak: 0, type: "vrijstaand" },
+          { naam: "Harreveld", woningen: 515, periode: "Overwegend vóór 2000", tijdvak: 0, type: "vrijstaand" },
+          { naam: "Vragender", woningen: 408, periode: "Overwegend vóór 2000", tijdvak: 0, type: "vrijstaand" },
+          { naam: "Marienvelde", woningen: 352, periode: "Overwegend vóór 2000", tijdvak: 0, type: "vrijstaand" },
+        ],
+        bron: { naam: "CBS Kerncijfers wijken en buurten 2022", url: "https://opendata.cbs.nl/statline/#/CBS/nl/dataset/84799NED" },
+      },
+      ontwikkeling: {
+        titel: "Woningverbetering in Gelderland",
+        tekst: "Gelderland heeft veel woningen uit de jaren zestig en zeventig, die met relatief eenvoudige stappen goed te verbeteren zijn. De provincie en gemeenten ondersteunen eigenaren met advies en subsidies.",
+      },
+    },
+    faq: [
+      { question: "Welke gemeentelijke subsidies gelden in Oost Gelre?", answer: "Gemeenten kunnen eigen subsidies of regelingen hebben voor het verduurzamen van een woning. Controleer de actuele mogelijkheden bij de gemeente Oost Gelre zelf of via de Energiesubsidiewijzer van Milieu Centraal." },
+      { question: "Welke isolatie past bij mijn woning?", answer: "Dat hangt af van je woning. Tijdens de gratis energiescan aan huis bekijkt een adviseur van Gijs wat technisch bij je woning past." },
+      { question: "Is de energiescan aan huis gratis en vrijblijvend?", answer: "Ja. De energiescan is gratis en vrijblijvend, ter waarde van €349. Je bespreekt je woning en wensen met een adviseur." },
+      { question: "Moet ik eerst de digitale woningscan doen?", answer: "Nee. Je kunt direct contact opnemen. De digitale woningscan is een optionele voorbereiding, geen technische beoordeling." },
+    ],
+    verwant: [],
+  },
+  "oude-ijsselstreek": {
+    seo: {
+      title: "Woning isoleren in Oude IJsselstreek | Gijs",
+      description: "Wil je je woning isoleren in Oude IJsselstreek? Gijs geeft onafhankelijk advies over spouwmuurisolatie, dakisolatie en zonnepanelen. Bekijk de 17.401 woningen en welke subsidies gelden.",
+    },
+    kicker: "Gemeente Oude IJsselstreek",
+    h1: "Woning isoleren in Oude IJsselstreek",
+    intro: [
+      ["Woon je in Terborg, Ulft, Gendringen, Varsseveld of Silvolde? De Achterhoekse gemeente Oude IJsselstreek strekt zich uit langs de Oude IJssel, met een woningvoorraad die varieert van historische arbeiderswoningen tot vrijstaande huizen en boerderijen in het buitengebied."],
+      ["Gijs geeft onafhankelijk advies. Tijdens een gratis energiescan aan huis kijkt een adviseur wat er technisch bij jouw woning past, en welke stap het meeste oplevert."],
+    ],
+    kernen: [],
+    woningen: {
+      lead: "Het bouwjaar zegt veel over hoe een huis gebouwd is. Zo is de woningvoorraad van Oude IJsselstreek verdeeld.",
+      kerncijfers: [
+        { waarde: "17.401", label: "woningen" },
+        { waarde: "85%", label: "eengezinswoningen" },
+        { waarde: "89%", label: "gebouwd vóór 2000" },
+        { waarde: "66%", label: "koopwoningen" },
+      ],
+      bouwperiodes: [
+        { label: "Vóór 1975", percentage: 49, tekst: "Vaak gebouwd met weinig of geen isolatie. De spouw is regelmatig nog leeg; dak en vloer zijn vaak de eerste winst." },
+        { label: "1975 – 2000", percentage: 40, tekst: "Meestal al deels geïsoleerd, maar vaak dunner dan nu gebruikelijk. Eerst kijken wat er zit, dan bijisoleren." },
+        { label: "Na 2000", percentage: 11, tekst: "Vaak al redelijk tot goed geïsoleerd. De winst zit vaker in beter glas, zonnepanelen of de overstap naar een warmtepomp." },
+      ],
+      voetnoot: "Het bouwjaar is een eerste indicatie, geen conclusie: veel woningen zijn later al verbeterd. Gijs kijkt altijd naar jouw eigen huis.",
+      bron: { naam: "CBS Kerncijfers wijken en buurten 2022", url: "https://opendata.cbs.nl/statline/#/CBS/nl/dataset/84799NED" },
+    },
+    lokaal: {
+      titel: "Wijken in gemeente Oude IJsselstreek",
+      alineas: [
+        ["Oude IJsselstreek omvat kernen als Terborg, Ulft, Gendringen, Varsseveld en Silvolde. De aanwezigheid van veel oudere woningen — een groot deel gebouwd vóór 1975 — biedt grote mogelijkheden voor spouwmuurisolatie en dakisolatie."],
+      ],
+      kernTekst: {},
+      wijken: {
+        titel: "Wijken in Oude IJsselstreek",
+        intro: "De kleur geeft aan in welke bouwperiode de meeste woningen in die wijk vallen.",
+        lijst: [
+          { naam: "Ulft-Etten", woningen: 5784, periode: "Overwegend vóór 2000", tijdvak: 0, type: "tussenwoning" },
+          { naam: "Silvolde-Terborg", woningen: 4679, periode: "Overwegend vóór 2000", tijdvak: 0, type: "tussenwoning" },
+          { naam: "Varsseveld", woningen: 3960, periode: "Grotendeels vóór 2000", tijdvak: 0, type: "vrijstaand" },
+          { naam: "Overig Gendringen", woningen: 2978, periode: "Overwegend vóór 2000", tijdvak: 0, type: "vrijstaand" },
+        ],
+        bron: { naam: "CBS Kerncijfers wijken en buurten 2022", url: "https://opendata.cbs.nl/statline/#/CBS/nl/dataset/84799NED" },
+      },
+      ontwikkeling: {
+        titel: "Woningverbetering in Gelderland",
+        tekst: "Gelderland heeft veel woningen uit de jaren zestig en zeventig, die met relatief eenvoudige stappen goed te verbeteren zijn. De provincie en gemeenten ondersteunen eigenaren met advies en subsidies.",
+      },
+    },
+    faq: [
+      { question: "Welke gemeentelijke subsidies gelden in Oude IJsselstreek?", answer: "Gemeenten kunnen eigen subsidies of regelingen hebben voor het verduurzamen van een woning. Controleer de actuele mogelijkheden bij de gemeente Oude IJsselstreek zelf of via de Energiesubsidiewijzer van Milieu Centraal." },
+      { question: "Welke isolatie past bij mijn woning?", answer: "Dat hangt af van je woning. Tijdens de gratis energiescan aan huis bekijkt een adviseur van Gijs wat technisch bij je woning past." },
+      { question: "Is de energiescan aan huis gratis en vrijblijvend?", answer: "Ja. De energiescan is gratis en vrijblijvend, ter waarde van €349. Je bespreekt je woning en wensen met een adviseur." },
+      { question: "Moet ik eerst de digitale woningscan doen?", answer: "Nee. Je kunt direct contact opnemen. De digitale woningscan is een optionele voorbereiding, geen technische beoordeling." },
+    ],
+    verwant: [],
+  },
+  overbetuwe: {
+    seo: {
+      title: "Isoleren in Overbetuwe | Gijs",
+      description: "Wil je je woning isoleren in Overbetuwe? Gijs geeft onafhankelijk advies over spouwmuurisolatie, dakisolatie en zonnepanelen. Bekijk de 19.947 woningen en welke subsidies gelden.",
+    },
+    kicker: "Gemeente Overbetuwe",
+    h1: "Isoleren in Overbetuwe",
+    intro: [
+      ["Woon je in Elst, Driel, Herveld, Heteren of een van de andere kernen van de Betuwse gemeente Overbetuwe? Overbetuwe is een groeigemeente tussen Arnhem en Nijmegen, met een diverse woningvoorraad van naoorlogse rijtjeswoningen in Elst tot vrijstaande huizen in het buitengebied."],
+      ["Gijs geeft onafhankelijk advies. Tijdens een gratis energiescan aan huis kijkt een adviseur wat er technisch bij jouw woning past, en welke stap het meeste oplevert."],
+    ],
+    kernen: [],
+    woningen: {
+      lead: "Het bouwjaar zegt veel over hoe een huis gebouwd is. Zo is de woningvoorraad van Overbetuwe verdeeld.",
+      kerncijfers: [
+        { waarde: "19.947", label: "woningen" },
+        { waarde: "87%", label: "eengezinswoningen" },
+        { waarde: "74%", label: "gebouwd vóór 2000" },
+        { waarde: "68%", label: "koopwoningen" },
+      ],
+      bouwperiodes: [
+        { label: "Vóór 1975", percentage: 41, tekst: "Vaak gebouwd met weinig of geen isolatie. De spouw is regelmatig nog leeg; dak en vloer zijn vaak de eerste winst." },
+        { label: "1975 – 2000", percentage: 33, tekst: "Meestal al deels geïsoleerd, maar vaak dunner dan nu gebruikelijk. Eerst kijken wat er zit, dan bijisoleren." },
+        { label: "Na 2000", percentage: 26, tekst: "Vaak al redelijk tot goed geïsoleerd. De winst zit vaker in beter glas, zonnepanelen of de overstap naar een warmtepomp." },
+      ],
+      voetnoot: "Het bouwjaar is een eerste indicatie, geen conclusie: veel woningen zijn later al verbeterd. Gijs kijkt altijd naar jouw eigen huis.",
+      bron: { naam: "CBS Kerncijfers wijken en buurten 2022", url: "https://opendata.cbs.nl/statline/#/CBS/nl/dataset/84799NED" },
+    },
+    lokaal: {
+      titel: "Wijken in gemeente Overbetuwe",
+      alineas: [
+        ["De gemeente Overbetuwe omvat tientallen kernen, van de grote woonkern Elst tot kleinere dorpen als Driel, Valburg, Andelst en Oosterhout. Elst heeft veel naoorlogse rijtjeswoningen die bij uitstek geschikt zijn voor spouwmuurisolatie."],
+      ],
+      kernTekst: {},
+      wijken: {
+        titel: "Wijken in Overbetuwe",
+        intro: "De kleur geeft aan in welke bouwperiode de meeste woningen in die wijk vallen.",
+        lijst: [
+          { naam: "Elst-Zuid", woningen: 3092, periode: "Grotendeels vóór 2000", tijdvak: 0, type: "vrijstaand" },
+          { naam: "Elst-Noord", woningen: 2769, periode: "Grotendeels vóór 2000", tijdvak: 0, type: "tussenwoning" },
+          { naam: "Westeraam", woningen: 2413, periode: "Overwegend na 2000", tijdvak: 2, type: "vrijstaand" },
+          { naam: "Kern Zetten", woningen: 2002, periode: "Overwegend vóór 2000", tijdvak: 0, type: "vrijstaand" },
+          { naam: "Kern Heteren", woningen: 1938, periode: "Overwegend vóór 2000", tijdvak: 0, type: "vrijstaand" },
+          { naam: "Driel", woningen: 1729, periode: "Overwegend vóór 2000", tijdvak: null, type: "vrijstaand" },
+          { naam: "Herveld", woningen: 1305, periode: "Overwegend vóór 2000", tijdvak: null, type: "vrijstaand" },
+          { naam: "Oosterhout", woningen: 1122, periode: "Overwegend vóór 2000", tijdvak: 0, type: "vrijstaand" },
+          { naam: "Valburg", woningen: 800, periode: "Overwegend vóór 2000", tijdvak: 0, type: "vrijstaand" },
+          { naam: "Andelst", woningen: 675, periode: "Overwegend vóór 2000", tijdvak: 0, type: "vrijstaand" },
+          { naam: "Elst-Oost", woningen: 661, periode: "Grotendeels vóór 2000", tijdvak: 0, type: "vrijstaand" },
+          { naam: "Randwijk", woningen: 538, periode: "Grotendeels vóór 2000", tijdvak: 0, type: "vrijstaand" },
+        ],
+        bron: { naam: "CBS Kerncijfers wijken en buurten 2022", url: "https://opendata.cbs.nl/statline/#/CBS/nl/dataset/84799NED" },
+      },
+      ontwikkeling: {
+        titel: "Woningverbetering in Gelderland",
+        tekst: "Gelderland heeft veel woningen uit de jaren zestig en zeventig, die met relatief eenvoudige stappen goed te verbeteren zijn. De provincie en gemeenten ondersteunen eigenaren met advies en subsidies.",
+      },
+    },
+    faq: [
+      { question: "Welke gemeentelijke subsidies gelden in Overbetuwe?", answer: "Gemeenten kunnen eigen subsidies of regelingen hebben voor het verduurzamen van een woning. Controleer de actuele mogelijkheden bij de gemeente Overbetuwe zelf of via de Energiesubsidiewijzer van Milieu Centraal." },
+      { question: "Welke isolatie past bij mijn woning?", answer: "Dat hangt af van je woning. Tijdens de gratis energiescan aan huis bekijkt een adviseur van Gijs wat technisch bij je woning past." },
+      { question: "Is de energiescan aan huis gratis en vrijblijvend?", answer: "Ja. De energiescan is gratis en vrijblijvend, ter waarde van €349. Je bespreekt je woning en wensen met een adviseur." },
+      { question: "Moet ik eerst de digitale woningscan doen?", answer: "Nee. Je kunt direct contact opnemen. De digitale woningscan is een optionele voorbereiding, geen technische beoordeling." },
+    ],
+    verwant: [],
+  },
+  putten: {
+    seo: {
+      title: "Woning verduurzamen in Putten | Gijs",
+      description: "Wil je je woning isoleren in Putten? Gijs geeft onafhankelijk advies over spouwmuurisolatie, dakisolatie en zonnepanelen. Bekijk de 9.727 woningen en welke subsidies gelden.",
+    },
+    kicker: "Gemeente Putten",
+    h1: "Woning verduurzamen in Putten",
+    intro: [
+      ["Woon je in Putten? De Veluwse gemeente heeft een compacte kern met naoorlogse uitbreidingen en een bosrijke omgeving. De woningvoorraad bestaat voor een groot deel uit vrijstaande woningen en twee-onder-één-kapwoningen uit de jaren vijftig tot tachtig."],
+      ["Gijs geeft onafhankelijk advies. Tijdens een gratis energiescan aan huis kijkt een adviseur wat er technisch bij jouw woning past, en welke stap het meeste oplevert."],
+    ],
+    kernen: [],
+    woningen: {
+      lead: "Het bouwjaar zegt veel over hoe een huis gebouwd is. Zo is de woningvoorraad van Putten verdeeld.",
+      kerncijfers: [
+        { waarde: "9.727", label: "woningen" },
+        { waarde: "86%", label: "eengezinswoningen" },
+        { waarde: "77%", label: "gebouwd vóór 2000" },
+        { waarde: "67%", label: "koopwoningen" },
+      ],
+      bouwperiodes: [
+        { label: "Vóór 1975", percentage: 42, tekst: "Vaak gebouwd met weinig of geen isolatie. De spouw is regelmatig nog leeg; dak en vloer zijn vaak de eerste winst." },
+        { label: "1975 – 2000", percentage: 35, tekst: "Meestal al deels geïsoleerd, maar vaak dunner dan nu gebruikelijk. Eerst kijken wat er zit, dan bijisoleren." },
+        { label: "Na 2000", percentage: 23, tekst: "Vaak al redelijk tot goed geïsoleerd. De winst zit vaker in beter glas, zonnepanelen of de overstap naar een warmtepomp." },
+      ],
+      voetnoot: "Het bouwjaar is een eerste indicatie, geen conclusie: veel woningen zijn later al verbeterd. Gijs kijkt altijd naar jouw eigen huis.",
+      bron: { naam: "CBS Kerncijfers wijken en buurten 2022", url: "https://opendata.cbs.nl/statline/#/CBS/nl/dataset/84799NED" },
+    },
+    lokaal: {
+      titel: "Wijken in gemeente Putten",
+      alineas: [
+        ["Putten is een compacte gemeente die vrijwel samenvalt met de kern Putten. De combinatie van oudere vrijstaande woningen en de bosrijke Veluwse ligging maakt dakisolatie en kierdichting extra waardevol voor het terugdringen van warmteverlies en energiekosten."],
+      ],
+      kernTekst: {},
+      wijken: {
+        titel: "Wijken in Putten",
+        intro: "De kleur geeft aan in welke bouwperiode de meeste woningen in die wijk vallen.",
+        lijst: [
+          { naam: "Putten", woningen: 8989, periode: "Overwegend vóór 2000", tijdvak: 0, type: "vrijstaand" },
+          { naam: "Bosgebied en Krachtighuizen", woningen: 738, periode: "Overwegend vóór 2000", tijdvak: 0, type: "vrijstaand" },
+        ],
+        bron: { naam: "CBS Kerncijfers wijken en buurten 2022", url: "https://opendata.cbs.nl/statline/#/CBS/nl/dataset/84799NED" },
+      },
+      ontwikkeling: {
+        titel: "Woningverbetering in Gelderland",
+        tekst: "Gelderland heeft veel woningen uit de jaren zestig en zeventig, die met relatief eenvoudige stappen goed te verbeteren zijn. De provincie en gemeenten ondersteunen eigenaren met advies en subsidies.",
+      },
+    },
+    faq: [
+      { question: "Welke gemeentelijke subsidies gelden in Putten?", answer: "Gemeenten kunnen eigen subsidies of regelingen hebben voor het verduurzamen van een woning. Controleer de actuele mogelijkheden bij de gemeente Putten zelf of via de Energiesubsidiewijzer van Milieu Centraal." },
+      { question: "Welke isolatie past bij mijn woning?", answer: "Dat hangt af van je woning. Tijdens de gratis energiescan aan huis bekijkt een adviseur van Gijs wat technisch bij je woning past." },
+      { question: "Is de energiescan aan huis gratis en vrijblijvend?", answer: "Ja. De energiescan is gratis en vrijblijvend, ter waarde van €349. Je bespreekt je woning en wensen met een adviseur." },
+      { question: "Moet ik eerst de digitale woningscan doen?", answer: "Nee. Je kunt direct contact opnemen. De digitale woningscan is een optionele voorbereiding, geen technische beoordeling." },
+    ],
+    verwant: [],
+  },
+  renkum: {
+    seo: {
+      title: "Woning isoleren in Renkum | Gijs",
+      description: "Wil je je woning isoleren in Renkum? Gijs geeft onafhankelijk advies over spouwmuurisolatie, dakisolatie en zonnepanelen. Bekijk de 14.985 woningen en welke subsidies gelden.",
+    },
+    kicker: "Gemeente Renkum",
+    h1: "Woning isoleren in Renkum",
+    intro: [
+      ["Woon je in Renkum, Oosterbeek, Doorwerth of Heveadorp? De gemeente Renkum ligt direct ten westen van Arnhem, met een gevarieerde woningvoorraad: van historische villa's en bungalows in de bossen bij Oosterbeek tot naoorlogse rijtjeswoningen in Renkum en Wolfheze."],
+      ["Gijs geeft onafhankelijk advies. Tijdens een gratis energiescan aan huis kijkt een adviseur wat er technisch bij jouw woning past, en welke stap het meeste oplevert."],
+    ],
+    kernen: [],
+    woningen: {
+      lead: "Het bouwjaar zegt veel over hoe een huis gebouwd is. Zo is de woningvoorraad van Renkum verdeeld.",
+      kerncijfers: [
+        { waarde: "14.985", label: "woningen" },
+        { waarde: "69%", label: "eengezinswoningen" },
+        { waarde: "90%", label: "gebouwd vóór 2000" },
+        { waarde: "63%", label: "koopwoningen" },
+      ],
+      bouwperiodes: [
+        { label: "Vóór 1975", percentage: 50, tekst: "Vaak gebouwd met weinig of geen isolatie. De spouw is regelmatig nog leeg; dak en vloer zijn vaak de eerste winst." },
+        { label: "1975 – 2000", percentage: 40, tekst: "Meestal al deels geïsoleerd, maar vaak dunner dan nu gebruikelijk. Eerst kijken wat er zit, dan bijisoleren." },
+        { label: "Na 2000", percentage: 10, tekst: "Vaak al redelijk tot goed geïsoleerd. De winst zit vaker in beter glas, zonnepanelen of de overstap naar een warmtepomp." },
+      ],
+      voetnoot: "Het bouwjaar is een eerste indicatie, geen conclusie: veel woningen zijn later al verbeterd. Gijs kijkt altijd naar jouw eigen huis.",
+      bron: { naam: "CBS Kerncijfers wijken en buurten 2022", url: "https://opendata.cbs.nl/statline/#/CBS/nl/dataset/84799NED" },
+    },
+    lokaal: {
+      titel: "Wijken in gemeente Renkum",
+      alineas: [
+        ["Renkum omvat kernen als Oosterbeek, Renkum, Doorwerth, Heveadorp en Wolfheze. In de bosrijke omgeving van de Veluwezoom staan relatief veel vrijstaande woningen; spouwmuurisolatie en dakisolatie zijn hier de meest effectieve eerste stap."],
+      ],
+      kernTekst: {},
+      wijken: {
+        titel: "Wijken in Renkum",
+        intro: "De kleur geeft aan in welke bouwperiode de meeste woningen in die wijk vallen.",
+        lijst: [
+          { naam: "Renkum Zuid", woningen: 2576, periode: "Overwegend vóór 2000", tijdvak: 0, type: "tussenwoning" },
+          { naam: "Oosterbeek Noordoost", woningen: 2468, periode: "Overwegend vóór 2000", tijdvak: 0, type: "vrijstaand" },
+          { naam: "Oosterbeek Zuidoost", woningen: 2463, periode: "Grotendeels vóór 2000", tijdvak: 0, type: "twee-onder-een-kap" },
+          { naam: "Bebouwde kom Doorwerth", woningen: 2406, periode: "Overwegend vóór 2000", tijdvak: 0, type: "appartement" },
+          { naam: "Heelsum ten westen van de rijksweg", woningen: 1701, periode: "Grotendeels vóór 2000", tijdvak: 0, type: "twee-onder-een-kap" },
+          { naam: "Renkum Noord", woningen: 1425, periode: "Grotendeels vóór 2000", tijdvak: 0, type: "tussenwoning" },
+          { naam: "Wolfheze ten noorden van het spoor", woningen: 453, periode: "Overwegend vóór 2000", tijdvak: 0, type: "twee-onder-een-kap" },
+          { naam: "Oosterbeek West", woningen: 453, periode: "Overwegend vóór 2000", tijdvak: 0, type: "appartement" },
+          { naam: "Wolfheze ten zuiden van het spoor", woningen: 334, periode: "Grotendeels vóór 2000", tijdvak: 0, type: "vrijstaand" },
+          { naam: "Buitengebied Doorwerth", woningen: 324, periode: "Overwegend vóór 2000", tijdvak: 0, type: "vrijstaand" },
+          { naam: "Heveadorp", woningen: 324, periode: "Grotendeels vóór 2000", tijdvak: 0, type: "vrijstaand" },
+        ],
+        bron: { naam: "CBS Kerncijfers wijken en buurten 2022", url: "https://opendata.cbs.nl/statline/#/CBS/nl/dataset/84799NED" },
+      },
+      ontwikkeling: {
+        titel: "Woningverbetering in Gelderland",
+        tekst: "Gelderland heeft veel woningen uit de jaren zestig en zeventig, die met relatief eenvoudige stappen goed te verbeteren zijn. De provincie en gemeenten ondersteunen eigenaren met advies en subsidies.",
+      },
+    },
+    faq: [
+      { question: "Welke gemeentelijke subsidies gelden in Renkum?", answer: "Gemeenten kunnen eigen subsidies of regelingen hebben voor het verduurzamen van een woning. Controleer de actuele mogelijkheden bij de gemeente Renkum zelf of via de Energiesubsidiewijzer van Milieu Centraal." },
+      { question: "Welke isolatie past bij mijn woning?", answer: "Dat hangt af van je woning. Tijdens de gratis energiescan aan huis bekijkt een adviseur van Gijs wat technisch bij je woning past." },
+      { question: "Is de energiescan aan huis gratis en vrijblijvend?", answer: "Ja. De energiescan is gratis en vrijblijvend, ter waarde van €349. Je bespreekt je woning en wensen met een adviseur." },
+      { question: "Moet ik eerst de digitale woningscan doen?", answer: "Nee. Je kunt direct contact opnemen. De digitale woningscan is een optionele voorbereiding, geen technische beoordeling." },
+    ],
+    verwant: [],
+  },
+  rheden: {
+    seo: {
+      title: "Verduurzamen in Rheden | Gijs",
+      description: "Wil je je woning isoleren in Rheden? Gijs geeft onafhankelijk advies over spouwmuurisolatie, dakisolatie en zonnepanelen. Bekijk de 21.212 woningen en welke subsidies gelden.",
+    },
+    kicker: "Gemeente Rheden",
+    h1: "Verduurzamen in Rheden",
+    intro: [
+      ["Woon je in Dieren, Velp, De Steeg, Laag-Soeren of Rheden? De gemeente Rheden heeft een diverse woningvoorraad: van vrijstaande villa's in de bosrijke buitengebieden bij De Steeg tot naoorlogse arbeiderswoningen in Dieren en Velp."],
+      ["Gijs geeft onafhankelijk advies. Tijdens een gratis energiescan aan huis kijkt een adviseur wat er technisch bij jouw woning past, en welke stap het meeste oplevert."],
+    ],
+    kernen: [],
+    woningen: {
+      lead: "Het bouwjaar zegt veel over hoe een huis gebouwd is. Zo is de woningvoorraad van Rheden verdeeld.",
+      kerncijfers: [
+        { waarde: "21.212", label: "woningen" },
+        { waarde: "74%", label: "eengezinswoningen" },
+        { waarde: "92%", label: "gebouwd vóór 2000" },
+        { waarde: "55%", label: "koopwoningen" },
+      ],
+      bouwperiodes: [
+        { label: "Vóór 1975", percentage: 51, tekst: "Vaak gebouwd met weinig of geen isolatie. De spouw is regelmatig nog leeg; dak en vloer zijn vaak de eerste winst." },
+        { label: "1975 – 2000", percentage: 41, tekst: "Meestal al deels geïsoleerd, maar vaak dunner dan nu gebruikelijk. Eerst kijken wat er zit, dan bijisoleren." },
+        { label: "Na 2000", percentage: 8, tekst: "Vaak al redelijk tot goed geïsoleerd. De winst zit vaker in beter glas, zonnepanelen of de overstap naar een warmtepomp." },
+      ],
+      voetnoot: "Het bouwjaar is een eerste indicatie, geen conclusie: veel woningen zijn later al verbeterd. Gijs kijkt altijd naar jouw eigen huis.",
+      bron: { naam: "CBS Kerncijfers wijken en buurten 2022", url: "https://opendata.cbs.nl/statline/#/CBS/nl/dataset/84799NED" },
+    },
+    lokaal: {
+      titel: "Wijken in gemeente Rheden",
+      alineas: [
+        ["Rheden omvat kernen als Dieren, Velp, De Steeg, Laag-Soeren en Rheden, gelegen in het Veluwezoom-gebied. De industriële geschiedenis van Dieren heeft geleid tot een flink aandeel oudere arbeiderswoningen die goed te verduurzamen zijn via spouwmuurisolatie en dakisolatie."],
+      ],
+      kernTekst: {},
+      wijken: {
+        titel: "Wijken in Rheden",
+        intro: "De kleur geeft aan in welke bouwperiode de meeste woningen in die wijk vallen.",
+        lijst: [
+          { naam: "Velp", woningen: 9024, periode: "Overwegend vóór 2000", tijdvak: 0, type: "twee-onder-een-kap" },
+          { naam: "Dieren", woningen: 7966, periode: "Grotendeels vóór 2000", tijdvak: 0, type: "tussenwoning" },
+          { naam: "Rheden", woningen: 4222, periode: "Grotendeels vóór 2000", tijdvak: 0, type: "tussenwoning" },
+        ],
+        bron: { naam: "CBS Kerncijfers wijken en buurten 2022", url: "https://opendata.cbs.nl/statline/#/CBS/nl/dataset/84799NED" },
+      },
+      ontwikkeling: {
+        titel: "Woningverbetering in Gelderland",
+        tekst: "Gelderland heeft veel woningen uit de jaren zestig en zeventig, die met relatief eenvoudige stappen goed te verbeteren zijn. De provincie en gemeenten ondersteunen eigenaren met advies en subsidies.",
+      },
+    },
+    faq: [
+      { question: "Welke gemeentelijke subsidies gelden in Rheden?", answer: "Gemeenten kunnen eigen subsidies of regelingen hebben voor het verduurzamen van een woning. Controleer de actuele mogelijkheden bij de gemeente Rheden zelf of via de Energiesubsidiewijzer van Milieu Centraal." },
+      { question: "Welke isolatie past bij mijn woning?", answer: "Dat hangt af van je woning. Tijdens de gratis energiescan aan huis bekijkt een adviseur van Gijs wat technisch bij je woning past." },
+      { question: "Is de energiescan aan huis gratis en vrijblijvend?", answer: "Ja. De energiescan is gratis en vrijblijvend, ter waarde van €349. Je bespreekt je woning en wensen met een adviseur." },
+      { question: "Moet ik eerst de digitale woningscan doen?", answer: "Nee. Je kunt direct contact opnemen. De digitale woningscan is een optionele voorbereiding, geen technische beoordeling." },
+    ],
+    verwant: [],
+  },
+  rozendaal: {
+    seo: {
+      title: "Woning isoleren in Rozendaal | Gijs",
+      description: "Wil je je woning isoleren in Rozendaal? Gijs geeft onafhankelijk advies over spouwmuurisolatie, dakisolatie en zonnepanelen. Bekijk de 688 woningen en welke subsidies gelden.",
+    },
+    kicker: "Gemeente Rozendaal",
+    h1: "Woning isoleren in Rozendaal",
+    intro: [
+      ["Woon je in Rozendaal? Rozendaal is de kleinste gemeente van Nederland naar inwoneraantal. De woningvoorraad bestaat hoofdzakelijk uit vrijstaande villa's en herenhuizen in een uniek landgoederenlandschap, met kasteel Rosendael als historisch middelpunt."],
+      ["Gijs geeft onafhankelijk advies. Tijdens een gratis energiescan aan huis kijkt een adviseur wat er technisch bij jouw woning past, en welke stap het meeste oplevert."],
+    ],
+    kernen: [],
+    woningen: {
+      lead: "Het bouwjaar zegt veel over hoe een huis gebouwd is. Zo is de woningvoorraad van Rozendaal verdeeld.",
+      kerncijfers: [
+        { waarde: "688", label: "woningen" },
+        { waarde: "98%", label: "eengezinswoningen" },
+        { waarde: "89%", label: "gebouwd vóór 2000" },
+        { waarde: "88%", label: "koopwoningen" },
+      ],
+      bouwperiodes: [
+        { label: "Vóór 1975", percentage: 49, tekst: "Vaak gebouwd met weinig of geen isolatie. De spouw is regelmatig nog leeg; dak en vloer zijn vaak de eerste winst." },
+        { label: "1975 – 2000", percentage: 40, tekst: "Meestal al deels geïsoleerd, maar vaak dunner dan nu gebruikelijk. Eerst kijken wat er zit, dan bijisoleren." },
+        { label: "Na 2000", percentage: 11, tekst: "Vaak al redelijk tot goed geïsoleerd. De winst zit vaker in beter glas, zonnepanelen of de overstap naar een warmtepomp." },
+      ],
+      voetnoot: "Het bouwjaar is een eerste indicatie, geen conclusie: veel woningen zijn later al verbeterd. Gijs kijkt altijd naar jouw eigen huis.",
+      bron: { naam: "CBS Kerncijfers wijken en buurten 2022", url: "https://opendata.cbs.nl/statline/#/CBS/nl/dataset/84799NED" },
+    },
+    lokaal: {
+      titel: "Wijken in gemeente Rozendaal",
+      alineas: [
+        ["Rozendaal is een zeer compacte gemeente die samenvalt met de kern Rozendaal, gelegen in het landgoederengebied ten noorden van Arnhem. De hoofdzakelijk vrijstaande woningvoorraad en de bosrijke omgeving maken dakisolatie en kierdichting hier bijzonder effectief."],
+      ],
+      kernTekst: {},
+      wijken: {
+        titel: "Wijken in Rozendaal",
+        intro: "De kleur geeft aan in welke bouwperiode de meeste woningen in die wijk vallen.",
+        lijst: [
+          { naam: "Wijk 00", woningen: 688, periode: "Overwegend vóór 2000", tijdvak: 0, type: "vrijstaand" },
+        ],
+        bron: { naam: "CBS Kerncijfers wijken en buurten 2022", url: "https://opendata.cbs.nl/statline/#/CBS/nl/dataset/84799NED" },
+      },
+      ontwikkeling: {
+        titel: "Woningverbetering in Gelderland",
+        tekst: "Gelderland heeft veel woningen uit de jaren zestig en zeventig, die met relatief eenvoudige stappen goed te verbeteren zijn. De provincie en gemeenten ondersteunen eigenaren met advies en subsidies.",
+      },
+    },
+    faq: [
+      { question: "Welke gemeentelijke subsidies gelden in Rozendaal?", answer: "Gemeenten kunnen eigen subsidies of regelingen hebben voor het verduurzamen van een woning. Controleer de actuele mogelijkheden bij de gemeente Rozendaal zelf of via de Energiesubsidiewijzer van Milieu Centraal." },
+      { question: "Welke isolatie past bij mijn woning?", answer: "Dat hangt af van je woning. Tijdens de gratis energiescan aan huis bekijkt een adviseur van Gijs wat technisch bij je woning past." },
+      { question: "Is de energiescan aan huis gratis en vrijblijvend?", answer: "Ja. De energiescan is gratis en vrijblijvend, ter waarde van €349. Je bespreekt je woning en wensen met een adviseur." },
+      { question: "Moet ik eerst de digitale woningscan doen?", answer: "Nee. Je kunt direct contact opnemen. De digitale woningscan is een optionele voorbereiding, geen technische beoordeling." },
+    ],
+    verwant: [],
+  },
+  scherpenzeel: {
+    seo: {
+      title: "Woning verduurzamen in Scherpenzeel | Gijs",
+      description: "Wil je je woning isoleren in Scherpenzeel? Gijs geeft onafhankelijk advies over spouwmuurisolatie, dakisolatie en zonnepanelen. Bekijk de 4.002 woningen en welke subsidies gelden.",
+    },
+    kicker: "Gemeente Scherpenzeel",
+    h1: "Woning verduurzamen in Scherpenzeel",
+    intro: [
+      ["Woon je in Scherpenzeel? De kleine gemeente in de Gelderse Vallei heeft een compacte woningvoorraad die voor een groot deel bestaat uit naoorlogse rijtjeswoningen en twee-onder-één-kapwoningen, gebouwd in de jaren zeventig en tachtig."],
+      ["Gijs geeft onafhankelijk advies. Tijdens een gratis energiescan aan huis kijkt een adviseur wat er technisch bij jouw woning past, en welke stap het meeste oplevert."],
+    ],
+    kernen: [],
+    woningen: {
+      lead: "Het bouwjaar zegt veel over hoe een huis gebouwd is. Zo is de woningvoorraad van Scherpenzeel verdeeld.",
+      kerncijfers: [
+        { waarde: "4.002", label: "woningen" },
+        { waarde: "84%", label: "eengezinswoningen" },
+        { waarde: "79%", label: "gebouwd vóór 2000" },
+        { waarde: "72%", label: "koopwoningen" },
+      ],
+      bouwperiodes: [
+        { label: "Vóór 1975", percentage: 43, tekst: "Vaak gebouwd met weinig of geen isolatie. De spouw is regelmatig nog leeg; dak en vloer zijn vaak de eerste winst." },
+        { label: "1975 – 2000", percentage: 36, tekst: "Meestal al deels geïsoleerd, maar vaak dunner dan nu gebruikelijk. Eerst kijken wat er zit, dan bijisoleren." },
+        { label: "Na 2000", percentage: 21, tekst: "Vaak al redelijk tot goed geïsoleerd. De winst zit vaker in beter glas, zonnepanelen of de overstap naar een warmtepomp." },
+      ],
+      voetnoot: "Het bouwjaar is een eerste indicatie, geen conclusie: veel woningen zijn later al verbeterd. Gijs kijkt altijd naar jouw eigen huis.",
+      bron: { naam: "CBS Kerncijfers wijken en buurten 2022", url: "https://opendata.cbs.nl/statline/#/CBS/nl/dataset/84799NED" },
+    },
+    lokaal: {
+      titel: "Wijken in gemeente Scherpenzeel",
+      alineas: [
+        ["Scherpenzeel is een compacte gemeente die vrijwel samenvalt met de kern Scherpenzeel, gelegen tussen de Veluwe en de Utrechtse Heuvelrug. De relatief homogene naoorlogse woningvoorraad maakt spouwmuurisolatie hier één van de meest voor de hand liggende maatregelen."],
+      ],
+      kernTekst: {},
+      wijken: {
+        titel: "Wijken in Scherpenzeel",
+        intro: "De kleur geeft aan in welke bouwperiode de meeste woningen in die wijk vallen.",
+        lijst: [
+          { naam: "Wijk 00", woningen: 4002, periode: "Overwegend vóór 2000", tijdvak: 0, type: "vrijstaand" },
+        ],
+        bron: { naam: "CBS Kerncijfers wijken en buurten 2022", url: "https://opendata.cbs.nl/statline/#/CBS/nl/dataset/84799NED" },
+      },
+      ontwikkeling: {
+        titel: "Woningverbetering in Gelderland",
+        tekst: "Gelderland heeft veel woningen uit de jaren zestig en zeventig, die met relatief eenvoudige stappen goed te verbeteren zijn. De provincie en gemeenten ondersteunen eigenaren met advies en subsidies.",
+      },
+    },
+    faq: [
+      { question: "Welke gemeentelijke subsidies gelden in Scherpenzeel?", answer: "Gemeenten kunnen eigen subsidies of regelingen hebben voor het verduurzamen van een woning. Controleer de actuele mogelijkheden bij de gemeente Scherpenzeel zelf of via de Energiesubsidiewijzer van Milieu Centraal." },
+      { question: "Welke isolatie past bij mijn woning?", answer: "Dat hangt af van je woning. Tijdens de gratis energiescan aan huis bekijkt een adviseur van Gijs wat technisch bij je woning past." },
+      { question: "Is de energiescan aan huis gratis en vrijblijvend?", answer: "Ja. De energiescan is gratis en vrijblijvend, ter waarde van €349. Je bespreekt je woning en wensen met een adviseur." },
+      { question: "Moet ik eerst de digitale woningscan doen?", answer: "Nee. Je kunt direct contact opnemen. De digitale woningscan is een optionele voorbereiding, geen technische beoordeling." },
+    ],
+    verwant: [],
+  },
+  tiel: {
+    seo: {
+      title: "Isoleren en verduurzamen in Tiel | Gijs",
+      description: "Wil je je woning isoleren in Tiel? Gijs geeft onafhankelijk advies over spouwmuurisolatie, dakisolatie en zonnepanelen. Bekijk de 18.080 woningen en welke subsidies gelden.",
+    },
+    kicker: "Gemeente Tiel",
+    h1: "Isoleren en verduurzamen in Tiel",
+    intro: [
+      ["Woon je in Tiel, Drumpt, Zennewijnen of Wadenoijen? Tiel is het regionale centrum van de Betuwe, met een gevarieerde woningvoorraad: van historische panden in de binnenstad tot uitgebreide naoorlogse woonwijken als de Buurt en Medel."],
+      ["Gijs geeft onafhankelijk advies. Tijdens een gratis energiescan aan huis kijkt een adviseur wat er technisch bij jouw woning past, en welke stap het meeste oplevert."],
+    ],
+    kernen: [],
+    woningen: {
+      lead: "Het bouwjaar zegt veel over hoe een huis gebouwd is. Zo is de woningvoorraad van Tiel verdeeld.",
+      kerncijfers: [
+        { waarde: "18.080", label: "woningen" },
+        { waarde: "74%", label: "eengezinswoningen" },
+        { waarde: "86%", label: "gebouwd vóór 2000" },
+        { waarde: "57%", label: "koopwoningen" },
+      ],
+      bouwperiodes: [
+        { label: "Vóór 1975", percentage: 47, tekst: "Vaak gebouwd met weinig of geen isolatie. De spouw is regelmatig nog leeg; dak en vloer zijn vaak de eerste winst." },
+        { label: "1975 – 2000", percentage: 39, tekst: "Meestal al deels geïsoleerd, maar vaak dunner dan nu gebruikelijk. Eerst kijken wat er zit, dan bijisoleren." },
+        { label: "Na 2000", percentage: 14, tekst: "Vaak al redelijk tot goed geïsoleerd. De winst zit vaker in beter glas, zonnepanelen of de overstap naar een warmtepomp." },
+      ],
+      voetnoot: "Het bouwjaar is een eerste indicatie, geen conclusie: veel woningen zijn later al verbeterd. Gijs kijkt altijd naar jouw eigen huis.",
+      bron: { naam: "CBS Kerncijfers wijken en buurten 2022", url: "https://opendata.cbs.nl/statline/#/CBS/nl/dataset/84799NED" },
+    },
+    lokaal: {
+      titel: "Wijken in gemeente Tiel",
+      alineas: [
+        ["De gemeente Tiel omvat de stad Tiel en de omliggende dorpen Drumpt, Zennewijnen en Wadenoijen langs de Waal. De naoorlogse woonwijken in Tiel hebben een groot aandeel rijtjeswoningen die goed te verduurzamen zijn; voor monumentale panden in de binnenstad gelden soms aanvullende eisen."],
+      ],
+      kernTekst: {},
+      wijken: {
+        titel: "Wijken in Tiel",
+        intro: "De kleur geeft aan in welke bouwperiode de meeste woningen in die wijk vallen.",
+        lijst: [
+          { naam: "Tiel kern", woningen: 9308, periode: "Overwegend vóór 2000", tijdvak: 0, type: "twee-onder-een-kap" },
+          { naam: "Tiel-Noord", woningen: 4445, periode: "Grotendeels vóór 2000", tijdvak: 0, type: "tussenwoning" },
+          { naam: "Tiel-Zuid", woningen: 3589, periode: "Gemengd, oud en nieuw", tijdvak: null, type: "vrijstaand" },
+          { naam: "Wadenoijen en Kapel Avezaath", woningen: 738, periode: "Overwegend vóór 2000", tijdvak: 0, type: "vrijstaand" },
+        ],
+        bron: { naam: "CBS Kerncijfers wijken en buurten 2022", url: "https://opendata.cbs.nl/statline/#/CBS/nl/dataset/84799NED" },
+      },
+      ontwikkeling: {
+        titel: "Woningverbetering in Gelderland",
+        tekst: "Gelderland heeft veel woningen uit de jaren zestig en zeventig, die met relatief eenvoudige stappen goed te verbeteren zijn. De provincie en gemeenten ondersteunen eigenaren met advies en subsidies.",
+      },
+    },
+    faq: [
+      { question: "Welke gemeentelijke subsidies gelden in Tiel?", answer: "Gemeenten kunnen eigen subsidies of regelingen hebben voor het verduurzamen van een woning. Controleer de actuele mogelijkheden bij de gemeente Tiel zelf of via de Energiesubsidiewijzer van Milieu Centraal." },
+      { question: "Welke isolatie past bij mijn woning?", answer: "Dat hangt af van je woning. Tijdens de gratis energiescan aan huis bekijkt een adviseur van Gijs wat technisch bij je woning past." },
+      { question: "Is de energiescan aan huis gratis en vrijblijvend?", answer: "Ja. De energiescan is gratis en vrijblijvend, ter waarde van €349. Je bespreekt je woning en wensen met een adviseur." },
+      { question: "Moet ik eerst de digitale woningscan doen?", answer: "Nee. Je kunt direct contact opnemen. De digitale woningscan is een optionele voorbereiding, geen technische beoordeling." },
+    ],
+    verwant: [],
+  },
+  voorst: {
+    seo: {
+      title: "Woning isoleren in Voorst | Gijs",
+      description: "Wil je je woning isoleren in Voorst? Gijs geeft onafhankelijk advies over spouwmuurisolatie, dakisolatie en zonnepanelen. Bekijk de 10.641 woningen en welke subsidies gelden.",
+    },
+    kicker: "Gemeente Voorst",
+    h1: "Woning isoleren in Voorst",
+    intro: [
+      ["Woon je in Twello, Voorst, Wilp of Terwolde? De gemeente Voorst is een landelijke gemeente in de IJsselvallei tussen Apeldoorn en Zutphen, met een woningbestand dat bestaat uit een mix van historische dorpswoningen en nieuwere vrijstaande huizen in het buitengebied."],
+      ["Gijs geeft onafhankelijk advies. Tijdens een gratis energiescan aan huis kijkt een adviseur wat er technisch bij jouw woning past, en welke stap het meeste oplevert."],
+    ],
+    kernen: [],
+    woningen: {
+      lead: "Het bouwjaar zegt veel over hoe een huis gebouwd is. Zo is de woningvoorraad van Voorst verdeeld.",
+      kerncijfers: [
+        { waarde: "10.641", label: "woningen" },
+        { waarde: "83%", label: "eengezinswoningen" },
+        { waarde: "82%", label: "gebouwd vóór 2000" },
+        { waarde: "66%", label: "koopwoningen" },
+      ],
+      bouwperiodes: [
+        { label: "Vóór 1975", percentage: 45, tekst: "Vaak gebouwd met weinig of geen isolatie. De spouw is regelmatig nog leeg; dak en vloer zijn vaak de eerste winst." },
+        { label: "1975 – 2000", percentage: 37, tekst: "Meestal al deels geïsoleerd, maar vaak dunner dan nu gebruikelijk. Eerst kijken wat er zit, dan bijisoleren." },
+        { label: "Na 2000", percentage: 18, tekst: "Vaak al redelijk tot goed geïsoleerd. De winst zit vaker in beter glas, zonnepanelen of de overstap naar een warmtepomp." },
+      ],
+      voetnoot: "Het bouwjaar is een eerste indicatie, geen conclusie: veel woningen zijn later al verbeterd. Gijs kijkt altijd naar jouw eigen huis.",
+      bron: { naam: "CBS Kerncijfers wijken en buurten 2022", url: "https://opendata.cbs.nl/statline/#/CBS/nl/dataset/84799NED" },
+    },
+    lokaal: {
+      titel: "Wijken in gemeente Voorst",
+      alineas: [
+        ["Voorst omvat kernen als Twello, Voorst, Wilp, Terwolde en De Vecht. Twello is de grootste kern met relatief veel naoorlogse woningen; in het ruime buitengebied staan veel vrijstaande huizen die via dakisolatie en gevelisolatie goed te verduurzamen zijn."],
+      ],
+      kernTekst: {},
+      wijken: {
+        titel: "Wijken in Voorst",
+        intro: "De kleur geeft aan in welke bouwperiode de meeste woningen in die wijk vallen.",
+        lijst: [
+          { naam: "Twello-Nijbroek", woningen: 7469, periode: "Overwegend vóór 2000", tijdvak: 0, type: "tussenwoning" },
+          { naam: "Klarenbeek-Teuge", woningen: 1309, periode: "Overwegend vóór 2000", tijdvak: 0, type: "vrijstaand" },
+          { naam: "Voorst", woningen: 1188, periode: "Overwegend vóór 2000", tijdvak: 0, type: "tussenwoning" },
+          { naam: "Wilp", woningen: 675, periode: "Overwegend vóór 2000", tijdvak: 0, type: "vrijstaand" },
+        ],
+        bron: { naam: "CBS Kerncijfers wijken en buurten 2022", url: "https://opendata.cbs.nl/statline/#/CBS/nl/dataset/84799NED" },
+      },
+      ontwikkeling: {
+        titel: "Woningverbetering in Gelderland",
+        tekst: "Gelderland heeft veel woningen uit de jaren zestig en zeventig, die met relatief eenvoudige stappen goed te verbeteren zijn. De provincie en gemeenten ondersteunen eigenaren met advies en subsidies.",
+      },
+    },
+    faq: [
+      { question: "Welke gemeentelijke subsidies gelden in Voorst?", answer: "Gemeenten kunnen eigen subsidies of regelingen hebben voor het verduurzamen van een woning. Controleer de actuele mogelijkheden bij de gemeente Voorst zelf of via de Energiesubsidiewijzer van Milieu Centraal." },
+      { question: "Welke isolatie past bij mijn woning?", answer: "Dat hangt af van je woning. Tijdens de gratis energiescan aan huis bekijkt een adviseur van Gijs wat technisch bij je woning past." },
+      { question: "Is de energiescan aan huis gratis en vrijblijvend?", answer: "Ja. De energiescan is gratis en vrijblijvend, ter waarde van €349. Je bespreekt je woning en wensen met een adviseur." },
+      { question: "Moet ik eerst de digitale woningscan doen?", answer: "Nee. Je kunt direct contact opnemen. De digitale woningscan is een optionele voorbereiding, geen technische beoordeling." },
+    ],
+    verwant: [],
+  },
+  wageningen: {
+    seo: {
+      title: "Woning verduurzamen in Wageningen | Gijs",
+      description: "Wil je je woning isoleren in Wageningen? Gijs geeft onafhankelijk advies over spouwmuurisolatie, dakisolatie en zonnepanelen. Bekijk de 17.721 woningen en welke subsidies gelden.",
+    },
+    kicker: "Gemeente Wageningen",
+    h1: "Woning verduurzamen in Wageningen",
+    intro: [
+      ["Woon je in Wageningen? De universiteitsstad in de Gelderse Vallei, bekend als centrum van het Food Valley, heeft een diverse woningvoorraad: van historische panden in het centrum tot naoorlogse rijtjeswijken en studentenwoningen op en rondom de Wageningse Berg."],
+      ["Gijs geeft onafhankelijk advies. Tijdens een gratis energiescan aan huis kijkt een adviseur wat er technisch bij jouw woning past, en welke stap het meeste oplevert."],
+    ],
+    kernen: [],
+    woningen: {
+      lead: "Het bouwjaar zegt veel over hoe een huis gebouwd is. Zo is de woningvoorraad van Wageningen verdeeld.",
+      kerncijfers: [
+        { waarde: "17.721", label: "woningen" },
+        { waarde: "48%", label: "eengezinswoningen" },
+        { waarde: "77%", label: "gebouwd vóór 2000" },
+        { waarde: "43%", label: "koopwoningen" },
+      ],
+      bouwperiodes: [
+        { label: "Vóór 1975", percentage: 42, tekst: "Vaak gebouwd met weinig of geen isolatie. De spouw is regelmatig nog leeg; dak en vloer zijn vaak de eerste winst." },
+        { label: "1975 – 2000", percentage: 35, tekst: "Meestal al deels geïsoleerd, maar vaak dunner dan nu gebruikelijk. Eerst kijken wat er zit, dan bijisoleren." },
+        { label: "Na 2000", percentage: 23, tekst: "Vaak al redelijk tot goed geïsoleerd. De winst zit vaker in beter glas, zonnepanelen of de overstap naar een warmtepomp." },
+      ],
+      voetnoot: "Het bouwjaar is een eerste indicatie, geen conclusie: veel woningen zijn later al verbeterd. Gijs kijkt altijd naar jouw eigen huis.",
+      bron: { naam: "CBS Kerncijfers wijken en buurten 2022", url: "https://opendata.cbs.nl/statline/#/CBS/nl/dataset/84799NED" },
+    },
+    lokaal: {
+      titel: "Wijken in gemeente Wageningen",
+      alineas: [
+        ["Wageningen valt grotendeels samen met de gelijknamige stad aan de Rijn. De aanwezigheid van Wageningen University maakt de gemeente uniek: naast gezinswoningen zijn er veel studentenpanden. Oudere rijtjeswoningen in naoorlogse wijken zijn bij uitstek geschikt voor spouwmuurisolatie."],
+      ],
+      kernTekst: {},
+      wijken: {
+        titel: "Wijken in Wageningen",
+        intro: "De kleur geeft aan in welke bouwperiode de meeste woningen in die wijk vallen.",
+        lijst: [
+          { naam: "De Buurt", woningen: 3698, periode: "Grotendeels vóór 2000", tijdvak: 0, type: "appartement" },
+          { naam: "Boven- en Benedenbuurt", woningen: 2446, periode: "Gemengd, oud en nieuw", tijdvak: null, type: "twee-onder-een-kap" },
+          { naam: "Noordwest", woningen: 1772, periode: "Overwegend vóór 2000", tijdvak: 0, type: "vrijstaand" },
+          { naam: "Kortenoord", woningen: 1698, periode: "Gemengd, oud en nieuw", tijdvak: null, type: "appartement" },
+          { naam: "Centrum", woningen: 1500, periode: "Overwegend vóór 2000", tijdvak: 0, type: "appartement" },
+          { naam: "Nude", woningen: 1353, periode: "Overwegend vóór 2000", tijdvak: 0, type: "appartement" },
+          { naam: "De Weiden en Boomgaarden", woningen: 1235, periode: "Gemengd, oud en nieuw", tijdvak: null, type: "twee-onder-een-kap" },
+          { naam: "Veluvia-Hamelakkers", woningen: 1207, periode: "Grotendeels vóór 2000", tijdvak: 0, type: "twee-onder-een-kap" },
+          { naam: "Wageningen Universiteit", woningen: 903, periode: "Gemengd, oud en nieuw", tijdvak: null, type: "appartement" },
+          { naam: "De Horsten", woningen: 877, periode: "Grotendeels vóór 2000", tijdvak: 0, type: "tussenwoning" },
+          { naam: "Buitengebied", woningen: 519, periode: "Grotendeels vóór 2000", tijdvak: 0, type: "tussenwoning" },
+          { naam: "Wageningen-Hoog", woningen: 513, periode: "Grotendeels vóór 2000", tijdvak: 0, type: "vrijstaand" },
+        ],
+        bron: { naam: "CBS Kerncijfers wijken en buurten 2022", url: "https://opendata.cbs.nl/statline/#/CBS/nl/dataset/84799NED" },
+      },
+      ontwikkeling: {
+        titel: "Woningverbetering in Gelderland",
+        tekst: "Gelderland heeft veel woningen uit de jaren zestig en zeventig, die met relatief eenvoudige stappen goed te verbeteren zijn. De provincie en gemeenten ondersteunen eigenaren met advies en subsidies.",
+      },
+    },
+    faq: [
+      { question: "Welke gemeentelijke subsidies gelden in Wageningen?", answer: "Gemeenten kunnen eigen subsidies of regelingen hebben voor het verduurzamen van een woning. Controleer de actuele mogelijkheden bij de gemeente Wageningen zelf of via de Energiesubsidiewijzer van Milieu Centraal." },
+      { question: "Welke isolatie past bij mijn woning?", answer: "Dat hangt af van je woning. Tijdens de gratis energiescan aan huis bekijkt een adviseur van Gijs wat technisch bij je woning past." },
+      { question: "Is de energiescan aan huis gratis en vrijblijvend?", answer: "Ja. De energiescan is gratis en vrijblijvend, ter waarde van €349. Je bespreekt je woning en wensen met een adviseur." },
+      { question: "Moet ik eerst de digitale woningscan doen?", answer: "Nee. Je kunt direct contact opnemen. De digitale woningscan is een optionele voorbereiding, geen technische beoordeling." },
+    ],
+    verwant: [],
+  },
+  "west-betuwe": {
+    seo: {
+      title: "Isoleren in West Betuwe | Gijs",
+      description: "Wil je je woning isoleren in West Betuwe? Gijs geeft onafhankelijk advies over spouwmuurisolatie, dakisolatie en zonnepanelen. Bekijk de 20.875 woningen en welke subsidies gelden.",
+    },
+    kicker: "Gemeente West Betuwe",
+    h1: "Isoleren in West Betuwe",
+    intro: [
+      ["Woon je in Geldermalsen, Beesd, Leerdam, Asperen of een andere kern? West Betuwe is een uitgestrekte Betuwse gemeente in de fruitstreek, met een diverse woningvoorraad van historische dorpskernen tot vrijstaande woningen en boerderijen in het open poldergebied."],
+      ["Gijs geeft onafhankelijk advies. Tijdens een gratis energiescan aan huis kijkt een adviseur wat er technisch bij jouw woning past, en welke stap het meeste oplevert."],
+    ],
+    kernen: [],
+    woningen: {
+      lead: "Het bouwjaar zegt veel over hoe een huis gebouwd is. Zo is de woningvoorraad van West Betuwe verdeeld.",
+      kerncijfers: [
+        { waarde: "20.875", label: "woningen" },
+        { waarde: "90%", label: "eengezinswoningen" },
+        { waarde: "82%", label: "gebouwd vóór 2000" },
+        { waarde: "72%", label: "koopwoningen" },
+      ],
+      bouwperiodes: [
+        { label: "Vóór 1975", percentage: 45, tekst: "Vaak gebouwd met weinig of geen isolatie. De spouw is regelmatig nog leeg; dak en vloer zijn vaak de eerste winst." },
+        { label: "1975 – 2000", percentage: 37, tekst: "Meestal al deels geïsoleerd, maar vaak dunner dan nu gebruikelijk. Eerst kijken wat er zit, dan bijisoleren." },
+        { label: "Na 2000", percentage: 18, tekst: "Vaak al redelijk tot goed geïsoleerd. De winst zit vaker in beter glas, zonnepanelen of de overstap naar een warmtepomp." },
+      ],
+      voetnoot: "Het bouwjaar is een eerste indicatie, geen conclusie: veel woningen zijn later al verbeterd. Gijs kijkt altijd naar jouw eigen huis.",
+      bron: { naam: "CBS Kerncijfers wijken en buurten 2022", url: "https://opendata.cbs.nl/statline/#/CBS/nl/dataset/84799NED" },
+    },
+    lokaal: {
+      titel: "Wijken in gemeente West Betuwe",
+      alineas: [
+        ["West Betuwe omvat kernen als Geldermalsen, Beesd, Leerdam, Asperen, Heukelum, Acquoy en Enspijk. De uitgestrekte gemeente heeft een gevarieerde woningvoorraad; de oudere vrijstaande woningen in het buitengebied bieden grote mogelijkheden voor dakisolatie en gevelisolatie."],
+      ],
+      kernTekst: {},
+      wijken: {
+        titel: "Wijken in West Betuwe",
+        intro: "De kleur geeft aan in welke bouwperiode de meeste woningen in die wijk vallen.",
+        lijst: [
+          { naam: "Geldermalsen", woningen: 4615, periode: "Overwegend vóór 2000", tijdvak: 0, type: "tussenwoning" },
+          { naam: "Beesd", woningen: 2065, periode: "Overwegend vóór 2000", tijdvak: 0, type: "vrijstaand" },
+          { naam: "Haaften", woningen: 1992, periode: "Overwegend vóór 2000", tijdvak: null, type: "tussenwoning" },
+          { naam: "Meteren", woningen: 1712, periode: "Gemengd, oud en nieuw", tijdvak: null, type: "vrijstaand" },
+          { naam: "Waardenburg en Opijnen", woningen: 1704, periode: "Overwegend vóór 2000", tijdvak: 0, type: "vrijstaand" },
+          { naam: "Deil", woningen: 1560, periode: "Grotendeels vóór 2000", tijdvak: 0, type: "vrijstaand" },
+          { naam: "Heukelum", woningen: 1346, periode: "Overwegend vóór 2000", tijdvak: 0, type: "vrijstaand" },
+          { naam: "Varik en Ophemert", woningen: 1343, periode: "Overwegend vóór 2000", tijdvak: 0, type: "vrijstaand" },
+          { naam: "Buurmalsen", woningen: 1242, periode: "Grotendeels vóór 2000", tijdvak: 0, type: "vrijstaand" },
+          { naam: "Asperen", woningen: 1238, periode: "Overwegend vóór 2000", tijdvak: 0, type: "vrijstaand" },
+          { naam: "Herwijnen", woningen: 1150, periode: "Overwegend vóór 2000", tijdvak: 0, type: "vrijstaand" },
+          { naam: "Vuren", woningen: 908, periode: "Overwegend vóór 2000", tijdvak: 0, type: "vrijstaand" },
+        ],
+        bron: { naam: "CBS Kerncijfers wijken en buurten 2022", url: "https://opendata.cbs.nl/statline/#/CBS/nl/dataset/84799NED" },
+      },
+      ontwikkeling: {
+        titel: "Woningverbetering in Gelderland",
+        tekst: "Gelderland heeft veel woningen uit de jaren zestig en zeventig, die met relatief eenvoudige stappen goed te verbeteren zijn. De provincie en gemeenten ondersteunen eigenaren met advies en subsidies.",
+      },
+    },
+    faq: [
+      { question: "Welke gemeentelijke subsidies gelden in West Betuwe?", answer: "Gemeenten kunnen eigen subsidies of regelingen hebben voor het verduurzamen van een woning. Controleer de actuele mogelijkheden bij de gemeente West Betuwe zelf of via de Energiesubsidiewijzer van Milieu Centraal." },
+      { question: "Welke isolatie past bij mijn woning?", answer: "Dat hangt af van je woning. Tijdens de gratis energiescan aan huis bekijkt een adviseur van Gijs wat technisch bij je woning past." },
+      { question: "Is de energiescan aan huis gratis en vrijblijvend?", answer: "Ja. De energiescan is gratis en vrijblijvend, ter waarde van €349. Je bespreekt je woning en wensen met een adviseur." },
+      { question: "Moet ik eerst de digitale woningscan doen?", answer: "Nee. Je kunt direct contact opnemen. De digitale woningscan is een optionele voorbereiding, geen technische beoordeling." },
+    ],
+    verwant: [],
+  },
+  "west-maas-en-waal": {
+    seo: {
+      title: "Woning verduurzamen in West Maas en Waal | Gijs",
+      description: "Wil je je woning isoleren in West Maas en Waal? Gijs geeft onafhankelijk advies over spouwmuurisolatie, dakisolatie en zonnepanelen. Bekijk de 8.222 woningen en welke subsidies gelden.",
+    },
+    kicker: "Gemeente West Maas en Waal",
+    h1: "Woning verduurzamen in West Maas en Waal",
+    intro: [
+      ["Woon je in Beneden-Leeuwen, Boven-Leeuwen, Dreumel of Alphen? West Maas en Waal is een landelijke gemeente in het poldergebied tussen de Maas en de Waal, met een woningbestand dat voor een groot deel bestaat uit vrijstaande woningen en oudere boerderijcomplexen."],
+      ["Gijs geeft onafhankelijk advies. Tijdens een gratis energiescan aan huis kijkt een adviseur wat er technisch bij jouw woning past, en welke stap het meeste oplevert."],
+    ],
+    kernen: [],
+    woningen: {
+      lead: "Het bouwjaar zegt veel over hoe een huis gebouwd is. Zo is de woningvoorraad van West Maas en Waal verdeeld.",
+      kerncijfers: [
+        { waarde: "8.222", label: "woningen" },
+        { waarde: "86%", label: "eengezinswoningen" },
+        { waarde: "82%", label: "gebouwd vóór 2000" },
+        { waarde: "71%", label: "koopwoningen" },
+      ],
+      bouwperiodes: [
+        { label: "Vóór 1975", percentage: 45, tekst: "Vaak gebouwd met weinig of geen isolatie. De spouw is regelmatig nog leeg; dak en vloer zijn vaak de eerste winst." },
+        { label: "1975 – 2000", percentage: 37, tekst: "Meestal al deels geïsoleerd, maar vaak dunner dan nu gebruikelijk. Eerst kijken wat er zit, dan bijisoleren." },
+        { label: "Na 2000", percentage: 18, tekst: "Vaak al redelijk tot goed geïsoleerd. De winst zit vaker in beter glas, zonnepanelen of de overstap naar een warmtepomp." },
+      ],
+      voetnoot: "Het bouwjaar is een eerste indicatie, geen conclusie: veel woningen zijn later al verbeterd. Gijs kijkt altijd naar jouw eigen huis.",
+      bron: { naam: "CBS Kerncijfers wijken en buurten 2022", url: "https://opendata.cbs.nl/statline/#/CBS/nl/dataset/84799NED" },
+    },
+    lokaal: {
+      titel: "Wijken in gemeente West Maas en Waal",
+      alineas: [
+        ["West Maas en Waal omvat kernen als Beneden-Leeuwen, Boven-Leeuwen, Dreumel, Alphen en Wamel in de Maas-Waalpolders. De verspreide vrijstaande bebouwing maakt goede dakisolatie en gevelisolatie extra effectief — vrijstaande huizen verliezen relatief meer warmte dan rijtjeswoningen."],
+      ],
+      kernTekst: {},
+      wijken: {
+        titel: "Wijken in West Maas en Waal",
+        intro: "De kleur geeft aan in welke bouwperiode de meeste woningen in die wijk vallen.",
+        lijst: [
+          { naam: "Beneden-Leeuwen", woningen: 2991, periode: "Overwegend vóór 2000", tijdvak: 0, type: "tussenwoning" },
+          { naam: "Dreumel", woningen: 1530, periode: "Overwegend vóór 2000", tijdvak: 0, type: "vrijstaand" },
+          { naam: "Wamel", woningen: 1034, periode: "Overwegend vóór 2000", tijdvak: 0, type: "vrijstaand" },
+          { naam: "Boven-Leeuwen", woningen: 906, periode: "Overwegend vóór 2000", tijdvak: 0, type: "vrijstaand" },
+          { naam: "Alphen", woningen: 697, periode: "Overwegend vóór 2000", tijdvak: 0, type: "vrijstaand" },
+          { naam: "Maasbommel", woningen: 501, periode: "Overwegend vóór 2000", tijdvak: 0, type: "vrijstaand" },
+          { naam: "Appeltern", woningen: 344, periode: "Overwegend vóór 2000", tijdvak: 0, type: "vrijstaand" },
+          { naam: "Altforst", woningen: 219, periode: "Overwegend vóór 2000", tijdvak: 0, type: "vrijstaand" },
+        ],
+        bron: { naam: "CBS Kerncijfers wijken en buurten 2022", url: "https://opendata.cbs.nl/statline/#/CBS/nl/dataset/84799NED" },
+      },
+      ontwikkeling: {
+        titel: "Woningverbetering in Gelderland",
+        tekst: "Gelderland heeft veel woningen uit de jaren zestig en zeventig, die met relatief eenvoudige stappen goed te verbeteren zijn. De provincie en gemeenten ondersteunen eigenaren met advies en subsidies.",
+      },
+    },
+    faq: [
+      { question: "Welke gemeentelijke subsidies gelden in West Maas en Waal?", answer: "Gemeenten kunnen eigen subsidies of regelingen hebben voor het verduurzamen van een woning. Controleer de actuele mogelijkheden bij de gemeente West Maas en Waal zelf of via de Energiesubsidiewijzer van Milieu Centraal." },
+      { question: "Welke isolatie past bij mijn woning?", answer: "Dat hangt af van je woning. Tijdens de gratis energiescan aan huis bekijkt een adviseur van Gijs wat technisch bij je woning past." },
+      { question: "Is de energiescan aan huis gratis en vrijblijvend?", answer: "Ja. De energiescan is gratis en vrijblijvend, ter waarde van €349. Je bespreekt je woning en wensen met een adviseur." },
+      { question: "Moet ik eerst de digitale woningscan doen?", answer: "Nee. Je kunt direct contact opnemen. De digitale woningscan is een optionele voorbereiding, geen technische beoordeling." },
+    ],
+    verwant: [],
+  },
+  westervoort: {
+    seo: {
+      title: "Woning isoleren in Westervoort | Gijs",
+      description: "Wil je je woning isoleren in Westervoort? Gijs geeft onafhankelijk advies over spouwmuurisolatie, dakisolatie en zonnepanelen. Bekijk de 6.723 woningen en welke subsidies gelden.",
+    },
+    kicker: "Gemeente Westervoort",
+    h1: "Woning isoleren in Westervoort",
+    intro: [
+      ["Woon je in Westervoort? De compacte gemeente aan de IJssel, direct grenzend aan Arnhem, heeft een woningbestand dat voor een groot deel bestaat uit naoorlogse arbeiderswoningen en rijtjeswoningen — woningtypes die goed te verduurzamen zijn."],
+      ["Gijs geeft onafhankelijk advies. Tijdens een gratis energiescan aan huis kijkt een adviseur wat er technisch bij jouw woning past, en welke stap het meeste oplevert."],
+    ],
+    kernen: [],
+    woningen: {
+      lead: "Het bouwjaar zegt veel over hoe een huis gebouwd is. Zo is de woningvoorraad van Westervoort verdeeld.",
+      kerncijfers: [
+        { waarde: "6.723", label: "woningen" },
+        { waarde: "87%", label: "eengezinswoningen" },
+        { waarde: "90%", label: "gebouwd vóór 2000" },
+        { waarde: "59%", label: "koopwoningen" },
+      ],
+      bouwperiodes: [
+        { label: "Vóór 1975", percentage: 50, tekst: "Vaak gebouwd met weinig of geen isolatie. De spouw is regelmatig nog leeg; dak en vloer zijn vaak de eerste winst." },
+        { label: "1975 – 2000", percentage: 40, tekst: "Meestal al deels geïsoleerd, maar vaak dunner dan nu gebruikelijk. Eerst kijken wat er zit, dan bijisoleren." },
+        { label: "Na 2000", percentage: 10, tekst: "Vaak al redelijk tot goed geïsoleerd. De winst zit vaker in beter glas, zonnepanelen of de overstap naar een warmtepomp." },
+      ],
+      voetnoot: "Het bouwjaar is een eerste indicatie, geen conclusie: veel woningen zijn later al verbeterd. Gijs kijkt altijd naar jouw eigen huis.",
+      bron: { naam: "CBS Kerncijfers wijken en buurten 2022", url: "https://opendata.cbs.nl/statline/#/CBS/nl/dataset/84799NED" },
+    },
+    lokaal: {
+      titel: "Wijken in gemeente Westervoort",
+      alineas: [
+        ["Westervoort is een compacte gemeente die vrijwel samenvalt met de kern Westervoort. De relatief hoge woningdichtheid en de naoorlogse rijtjeswoningen langs de IJssel maken spouwmuurisolatie hier een van de meest effectieve maatregelen."],
+      ],
+      kernTekst: {},
+      wijken: {
+        titel: "Wijken in Westervoort",
+        intro: "De kleur geeft aan in welke bouwperiode de meeste woningen in die wijk vallen.",
+        lijst: [
+          { naam: "Wijk 00", woningen: 6723, periode: "Overwegend vóór 2000", tijdvak: 0, type: "tussenwoning" },
+        ],
+        bron: { naam: "CBS Kerncijfers wijken en buurten 2022", url: "https://opendata.cbs.nl/statline/#/CBS/nl/dataset/84799NED" },
+      },
+      ontwikkeling: {
+        titel: "Woningverbetering in Gelderland",
+        tekst: "Gelderland heeft veel woningen uit de jaren zestig en zeventig, die met relatief eenvoudige stappen goed te verbeteren zijn. De provincie en gemeenten ondersteunen eigenaren met advies en subsidies.",
+      },
+    },
+    faq: [
+      { question: "Welke gemeentelijke subsidies gelden in Westervoort?", answer: "Gemeenten kunnen eigen subsidies of regelingen hebben voor het verduurzamen van een woning. Controleer de actuele mogelijkheden bij de gemeente Westervoort zelf of via de Energiesubsidiewijzer van Milieu Centraal." },
+      { question: "Welke isolatie past bij mijn woning?", answer: "Dat hangt af van je woning. Tijdens de gratis energiescan aan huis bekijkt een adviseur van Gijs wat technisch bij je woning past." },
+      { question: "Is de energiescan aan huis gratis en vrijblijvend?", answer: "Ja. De energiescan is gratis en vrijblijvend, ter waarde van €349. Je bespreekt je woning en wensen met een adviseur." },
+      { question: "Moet ik eerst de digitale woningscan doen?", answer: "Nee. Je kunt direct contact opnemen. De digitale woningscan is een optionele voorbereiding, geen technische beoordeling." },
+    ],
+    verwant: [],
+  },
+  wijchen: {
+    seo: {
+      title: "Isoleren en verduurzamen in Wijchen | Gijs",
+      description: "Wil je je woning isoleren in Wijchen? Gijs geeft onafhankelijk advies over spouwmuurisolatie, dakisolatie en zonnepanelen. Bekijk de 18.023 woningen en welke subsidies gelden.",
+    },
+    kicker: "Gemeente Wijchen",
+    h1: "Isoleren en verduurzamen in Wijchen",
+    intro: [
+      ["Woon je in Wijchen, Niftrik, Leur, Batenburg of Bergharen? Wijchen is een groeigemeente ten westen van Nijmegen, met een diverse woningvoorraad: van oudere woningen rondom het historische kasteel tot uitgebreide naoorlogse wijken en recente nieuwbouwgebieden."],
+      ["Gijs geeft onafhankelijk advies. Tijdens een gratis energiescan aan huis kijkt een adviseur wat er technisch bij jouw woning past, en welke stap het meeste oplevert."],
+    ],
+    kernen: [],
+    woningen: {
+      lead: "Het bouwjaar zegt veel over hoe een huis gebouwd is. Zo is de woningvoorraad van Wijchen verdeeld.",
+      kerncijfers: [
+        { waarde: "18.023", label: "woningen" },
+        { waarde: "82%", label: "eengezinswoningen" },
+        { waarde: "82%", label: "gebouwd vóór 2000" },
+        { waarde: "67%", label: "koopwoningen" },
+      ],
+      bouwperiodes: [
+        { label: "Vóór 1975", percentage: 45, tekst: "Vaak gebouwd met weinig of geen isolatie. De spouw is regelmatig nog leeg; dak en vloer zijn vaak de eerste winst." },
+        { label: "1975 – 2000", percentage: 37, tekst: "Meestal al deels geïsoleerd, maar vaak dunner dan nu gebruikelijk. Eerst kijken wat er zit, dan bijisoleren." },
+        { label: "Na 2000", percentage: 18, tekst: "Vaak al redelijk tot goed geïsoleerd. De winst zit vaker in beter glas, zonnepanelen of de overstap naar een warmtepomp." },
+      ],
+      voetnoot: "Het bouwjaar is een eerste indicatie, geen conclusie: veel woningen zijn later al verbeterd. Gijs kijkt altijd naar jouw eigen huis.",
+      bron: { naam: "CBS Kerncijfers wijken en buurten 2022", url: "https://opendata.cbs.nl/statline/#/CBS/nl/dataset/84799NED" },
+    },
+    lokaal: {
+      titel: "Wijken in gemeente Wijchen",
+      alineas: [
+        ["De gemeente Wijchen omvat kernen als Wijchen, Niftrik, Leur, Batenburg en Bergharen. De naoorlogse woonwijken van Wijchen zijn bij uitstek geschikt voor spouwmuurisolatie; in de omliggende dorpen staan meer vrijstaande woningen waarbij dakisolatie de grootste besparing oplevert."],
+      ],
+      kernTekst: {},
+      wijken: {
+        titel: "Wijken in Wijchen",
+        intro: "De kleur geeft aan in welke bouwperiode de meeste woningen in die wijk vallen.",
+        lijst: [
+          { naam: "Wijchen kern", woningen: 14887, periode: "Overwegend vóór 2000", tijdvak: 0, type: "vrijstaand" },
+          { naam: "Alverna", woningen: 1182, periode: "Overwegend vóór 2000", tijdvak: 0, type: "twee-onder-een-kap" },
+          { naam: "Bergharen", woningen: 712, periode: "Overwegend vóór 2000", tijdvak: 0, type: "vrijstaand" },
+          { naam: "Hernen", woningen: 387, periode: "Overwegend vóór 2000", tijdvak: 0, type: "vrijstaand" },
+          { naam: "Batenburg", woningen: 276, periode: "Grotendeels vóór 2000", tijdvak: 0, type: "vrijstaand" },
+          { naam: "Balgoij", woningen: 268, periode: "Overwegend vóór 2000", tijdvak: 0, type: "vrijstaand" },
+          { naam: "Niftrik", woningen: 160, periode: "Overwegend vóór 2000", tijdvak: 0, type: "vrijstaand" },
+        ],
+        bron: { naam: "CBS Kerncijfers wijken en buurten 2022", url: "https://opendata.cbs.nl/statline/#/CBS/nl/dataset/84799NED" },
+      },
+      ontwikkeling: {
+        titel: "Woningverbetering in Gelderland",
+        tekst: "Gelderland heeft veel woningen uit de jaren zestig en zeventig, die met relatief eenvoudige stappen goed te verbeteren zijn. De provincie en gemeenten ondersteunen eigenaren met advies en subsidies.",
+      },
+    },
+    faq: [
+      { question: "Welke gemeentelijke subsidies gelden in Wijchen?", answer: "Gemeenten kunnen eigen subsidies of regelingen hebben voor het verduurzamen van een woning. Controleer de actuele mogelijkheden bij de gemeente Wijchen zelf of via de Energiesubsidiewijzer van Milieu Centraal." },
+      { question: "Welke isolatie past bij mijn woning?", answer: "Dat hangt af van je woning. Tijdens de gratis energiescan aan huis bekijkt een adviseur van Gijs wat technisch bij je woning past." },
+      { question: "Is de energiescan aan huis gratis en vrijblijvend?", answer: "Ja. De energiescan is gratis en vrijblijvend, ter waarde van €349. Je bespreekt je woning en wensen met een adviseur." },
+      { question: "Moet ik eerst de digitale woningscan doen?", answer: "Nee. Je kunt direct contact opnemen. De digitale woningscan is een optionele voorbereiding, geen technische beoordeling." },
+    ],
+    verwant: [],
+  },
+  winterswijk: {
+    seo: {
+      title: "Woning verduurzamen in Winterswijk | Gijs",
+      description: "Wil je je woning isoleren in Winterswijk? Gijs geeft onafhankelijk advies over spouwmuurisolatie, dakisolatie en zonnepanelen. Bekijk de 13.139 woningen en welke subsidies gelden.",
+    },
+    kicker: "Gemeente Winterswijk",
+    h1: "Woning verduurzamen in Winterswijk",
+    intro: [
+      ["Woon je in Winterswijk of een van de vele buurtschappen? Winterswijk is een Achterhoekse gemeente direct aan de Duitse grens, met een uniek cultuurlandschap en een woningvoorraad die voor een groot deel bestaat uit oude boerderijen, vrijstaande woningen en kleinere arbeidershuizen."],
+      ["Gijs geeft onafhankelijk advies. Tijdens een gratis energiescan aan huis kijkt een adviseur wat er technisch bij jouw woning past, en welke stap het meeste oplevert."],
+    ],
+    kernen: [],
+    woningen: {
+      lead: "Het bouwjaar zegt veel over hoe een huis gebouwd is. Zo is de woningvoorraad van Winterswijk verdeeld.",
+      kerncijfers: [
+        { waarde: "13.139", label: "woningen" },
+        { waarde: "77%", label: "eengezinswoningen" },
+        { waarde: "88%", label: "gebouwd vóór 2000" },
+        { waarde: "70%", label: "koopwoningen" },
+      ],
+      bouwperiodes: [
+        { label: "Vóór 1975", percentage: 48, tekst: "Vaak gebouwd met weinig of geen isolatie. De spouw is regelmatig nog leeg; dak en vloer zijn vaak de eerste winst." },
+        { label: "1975 – 2000", percentage: 40, tekst: "Meestal al deels geïsoleerd, maar vaak dunner dan nu gebruikelijk. Eerst kijken wat er zit, dan bijisoleren." },
+        { label: "Na 2000", percentage: 12, tekst: "Vaak al redelijk tot goed geïsoleerd. De winst zit vaker in beter glas, zonnepanelen of de overstap naar een warmtepomp." },
+      ],
+      voetnoot: "Het bouwjaar is een eerste indicatie, geen conclusie: veel woningen zijn later al verbeterd. Gijs kijkt altijd naar jouw eigen huis.",
+      bron: { naam: "CBS Kerncijfers wijken en buurten 2022", url: "https://opendata.cbs.nl/statline/#/CBS/nl/dataset/84799NED" },
+    },
+    lokaal: {
+      titel: "Wijken in gemeente Winterswijk",
+      alineas: [
+        ["Winterswijk valt grotendeels samen met de stad Winterswijk, omringd door kleine buurtschappen als Meddo, Kotten, Woold en Corle. De typisch Achterhoekse boerderijen en oudere vrijstaande woningen bieden veel mogelijkheden voor dakisolatie en gevelisolatie aan de buitenzijde."],
+      ],
+      kernTekst: {},
+      wijken: {
+        titel: "Wijken in Winterswijk",
+        intro: "De kleur geeft aan in welke bouwperiode de meeste woningen in die wijk vallen.",
+        lijst: [
+          { naam: "Stad", woningen: 10678, periode: "Overwegend vóór 2000", tijdvak: 0, type: "vrijstaand" },
+          { naam: "Land", woningen: 2461, periode: "Grotendeels vóór 2000", tijdvak: 0, type: "vrijstaand" },
+        ],
+        bron: { naam: "CBS Kerncijfers wijken en buurten 2022", url: "https://opendata.cbs.nl/statline/#/CBS/nl/dataset/84799NED" },
+      },
+      ontwikkeling: {
+        titel: "Woningverbetering in Gelderland",
+        tekst: "Gelderland heeft veel woningen uit de jaren zestig en zeventig, die met relatief eenvoudige stappen goed te verbeteren zijn. De provincie en gemeenten ondersteunen eigenaren met advies en subsidies.",
+      },
+    },
+    faq: [
+      { question: "Welke gemeentelijke subsidies gelden in Winterswijk?", answer: "Gemeenten kunnen eigen subsidies of regelingen hebben voor het verduurzamen van een woning. Controleer de actuele mogelijkheden bij de gemeente Winterswijk zelf of via de Energiesubsidiewijzer van Milieu Centraal." },
+      { question: "Welke isolatie past bij mijn woning?", answer: "Dat hangt af van je woning. Tijdens de gratis energiescan aan huis bekijkt een adviseur van Gijs wat technisch bij je woning past." },
+      { question: "Is de energiescan aan huis gratis en vrijblijvend?", answer: "Ja. De energiescan is gratis en vrijblijvend, ter waarde van €349. Je bespreekt je woning en wensen met een adviseur." },
+      { question: "Moet ik eerst de digitale woningscan doen?", answer: "Nee. Je kunt direct contact opnemen. De digitale woningscan is een optionele voorbereiding, geen technische beoordeling." },
+    ],
+    verwant: [],
+  },
+  zaltbommel: {
+    seo: {
+      title: "Woning isoleren in Zaltbommel | Gijs",
+      description: "Wil je je woning isoleren in Zaltbommel? Gijs geeft onafhankelijk advies over spouwmuurisolatie, dakisolatie en zonnepanelen. Bekijk de 11.623 woningen en welke subsidies gelden.",
+    },
+    kicker: "Gemeente Zaltbommel",
+    h1: "Woning isoleren in Zaltbommel",
+    intro: [
+      ["Woon je in Zaltbommel, Gameren, Brakel of een van de andere kernen? Zaltbommel is een historische Hanzestad aan de Maas, met een woningvoorraad die varieert van monumentale panden in de historische vesting tot naoorlogse rijtjeswoningen in de uitbreidingswijken."],
+      ["Gijs geeft onafhankelijk advies. Tijdens een gratis energiescan aan huis kijkt een adviseur wat er technisch bij jouw woning past, en welke stap het meeste oplevert."],
+    ],
+    kernen: [],
+    woningen: {
+      lead: "Het bouwjaar zegt veel over hoe een huis gebouwd is. Zo is de woningvoorraad van Zaltbommel verdeeld.",
+      kerncijfers: [
+        { waarde: "11.623", label: "woningen" },
+        { waarde: "87%", label: "eengezinswoningen" },
+        { waarde: "77%", label: "gebouwd vóór 2000" },
+        { waarde: "67%", label: "koopwoningen" },
+      ],
+      bouwperiodes: [
+        { label: "Vóór 1975", percentage: 42, tekst: "Vaak gebouwd met weinig of geen isolatie. De spouw is regelmatig nog leeg; dak en vloer zijn vaak de eerste winst." },
+        { label: "1975 – 2000", percentage: 35, tekst: "Meestal al deels geïsoleerd, maar vaak dunner dan nu gebruikelijk. Eerst kijken wat er zit, dan bijisoleren." },
+        { label: "Na 2000", percentage: 23, tekst: "Vaak al redelijk tot goed geïsoleerd. De winst zit vaker in beter glas, zonnepanelen of de overstap naar een warmtepomp." },
+      ],
+      voetnoot: "Het bouwjaar is een eerste indicatie, geen conclusie: veel woningen zijn later al verbeterd. Gijs kijkt altijd naar jouw eigen huis.",
+      bron: { naam: "CBS Kerncijfers wijken en buurten 2022", url: "https://opendata.cbs.nl/statline/#/CBS/nl/dataset/84799NED" },
+    },
+    lokaal: {
+      titel: "Wijken in gemeente Zaltbommel",
+      alineas: [
+        ["De gemeente Zaltbommel omvat kernen als Zaltbommel, Gameren, Brakel, Poederoijen en Zuilichem langs de Waal. In de historische vesting van Zaltbommel gelden soms monumentale beperkingen; in de naoorlogse woonwijken zijn spouwmuurisolatie en dakisolatie goed toepasbaar."],
+      ],
+      kernTekst: {},
+      wijken: {
+        titel: "Wijken in Zaltbommel",
+        intro: "De kleur geeft aan in welke bouwperiode de meeste woningen in die wijk vallen.",
+        lijst: [
+          { naam: "Zaltbommel", woningen: 5685, periode: "Overwegend vóór 2000", tijdvak: 0, type: "tussenwoning" },
+          { naam: "Brakel", woningen: 3058, periode: "Overwegend vóór 2000", tijdvak: 0, type: "vrijstaand" },
+          { naam: "Kerkwijk", woningen: 2311, periode: "Overwegend vóór 2000", tijdvak: null, type: "vrijstaand" },
+          { naam: "Nederhemert", woningen: 569, periode: "Overwegend vóór 2000", tijdvak: 0, type: "vrijstaand" },
+        ],
+        bron: { naam: "CBS Kerncijfers wijken en buurten 2022", url: "https://opendata.cbs.nl/statline/#/CBS/nl/dataset/84799NED" },
+      },
+      ontwikkeling: {
+        titel: "Woningverbetering in Gelderland",
+        tekst: "Gelderland heeft veel woningen uit de jaren zestig en zeventig, die met relatief eenvoudige stappen goed te verbeteren zijn. De provincie en gemeenten ondersteunen eigenaren met advies en subsidies.",
+      },
+    },
+    faq: [
+      { question: "Welke gemeentelijke subsidies gelden in Zaltbommel?", answer: "Gemeenten kunnen eigen subsidies of regelingen hebben voor het verduurzamen van een woning. Controleer de actuele mogelijkheden bij de gemeente Zaltbommel zelf of via de Energiesubsidiewijzer van Milieu Centraal." },
+      { question: "Welke isolatie past bij mijn woning?", answer: "Dat hangt af van je woning. Tijdens de gratis energiescan aan huis bekijkt een adviseur van Gijs wat technisch bij je woning past." },
+      { question: "Is de energiescan aan huis gratis en vrijblijvend?", answer: "Ja. De energiescan is gratis en vrijblijvend, ter waarde van €349. Je bespreekt je woning en wensen met een adviseur." },
+      { question: "Moet ik eerst de digitale woningscan doen?", answer: "Nee. Je kunt direct contact opnemen. De digitale woningscan is een optionele voorbereiding, geen technische beoordeling." },
+    ],
+    verwant: [],
+  },
+  zevenaar: {
+    seo: {
+      title: "Isoleren in Zevenaar | Gijs",
+      description: "Wil je je woning isoleren in Zevenaar? Gijs geeft onafhankelijk advies over spouwmuurisolatie, dakisolatie en zonnepanelen. Bekijk de 19.970 woningen en welke subsidies gelden.",
+    },
+    kicker: "Gemeente Zevenaar",
+    h1: "Isoleren in Zevenaar",
+    intro: [
+      ["Woon je in Zevenaar, Angerlo, Babberich of Oud-Zevenaar? Zevenaar is een groeigemeente in de Liemers, direct grenzend aan Duitsland en Arnhem, met een gevarieerde woningvoorraad van historische dorpswoningen in de kernen tot recente nieuwbouwwijken aan de stadsrand."],
+      ["Gijs geeft onafhankelijk advies. Tijdens een gratis energiescan aan huis kijkt een adviseur wat er technisch bij jouw woning past, en welke stap het meeste oplevert."],
+    ],
+    kernen: [],
+    woningen: {
+      lead: "Het bouwjaar zegt veel over hoe een huis gebouwd is. Zo is de woningvoorraad van Zevenaar verdeeld.",
+      kerncijfers: [
+        { waarde: "19.970", label: "woningen" },
+        { waarde: "82%", label: "eengezinswoningen" },
+        { waarde: "85%", label: "gebouwd vóór 2000" },
+        { waarde: "63%", label: "koopwoningen" },
+      ],
+      bouwperiodes: [
+        { label: "Vóór 1975", percentage: 47, tekst: "Vaak gebouwd met weinig of geen isolatie. De spouw is regelmatig nog leeg; dak en vloer zijn vaak de eerste winst." },
+        { label: "1975 – 2000", percentage: 38, tekst: "Meestal al deels geïsoleerd, maar vaak dunner dan nu gebruikelijk. Eerst kijken wat er zit, dan bijisoleren." },
+        { label: "Na 2000", percentage: 15, tekst: "Vaak al redelijk tot goed geïsoleerd. De winst zit vaker in beter glas, zonnepanelen of de overstap naar een warmtepomp." },
+      ],
+      voetnoot: "Het bouwjaar is een eerste indicatie, geen conclusie: veel woningen zijn later al verbeterd. Gijs kijkt altijd naar jouw eigen huis.",
+      bron: { naam: "CBS Kerncijfers wijken en buurten 2022", url: "https://opendata.cbs.nl/statline/#/CBS/nl/dataset/84799NED" },
+    },
+    lokaal: {
+      titel: "Wijken in gemeente Zevenaar",
+      alineas: [
+        ["De gemeente Zevenaar omvat kernen als Zevenaar, Angerlo, Babberich en Oud-Zevenaar. De oudere dorpskernen hebben veel woningen uit de jaren vijftig en zestig die goed geschikt zijn voor spouwmuurisolatie; in de nieuwere wijken van Zevenaar-Oost speelt de omschakeling naar warmtepompen een grotere rol."],
+      ],
+      kernTekst: {},
+      wijken: {
+        titel: "Wijken in Zevenaar",
+        intro: "De kleur geeft aan in welke bouwperiode de meeste woningen in die wijk vallen.",
+        lijst: [
+          { naam: "Zevenaar", woningen: 11757, periode: "Overwegend vóór 2000", tijdvak: 0, type: "tussenwoning" },
+          { naam: "Giesbeek", woningen: 1591, periode: "Overwegend vóór 2000", tijdvak: 0, type: "vrijstaand" },
+          { naam: "Lobith", woningen: 1435, periode: "Overwegend vóór 2000", tijdvak: 0, type: "tussenwoning" },
+          { naam: "Tolkamer", woningen: 1273, periode: "Overwegend vóór 2000", tijdvak: null, type: "vrijstaand" },
+          { naam: "Pannerden", woningen: 1013, periode: "Overwegend vóór 2000", tijdvak: 0, type: "vrijstaand" },
+          { naam: "Babberich", woningen: 943, periode: "Overwegend vóór 2000", tijdvak: 0, type: "tussenwoning" },
+          { naam: "Angerlo", woningen: 593, periode: "Overwegend vóór 2000", tijdvak: 0, type: "vrijstaand" },
+          { naam: "Herwen", woningen: 455, periode: "Grotendeels vóór 2000", tijdvak: 0, type: "vrijstaand" },
+          { naam: "Aerdt", woningen: 329, periode: "Overwegend vóór 2000", tijdvak: 0, type: "vrijstaand" },
+          { naam: "Spijk", woningen: 321, periode: "Grotendeels vóór 2000", tijdvak: 0, type: "tussenwoning" },
+          { naam: "Lathum", woningen: 222, periode: "Overwegend vóór 2000", tijdvak: 0, type: "vrijstaand" },
+        ],
+        bron: { naam: "CBS Kerncijfers wijken en buurten 2022", url: "https://opendata.cbs.nl/statline/#/CBS/nl/dataset/84799NED" },
+      },
+      ontwikkeling: {
+        titel: "Woningverbetering in Gelderland",
+        tekst: "Gelderland heeft veel woningen uit de jaren zestig en zeventig, die met relatief eenvoudige stappen goed te verbeteren zijn. De provincie en gemeenten ondersteunen eigenaren met advies en subsidies.",
+      },
+    },
+    faq: [
+      { question: "Welke gemeentelijke subsidies gelden in Zevenaar?", answer: "Gemeenten kunnen eigen subsidies of regelingen hebben voor het verduurzamen van een woning. Controleer de actuele mogelijkheden bij de gemeente Zevenaar zelf of via de Energiesubsidiewijzer van Milieu Centraal." },
+      { question: "Welke isolatie past bij mijn woning?", answer: "Dat hangt af van je woning. Tijdens de gratis energiescan aan huis bekijkt een adviseur van Gijs wat technisch bij je woning past." },
+      { question: "Is de energiescan aan huis gratis en vrijblijvend?", answer: "Ja. De energiescan is gratis en vrijblijvend, ter waarde van €349. Je bespreekt je woning en wensen met een adviseur." },
+      { question: "Moet ik eerst de digitale woningscan doen?", answer: "Nee. Je kunt direct contact opnemen. De digitale woningscan is een optionele voorbereiding, geen technische beoordeling." },
+    ],
+    verwant: [],
+  },
+  zutphen: {
+    seo: {
+      title: "Je woning verduurzamen in Zutphen | Gijs",
+      description: "Wil je je woning isoleren in Zutphen? Gijs geeft onafhankelijk advies over spouwmuurisolatie, dakisolatie en zonnepanelen. Bekijk de 22.267 woningen en welke subsidies gelden.",
+    },
+    kicker: "Gemeente Zutphen",
+    h1: "Je woning verduurzamen in Zutphen",
+    intro: [
+      ["Woon je in Zutphen, Warnsveld of Leesten? Zutphen is een historische Hanzestad aan de IJssel, met een gevarieerde woningvoorraad: van eeuwenoude panden in de beschermde binnenstad tot naoorlogse arbeiderswijken en recente nieuwbouw aan de stadsranden."],
+      ["Gijs geeft onafhankelijk advies. Tijdens een gratis energiescan aan huis kijkt een adviseur wat er technisch bij jouw woning past, en welke stap het meeste oplevert."],
+    ],
+    kernen: [],
+    woningen: {
+      lead: "Het bouwjaar zegt veel over hoe een huis gebouwd is. Zo is de woningvoorraad van Zutphen verdeeld.",
+      kerncijfers: [
+        { waarde: "22.267", label: "woningen" },
+        { waarde: "68%", label: "eengezinswoningen" },
+        { waarde: "84%", label: "gebouwd vóór 2000" },
+        { waarde: "56%", label: "koopwoningen" },
+      ],
+      bouwperiodes: [
+        { label: "Vóór 1975", percentage: 46, tekst: "Vaak gebouwd met weinig of geen isolatie. De spouw is regelmatig nog leeg; dak en vloer zijn vaak de eerste winst." },
+        { label: "1975 – 2000", percentage: 38, tekst: "Meestal al deels geïsoleerd, maar vaak dunner dan nu gebruikelijk. Eerst kijken wat er zit, dan bijisoleren." },
+        { label: "Na 2000", percentage: 16, tekst: "Vaak al redelijk tot goed geïsoleerd. De winst zit vaker in beter glas, zonnepanelen of de overstap naar een warmtepomp." },
+      ],
+      voetnoot: "Het bouwjaar is een eerste indicatie, geen conclusie: veel woningen zijn later al verbeterd. Gijs kijkt altijd naar jouw eigen huis.",
+      bron: { naam: "CBS Kerncijfers wijken en buurten 2022", url: "https://opendata.cbs.nl/statline/#/CBS/nl/dataset/84799NED" },
+    },
+    lokaal: {
+      titel: "Wijken in gemeente Zutphen",
+      alineas: [
+        ["Zutphen omvat naast de stad ook de kernen Warnsveld en Leesten. Historische panden in het centrum stellen bijzondere eisen aan isolatie; in de naoorlogse wijken als Leesten-Oost zijn spouwmuurisolatie en dakisolatie goed toepasbaar en snel terugverdiend."],
+      ],
+      kernTekst: {},
+      wijken: {
+        titel: "Wijken in Zutphen",
+        intro: "De kleur geeft aan in welke bouwperiode de meeste woningen in die wijk vallen.",
+        lijst: [
+          { naam: "Waterkwartier", woningen: 5119, periode: "Overwegend vóór 2000", tijdvak: 0, type: "twee-onder-een-kap" },
+          { naam: "Centrum - De Hoven", woningen: 4855, periode: "Overwegend vóór 2000", tijdvak: 0, type: "gemengd" },
+          { naam: "Warnsveld", woningen: 3610, periode: "Overwegend vóór 2000", tijdvak: 0, type: "vrijstaand" },
+          { naam: "Leesten", woningen: 3259, periode: "Gemengd, oud en nieuw", tijdvak: null, type: "vrijstaand" },
+          { naam: "Zuidwijken", woningen: 3146, periode: "Grotendeels vóór 2000", tijdvak: 0, type: "twee-onder-een-kap" },
+          { naam: "Noordveen", woningen: 2278, periode: "Grotendeels vóór 2000", tijdvak: 0, type: "twee-onder-een-kap" },
+        ],
+        bron: { naam: "CBS Kerncijfers wijken en buurten 2022", url: "https://opendata.cbs.nl/statline/#/CBS/nl/dataset/84799NED" },
+      },
+      ontwikkeling: {
+        titel: "Woningverbetering in Gelderland",
+        tekst: "Gelderland heeft veel woningen uit de jaren zestig en zeventig, die met relatief eenvoudige stappen goed te verbeteren zijn. De provincie en gemeenten ondersteunen eigenaren met advies en subsidies.",
+      },
+    },
+    faq: [
+      { question: "Welke gemeentelijke subsidies gelden in Zutphen?", answer: "Gemeenten kunnen eigen subsidies of regelingen hebben voor het verduurzamen van een woning. Controleer de actuele mogelijkheden bij de gemeente Zutphen zelf of via de Energiesubsidiewijzer van Milieu Centraal." },
+      { question: "Welke isolatie past bij mijn woning?", answer: "Dat hangt af van je woning. Tijdens de gratis energiescan aan huis bekijkt een adviseur van Gijs wat technisch bij je woning past." },
+      { question: "Is de energiescan aan huis gratis en vrijblijvend?", answer: "Ja. De energiescan is gratis en vrijblijvend, ter waarde van €349. Je bespreekt je woning en wensen met een adviseur." },
+      { question: "Moet ik eerst de digitale woningscan doen?", answer: "Nee. Je kunt direct contact opnemen. De digitale woningscan is een optionele voorbereiding, geen technische beoordeling." },
+    ],
+    verwant: [],
+  },
 };
 
 const PLAATS_VERHALEN: Record<string, Record<string, GemeenteVerhaal>> = {
