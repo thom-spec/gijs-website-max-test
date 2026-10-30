@@ -306,7 +306,7 @@ export function WoningFlow({ initialHouseType, initialPostcode, initialHuisnumme
       // Herkomst wissen: de scan is volledig afgerond. Een eventuele volgende directe scan
       // in dezelfde tab krijgt geen verouderde regio-attributie.
       wisRegioHerkomst();
-      setScan({ ...sessieMetAfgerond, name: "", achternaam: "", email: "", telefoon: "", opmerking: "" });
+      setScan({ ...sessieMetAfgerond, name: "", achternaam: "", email: "", telefoon: "", opmerking: "", whatsappToestemming: false });
       return;
     }
     logError("energiescan_aanvraag", fout ?? "onbekende fout");
@@ -701,6 +701,15 @@ export function WoningFlow({ initialHouseType, initialPostcode, initialHuisnumme
                       })}
                     </div>
                   </fieldset>
+                  {/* WhatsApp-toestemming: staat altijd uit tot de bewoner hem zelf aanvinkt (actieve
+                      toestemming). Lukt bellen niet, dan mag Gijs dan een bericht sturen om de scan in
+                      te plannen. Wordt opgeslagen bij de aanvraag en staat in de interne mail. */}
+                  <div className="mb-4">
+                    <Checkbox card label="Je mag me ook via WhatsApp benaderen"
+                      description="Neem ik niet op, dan stuurt Gijs een berichtje om de energiescan in te plannen. Alleen over deze aanvraag."
+                      checked={scan.whatsappToestemming}
+                      onChange={(e: React.ChangeEvent<HTMLInputElement>) => patch({ whatsappToestemming: e.target.checked })} />
+                  </div>
                   <Field label="Opmerking" htmlFor={`${fieldId}-opmerking`} optional>
                     <textarea id={`${fieldId}-opmerking`} className="gijs-textarea" maxLength={500} placeholder="Is er iets waar we rekening mee moeten houden?"
                       value={scan.opmerking} onChange={e => patch({ opmerking: e.target.value })} />
