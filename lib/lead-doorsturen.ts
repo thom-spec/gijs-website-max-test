@@ -1,7 +1,7 @@
 // Stuurt een geslaagde energiescan-aanvraag door naar de Make-koppeling
 // "Website-aanvraag → Teamleader lead". Die zoekt het contact op e-mailadres,
 // maakt het zo nodig aan, zet een deal in de pipeline en geeft het contact de
-// tag "WhatsApp toestemming" als de bewoner dat heeft aangevinkt.
+// tag "WhatsApp over aanvraag" als het vinkje aan stond (standaard aan; geen marketingtoestemming).
 //
 // Slaapt tot LEAD_WEBHOOK_URL én LEAD_WEBHOOK_TOKEN in Vercel staan: zonder
 // die twee gebeurt er niets en werkt de site precies zoals voorheen. De
