@@ -8,6 +8,7 @@ import { FAQAccordion, type FAQItem } from "@/components/measures/FAQAccordion";
 import { Card } from "@/components/ds/core/Card";
 import { Button } from "@/components/ds/core/Button";
 import { WhatsAppTrackedButton } from "@/components/regio/WhatsAppTrackedButton";
+import { ENERGIESCAN_HREF } from "@/lib/seo";
 
 const EYEBROW = "text-[17px] font-semibold tracking-[-0.01em] text-[var(--accent-700)]";
 const LINK = "underline text-[var(--accent-700)] hover:text-[var(--gijs-donkergroen)]";
@@ -43,7 +44,7 @@ export function AdviseurBlok({ foto, titel, knopTekst = "Plan jouw gratis energi
         <h3 className="text-[clamp(1.25rem,1.05rem+0.6vw,1.625rem)] font-bold leading-[1.2] tracking-[-0.02em] text-[var(--gijs-donkergroen)] [text-wrap:balance]">{titel}</h3>
         {children}
         {plaats
-          ? <WhatsAppTrackedButton plaats={plaats} href="https://wa.me/31742340777?text=Ik%20wil%20graag%20een%20energiescan%20plannen" size="md" iconRight="arrow-right" className="self-start mt-2">{knopTekst}</WhatsAppTrackedButton>
+          ? <WhatsAppTrackedButton plaats={plaats} href={ENERGIESCAN_HREF} size="md" iconRight="arrow-right" className="self-start mt-2">{knopTekst}</WhatsAppTrackedButton>
           : <Button href="/contact#energiescan" size="md" iconRight="arrow-right" className="self-start mt-2">{knopTekst}</Button>}
       </div>
     </div>
