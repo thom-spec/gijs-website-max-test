@@ -33,3 +33,20 @@ export const WARMTEPOMP_STROOM_ERBIJ = {
 
 /** Vastrechtkosten die vaak blijven lopen voor de gasaansluiting, ook bij (bijna) geen gasverbruik meer. */
 export const GAS_VASTRECHT_PER_JAAR = 366;
+
+// Indicatieve jaarlijkse besparing op de energierekening in euro's, aangeleverd door Max (27-11-2026).
+// LET OP: een aparte set rekenvoorbeelden, NIET afgeleid van Nauds gasvuistregels hierboven: andere
+// isolatie-uitgangspunten per systeem en bij volledig elektrisch inclusief vervallen vaste gaskosten.
+// Tabel en grafiek op de warmtepomppagina lezen allebei uit dit object, zodat de cijfers gelijk blijven.
+export const WARMTEPOMP_EURO_BESPARING: Record<HouseType, { hybride: number; volledigElektrisch: number }> = {
+  tussenwoning: { hybride: 550, volledigElektrisch: 950 },
+  hoekwoning: { hybride: 700, volledigElektrisch: 1100 },
+  "twee-onder-een-kap": { hybride: 800, volledigElektrisch: 1250 },
+  vrijstaand: { hybride: 1200, volledigElektrisch: 1650 },
+};
+
+export const WARMTEPOMP_EURO_UITGANGSPUNTEN = {
+  gasprijsPerM3: 1.5,
+  stroomprijsPerKwh: 0.21,
+  peildatum: "november 2026",
+} as const;

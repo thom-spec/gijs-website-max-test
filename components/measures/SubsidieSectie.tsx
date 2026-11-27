@@ -1,4 +1,5 @@
 import Link from "next/link";
+import type { ReactNode } from "react";
 import { WhatsAppTrackedLink } from "@/components/regio/WhatsAppTrackedButton";
 
 // Vervangt per-maatregel subsidiebedragen en -voorwaarden (die tussen
@@ -6,7 +7,7 @@ import { WhatsAppTrackedLink } from "@/components/regio/WhatsAppTrackedButton";
 // altijd-correcte tekst. Bedragen en voorwaarden van subsidieregelingen
 // wijzigen regelmatig; concrete cijfers horen pas in het gesprek tijdens
 // de energiescan, niet los op de site.
-export function SubsidieSectie({ titel }: { titel: string }) {
+export function SubsidieSectie({ titel, extra }: { titel: string; extra?: ReactNode }) {
   return (
     <section id="subsidie" className="scroll-mt-40 mb-14">
       <h2 className="text-[var(--fs-display-3)] font-bold text-[var(--gijs-donkergroen)] mb-2">{titel}</h2>
@@ -14,6 +15,7 @@ export function SubsidieSectie({ titel }: { titel: string }) {
         Voor sommige verduurzamingsmaatregelen is subsidie beschikbaar. De voorwaarden en bedragen kunnen wijzigen.
         Tijdens de energiescan bespreken we welke mogelijkheden op dat moment voor jouw woning gelden.
       </p>
+      {extra && <p className="text-zinc-600 max-w-2xl mt-3">{extra}</p>}
       <p className="text-sm text-zinc-500 max-w-2xl mt-3">
         Meer weten over de landelijke ISDE-regeling? Bekijk de{" "}
         <a

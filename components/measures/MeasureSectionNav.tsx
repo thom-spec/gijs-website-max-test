@@ -1,5 +1,5 @@
 "use client";
-import { useEffect, useRef, useState, type CSSProperties } from "react";
+import { useEffect, useRef, useState, type CSSProperties, type MouseEvent as ReactMouseEvent } from "react";
 
 // Compacte in-pagina navigatie naar de secties van een maatregelpagina.
 // Sticky op desktop (onder de bestaande, ook al sticky, hoofdheader); op mobiel een
@@ -84,6 +84,34 @@ export function MeasureSectionNav({ sections, tweeRegelsMobiel = false }: {
     };
   }, []);
 
+  // Zelf naar de sectie scrollen in plaats van de browser de ankerlink te laten volgen: bij een
+  // hashwijziging scrolt de Next.js-router zelf mee, waardoor de smooth scroll halverwege stopte of
+  // niet startte. De hash komt daarom pas in de adresbalk als het scrollen klaar is.
+  // Op mobiel is alleen de hoofdheader sticky, dus daar geldt headerhoogte + 16px als marge in plaats
+  // van de ruime scroll-margin van de sectie (bedoeld voor header + sticky rij op desktop). Na het
+  // scrollen één correctie, voor als afbeeldingen boven de sectie de layout nog verschoven hebben.
+  const gaNaar = (event: ReactMouseEvent<HTMLAnchorElement>, id: string) => {
+    const el = document.getElementById(id);
+    if (!el) return;
+    event.preventDefault();
+    const sticky = window.matchMedia("(min-width: 768px)").matches;
+    const marge = sticky ? parseFloat(getComputedStyle(el).scrollMarginTop) || 0 : headerHoogte + 16;
+    // Zonder de translateY van de opkomen-animatie (regio.module.css): een sectie onder beeld staat
+    // tijdelijk 24px lager getekend, maar eindigt op zijn gewone plek.
+    const doel = () => {
+      const verschuiving = new DOMMatrixReadOnly(getComputedStyle(el).transform).m42 || 0;
+      return Math.max(0, el.getBoundingClientRect().top - verschuiving + window.scrollY - marge);
+    };
+    const behavior: ScrollBehavior = window.matchMedia("(prefers-reduced-motion: reduce)").matches ? "auto" : "smooth";
+    window.scrollTo({ top: doel(), behavior });
+    setActive(id);
+    window.setTimeout(() => {
+      if (Math.abs(window.scrollY - doel()) > 4) window.scrollTo({ top: doel(), behavior: "auto" });
+      // Direct via de native History-API, buiten de router om (die zou opnieuw gaan scrollen).
+      History.prototype.replaceState.call(window.history, window.history.state, "", `#${id}`);
+    }, 1200);
+  };
+
   // Actieve link in beeld schuiven binnen de rij. Bewust nav.scrollTo en geen scrollIntoView:
   // dat laatste zou ook de pagina zelf verticaal laten verspringen.
   useEffect(() => {
@@ -119,6 +147,7 @@ export function MeasureSectionNav({ sections, tweeRegelsMobiel = false }: {
               key={section.id}
               ref={el => { linkRefs.current[section.id] = el; }}
               href={`#${section.id}`}
+              onClick={event => gaNaar(event, section.id)}
               aria-current={isActive ? "true" : undefined}
               className={`text-sm font-semibold no-underline shrink-0 pb-1 border-b-2 transition-colors ${
                 isActive

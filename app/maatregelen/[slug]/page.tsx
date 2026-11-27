@@ -45,8 +45,9 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   if (item.slug === "dakisolatie") {
     return createMetadata(
       "/maatregelen/dakisolatie",
-      "Dakisolatie voor jouw woning | Gijs",
-      "Ontdek hoe dakisolatie werkt, welke materialen Gijs gebruikt en hoe de uitvoering verloopt. Vraag gratis en vrijblijvend advies aan.",
+      // SEO-ronde 27-11-2026 (Max): GSC-vragen naar de beste/welke dakisolatie.
+      "Dakisolatie: welk materiaal past bij jouw huis? | Gijs",
+      "Welke dakisolatie past bij jouw huis? Vergelijk houtvezel, inblaaswol en reflecterende folie en ontdek de juiste oplossing met een gratis energiescan.",
       true,
       { path: "/images/maatregelen/dakisolatie/57bfad47-7c34-4f85-80dd-7b3f2f1bf8a4.png", alt: "Dakisolatie wordt tussen de dakconstructie aangebracht" }
     );
@@ -93,11 +94,10 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   if (item.slug === "warmtepomp") {
     return createMetadata(
       "/maatregelen/warmtepomp",
-      // Title en description zoals vastgesteld door Max (12-11-2026). De zoektermen (hybride en
-      // volledig elektrische warmtepomp, laten plaatsen, installatie, subsidie, geschiktheid, gas
-      // besparen) staan op natuurlijke wijze in de koppen en teksten van WarmtepompPage.tsx.
-      "Warmtepomp bestaande woning: advies & plaatsing | Gijs",
-      "Ontdek welke warmtepomp bij je bestaande woning past, hoeveel gas je kunt besparen en wat er nodig is. Gijs adviseert én verzorgt de uitvoering.",
+      // Title en description van Max (27-11-2026), afgestemd op de GSC-zoekvragen rond besparing
+      // (hybride) warmtepomp, kosten in een bestaande woning en kosten per maand.
+      "Warmtepomp bestaande woning: besparing en advies | Gijs",
+      "Hoeveel bespaar je met een hybride of volledig elektrische warmtepomp? Ontdek welke warmtepomp bij jouw woning past met een energiescan van Gijs.",
       true,
       { path: "/images/maatregelen/warmtepomp/warmtepomp-hero.png", alt: "Een installateur van Gijs plaatst een warmtepomp tegen de gevel van een woning" }
     );

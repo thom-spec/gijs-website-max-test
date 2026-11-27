@@ -40,9 +40,15 @@ export function zichtbareArtikelen(slugs?: string[]) {
     .sort((x, y) => y.gepubliceerd.localeCompare(x.gepubliceerd));
 }
 
-export function ArtikelKaarten({ slugs, compact = false }: { slugs?: string[]; compact?: boolean } = {}) {
+/** `rij`: alle kaarten compact op één rij (vanaf lg), bijvoorbeeld vier artikelen onderaan een maatregelpagina. */
+export function ArtikelKaarten({ slugs, compact = false, rij = false }: { slugs?: string[]; compact?: boolean; rij?: boolean } = {}) {
   const artikelen = zichtbareArtikelen(slugs);
   const n = artikelen.length;
+  if (rij) return (
+    <ul className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 lg:gap-5 list-none p-0 m-0">
+      {artikelen.map(a => <li key={a.slug}><Kaart a={a} breed={false} compact /></li>)}
+    </ul>
+  );
   return (
     <ul className={RASTER + " gap-4 lg:gap-5 list-none p-0 m-0"}>
       {artikelen.map((a, i) => (

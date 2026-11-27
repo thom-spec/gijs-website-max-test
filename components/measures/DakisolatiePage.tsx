@@ -1,8 +1,9 @@
 import Link from "next/link";
 import Image from "next/image";
 import { JsonLd } from "@/components/SeoSchema";
-import { SITE_URL } from "@/lib/seo";
-import { DAK_PRODUCTS } from "@/lib/content/dakisolatie-products";
+import { SITE_URL, ENERGIESCAN_HREF } from "@/lib/seo";
+import { DAK_PRODUCTS, DAK_VERGELIJKING, DAK_KEUZEHULP } from "@/lib/content/dakisolatie-products";
+import { ArtikelKaarten } from "@/components/kennis/ArtikelKaarten";
 import { CONTACT } from "@/lib/content/contact";
 import { Card } from "@/components/ds/core/Card";
 import { Button } from "@/components/ds/core/Button";
@@ -28,24 +29,13 @@ type MeasurePageItem = (typeof MEASURE_PAGES)[number];
 // components/measures/SpouwmuurisolatiePage.tsx). Alleen de inhoud gaat
 // over dakisolatie.
 //
-// Bronnen: drie aangeleverde productbladen — pagina 1 (uitvoeringsstappen),
-// pagina 2 (aanvullende voorwaarden + subsidie-informatie) en pagina 3
-// (per materiaal: beschrijving, productvoordelen, productafbeelding — zie
-// lib/content/dakisolatie-products.ts):
-// - "Informatie dakisolatie zonder afwerking (HR WoodFibre) met
-//   aanvullende voorwaarden.pdf"
-// - "Informatie dakisolatie zonder afwerking (HR TimberWool) met
-//   aanvullende voorwaarden.pdf"
-// - "Informatie dakisolatie (HR EcoFoil) met aanvullende voorwaarden.pdf"
+// Bronnen: drie Gijs-productbladen (HR WoodFibre, HR TimberWool, HR Gijs-Roof), zie
+// lib/content/dakisolatie-products.ts. Subsidie loopt via SubsidieSectie (geen bedragen uit de bladen).
 //
-// LET OP — subsidiebedragen verschillen tussen de drie bladen:
-// HR WoodFibre noemt € 425–€ 7.500 / € 21,25 per m² (1 maatregel) / € 37,50
-// per m² (2 maatregelen); HR TimberWool en HR EcoFoil komen onderling
-// overeen op € 325–€ 6.500 / € 16,25 / € 32,50. Het aantal m² (20 t/m 200)
-// is in alle drie gelijk. Deze pagina toont de bedragen waarover twee van
-// de drie bronnen overeenstemmen (TimberWool/EcoFoil) — dit is bewust geen
-// automatische keuze voor de afwijkende WoodFibre-bedragen. Controleer dit
-// met Max voordat de pagina live gaat.
+// SEO-ronde 27-11-2026 (Max): GSC-zoekvragen "beste dakisolatie", "welke dakisolatie (gebruiken)",
+// "dakisolatie voordelen/laten plaatsen/subsidie". Toegevoegd: keuze-intro, technische vergelijking,
+// keuzehulp, aandachtspunten, "beste investering"-overgang, kennisartikelen en FAQ. Geen materiaal
+// als winnaar, geen isolatiewaarden of besparingen per materiaal (geen gevalideerde gegevens).
 //
 // HR NatuWool en HR IcyFoam staan wel genoemd in de bestaande Gijs-content
 // (measure-details.ts), maar de enige aangetroffen bronbladen hiervoor
@@ -92,9 +82,9 @@ const VOORWAARDEN_RECHTS = [
   "De (eind)afwerking is, afhankelijk van de toepassing, voor rekening van de opdrachtgever",
 ];
 
-// Twee voordelen — de dakbrochures (Wood-Fibre/TimberWool/EcoFoil Roof)
+// Twee voordelen — de dakbrochures (WoodFibre/TimberWool/Gijs-Roof)
 // ondersteunen geen gedeelde derde voordeelclaim: Wood-Fibre is dampopen,
-// EcoFoil Roof is juist dampdicht, en alleen TimberWool noemt onbrandbaar.
+// Gijs-Roof is juist dampdicht, en alleen TimberWool noemt onbrandbaar.
 // In plaats van een generieke derde kaart ("lagere energievraag") te
 // herhalen zoals bij spouw/vloer, blijft het bij twee sterke, dak-
 // specifieke voordelen (zie instructie: liever twee sterke kaarten dan
@@ -102,6 +92,14 @@ const VOORWAARDEN_RECHTS = [
 const VOORDELEN = [
   { icon: "thermometer", title: "Meer wooncomfort", text: "Een gelijkmatigere temperatuur in huis, ook via het dak." },
   { icon: "wind", title: "Minder warmteverlies via het dak", text: "Je woning verliest minder warmte via het dak." },
+];
+
+// Waar let je op bij het kiezen (tekst van Max, 27-11-2026; voorwaarden uit p. 3 van de productbladen).
+const AANDACHTSPUNTEN = [
+  { icon: "house", titel: "Bestaande dakconstructie", tekst: "Niet ieder dak is op dezelfde manier opgebouwd. Misschien is jouw dak nog nooit geïsoleerd, terwijl bij een andere woning al isolatie of folie aanwezig is. De bestaande dakopbouw bepaalt mede welke isolatiesystemen geschikt zijn." },
+  { icon: "ruler", titel: "Beschikbare ruimte", tekst: "Gebruik je jouw zolder als slaapkamer, werkkamer of opslagruimte? Dan kan de beschikbare ruimte invloed hebben op je keuze. Kijk daarbij niet alleen naar de dikte van het isolatiemateriaal, maar ook naar de benodigde ruimte voor het volledige isolatiesysteem en de afwerking." },
+  { icon: "shield-check", titel: "Staat van het dak", tekst: "Voordat je dak geïsoleerd kan worden, moet het waterdicht, constructief geschikt en vrij van asbest zijn. Eventuele lekkages of vochtproblemen moeten vooraf worden beoordeeld." },
+  { icon: "paint-roller", titel: "Afwerking van de zolder", tekst: "Is jouw zolder al afgewerkt of wil je deze na het isoleren verder afwerken? Bij sommige isolatiesystemen blijven folie en houten latten zichtbaar. Bij het inblazen van isolatie achter bestaande afwerking kunnen vulopeningen nodig zijn. Bespreek daarom vooraf welke afwerking onderdeel is van de werkzaamheden." },
 ];
 
 // Echte foto's van zolders die Gijs heeft geïsoleerd (aangeleverd via Thom). Bewust de originelen:
@@ -125,7 +123,8 @@ export function DakisolatiePage({ item }: { item: MeasurePageItem }) {
     { id: "voordelen", label: "Voordelen" },
     { id: "hoe-werkt-het", label: "Hoe werkt het?" },
     { id: "in-de-praktijk", label: "In de praktijk" },
-    { id: "materialen", label: "Materialen" },
+    { id: "materialen", label: "Welke dakisolatie?" },
+    { id: "aandachtspunten", label: "Waar let je op?" },
     { id: "subsidie", label: "Subsidie" },
     { id: "veelgestelde-vragen", label: "Veelgestelde vragen" },
   ];
@@ -137,14 +136,23 @@ export function DakisolatiePage({ item }: { item: MeasurePageItem }) {
   // toegevoegd — sourced uit lib/content/dakisolatie-products.ts (HR
   // TimberWool: "Onbrandbaar (brandklasse A1)"); de andere twee systemen
   // claimen dit niet, dus het antwoord noemt bewust alleen TimberWool en
-  // beweert niets over Wood-Fibre/EcoFoil. Overige vragen behouden,
+  // beweert niets over WoodFibre/Gijs-Roof. Overige vragen behouden,
   // opnieuw geordend op klantprioriteit (geschiktheid → materialen →
   // voorbereiding → overige).
   const faqItems: FAQItem[] = [
-    { question: "Is mijn dak geschikt voor dakisolatie?", answer: "Dat hangt af van de bestaande dakconstructie en de staat van het dak. Gijs beoordeelt dit tijdens de energiescan. Dit is geen definitief technisch advies vooraf." },
-    { question: "Welke soorten dakisolatie gebruikt Gijs?", answer: "Gijs werkt onder andere met houtvezelisolatie, inblaaswol en reflecterende folie-isolatie. Welk systeem past, hangt af van je dakconstructie." },
+    { question: "Wat is de beste dakisolatie?", answer: "Er is geen isolatiemateriaal dat voor iedere woning de beste keuze is. De dakconstructie, beschikbare ruimte, aanwezige isolatie en jouw persoonlijke wensen bepalen welk isolatiesysteem het meest geschikt is. Gijs werkt met houtvezelisolatie, inblaaswol en reflecterende folie-isolatie." },
+    { question: "Is mijn dak geschikt voor dakisolatie?", answer: "Dat hangt af van de bestaande dakconstructie en de staat van het dak. Het dak moet waterdicht, constructief geschikt en vrij van asbest zijn. Gijs beoordeelt dit tijdens de energiescan." },
+    { question: "Welke dakisolatie helpt tegen warmte in de zomer?", answer: "Houtvezelisolatie beschikt over een hoog warmteopslagvermogen en kan daardoor bijdragen aan een aangenamere binnentemperatuur tijdens warme zomerdagen. De uiteindelijke werking hangt af van de volledige dakconstructie." },
+    { question: "Welke dakisolatie kan ik het beste gebruiken bij weinig ruimte?", answer: "Reflecterende folie-isolatie kan vanwege de relatief geringe materiaaldikte een interessante oplossing zijn. Of dit geschikt is voor jouw woning, hangt af van de bestaande dakconstructie en de benodigde ruimte voor het volledige isolatiesysteem." },
     { question: "Is dakisolatie brandveilig?", answer: "Dat hangt af van het gekozen materiaal. Inblaaswol is bijvoorbeeld onbrandbaar (brandklasse A1). Tijdens de energiescan bekijkt Gijs welk systeem bij jouw dak past." },
+    { question: "Kan ik mijn dak isoleren als mijn zolder al is afgewerkt?", answer: "In sommige gevallen kan isolatiemateriaal via openingen in de bestaande afwerking worden ingeblazen. Of dit mogelijk is, hangt af van de dakconstructie en aanwezige isolatie. Houd er rekening mee dat herstel en afwerking afzonderlijke werkzaamheden kunnen zijn." },
     { question: "Wordt de binnenzijde afgewerkt?", answer: "Niet altijd. Bij sommige systemen blijft een folie- en lattenconstructie zichtbaar; de (eind)afwerking is dan voor rekening van de opdrachtgever." },
+    { question: "Kan ik mijn dak beter isoleren als er al isolatie aanwezig is?", answer: "Dat hangt af van de aanwezige isolatie en de bestaande dakconstructie. Tijdens een energiescan bekijken we of aanvullende dakisolatie mogelijk is en voldoende meerwaarde heeft voor jouw woning." },
+    {
+      question: "Kan ik subsidie krijgen voor dakisolatie?",
+      answer: "Voor dakisolatie kun je onder bepaalde voorwaarden subsidie ontvangen. Welke subsidies beschikbaar zijn voor jouw woning, ontdek je via de subsidiecheck van Gijs.",
+      antwoord: <p>Voor dakisolatie kun je onder bepaalde voorwaarden subsidie ontvangen. Welke subsidies beschikbaar zijn voor jouw woning, ontdek je via de <Link href="/subsidiecheck" className="text-[var(--accent-700)] underline underline-offset-2 hover:text-[var(--gijs-donkergroen)]">subsidiecheck van Gijs</Link>.</p>,
+    },
     { question: item.question, answer: item.answer },
     {
       question: "Wat moet ik voorbereiden en waar moet ik rekening mee houden?",
@@ -233,18 +241,6 @@ export function DakisolatiePage({ item }: { item: MeasurePageItem }) {
         </div>
         </div>
 
-        <div className="mt-10">
-          <h3 className="font-bold text-lg text-[var(--gijs-donkergroen)] mb-4">Hoe wordt jouw dak geïsoleerd?</h3>
-          <div className="grid grid-cols-1 sm:grid-cols-3 gap-6">
-            {DAK_PRODUCTS.map(product => (
-              <div key={product.name} className="flex flex-col gap-1">
-                <h4 className="font-bold text-[var(--gijs-donkergroen)]">{product.name}</h4>
-                <p className="text-sm text-zinc-600">{product.text}</p>
-              </div>
-            ))}
-          </div>
-        </div>
-
         <Card variant="tint" className="mt-8 flex flex-col md:flex-row md:items-center gap-6 !p-8">
           <div className="md:flex-1 flex flex-col gap-1">
             <h3 className="font-bold text-lg text-[var(--gijs-donkergroen)]">Past dakisolatie bij mijn woning?</h3>
@@ -289,12 +285,21 @@ export function DakisolatiePage({ item }: { item: MeasurePageItem }) {
       </section>
 
       <section id="materialen" className="scroll-mt-40 mb-14">
-        <h2 className="text-[var(--fs-display-3)] font-bold text-[var(--gijs-donkergroen)] mb-2">Materialen</h2>
-        <p className="text-zinc-600 mb-6 max-w-2xl">
-          Gijs werkt met verschillende isolatiesystemen: houtvezel, isolatiewol en andere systemen. Welk systeem het
-          meest geschikt is, hangt af van jouw dakconstructie. Dit is geen keuze voor het &quot;beste&quot; systeem.
-        </p>
-        <div className="grid grid-cols-2 lg:grid-cols-3 gap-3 sm:gap-8">
+        <h2 className="text-[var(--fs-display-3)] font-bold text-[var(--gijs-donkergroen)] mb-3">Welke dakisolatie past bij jouw huis?</h2>
+        <div className="flex flex-col gap-4 mb-8 max-w-3xl text-zinc-600">
+          <p>
+            Wil je jouw dak laten isoleren, maar weet je niet goed welk isolatiemateriaal je moet kiezen? Misschien wil je
+            vooral besparen op je energierekening, wordt het in de zomer erg warm op zolder of heb je last van geluiden van
+            buitenaf. Hoewel ieder isolatiemateriaal zijn eigen eigenschappen heeft, betekent dit niet dat het ene materiaal
+            voor iedere woning beter is dan het andere. De beste dakisolatie is uiteindelijk de isolatie die aansluit bij
+            jouw dakconstructie, beschikbare ruimte en persoonlijke wensen.
+          </p>
+          <p>
+            Bij Gijs werken we met verschillende isolatiesystemen. We kijken daarom eerst naar jouw woning voordat we bepalen
+            welk materiaal het meest geschikt is.
+          </p>
+        </div>
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6">
           {DAK_PRODUCTS.map(product => (
             <MaterialCard
               key={product.name}
@@ -303,23 +308,165 @@ export function DakisolatiePage({ item }: { item: MeasurePageItem }) {
               benefits={product.benefits}
               image={product.image}
               imageAlt={product.alt}
-              badge={product.badge}
-              className="!p-3 sm:!p-6"
+              badge={product.product}
+              className="!p-5 sm:!p-6"
             />
           ))}
         </div>
-        <p className="text-sm text-zinc-500 mt-5 max-w-2xl">
-          Tijdens de energiescan wordt bekeken welk systeem bij de woning en de bestaande dakconstructie past. Twijfel je
-          tussen isolatiemaatregelen? Bekijk ook{" "}
-          <Link href="/maatregelen/spouwmuurisolatie" className="underline text-[var(--accent-700)] hover:text-[var(--gijs-donkergroen)]">spouwmuurisolatie</Link>,{" "}
-          <Link href="/maatregelen/vloerisolatie" className="underline text-[var(--accent-700)] hover:text-[var(--gijs-donkergroen)]">vloerisolatie</Link>,{" "}
-          <Link href="/maatregelen/isolatieglas" className="underline text-[var(--accent-700)] hover:text-[var(--gijs-donkergroen)]">isolatieglas</Link>{" "}
-          of{" "}
-          <Link href="/maatregelen/kozijnen" className="underline text-[var(--accent-700)] hover:text-[var(--gijs-donkergroen)]">kozijnen</Link>.
+
+        {/* Technische vergelijking: desktop als tabel (zelfde stijl als op de warmtepomppagina), mobiel
+            per materiaal een kaart. Eén bron: DAK_VERGELIJKING. */}
+        <h3 className="mt-14 mb-2 font-bold text-2xl text-[var(--gijs-donkergroen)]">Verschillende soorten dakisolatie vergelijken</h3>
+        <p className="text-zinc-600 mb-6 max-w-3xl">
+          De eigenschappen hieronder komen uit de productbladen. Hoe goed een dak uiteindelijk isoleert, hangt af van de
+          volledige dakconstructie en de uitvoering, niet alleen van het materiaal.
         </p>
+        <div className="hidden md:block overflow-x-auto rounded-[var(--radius-lg)] border border-[var(--border-default)] bg-white">
+          <table className="w-full text-left border-collapse">
+            <caption className="sr-only">Vergelijking van HR WoodFibre, HR TimberWool en HR Gijs-Roof per eigenschap</caption>
+            <thead>
+              <tr className="border-b border-[var(--border-default)]">
+                <th scope="col" className="px-5 py-3.5 text-sm font-bold text-[var(--gijs-donkergroen)]">Eigenschap</th>
+                {DAK_PRODUCTS.map(p => (
+                  <th key={p.product} scope="col" className="px-5 py-3.5 text-sm font-bold text-[var(--gijs-donkergroen)]">
+                    {p.product}<span className="block text-[13px] font-medium text-zinc-500">{p.name}</span>
+                  </th>
+                ))}
+              </tr>
+            </thead>
+            <tbody className="divide-y divide-[var(--border-default)]">
+              {DAK_VERGELIJKING.map(r => (
+                <tr key={r.eigenschap}>
+                  <th scope="row" className="px-5 py-3 text-[15px] font-bold text-[var(--gijs-donkergroen)] align-top">{r.eigenschap}</th>
+                  {r.waarden.map((w, i) => (
+                    <td key={i} className={"px-5 py-3 text-[15px] align-top " + (w.startsWith("Niet ") ? "text-zinc-400" : "text-zinc-700")}>{w}</td>
+                  ))}
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
+        <ul className="md:hidden flex flex-col gap-4">
+          {DAK_PRODUCTS.map((p, i) => (
+            <li key={p.product} className="rounded-[var(--radius-lg)] border border-[var(--border-default)] bg-white px-5 py-4">
+              <p className="font-bold text-[var(--gijs-donkergroen)]">{p.product}<span className="ml-2 text-[14px] font-medium text-zinc-500">{p.name}</span></p>
+              <dl className="mt-2 divide-y divide-[var(--border-default)] text-[14px]">
+                {DAK_VERGELIJKING.map(r => (
+                  <div key={r.eigenschap} className="grid grid-cols-[minmax(0,1fr)_minmax(0,1.2fr)] gap-3 py-2">
+                    <dt className="text-zinc-600">{r.eigenschap}</dt>
+                    <dd className={r.waarden[i].startsWith("Niet ") ? "text-zinc-400" : "text-zinc-800"}>{r.waarden[i]}</dd>
+                  </div>
+                ))}
+              </dl>
+            </li>
+          ))}
+        </ul>
+        <p className="text-sm text-zinc-500 mt-3 max-w-3xl">
+          Brandklasse, vochtgedrag en recyclebaarheid zijn eigenschappen van het materiaal zelf; hoe je dak uiteindelijk
+          presteert, hangt af van de volledige dakopbouw. &quot;Niet gespecificeerd&quot; betekent dat het productblad deze
+          eigenschap niet noemt, niet dat het materiaal de eigenschap mist. Geen van de drie is in het algemeen de beste keuze.
+        </p>
+
+        {/* Keuzehulp vanuit de woningeigenaar. Eén bron: DAK_KEUZEHULP. */}
+        <h3 className="mt-14 mb-2 font-bold text-2xl text-[var(--gijs-donkergroen)]">Welke dakisolatie kun je het beste gebruiken?</h3>
+        <p className="text-zinc-600 mb-6 max-w-3xl">
+          Het beste isolatiemateriaal is afhankelijk van wat je wilt bereiken en de mogelijkheden van jouw woning. Onderstaand
+          overzicht helpt je om de verschillende oplossingen met elkaar te vergelijken.
+        </p>
+        <div className="hidden sm:block overflow-x-auto rounded-[var(--radius-lg)] border border-[var(--border-default)] bg-white">
+          <table className="w-full text-left border-collapse min-w-[560px]">
+            <caption className="sr-only">Welke dakisolatie past bij welke situatie of wens</caption>
+            <thead>
+              <tr className="border-b border-[var(--border-default)]">
+                <th scope="col" className="px-5 py-3.5 text-sm font-bold text-[var(--gijs-donkergroen)]">Jouw situatie of wens</th>
+                <th scope="col" className="px-5 py-3.5 text-sm font-bold text-[var(--gijs-donkergroen)]">Interessante oplossing</th>
+                <th scope="col" className="px-5 py-3.5 text-sm font-bold text-[var(--gijs-donkergroen)]">Waarom?</th>
+              </tr>
+            </thead>
+            <tbody className="divide-y divide-[var(--border-default)]">
+              {DAK_KEUZEHULP.map(r => (
+                <tr key={r.situatie}>
+                  <th scope="row" className="px-5 py-3 text-[15px] font-semibold text-[var(--gijs-donkergroen)] align-top">{r.situatie}</th>
+                  <td className="px-5 py-3 text-[15px] font-semibold text-[var(--accent-700)] align-top whitespace-nowrap">{r.oplossing}</td>
+                  <td className="px-5 py-3 text-[15px] text-zinc-700 align-top">{r.waarom}</td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
+        <ul className="sm:hidden divide-y divide-[var(--border-default)] rounded-[var(--radius-lg)] border border-[var(--border-default)] bg-white px-5">
+          {DAK_KEUZEHULP.map(r => (
+            <li key={r.situatie} className="py-4">
+              <p className="font-semibold text-[var(--gijs-donkergroen)]">{r.situatie}</p>
+              <p className="mt-1 text-[15px] font-semibold text-[var(--accent-700)]">{r.oplossing}</p>
+              <p className="text-[14px] text-zinc-600">{r.waarom}</p>
+            </li>
+          ))}
+        </ul>
+        <div className="mt-6 flex flex-col gap-4 max-w-3xl">
+          <p className="text-zinc-600">
+            Hoewel een bepaald isolatiemateriaal goed bij jouw wensen kan aansluiten, betekent dit niet automatisch dat het
+            geschikt is voor jouw dak. Ook de bestaande dakconstructie, aanwezige isolatie en beschikbare ruimte spelen een
+            belangrijke rol. Tijdens een energiescan kijkt Gijs daarom welke oplossing daadwerkelijk bij jouw woning past.
+          </p>
+          <WhatsAppTrackedButton plaats="maatregelpagina_keuzehulp" href={ENERGIESCAN_HREF} variant="secondary" iconRight="arrow-right" className="self-start">Vraag een gratis energiescan aan</WhatsAppTrackedButton>
+        </div>
       </section>
 
-      <SubsidieSectie titel="Subsidie bij dakisolatie" />
+      <section id="aandachtspunten" className={`scroll-mt-40 ${HOOFDSTUK_MB}`}>
+        <h2 className="text-[var(--fs-display-3)] font-bold text-[var(--gijs-donkergroen)] mb-6">Waar moet je op letten bij het kiezen van dakisolatie?</h2>
+        <ul className="grid grid-cols-1 sm:grid-cols-2 gap-4 lg:gap-5">
+          {AANDACHTSPUNTEN.map(a => (
+            <li key={a.titel} className="flex flex-col gap-3 rounded-[var(--radius-lg)] border border-[var(--border-default)] bg-white p-6 sm:p-7">
+              <span className="flex h-10 w-10 items-center justify-center rounded-full bg-[var(--surface-tint)] text-[var(--accent-700)]">
+                <Icon name={a.icon} size="md" />
+              </span>
+              <h3 className="font-bold text-lg text-[var(--gijs-donkergroen)]">{a.titel}</h3>
+              <p className="text-[15px] leading-relaxed text-zinc-600">{a.tekst}</p>
+            </li>
+          ))}
+        </ul>
+      </section>
+
+      <SubsidieSectie titel="Subsidie bij dakisolatie" extra={<>
+        Voor ISDE-subsidie op dakisolatie geldt onder meer een minimum van 20 m² en een minimale Rd-waarde van 3,5. Bekijk
+        de actuele{" "}
+        <a href="https://www.rvo.nl/subsidies-financiering/isde/woningeigenaren/isolatiemaatregelen" target="_blank" rel="noopener noreferrer" className="underline text-[var(--accent-700)] hover:text-[var(--gijs-donkergroen)]">
+          voorwaarden voor isolatiemaatregelen bij RVO<span className="sr-only"> (opent in nieuw tabblad)</span>
+        </a>.
+      </>} />
+
+      <section id="beste-investering" className={`scroll-mt-40 ${HOOFDSTUK_MB}`}>
+        <Card variant="tint" className="flex flex-col gap-4 !p-7 md:!p-10">
+          <h2 className="text-[var(--fs-display-3)] font-bold text-[var(--gijs-donkergroen)]">Is dakisolatie de beste investering voor jouw woning?</h2>
+          <div className="flex flex-col gap-4 max-w-3xl text-zinc-700">
+            <p>
+              Wanneer je jouw dak wilt isoleren, wil je natuurlijk dat deze investering zoveel mogelijk oplevert. Misschien
+              verlies je echter meer warmte via je{" "}
+              <Link href="/maatregelen/spouwmuurisolatie" className="underline text-[var(--accent-700)] hover:text-[var(--gijs-donkergroen)]">buitenmuren</Link>,{" "}
+              <Link href="/maatregelen/vloerisolatie" className="underline text-[var(--accent-700)] hover:text-[var(--gijs-donkergroen)]">vloer</Link> of{" "}
+              <Link href="/maatregelen/isolatieglas" className="underline text-[var(--accent-700)] hover:text-[var(--gijs-donkergroen)]">ramen</Link>{" "}
+              en kun je beter beginnen met een andere isolatiemaatregel. Het is daarom belangrijk om niet alleen naar de
+              mogelijkheden van je dak te kijken, maar naar jouw gehele woning.
+            </p>
+            <p>
+              Tijdens een gratis energiescan brengt Gijs de verduurzamingsmogelijkheden van jouw woning in kaart. Blijkt
+              dakisolatie een verstandige investering te zijn? Dan bekijken we welk isolatiesysteem het beste bij jouw
+              dakconstructie en wensen past. Vervolgens kunnen we ook de uitvoering voor je verzorgen.
+            </p>
+            <p className="font-medium text-[var(--gijs-donkergroen)]">
+              Zo investeer je niet zomaar in dakisolatie, maar in de maatregelen die voor jouw woning daadwerkelijk meerwaarde
+              hebben.
+            </p>
+          </div>
+          <Button href={startScanHref} variant="accent" iconRight="arrow-right" className="self-start mt-2">Ik wil mijn woning verduurzamen</Button>
+        </Card>
+      </section>
+
+      <section id="kennis" className={`scroll-mt-40 ${HOOFDSTUK_MB}`}>
+        <h2 className="text-[var(--fs-display-3)] font-bold text-[var(--gijs-donkergroen)] mb-6">Meer weten? Lees meer!</h2>
+        <ArtikelKaarten slugs={["waarom-blijft-mijn-huis-koud", "vochtige-kruipruimte-isoleren", "uf-schuim-spouwmuurisolatie-risicos-alternatieven"]} compact />
+      </section>
 
       <section id="veelgestelde-vragen" className={`scroll-mt-40 mb-10 sm:mb-14 lg:mb-16 ${HOOFDSTUK_DIVIDER}`}>
         <h2 className="text-[var(--fs-display-3)] font-bold text-[var(--gijs-donkergroen)] mb-6">Veelgestelde vragen</h2>

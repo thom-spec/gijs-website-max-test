@@ -22,7 +22,7 @@ export const SIGENSTOR = {
   // (vereenvoudiging voor leken, geen wijziging van de brongegevens).
   kenmerken: [
     "Modulair en stapelbaar, uit te breiden met extra batterijpakketten",
-    "Bidirectioneel laden en ontladen, ook geschikt voor elektrische auto's (V2X)",
+    "V2X-ready: voorbereid op bidirectioneel laden en ontladen met een geschikte elektrische auto en de benodigde systeemonderdelen",
     "Geschikt voor buitenshuis gebruik, met bescherming tegen stof en water (IP66)",
     "Stabiele werking tot -20°C dankzij ingebouwd warmtekussen",
   ] as string[],
@@ -42,5 +42,5 @@ export const SIGENSTOR = {
   ] as string[],
   // Bron: Sigenergy Infoblad, pagina 2. "*Onder specifieke voorwaarden."
   levenscyclus: "10.000 keer levenscyclus per batterijcel*",
-  levenscyclusNoot: "*Onder specifieke voorwaarden, zoals vermeld door de fabrikant.",
+  levenscyclusNoot: "*Uitkomst van een fabrikanttest onder specifieke laboratoriumcondities; geen gegarandeerde levensduur in de praktijk.",
 };

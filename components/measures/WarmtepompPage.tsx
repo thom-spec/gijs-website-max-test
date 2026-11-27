@@ -13,7 +13,7 @@ import { AdviseurFoto, ADVISEUR_FOTO } from "@/components/regio/VerhaalSecties";
 import { SubsidiecheckStart } from "@/components/subsidie/SubsidiecheckStart";
 import {
   EYEBROW, SECTIE_BASE, LEAD, TEKST, BRON, WIT_BLOK, GRIJS_BLOK, HERO_H1, HERO_INTRO, GijsWatermark,
-  RASTER, RASTER_CEL, TEKSTLINK, H3_GROOT, KAARTKOP, KAARTTEKST, UITKLAP, Kop,
+  RASTER, RASTER_CEL, TEKSTLINK, BRONLINK, H3_GROOT, KAARTKOP, KAARTTEKST, UITKLAP, Kop,
 } from "@/components/regio/regio-template-styles";
 import regioStyles from "@/components/regio/regio.module.css";
 import { ArtikelKaarten } from "@/components/kennis/ArtikelKaarten";
@@ -29,7 +29,9 @@ import { WARMTEPOMP_PRODUCTEN } from "@/lib/content/warmtepomp-producten";
 import { WARMTEPOMP_VOORBEELDEN, contactLinkVoorModel } from "@/lib/content/warmtepomp-voorbeelden";
 import {
   WARMTEPOMP_HUIDIG_VERBRUIK, WARMTEPOMP_GASBESPARING, WARMTEPOMP_STROOM_ERBIJ,
+  WARMTEPOMP_EURO_BESPARING, WARMTEPOMP_EURO_UITGANGSPUNTEN,
 } from "@/lib/content/warmtepomp-besparing";
+import { StaafVergelijking } from "@/components/measures/StaafVergelijking";
 import { HOUSE_MODELS, type HouseType } from "@/lib/woning-types";
 import type { MEASURE_PAGES } from "@/lib/content/measure-pages";
 
@@ -45,8 +47,10 @@ type MeasurePageItem = (typeof MEASURE_PAGES)[number];
 // - Besparing: Nauds vuistregels zijn leidend (lib/content/warmtepomp-besparing.ts). De
 //   cijfers hieronder worden daar alleen mee uitgerekend, niet aangepast:
 //     bespaard gas = huidig gas x 0,6; extra stroom hybride = 2.000 kWh per jaar.
-// - Geen prijzen: geen aanschafprijs, bandbreedte, installatieprijs, maandbedrag of kostentabel.
-// - Geen euro's bij de besparing; de gasprijsindicatie (nov. 2026) staat niet op de pagina.
+// - Geen prijzen: geen aanschafprijs, bandbreedte, installatieprijs of kostentabel.
+// - Euro-besparing (Max, 27-11-2026): alleen de indicatieve rekenvoorbeelden uit
+//   WARMTEPOMP_EURO_BESPARING, met de uitgangspunten erbij. Die staan los van Nauds gastabel;
+//   niet met elkaar verrekenen. Geen onbevestigde terugverdientijden.
 // - Koelen en levensduur: overal weggelaten. COP/SCOP: niet op de pagina.
 // - Google-score en reviews komen live uit /api/google-reviews (useGoogleReviews); niets vast.
 // - Subsidie via de bestaande subsidiecheck (SubsidiecheckStart), geen bedragen.
@@ -77,12 +81,22 @@ const GASBESPARING = TYPES.map(type => {
   return { label: HOUSE_MODELS[type].label, nu, hybride, minder: nu - hybride };
 });
 const m3 = (n: number) => `${n.toLocaleString("nl-NL")} m³`;
+const euro = (n: number) => `€ ${n.toLocaleString("nl-NL")}`;
+const euroCent = (n: number) => `€ ${n.toLocaleString("nl-NL", { minimumFractionDigits: 2 })}`;
+
+const KLEUR = { ketel: "var(--grey-400)", hybride: "var(--accent-500)", volledig: "var(--accent-800)" };
+
+// Indicatieve euro-besparing per jaar (Max, 27-11-2026). Eén bron voor tabel én grafiek.
+const EUROBESPARING = TYPES.map(type => ({ label: HOUSE_MODELS[type].label, ...WARMTEPOMP_EURO_BESPARING[type] }));
+const EURO_HYBRIDE = EUROBESPARING.map(r => r.hybride);
+const EURO_VOLLEDIG = EUROBESPARING.map(r => r.volledigElektrisch);
+const U = WARMTEPOMP_EURO_UITGANGSPUNTEN;
 
 const HYBRIDE = [
   "Werkt samen met je bestaande cv-ketel",
   "Past in veel bestaande woningen",
   "Je radiatoren kunnen meestal blijven",
-  "In één dag geplaatst",
+  "Een standaardinstallatie plaatsen we meestal in één dag",
 ];
 
 const VOLLEDIG = [
@@ -118,31 +132,57 @@ export function WarmtepompPage({ item }: { item: MeasurePageItem }) {
     },
     {
       icon: "calendar-check",
-      titel: "In één dag geplaatst",
-      tekst: "We plaatsen een hybride warmtepomp in één dag. Voor een goede werking hoort er daarna een onderhoudscontract bij.",
+      titel: "Meestal in één dag geplaatst",
+      tekst: "Een standaardinstallatie plaatsen we meestal in één dag. Voor een goede werking hoort er daarna een onderhoudscontract bij.",
     },
   ];
 
+  const pctHybride = Math.round(WARMTEPOMP_GASBESPARING.hybride * 100);
+  const stroomErbij = WARMTEPOMP_STROOM_ERBIJ.hybride.toLocaleString("nl-NL");
+  const perMaand = (n: number) => euro(Math.round(n / 12));
+  const minHybride = Math.min(...EURO_HYBRIDE), maxHybride = Math.max(...EURO_HYBRIDE);
+  const minVolledig = Math.min(...EURO_VOLLEDIG), maxVolledig = Math.max(...EURO_VOLLEDIG);
+
   const faqItems: FAQItem[] = [
     {
-      question: "Blijft mijn cv-ketel hangen bij een hybride warmtepomp?",
-      answer: "Ja. De warmtepomp verzorgt het grootste deel van de verwarming, en de cv-ketel levert het warme water en springt bij als het echt koud is. Het schakelen tussen de twee gaat automatisch.",
+      question: "Hoeveel bespaar je met een hybride warmtepomp?",
+      answer: `Als vuistregel rekent Gijs met ongeveer ${pctHybride}% minder gas voor verwarming. Bij een gemiddelde tussenwoning is dat ${m3(GASBESPARING[0].minder)} per jaar, bij een vrijstaande woning ${m3(GASBESPARING[3].minder)}. In onze rekenvoorbeelden levert een hybride warmtepomp een besparing op je energierekening op van ${euro(minHybride)} tot ${euro(maxHybride)} per jaar, gerekend met ${euroCent(U.gasprijsPerM3)} per m³ gas en ${euroCent(U.stroomprijsPerKwh)} per kWh stroom. Je eigen besparing hangt af van je woning, verbruik en energiecontract.`,
     },
     {
-      question: "Kan ik mijn bestaande radiatoren houden?",
-      answer: "Bij een hybride warmtepomp meestal wel. Bij volledig elektrisch verwarmen zijn grotere radiatoren of vloerverwarming vaker een logische stap. Of jouw radiatoren het aankunnen, bekijkt een adviseur van Gijs bij je thuis.",
+      question: "Wat kost een warmtepomp in een bestaande woning?",
+      answer: "Dat verschilt per woning. De kosten hangen af van het type warmtepomp, het benodigde vermogen en wat er aan je radiatoren, leidingen en meterkast moet gebeuren. ISDE-subsidie verlaagt het bedrag dat je zelf betaalt. Omdat een vaste prijs op een website weinig zegt over jouw huis, brengt Gijs de kosten en de verwachte besparing tijdens de gratis energiescan voor jouw situatie in kaart.",
+      links: [{ tekst: "de subsidiecheck", href: "/subsidiecheck" }],
     },
     {
-      question: "Wordt mijn stroomrekening hoger?",
-      answer: `Je stroomverbruik gaat omhoog, bij een hybride warmtepomp met zo'n ${WARMTEPOMP_STROOM_ERBIJ.hybride.toLocaleString("nl-NL")} kWh per jaar. Daar staat tegenover dat je flink minder gas gebruikt. Wat dat onder de streep doet, hangt af van je eigen energiecontract.`,
+      question: "Is een hybride warmtepomp het geld waard?",
+      answer: `Voor veel bestaande woningen wel: je gebruikt flink minder gas en in onze rekenvoorbeelden bespaar je ${euro(minHybride)} tot ${euro(maxHybride)} per jaar. Of het voor jou de beste investering is, hangt af van je huidige gasverbruik, de staat van je cv-ketel en de isolatie van je woning. Soms levert isoleren eerst meer op. Tijdens de energiescan zet Gijs de investering, subsidie en verwachte besparing voor jouw woning naast elkaar.`,
+    },
+    {
+      question: "Wat kost een warmtepomp per maand?",
+      answer: `Een warmtepomp gebruikt stroom; bij een hybride warmtepomp gaat je verbruik met ongeveer ${stroomErbij} kWh per jaar omhoog. Daar staat een flinke daling van je gasverbruik tegenover. Per saldo bespaar je in onze rekenvoorbeelden ongeveer ${perMaand(minHybride)} tot ${perMaand(maxHybride)} per maand met een hybride warmtepomp, en ${perMaand(minVolledig)} tot ${perMaand(maxVolledig)} per maand met een volledig elektrische warmtepomp. Daarnaast hoort er een onderhoudscontract bij. Wat het voor jou betekent, hangt af van je energiecontract en verbruik.`,
+    },
+    {
+      question: "Moet ik mijn cv-ketel vervangen bij een hybride warmtepomp?",
+      answer: "Nee. Bij een hybride warmtepomp blijft je cv-ketel hangen. De warmtepomp verzorgt het grootste deel van de verwarming; de cv-ketel levert het warme water en springt bij als het echt koud is. Het schakelen gaat automatisch. Is je ketel al oud? Dan bekijkt Gijs of het slimmer is om de cv-ketel en de hybride warmtepomp in één keer te vervangen, zodat je de kosten van beide in samenhang kunt afwegen.",
+      links: [{ tekst: "cv-ketel vervangen", href: "/maatregelen/ketel" }],
+    },
+    {
+      question: "Wat kost een hybride warmtepomp zonder buitenunit?",
+      answer: "Een warmtepomp die warmte uit de buitenlucht haalt, heeft altijd een deel buiten nodig. Dat hoeft geen hoge kast te zijn: er zijn uitvoeringen die laag en vlak tegen de gevel staan. Er bestaan ook warmtepompen die hun warmte uit PVT-panelen op het dak halen, waardoor een buitenunit met ventilator niet nodig is. Wat zo'n oplossing kost en of die bij je dak en woning past, bespreekt Gijs met je tijdens de energiescan.",
+      links: [{ tekst: "warmtepomp in een rijtjeshuis met weinig ruimte", href: "/kennis/warmtepomp-rijtjeshuis-weinig-ruimte" }],
+    },
+    {
+      question: "Kan ik mijn bestaande radiatoren behouden?",
+      answer: "Bij een hybride warmtepomp meestal wel. Bij volledig elektrisch verwarmen zijn grotere radiatoren of vloerverwarming vaker een logische stap, omdat de warmtepomp dan met water op een lagere temperatuur werkt. Of jouw radiatoren het aankunnen, bekijkt een adviseur van Gijs bij je thuis.",
+    },
+    {
+      question: "Kan ik beter eerst isoleren of een warmtepomp laten plaatsen?",
+      answer: "Dat hangt af van je woning. Hoe beter je huis geïsoleerd is, hoe minder warmte je nodig hebt en hoe beter een warmtepomp werkt. Een hybride warmtepomp kan vaak al in een matig geïsoleerde woning; voor volledig elektrisch verwarmen is goede isolatie nodig. Verlies je nog veel warmte via je dak, muren of vloer, dan kan isoleren de verstandigste eerste stap zijn. Tijdens de energiescan bekijkt Gijs welke volgorde voor jouw woning het meeste oplevert.",
+      links: [{ tekst: "dakisolatie", href: "/maatregelen/dakisolatie" }, { tekst: "spouwmuurisolatie", href: "/maatregelen/spouwmuurisolatie" }, { tekst: "vloerisolatie", href: "/maatregelen/vloerisolatie" }],
     },
     {
       question: "Hoeveel geluid maakt een warmtepomp?",
       answer: `Dat verschilt per model. De uitvoering die Gijs het meest plaatst zit op ${geluid}. Waar het buitendeel komt te staan, bepaalt mee wat jij en je buren ervan horen; daar houdt Gijs rekening mee.`,
-    },
-    {
-      question: "Kan een hybride warmtepomp zonder buitenunit?",
-      answer: "Een warmtepomp die warmte uit de buitenlucht haalt, heeft altijd een deel buiten nodig. Het hoeft wel geen hoge kast te zijn: er zijn ook uitvoeringen die laag en vlak tegen de gevel staan. Waar het komt en hoe het eruitziet, bespreekt Gijs vooraf met je.",
     },
     {
       question: "Welk merk warmtepomp is het beste?",
@@ -205,10 +245,11 @@ export function WarmtepompPage({ item }: { item: MeasurePageItem }) {
 
       <MeasureSectionNav tweeRegelsMobiel sections={[
         { id: "waarom-gijs", label: "Waarom Gijs" },
-        { id: "besparing", label: "Besparing" },
+        { id: "besparing", label: "Gasbesparing" },
+        { id: "energierekening", label: "Energierekening" },
         { id: "welke-past", label: "Welke past" },
-        { id: "voorbeelden", label: "Voorbeelden" },
         { id: "plaatsen", label: "Plaatsen" },
+        { id: "voorbeelden", label: "Voorbeelden" },
         { id: "subsidie", label: "Subsidie" },
         { id: "veelgestelde-vragen", label: "Vragen" },
       ]} />
@@ -299,11 +340,22 @@ export function WarmtepompPage({ item }: { item: MeasurePageItem }) {
                 de koudste dagen.
               </p>
               <p className={TEKST}>
-                Als vuistregel rekent Gijs met ongeveer {Math.round(WARMTEPOMP_GASBESPARING.hybride * 100)}% minder gas,
+                Als vuistregel rekent Gijs met ongeveer {Math.round(WARMTEPOMP_GASBESPARING.hybride * 100)}% minder gas voor verwarming,
                 en met vloerverwarming ongeveer {Math.round(WARMTEPOMP_GASBESPARING.hybrideMetVloerverwarming * 100)}%.
               </p>
             </div>
             <GijsWatermark />
+          </div>
+
+          <div className="mb-8">
+            <StaafVergelijking
+              titel="Jaarlijks gasverbruik per woningtype"
+              reeksen={[{ naam: "Cv-ketel", kleur: KLEUR.ketel }, { naam: "Hybride warmtepomp", kleur: KLEUR.hybride }]}
+              categorieen={GASBESPARING.map(r => ({ label: r.label, waarden: [r.nu, r.hybride] }))}
+              max={2000}
+              stappen={[0, 500, 1000, 1500, 2000]}
+              formaat={m3}
+            />
           </div>
 
           {/* Vanaf sm dezelfde tabelstijl als op de isolatieglaspagina; daaronder de compacte mobiele rijen. */}
@@ -346,24 +398,97 @@ export function WarmtepompPage({ item }: { item: MeasurePageItem }) {
               </tbody>
             </table>
           </div>
-          <p className={BRON + " mt-3 mb-8 lg:mb-10"}>
+          <p className={BRON + " mt-3"}>
             Gerekend met het gemiddelde gasverbruik per woningtype en de vuistregel van Gijs: ongeveer{" "}
-            {Math.round(WARMTEPOMP_GASBESPARING.hybride * 100)}% minder gas met een hybride warmtepomp. Je stroomverbruik gaat
+            {Math.round(WARMTEPOMP_GASBESPARING.hybride * 100)}% minder gas voor verwarming met een hybride warmtepomp. Je stroomverbruik gaat
             daarbij met ongeveer {WARMTEPOMP_STROOM_ERBIJ.hybride.toLocaleString("nl-NL")} kWh per jaar omhoog. Je eigen
             verbruik kan afwijken; zie dit als richting, niet als belofte.
           </p>
+        </div>
+      </section>
 
-          {/* Compacte CTA-balk zonder portret: Naud staat al uitgebreid bij "Waarom Gijs". */}
-          <div className="flex flex-col gap-5 rounded-[var(--radius-lg)] bg-white p-6 sm:p-8 md:flex-row md:items-center md:justify-between md:gap-10">
-            <div className="flex flex-col gap-2 max-w-2xl">
-              <h3 className={KAARTKOP}>Weten wat een warmtepomp in jouw woning kan besparen?</h3>
-              <p className={KAARTTEKST}>
-                Tijdens een energiescan bekijken we je woning, verwarming en energieverbruik. Je hoort eerlijk wat mogelijk
-                is en welke stap het meeste oplevert.
-              </p>
-            </div>
-            <WhatsAppTrackedButton plaats="maatregelpagina_besparing" href={ENERGIESCAN_HREF} size="md" iconRight="arrow-right" className="self-start md:self-center shrink-0">Vraag een gratis energiescan aan</WhatsAppTrackedButton>
+      {/* Financiële besparing: aparte rekenvoorbeelden (WARMTEPOMP_EURO_BESPARING), niet afgeleid van
+          de gastabel hierboven. Tabel en grafiek lezen uit dezelfde bron. */}
+      <section id="energierekening" className={SECTIE}>
+        <Kop eyebrow="Besparing in euro's" titel="Wat bespaar je op je energierekening?"
+          lead={<>
+            Met een hybride warmtepomp kun je in deze rekenvoorbeelden jaarlijks tussen de {euro(minHybride)} en{" "}
+            {euro(maxHybride)} besparen op je energierekening. Bij een volledig elektrische warmtepomp loopt deze besparing op
+            tot {euro(maxVolledig)} per jaar. Dat betekent echter niet automatisch dat een volledig elektrische warmtepomp ook de
+            beste investering is voor jouw woning. Er kunnen namelijk aanvullende maatregelen nodig zijn om deze besparing te
+            realiseren.
+          </>} />
+
+        <StaafVergelijking
+          titel="Jaarlijkse besparing op je energierekening"
+          reeksen={[{ naam: "Hybride warmtepomp", kleur: KLEUR.hybride }, { naam: "Volledig elektrische warmtepomp", kleur: KLEUR.volledig }]}
+          categorieen={EUROBESPARING.map(r => ({ label: r.label, waarden: [r.hybride, r.volledigElektrisch] }))}
+          max={2000}
+          stappen={[0, 500, 1000, 1500, 2000]}
+          formaat={euro}
+          onderschrift={<>
+            Indicatieve rekenvoorbeelden met een gasprijs van {euroCent(U.gasprijsPerM3)} per m³ en een stroomprijs van{" "}
+            {euroCent(U.stroomprijsPerKwh)} per kWh (peildatum {U.peildatum}). Hybride: matig geïsoleerde woning. Volledig
+            elektrisch: goed geïsoleerde woning, inclusief de besparing op vaste gaskosten als de gasaansluiting vervalt. Geen
+            gegarandeerde besparing.
+          </>}
+        />
+
+        <p className="text-[15px] font-semibold tracking-[-0.01em] text-[var(--accent-700)] mt-8 mb-3">Indicatieve besparing per jaar</p>
+        <ul className="sm:hidden divide-y divide-[var(--border-default)] rounded-[var(--radius-lg)] border border-[var(--border-default)] bg-white px-5">
+          {EUROBESPARING.map(r => (
+            <li key={r.label} className="py-4">
+              <p className="font-bold text-[var(--gijs-donkergroen)]">{r.label}</p>
+              <dl className="mt-1.5 grid grid-cols-[1fr_auto] gap-x-3 gap-y-1 text-[14px] min-[400px]:text-[15px]">
+                <dt className="text-zinc-600">Hybride warmtepomp</dt>
+                <dd className="text-right text-zinc-700 whitespace-nowrap">{euro(r.hybride)}</dd>
+                <dt className="text-zinc-600">Volledig elektrische warmtepomp</dt>
+                <dd className="text-right text-zinc-700 whitespace-nowrap">{euro(r.volledigElektrisch)}</dd>
+              </dl>
+            </li>
+          ))}
+        </ul>
+        <div className="hidden sm:block overflow-x-auto rounded-[var(--radius-lg)] border border-[var(--border-default)] bg-white">
+          <table className="w-full text-left border-collapse min-w-[440px]">
+            <caption className="sr-only">Indicatieve jaarlijkse besparing op de energierekening per woningtype</caption>
+            <thead>
+              <tr className="border-b border-[var(--border-default)]">
+                <th scope="col" className="px-5 py-3.5 whitespace-nowrap text-sm font-bold text-[var(--gijs-donkergroen)]">Woningtype</th>
+                <th scope="col" className="px-5 py-3.5 whitespace-nowrap text-sm font-bold text-[var(--gijs-donkergroen)] text-right">Hybride warmtepomp</th>
+                <th scope="col" className="px-5 py-3.5 whitespace-nowrap text-sm font-bold text-[var(--gijs-donkergroen)] text-right">Volledig elektrische warmtepomp</th>
+              </tr>
+            </thead>
+            <tbody className="divide-y divide-[var(--border-default)]">
+              {EUROBESPARING.map(r => (
+                <tr key={r.label}>
+                  <th scope="row" className="px-5 py-3 font-bold text-[var(--gijs-donkergroen)] whitespace-nowrap">{r.label}</th>
+                  <td className="px-5 py-3 text-zinc-700 whitespace-nowrap text-right tabular-nums">{euro(r.hybride)}</td>
+                  <td className="px-5 py-3 text-zinc-700 whitespace-nowrap text-right tabular-nums">{euro(r.volledigElektrisch)}</td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
+        <p className={BRON + " mt-3 mb-8 lg:mb-10 max-w-3xl"}>
+          Deze bedragen zijn aparte rekenvoorbeelden en zijn niet rechtstreeks afgeleid van de gastabel hierboven: per systeem
+          gaan ze uit van een ander isolatieniveau. Ter vergelijking kun je ook de berekening van{" "}
+          <a href="https://www.eigenhuis.nl/verduurzamen/verwarmen/warmtepomp/warmtepomp-kosten-besparing" target="_blank" rel="noopener noreferrer" className={BRONLINK}>
+            Vereniging Eigen Huis<span className="sr-only"> (opent in nieuw tabblad)</span>
+          </a>{" "}
+          bekijken; Gijs hanteert daarbij aangepaste rekenuitgangspunten. De voorbeelden zijn gebaseerd op een gasprijs van{" "}
+          {euroCent(U.gasprijsPerM3)} per m³ en de uitkomsten zijn afgerond op € 50.
+        </p>
+
+        {/* Compacte CTA-balk zonder portret: Naud staat al uitgebreid bij "Waarom Gijs". */}
+        <div className="flex flex-col gap-5 rounded-[var(--radius-lg)] bg-[var(--surface-tint)] p-6 sm:p-8 md:flex-row md:items-center md:justify-between md:gap-10">
+          <div className="flex flex-col gap-2 max-w-2xl">
+            <h3 className={KAARTKOP}>Weten wat een warmtepomp in jouw woning bespaart?</h3>
+            <p className={KAARTTEKST}>
+              Deze rekenvoorbeelden geven richting. Tijdens een gratis energiescan bekijken we je woning, isolatie, verwarming
+              en energieverbruik, en rekenen we uit welke warmtepomp, of welke andere stap, voor jou het meeste oplevert.
+            </p>
           </div>
+          <WhatsAppTrackedButton plaats="maatregelpagina_besparing" href={ENERGIESCAN_HREF} size="md" iconRight="arrow-right" className="self-start md:self-center shrink-0">Vraag een gratis energiescan aan</WhatsAppTrackedButton>
         </div>
       </section>
 
@@ -371,7 +496,7 @@ export function WarmtepompPage({ item }: { item: MeasurePageItem }) {
           isolatieglaspagina. Waar Gijs op let, staat in een uitklapper. */}
       <section id="welke-past" className={SECTIE}>
         <Kop eyebrow="Hybride of volledig elektrisch" titel="Welke warmtepomp past bij jouw huis?"
-          lead="Er zijn twee soorten. De meeste bestaande woningen beginnen met een hybride warmtepomp." />
+          lead="Twee identieke woningen in dezelfde straat kunnen door verschillen in isolatie, verwarming en energieverbruik een andere warmtepomp nodig hebben. Welke warmtepomp technisch én financieel het meest interessant is voor jouw woning, zoeken we daarom uit tijdens een energiescan." />
 
         <div className={GRIJS_BLOK}>
           <ul className="grid grid-cols-1 md:grid-cols-2 gap-4 lg:gap-5">
@@ -396,8 +521,8 @@ export function WarmtepompPage({ item }: { item: MeasurePageItem }) {
             ))}
           </ul>
           <p className={TEKST + " mt-6 max-w-3xl"}>
-            Welke van de twee bij jouw huis past, hoef je niet zelf uit te zoeken. Dat bekijkt Gijs samen met je tijdens
-            de energiescan.
+            Gijs adviseert onafhankelijk en kijkt naar de volledige woning. Wanneer isoleren een verstandigere eerste
+            investering is, moet dat ook uit het advies kunnen blijken.
           </p>
 
           <details className="group mt-8">
@@ -417,6 +542,29 @@ export function WarmtepompPage({ item }: { item: MeasurePageItem }) {
             </ul>
           </details>
         </div>
+      </section>
+
+      {/* Plaatsen: drie korte kaarten en de video, net als op de isolatieglaspagina. */}
+      <section id="plaatsen" className={SECTIE}>
+        <Kop eyebrow="Warmtepomp laten plaatsen" titel="Een warmtepomp laten plaatsen: hoe werkt dat?" />
+
+        <ul className={RASTER + " gap-4 lg:gap-5 mb-14"}>
+          {plaatsKaarten.map((k, i) => (
+            <li key={k.titel} className={"flex flex-col gap-3 rounded-[var(--radius-lg)] border border-[var(--border-default)] bg-white p-6 sm:p-8 transition-all duration-500 ease-out hover:-translate-y-1 hover:border-transparent hover:shadow-[0_8px_30px_-8px_rgba(0,0,0,0.08)] " + RASTER_CEL(plaatsKaarten.length, i)}>
+              <span className="flex h-10 w-10 items-center justify-center rounded-full bg-[var(--surface-tint)] text-[var(--accent-700)]">
+                <Icon name={k.icon} size="md" />
+              </span>
+              <h3 className={KAARTKOP}>{k.titel}</h3>
+              <p className={KAARTTEKST}>{k.tekst}</p>
+            </li>
+          ))}
+        </ul>
+
+        <div className="flex flex-col gap-4 mb-10 max-w-3xl">
+          <h3 className={H3_GROOT}>Zo verloopt de dag van plaatsing</h3>
+          <p className={LEAD}>Bij de installatie van je warmtepomp werken we volgens een vaste aanpak. Zo weet je precies wat je kunt verwachten.</p>
+        </div>
+        <WarmtepompInstallatieAnimatie />
       </section>
 
       {/* Voorbeelden van warmtepompen: informatief, geen webshop. Geen prijzen of voorraad; per model
@@ -462,29 +610,6 @@ export function WarmtepompPage({ item }: { item: MeasurePageItem }) {
         <p className={BRON + " mt-4"}>Dit zijn voorbeelden. Gijs kijkt samen met je welk merk, type en vermogen bij jouw woning passen.</p>
       </section>
 
-      {/* Plaatsen: drie korte kaarten en de video, net als op de isolatieglaspagina. */}
-      <section id="plaatsen" className={SECTIE}>
-        <Kop eyebrow="Warmtepomp laten plaatsen" titel="Een warmtepomp laten plaatsen: hoe werkt dat?" />
-
-        <ul className={RASTER + " gap-4 lg:gap-5 mb-14"}>
-          {plaatsKaarten.map((k, i) => (
-            <li key={k.titel} className={"flex flex-col gap-3 rounded-[var(--radius-lg)] border border-[var(--border-default)] bg-white p-6 sm:p-8 transition-all duration-500 ease-out hover:-translate-y-1 hover:border-transparent hover:shadow-[0_8px_30px_-8px_rgba(0,0,0,0.08)] " + RASTER_CEL(plaatsKaarten.length, i)}>
-              <span className="flex h-10 w-10 items-center justify-center rounded-full bg-[var(--surface-tint)] text-[var(--accent-700)]">
-                <Icon name={k.icon} size="md" />
-              </span>
-              <h3 className={KAARTKOP}>{k.titel}</h3>
-              <p className={KAARTTEKST}>{k.tekst}</p>
-            </li>
-          ))}
-        </ul>
-
-        <div className="flex flex-col gap-4 mb-10 max-w-3xl">
-          <h3 className={H3_GROOT}>Zo verloopt de dag van plaatsing</h3>
-          <p className={LEAD}>Bij de installatie van je warmtepomp werken we volgens een vaste aanpak. Zo weet je precies wat je kunt verwachten.</p>
-        </div>
-        <WarmtepompInstallatieAnimatie />
-      </section>
-
       <section id="subsidie" className={SECTIE}>
         <div className="rounded-[var(--radius-xl)] bg-[var(--surface-tint)] px-6 py-9 sm:px-10 lg:px-12 lg:py-11">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 lg:gap-16 items-start">
@@ -512,10 +637,13 @@ export function WarmtepompPage({ item }: { item: MeasurePageItem }) {
         </div>
       </section>
 
-      {/* Kennisartikel over de ISDE-wijzigingen voor 2027, als dezelfde kaart als op /kennis. */}
+      {/* Gepubliceerde kennisartikelen over warmtepompen, als dezelfde kaarten als op /kennis. */}
       <section id="kennis" className={SECTIE}>
-        <Kop eyebrow="Kennis" titel="Warmtepomp: subsidie en nieuwe regels" />
-        <ArtikelKaarten slugs={["cv-ketel-vervangen-2029-gas-of-warmtepomp", "slimme-warmtepomp-subsidie-2027"]} />
+        <Kop eyebrow="Kennis" titel="Meer weten over warmtepompen?" />
+        <ArtikelKaarten slugs={[
+          "warmtepomp-rijtjeshuis-weinig-ruimte", "cv-ketel-vervangen-2029-gas-of-warmtepomp",
+          "slimme-warmtepomp-subsidie-2027", "dynamische-nettarieven-2029",
+        ]} rij />
       </section>
 
       <section id="veelgestelde-vragen" className={SECTIE}>
